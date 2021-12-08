@@ -1,5 +1,5 @@
 ﻿
-namespace APL_Project
+namespace Client
 {
     partial class Form1
     {
