@@ -1,2 +1,0 @@
-F:\APL_Project\obj\Debug\net4.8\APL software.AssemblyInfoInputs.cache
-F:\APL_Project\obj\Debug\net4.8\APL software.AssemblyInfo.cs
