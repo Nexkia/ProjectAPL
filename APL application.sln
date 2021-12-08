@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APL software", "APL software.csproj", "{EC229074-9742-4604-8EB1-D9DF87068E03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC229074-9742-4604-8EB1-D9DF87068E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC229074-9742-4604-8EB1-D9DF87068E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC229074-9742-4604-8EB1-D9DF87068E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC229074-9742-4604-8EB1-D9DF87068E03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
