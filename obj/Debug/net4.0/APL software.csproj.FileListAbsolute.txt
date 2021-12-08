@@ -1,3 +1,0 @@
-F:\APL_Project\obj\Debug\net4.0\APL software.csprojAssemblyReference.cache
-F:\APL_Project\obj\Debug\net4.0\APL software.AssemblyInfoInputs.cache
-F:\APL_Project\obj\Debug\net4.0\APL software.AssemblyInfo.cs
