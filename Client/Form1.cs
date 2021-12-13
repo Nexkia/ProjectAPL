@@ -37,6 +37,9 @@ namespace Client
 
         }
 
+       
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             String email;
@@ -104,7 +107,7 @@ namespace Client
                 
 
                 // disattiva la X in alto a destra
-                // MessageBoxButtons buttons = MessageBoxButtons.AbortRetryIgnore;
+                //MessageBoxButtons buttons = MessageBoxButtons.AbortRetryIgnore;
                 MessageBox.Show("Riempire tutti i campi", "Errore");
 
 
@@ -198,9 +201,10 @@ namespace Client
                                 con1.Open();
 
                                 var stm1 = "INSERT INTO apl_database.utenti (CodiceFiscale, NomeUtente, Email, Password, Indirizzo) VALUES('" + codiceFiscale + "', '" + nomeUtente + "', '" + emailR + "', '" + confermaPasswordR + "', '" + indirizzo + "')";
-
+                                Console.WriteLine(stm1);
                                 var cmd1 = new MySqlCommand(stm1, con1);
-                                int risultato1= int.Parse(cmd.ExecuteScalar().ToString());
+                                cmd1.ExecuteNonQuery();
+                               
 
                                 con1.Close();
 
@@ -306,6 +310,14 @@ namespace Client
             {
                 textBoxConfermaPasswordR.PasswordChar = default;
             }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2(this); // Instantiate a Form2 object.
+            f2.Show(); // Show Form2 and
+           this.Visible = false; //invisible form1
+            //this.Close(); // closes the Form2 instance.
         }
     }
 }
