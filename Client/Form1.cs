@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 
 
@@ -17,6 +19,7 @@ using System.Windows;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Net.Mail;
 using System.Data.SqlClient;
+using Microsoft.Azure.Documents;
 
 namespace Client
 {
@@ -65,32 +68,28 @@ namespace Client
                 }
                 else
                 {
-                    Console.WriteLine($"The email is valid");
-
+ 
                     //------------database---------------------------------------------
-                    string server = "localhost";
-                    string database = "apl_database";
-                    string uid = "Dario";
-                    string passworddatabase = "ciaociao99";
-                    string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + passworddatabase + ";";
+                    string nomeDatabase = "apl_database";
+                    
+                    MongoClient client = new MongoClient();
+                    var database = client.GetDatabase(nomeDatabase);
+                    Utenti utente = new Utenti();
+                    var events = database.GetCollection<Utenti>("utenti");
 
-                    MySqlConnection con = new MySqlConnection(connectionString);
+                    var risultato = events.Count(x => x.Email == email && x.Password==password);
+                    
 
-                    con.Open();
-
-                    var stm = "SELECT COUNT(*) FROM apl_database.utenti WHERE Email='" + email+ "' AND Password='"+password+"'";
-                    var cmd = new MySqlCommand(stm, con);
-                    int risultato = int.Parse(cmd.ExecuteScalar().ToString());
-                    if (risultato == 0) {
+                    if (risultato == 0)
+                    {
                         Console.WriteLine("Utente non trovato");
                     }
                     if (risultato == 1)
                     {
                         Console.WriteLine("Utente trovato");
                     }
-                    
-                    //Console.WriteLine("cmd: "+ cmd.ExecuteScalar().ToString());
-                    //----------------------------------------------------------------
+
+                   //------------------------------------------------------------
 
 
 
@@ -175,23 +174,17 @@ namespace Client
                         }
                         else {
                             //-verifica che l'utente non sia già presente all'interno del DATABASE
-                            string server = "localhost";
-                            string database = "apl_database";
-                            string uid = "Dario";
-                            string passworddatabase = "ciaociao99";
-                            string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + passworddatabase + ";";
 
-                            MySqlConnection con = new MySqlConnection(connectionString);
+                            string nomeDatabase = "apl_database";
+                            Utenti utente = new Utenti();
 
-                            con.Open();
+                            MongoClient client = new MongoClient();
+                            var database = client.GetDatabase(nomeDatabase);
+                            var events = database.GetCollection<Utenti>("utenti");
 
-                            var stm = "SELECT COUNT(*) FROM apl_database.utenti WHERE Email='" + emailR + "' OR CodiceFiscale='" + codiceFiscale + "'";
-                           
-                            var cmd = new MySqlCommand(stm, con);
-                            int risultato = int.Parse(cmd.ExecuteScalar().ToString());
-                            con.Close();
+                            var risultato1 = events.Count(x=>x.Email==emailR || x.CodiceFiscale==codiceFiscale);
 
-                            if (risultato == 1)
+                            if (risultato1 >= 1 )
                             {
                                 
                                 MessageBox.Show("Email o Codice Fiscale già usati in altri account",
@@ -199,28 +192,22 @@ namespace Client
 
 
                             }
-                            if (risultato == 0)
+                            if (risultato1 == 0 )
                             {
                                 //---Inserimento valori nel DATABASE-------------
-
-                                
-
-                                MySqlConnection con1= new MySqlConnection(connectionString);
-
-                                con1.Open();
-
-                                var stm1 = "INSERT INTO apl_database.utenti (CodiceFiscale, NomeUtente, Email, Password, Indirizzo) VALUES('" + codiceFiscale + "', '" + nomeUtente + "', '" + emailR + "', '" + confermaPasswordR + "', '" + indirizzo + "')";
-                                Console.WriteLine(stm1);
-                                var cmd1 = new MySqlCommand(stm1, con1);
-                                cmd1.ExecuteNonQuery();
-                               
-
-                                con1.Close();
-
+ 
                                 Console.WriteLine("invio al database");
 
-                              
-
+                                   Utenti document = new Utenti
+                                       {    
+                                            Id=Guid.NewGuid(),
+                                            CodiceFiscale= codiceFiscale ,
+                                            NomeUtente=nomeUtente ,
+                                            Email= emailR  ,
+                                            Password= confermaPasswordR ,
+                                            Indirizzo= indirizzo ,
+                                       };
+                                           events.InsertOne(document);
 
                                 //----------------------------------------------------------------
 
