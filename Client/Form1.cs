@@ -58,9 +58,10 @@ namespace Client
                 bool isValidEmail2 = email.Contains(".");
                 if (!isValidEmail1 || !isValidEmail2)
                 {
+
+                    MessageBox.Show("Email non valida",
+                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     
-                    
-                    MessageBox.Show("Email non valida", "Errore");
                 }
                 else
                 {
@@ -106,9 +107,8 @@ namespace Client
             else {
                 
 
-                // disattiva la X in alto a destra
-                //MessageBoxButtons buttons = MessageBoxButtons.AbortRetryIgnore;
-                MessageBox.Show("Riempire tutti i campi", "Errore");
+                MessageBox.Show("Riempire tutti i campi",
+                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
 
             }
@@ -148,7 +148,10 @@ namespace Client
                 if (isValidNomeUtente || isValidCodiceFiscale || isValidEmailR
                     || isValidinserisciPasswordR || isValidconfermaPasswordR || isValidIndirizzo)
                 {
-                    MessageBox.Show("Togliere gli spazi all'interno dei campi", "Errore");
+                    
+                    MessageBox.Show("Togliere gli spazi all'interno dei campi",
+                        "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 }
                 else
                 {
@@ -157,14 +160,18 @@ namespace Client
                     bool isValidEmailR2 = emailR.Contains(".");
                     if (!isValidEmailR1 || !isValidEmailR2)
                     {
-                        MessageBox.Show("Email non valida", "Errore");
+                        
+                        MessageBox.Show("Email non valida",
+                        "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
                         //controlla che le due password siano uguali
                         if (inserisciPasswordR!= confermaPasswordR)
                         {
-                            MessageBox.Show("Le due password inserite sono diverse", "Errore");
+                            
+                            MessageBox.Show("Le due password inserite sono diverse",
+                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else {
                             //-verifica che l'utente non sia già presente all'interno del DATABASE
@@ -186,9 +193,11 @@ namespace Client
 
                             if (risultato == 1)
                             {
-                                MessageBox.Show("Email o Codice Fiscale già usati in altri account"); 
                                 
-                                
+                                MessageBox.Show("Email o Codice Fiscale già usati in altri account",
+                                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
                             }
                             if (risultato == 0)
                             {
@@ -226,7 +235,9 @@ namespace Client
 
                 }
             }else {
-                    MessageBox.Show("Riempire tutti i campi", "Errore");
+                   
+                    MessageBox.Show("Riempire tutti i campi",
+                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
@@ -318,6 +329,69 @@ namespace Client
             f2.Show(); // Show Form2 and
            this.Visible = false; //invisible form1
             //this.Close(); // closes the Form2 instance.
+        }
+
+        private void button2_Click_1(object sender, EventArgs e1)
+        {
+            byte[] bytes = new byte[1024];
+
+            try
+            {
+                // Connect to a Remote server
+                // Get Host IP Address that is used to establish a connection
+                // In this case, we get one IP address of localhost that is IP : 127.0.0.1
+                // If a host has multiple addresses, you will get a list of addresses
+                IPHostEntry host = Dns.GetHostEntry("localhost");
+                IPAddress ipAddress = host.AddressList[0];
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
+
+                // Create a TCP/IP  socket.
+                Socket sender1 = new Socket(ipAddress.AddressFamily,
+                    SocketType.Stream, ProtocolType.Tcp);
+
+                // Connect the socket to the remote endpoint. Catch any errors.
+                try
+                {
+                    // Connect to Remote EndPoint
+                    sender1.Connect(remoteEP);
+
+                    Console.WriteLine("Socket connected to {0}",
+                        sender1.RemoteEndPoint.ToString());
+
+                    // Encode the data string into a byte array.
+                    byte[] msg = Encoding.ASCII.GetBytes("This is a test\n");
+
+                    // Send the data through the socket.
+                    int bytesSent = sender1.Send(msg);
+
+                    // Receive the response from the remote device.
+                    int bytesRec = sender1.Receive(bytes);
+                    Console.WriteLine("Echoed test = {0}",
+                        Encoding.ASCII.GetString(bytes, 0, bytesRec));
+
+                    // Release the socket.
+                    sender1.Shutdown(SocketShutdown.Both);
+                    sender1.Close();
+
+                }
+                catch (ArgumentNullException ane)
+                {
+                    Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+                }
+                catch (SocketException se)
+                {
+                    Console.WriteLine("SocketException : {0}", se.ToString());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
     }
 }

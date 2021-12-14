@@ -52,6 +52,7 @@ namespace Client
             this.buttonMostraIP = new System.Windows.Forms.Button();
             this.buttonCP = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login
@@ -191,10 +192,18 @@ namespace Client
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // buttonConnect
+            // 
+            resources.ApplyResources(this.buttonConnect, "buttonConnect");
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCP);
             this.Controls.Add(this.buttonMostraIP);
@@ -248,6 +257,7 @@ namespace Client
         private System.Windows.Forms.Button buttonMostraIP;
         private System.Windows.Forms.Button buttonCP;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonConnect;
     }
 }
 

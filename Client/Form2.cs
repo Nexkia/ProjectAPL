@@ -24,11 +24,17 @@ namespace Client
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            MessageBoxButtons buttons = MessageBoxButtons.AbortRetryIgnore;
+            
+        }
+
+
+        protected override void OnClosed(EventArgs e)
+        {
+            vecchioForm.Visible = true;
+            base.OnClosed(e);
         }
 
         
-
 
 
 
