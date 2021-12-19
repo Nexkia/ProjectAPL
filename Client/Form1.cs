@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Text.Json;
+
 
 
 
@@ -54,8 +56,7 @@ namespace Client
                 email = textBoxEmail.Text;
                 password = textBoxPassword.Text;
 
-                
-
+ 
 
                 bool isValidEmail1 = email.Contains("@");
                 bool isValidEmail2 = email.Contains(".");
@@ -70,15 +71,50 @@ namespace Client
                 {
  
                     //------------database---------------------------------------------
-                    string nomeDatabase = "apl_database";
-                    
-                    MongoClient client = new MongoClient();
-                    var database = client.GetDatabase(nomeDatabase);
-                    Utenti utente = new Utenti();
-                    var events = database.GetCollection<Utenti>("utenti");
+                   
 
-                    var risultato = events.Count(x => x.Email == email && x.Password==password);
+                    string nomeDatabase = "apl_database";
+                    Utenti utente = new Utenti();
+
+                    string host = "localhost";
+                    Int32 port = 13000;
+                   // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));
+                    TcpClient client = new TcpClient(host,port);
+
+                    NetworkStream stream = client.GetStream();
+
                     
+                    string Json = JsonSerializer.Serialize(
+                        new { 
+                            Email=email,
+                            Password=password
+                        }
+                        );;
+
+                    //conversione da Json a Byte
+                    byte[] outJson = Encoding.ASCII.GetBytes("1 "+Json+"\n");
+
+                    stream.Write(outJson, 0, outJson.Length);
+
+                    Console.WriteLine("Sent: {0}\n bytes: {1}", Json,outJson);
+
+                    // Buffer to store the response bytes.
+                    var data = new Byte[256];
+
+                    // String to store the response ASCII representation.
+                    String responseData = String.Empty;
+
+                    // Read the first batch of the TcpServer response bytes.
+                    Int32 bytes = stream.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Console.WriteLine("Received: {0}", responseData);
+
+                    // Close everything.
+                    stream.Close();
+                    client.Close();
+
+                    int risultato = 0;
+
 
                     if (risultato == 0)
                     {
@@ -92,15 +128,10 @@ namespace Client
                    //------------------------------------------------------------
 
 
-
                     textBoxEmail.Text = string.Empty;
                     textBoxPassword.Text = string.Empty;
                 }
 
-
-
-                
-                
 
             }
             else {
@@ -178,11 +209,17 @@ namespace Client
                             string nomeDatabase = "apl_database";
                             Utenti utente = new Utenti();
 
-                            MongoClient client = new MongoClient();
-                            var database = client.GetDatabase(nomeDatabase);
-                            var events = database.GetCollection<Utenti>("utenti");
+                            Int32 port = 13000;
+                            var endPoint = new IPEndPoint(IPAddress.Parse("localhost"), (port));
+                            TcpClient client = new TcpClient(endPoint);
 
-                            var risultato1 = events.Count(x=>x.Email==emailR || x.CodiceFiscale==codiceFiscale);
+                            NetworkStream stream = client.GetStream();
+
+                            string Json = @"{
+                                           ""
+                                            }";
+
+                            int  risultato1 = 2;
 
                             if (risultato1 >= 1 )
                             {
@@ -207,7 +244,7 @@ namespace Client
                                             Password= confermaPasswordR ,
                                             Indirizzo= indirizzo ,
                                        };
-                                           events.InsertOne(document);
+                                           //events.InsertOne(document);
 
                                 //----------------------------------------------------------------
 
@@ -320,65 +357,7 @@ namespace Client
 
         private void button2_Click_1(object sender, EventArgs e1)
         {
-            byte[] bytes = new byte[1024];
-
-            try
-            {
-                // Connect to a Remote server
-                // Get Host IP Address that is used to establish a connection
-                // In this case, we get one IP address of localhost that is IP : 127.0.0.1
-                // If a host has multiple addresses, you will get a list of addresses
-                IPHostEntry host = Dns.GetHostEntry("localhost");
-                IPAddress ipAddress = host.AddressList[0];
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
-
-                // Create a TCP/IP  socket.
-                Socket sender1 = new Socket(ipAddress.AddressFamily,
-                    SocketType.Stream, ProtocolType.Tcp);
-
-                // Connect the socket to the remote endpoint. Catch any errors.
-                try
-                {
-                    // Connect to Remote EndPoint
-                    sender1.Connect(remoteEP);
-
-                    Console.WriteLine("Socket connected to {0}",
-                        sender1.RemoteEndPoint.ToString());
-
-                    // Encode the data string into a byte array.
-                    byte[] msg = Encoding.ASCII.GetBytes("This is a test\n");
-
-                    // Send the data through the socket.
-                    int bytesSent = sender1.Send(msg);
-
-                    // Receive the response from the remote device.
-                    int bytesRec = sender1.Receive(bytes);
-                    Console.WriteLine("Echoed test = {0}",
-                        Encoding.ASCII.GetString(bytes, 0, bytesRec));
-
-                    // Release the socket.
-                    sender1.Shutdown(SocketShutdown.Both);
-                    sender1.Close();
-
-                }
-                catch (ArgumentNullException ane)
-                {
-                    Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
-                }
-                catch (SocketException se)
-                {
-                    Console.WriteLine("SocketException : {0}", se.ToString());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            
         }
     }
 }
