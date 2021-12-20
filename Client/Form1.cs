@@ -89,10 +89,10 @@ namespace Client
                             Email=email,
                             Password=password
                         }
-                        );;
+                        );
 
                     //conversione da Json a Byte
-                    byte[] outJson = Encoding.ASCII.GetBytes("1 "+Json+"\n");
+                    byte[] outJson = Encoding.ASCII.GetBytes("1 ok "+Json+"\n");
 
                     stream.Write(outJson, 0, outJson.Length);
 
@@ -110,8 +110,8 @@ namespace Client
                     Console.WriteLine("Received: {0}", responseData);
 
                     // Close everything.
-                    stream.Close();
-                    client.Close();
+                   // stream.Close();
+                   // client.Close();
 
                     int risultato = 0;
 
@@ -149,20 +149,22 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            
             String nomeUtente;
-            String codiceFiscale;
+            
             String emailR;
             String indirizzo;
             String inserisciPasswordR;
             String confermaPasswordR;
 
-            if (textBoxNomeUtente.Text != string.Empty && textBoxCodiceFiscale.Text != string.Empty &&
+            if (textBoxNomeUtente.Text != string.Empty &&
                 textBoxEmailR.Text != string.Empty && textBoxIndirizzo.Text != string.Empty &&
                 textBoxInserisciPasswordR.Text != string.Empty && textBoxConfermaPasswordR.Text != string.Empty)
             {
 
                 nomeUtente = textBoxNomeUtente.Text;
-                codiceFiscale = textBoxCodiceFiscale.Text.ToUpper();// trasforma i caratteri in maiuscole
+               // codiceFiscale = textBoxCodiceFiscale.Text.ToUpper();// trasforma i caratteri in maiuscole
                 emailR = textBoxEmailR.Text;
                 indirizzo = textBoxIndirizzo.Text;
                 inserisciPasswordR = textBoxInserisciPasswordR.Text;
@@ -170,12 +172,12 @@ namespace Client
 
                 //controllo sul nome utente, che non deve avere spazi
                 bool isValidNomeUtente = nomeUtente.Contains(" ");
-                bool isValidCodiceFiscale = codiceFiscale.Contains(" ");
+               // bool isValidCodiceFiscale = codiceFiscale.Contains(" ");
                 bool isValidEmailR = emailR.Contains(" ");
                 bool isValidIndirizzo=indirizzo.Contains(" ");
                 bool isValidinserisciPasswordR = inserisciPasswordR.Contains(" ");
                 bool isValidconfermaPasswordR = confermaPasswordR.Contains(" ");
-                if (isValidNomeUtente || isValidCodiceFiscale || isValidEmailR
+                if (isValidNomeUtente  || isValidEmailR
                     || isValidinserisciPasswordR || isValidconfermaPasswordR || isValidIndirizzo)
                 {
                     
@@ -204,22 +206,55 @@ namespace Client
                             "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else {
-                            //-verifica che l'utente non sia già presente all'interno del DATABASE
+                            //------------database---------------------------------------------
+
 
                             string nomeDatabase = "apl_database";
                             Utenti utente = new Utenti();
 
+                            string host = "localhost";
                             Int32 port = 13000;
-                            var endPoint = new IPEndPoint(IPAddress.Parse("localhost"), (port));
-                            TcpClient client = new TcpClient(endPoint);
+                            // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));
+                            TcpClient client = new TcpClient(host, port);
 
                             NetworkStream stream = client.GetStream();
 
-                            string Json = @"{
-                                           ""
-                                            }";
+                            
 
-                            int  risultato1 = 2;
+                            string Json = JsonSerializer.Serialize(
+                                new
+                                {
+                                    Email = emailR,
+                                    Indirizzo=indirizzo,
+                                    NomeUtente=nomeUtente,
+                                    Password = confermaPasswordR
+                                }
+                                );
+
+                            //conversione da Json a Byte
+                            byte[] outJson = Encoding.ASCII.GetBytes("0 ok " + Json + "\n");
+
+                            stream.Write(outJson, 0, outJson.Length);
+
+                            Console.WriteLine("Sent: {0}\n bytes: {1}", Json, outJson);
+
+                            // Buffer to store the response bytes.
+                            var data = new Byte[256];
+
+                            // String to store the response ASCII representation.
+                            String responseData = String.Empty;
+
+                            // Read the first batch of the TcpServer response bytes.
+                            Int32 bytes = stream.Read(data, 0, data.Length);
+                            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                            Console.WriteLine("Received: {0}", responseData);
+
+                            // Close everything.
+                            stream.Close();
+                            client.Close();
+
+
+                            int risultato1 = 2;
 
                             if (risultato1 >= 1 )
                             {
@@ -238,7 +273,7 @@ namespace Client
                                    Utenti document = new Utenti
                                        {    
                                             Id=Guid.NewGuid(),
-                                            CodiceFiscale= codiceFiscale ,
+                                           // CodiceFiscale= codiceFiscale ,
                                             NomeUtente=nomeUtente ,
                                             Email= emailR  ,
                                             Password= confermaPasswordR ,

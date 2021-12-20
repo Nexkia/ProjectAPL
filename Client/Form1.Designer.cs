@@ -43,8 +43,6 @@ namespace Client
             this.labelInserisciPasswordR = new System.Windows.Forms.Label();
             this.textBoxEmailR = new System.Windows.Forms.TextBox();
             this.labelEmailR = new System.Windows.Forms.Label();
-            this.textBoxCodiceFiscale = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBoxNomeUtente = new System.Windows.Forms.TextBox();
             this.labelNomeUtente = new System.Windows.Forms.Label();
             this.textBoxIndirizzo = new System.Windows.Forms.TextBox();
@@ -137,18 +135,6 @@ namespace Client
             this.labelEmailR.BackColor = System.Drawing.SystemColors.Control;
             this.labelEmailR.Name = "labelEmailR";
             // 
-            // textBoxCodiceFiscale
-            // 
-            resources.ApplyResources(this.textBoxCodiceFiscale, "textBoxCodiceFiscale");
-            this.textBoxCodiceFiscale.Name = "textBoxCodiceFiscale";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Name = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
-            // 
             // textBoxNomeUtente
             // 
             resources.ApplyResources(this.textBoxNomeUtente, "textBoxNomeUtente");
@@ -211,8 +197,6 @@ namespace Client
             this.Controls.Add(this.textBoxIndirizzo);
             this.Controls.Add(this.labelNomeUtente);
             this.Controls.Add(this.textBoxNomeUtente);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxCodiceFiscale);
             this.Controls.Add(this.labelEmailR);
             this.Controls.Add(this.textBoxEmailR);
             this.Controls.Add(this.labelInserisciPasswordR);
@@ -248,8 +232,6 @@ namespace Client
         private System.Windows.Forms.Label labelInserisciPasswordR;
         private System.Windows.Forms.TextBox textBoxEmailR;
         private System.Windows.Forms.Label labelEmailR;
-        private System.Windows.Forms.TextBox textBoxCodiceFiscale;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxNomeUtente;
         private System.Windows.Forms.Label labelNomeUtente;
         private System.Windows.Forms.TextBox textBoxIndirizzo;
