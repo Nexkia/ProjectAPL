@@ -22,13 +22,15 @@ using MessageBox = System.Windows.Forms.MessageBox;
 using System.Net.Mail;
 using System.Data.SqlClient;
 using Microsoft.Azure.Documents;
+using Client.Data.Componenti;
+using Client.Data;
 
 namespace Client
 {
      
     public partial class Form1 : Form
     {
-        Socket send;
+        
         public Form1()
         {
             
@@ -42,117 +44,11 @@ namespace Client
 
         }
 
-       
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            String email;
-            String password;
-
-            if (textBoxEmail.Text != string.Empty && textBoxPassword.Text != string.Empty)
-            {
-
-                email = textBoxEmail.Text;
-                password = textBoxPassword.Text;
-
- 
-
-                bool isValidEmail1 = email.Contains("@");
-                bool isValidEmail2 = email.Contains(".");
-                if (!isValidEmail1 || !isValidEmail2)
-                {
-
-                    MessageBox.Show("Email non valida",
-                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    
-                }
-                else
-                {
- 
-                    //------------database---------------------------------------------
-                   
-
-                    string nomeDatabase = "apl_database";
-                    Utenti utente = new Utenti();
-
-                    string host = "localhost";
-                    Int32 port = 13000;
-                   // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));
-                    TcpClient client = new TcpClient(host,port);
-
-                    NetworkStream stream = client.GetStream();
-
-                    
-                    string Json = JsonSerializer.Serialize(
-                        new { 
-                            Email=email,
-                            Password=password
-                        }
-                        );
-
-                    //conversione da Json a Byte
-                    byte[] outJson = Encoding.ASCII.GetBytes("1 ok "+Json+"\n");
-
-                    stream.Write(outJson, 0, outJson.Length);
-
-                    Console.WriteLine("Sent: {0}\n bytes: {1}", Json,outJson);
-
-                    // Buffer to store the response bytes.
-                    var data = new Byte[256];
-
-                    // String to store the response ASCII representation.
-                    String responseData = String.Empty;
-
-                    // Read the first batch of the TcpServer response bytes.
-                    Int32 bytes = stream.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Console.WriteLine("Received: {0}", responseData);
-
-                    // Close everything.
-                   // stream.Close();
-                   // client.Close();
-
-                    int risultato = 0;
-
-
-                    if (risultato == 0)
-                    {
-                        Console.WriteLine("Utente non trovato");
-                    }
-                    if (risultato == 1)
-                    {
-                        Console.WriteLine("Utente trovato");
-                    }
-
-                   //------------------------------------------------------------
-
-
-                    textBoxEmail.Text = string.Empty;
-                    textBoxPassword.Text = string.Empty;
-                }
-
-
-            }
-            else {
-                
-
-                MessageBox.Show("Riempire tutti i campi",
-                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-
-            }
-            
-           
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void Register_Click(object sender, EventArgs e)
         {
 
             
             String nomeUtente;
-            
             String emailR;
             String indirizzo;
             String inserisciPasswordR;
@@ -210,7 +106,7 @@ namespace Client
 
 
                             string nomeDatabase = "apl_database";
-                            Utenti utente = new Utenti();
+                           
 
                             string host = "localhost";
                             Int32 port = 13000;
@@ -253,36 +149,18 @@ namespace Client
                             stream.Close();
                             client.Close();
 
-
-                            int risultato1 = 2;
-
-                            if (risultato1 >= 1 )
+                            if (responseData.Contains("Registrazione"))
                             {
-                                
-                                MessageBox.Show("Email o Codice Fiscale già usati in altri account",
-                                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                                textBoxNomeUtente.Text=string.Empty;
+                                textBoxEmailR.Text = string.Empty; ;
+                                textBoxIndirizzo.Text = string.Empty; ;
+                                textBoxInserisciPasswordR.Text = string.Empty; ;
+                                textBoxConfermaPasswordR.Text = string.Empty; ;
 
                             }
-                            if (risultato1 == 0 )
-                            {
-                                //---Inserimento valori nel DATABASE-------------
- 
-                                Console.WriteLine("invio al database");
-
-                                   Utenti document = new Utenti
-                                       {    
-                                            Id=Guid.NewGuid(),
-                                           // CodiceFiscale= codiceFiscale ,
-                                            NomeUtente=nomeUtente ,
-                                            Email= emailR  ,
-                                            Password= confermaPasswordR ,
-                                            Indirizzo= indirizzo ,
-                                       };
-                                           //events.InsertOne(document);
-
-                                //----------------------------------------------------------------
-
+                            else {
+                                MessageBox.Show("Email o Codice Fiscale già usati in altri account",
+                                   "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
 
 
@@ -299,10 +177,126 @@ namespace Client
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+        }
 
-            
+     
+        private void Login_Click(object sender, EventArgs e)
+        {
+            String email;
+            String password;
+
+            if (textBoxEmail.Text != string.Empty && textBoxPassword.Text != string.Empty)
+            {
+
+                email = textBoxEmail.Text;
+                password = textBoxPassword.Text;
+
+
+
+                bool isValidEmail1 = email.Contains("@");
+                bool isValidEmail2 = email.Contains(".");
+                if (!isValidEmail1 || !isValidEmail2)
+                {
+
+                    MessageBox.Show("Email non valida",
+                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+                else
+                {
+
+                    //------------database---------------------------------------------
+
+
+                    string nomeDatabase = "apl_database";
+                    Detail a = new Detail();
+                    Cpu b = new Cpu();
+                  
+                    
+
+
+                    string host = "localhost";
+                    Int32 port = 13000;
+                    // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));
+                    TcpClient client = new TcpClient(host, port);
+
+                    NetworkStream stream = client.GetStream();
+
+
+                    string Json = JsonSerializer.Serialize(
+                        new
+                        {
+                            Email = email,
+                            Password = password
+                        }
+                        );
+
+                    //conversione da Json a Byte
+                    byte[] outJson = Encoding.ASCII.GetBytes("1 ok " + Json + "\n");
+
+                    stream.Write(outJson, 0, outJson.Length);
+
+                    Console.WriteLine("Sent: {0}\n bytes: {1}", Json, outJson);
+
+                    // Buffer to store the response bytes.
+                    var data = new Byte[256];
+
+                    // String to store the response ASCII representation.
+                    String responseData = String.Empty;
+
+                    // Read the first batch of the TcpServer response bytes.
+                    Int32 bytes = stream.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Console.WriteLine("Received: {0}", responseData);
+
+
+
+                    // Close everything.
+                    stream.Close();
+                    client.Close();
+
+
+
+
+                    if (responseData.Contains("errore: "))
+                    {
+
+                        Console.WriteLine("Login fallito," + responseData);
+                    }
+                    else
+                    {
+                        Form2 f2 = new Form2(this); // Instantiate a Form2 object.
+                        f2.Show(); // Show Form2 and
+                        this.Visible = false; //invisible form1
+
+                        Console.WriteLine("Login effettuato");
+                        string token = responseData;
+                    }
+
+
+                    //------------------------------------------------------------
+
+
+                    textBoxEmail.Text = string.Empty;
+                    textBoxPassword.Text = string.Empty;
+                }
+
+
+            }
+            else
+            {
+
+
+                MessageBox.Show("Riempire tutti i campi",
+                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            }
+
+
 
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -384,10 +378,7 @@ namespace Client
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2(this); // Instantiate a Form2 object.
-            f2.Show(); // Show Form2 and
-           this.Visible = false; //invisible form1
-            //this.Close(); // closes the Form2 instance.
+          
         }
 
         private void button2_Click_1(object sender, EventArgs e1)

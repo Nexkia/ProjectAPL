@@ -43,5 +43,25 @@ namespace Client
             vecchioForm.Visible = true;
             this.Close();
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void prova1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

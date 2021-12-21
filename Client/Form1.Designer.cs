@@ -49,8 +49,6 @@ namespace Client
             this.labelIndirizzo = new System.Windows.Forms.Label();
             this.buttonMostraIP = new System.Windows.Forms.Button();
             this.buttonCP = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login
@@ -58,14 +56,14 @@ namespace Client
             resources.ApplyResources(this.Login, "Login");
             this.Login.Name = "Login";
             this.Login.UseVisualStyleBackColor = true;
-            this.Login.Click += new System.EventHandler(this.button1_Click);
+            this.Login.Click += new System.EventHandler(this.Login_Click);
             // 
             // Register
             // 
             resources.ApplyResources(this.Register, "Register");
             this.Register.Name = "Register";
             this.Register.UseVisualStyleBackColor = true;
-            this.Register.Click += new System.EventHandler(this.button2_Click);
+            this.Register.Click += new System.EventHandler(this.Register_Click);
             // 
             // label1
             // 
@@ -171,26 +169,10 @@ namespace Client
             this.buttonCP.UseVisualStyleBackColor = true;
             this.buttonCP.Click += new System.EventHandler(this.buttonCP_Click);
             // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
-            // buttonConnect
-            // 
-            resources.ApplyResources(this.buttonConnect, "buttonConnect");
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.UseVisualStyleBackColor = true;
-            this.buttonConnect.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonConnect);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCP);
             this.Controls.Add(this.buttonMostraIP);
             this.Controls.Add(this.labelIndirizzo);
@@ -238,8 +220,6 @@ namespace Client
         private System.Windows.Forms.Label labelIndirizzo;
         private System.Windows.Forms.Button buttonMostraIP;
         private System.Windows.Forms.Button buttonCP;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button buttonConnect;
     }
 }
 
