@@ -102,11 +102,8 @@ namespace Client
                             "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else {
-                            //------------database---------------------------------------------
+                            //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
-
-                            string nomeDatabase = "apl_database";
-                           
 
                             string host = "localhost";
                             Int32 port = 13000;
@@ -205,16 +202,11 @@ namespace Client
                 else
                 {
 
-                    //------------database---------------------------------------------
+                //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
-
-                    string nomeDatabase = "apl_database";
-                    Detail a = new Detail();
+                    Componente a = new Componente();
                     Cpu b = new Cpu();
-                  
-                    
-
-
+       
                     string host = "localhost";
                     Int32 port = 13000;
                     // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));

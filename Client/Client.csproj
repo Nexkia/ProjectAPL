@@ -306,7 +306,7 @@
     <Compile Include="Connection.cs" />
     <Compile Include="Data\Componenti\Alimentatore.cs" />
     <Compile Include="Data\Componenti\Cpu.cs" />
-    <Compile Include="Data\Componenti\Detail.cs" />
+    <Compile Include="Data\Componenti\Componente.cs" />
     <Compile Include="Data\Componenti\Dissipatore.cs" />
     <Compile Include="Data\Componenti\Memoria.cs" />
     <Compile Include="Data\Componenti\Ram.cs" />
@@ -314,6 +314,7 @@
     <Compile Include="Data\Componenti\SchedaVideo.cs" />
     <Compile Include="Data\Componenti\Telaio.cs" />
     <Compile Include="Data\pcAssemblato.cs" />
+    <Compile Include="Data\preAssemblato.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

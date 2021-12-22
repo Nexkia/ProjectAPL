@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Data.Componenti
+namespace Client.Data
 {
-    class Cpu: Detail
+    class Cpu: Componente
     {
-        public string Modello { get; set; }
-        public string Categoria { get; set; }
+
         public int Tdp { get; set; }
         public float Frequenza { get; set; }
         public string Socket { get; set; }

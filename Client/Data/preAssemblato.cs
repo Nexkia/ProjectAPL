@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Memoria: Componente
-
+    class preAssemblato
     {
- 
-        public int Dimensione { get; set; }
-        public string Tipo { get; set; }
 
+        public string Nome { get; set; }
+		public float Prezzo { get; set; }
+		public Componente[] Componenti { get; set; }
+		
     }
 }

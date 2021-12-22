@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Data.Componenti
+namespace Client.Data
 {
-    class SchedaMadre: Detail
+    class SchedaMadre: Componente
     {
-        public string Modello { get; set; }
-        public string Categoria { get; set; }
+       
         public string[] CpuSocket { get; set; }
         public string[] Ram { get; set; }
         public bool SsdM2 { get; set; }
