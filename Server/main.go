@@ -111,9 +111,5 @@ func Autentificazione(data string, mongodb *mongo.Database) bool {
 
 	err := verificaUtente(data1, mongodb)
 
-	if err != nil {
-		return false
-	}
-	return true
-
+	return err == nil
 }
