@@ -204,8 +204,7 @@ namespace Client
 
                 //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
-                    Componente a = new Componente();
-                    Cpu b = new Cpu();
+                    
        
                     string host = "localhost";
                     Int32 port = 13000;
@@ -257,12 +256,14 @@ namespace Client
                     }
                     else
                     {
-                        Form2 f2 = new Form2(this); // Instantiate a Form2 object.
-                        f2.Show(); // Show Form2 and
-                        this.Visible = false; //invisible form1
+                        
 
                         Console.WriteLine("Login effettuato");
                         string token = responseData;
+
+                        Form2 f2 = new Form2(this,token); // Instantiate a Form2 object.
+                        f2.Show(); // Show Form2 and
+                        this.Visible = false; //invisible form1
                     }
 
 
@@ -376,6 +377,13 @@ namespace Client
         private void button2_Click_1(object sender, EventArgs e1)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2(this,"bho"); // Instantiate a Form2 object.
+            f2.Show(); // Show Form2 and
+            this.Visible = false; //invisible form1
         }
     }
 }
