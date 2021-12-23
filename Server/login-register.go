@@ -51,14 +51,14 @@ func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 
 func login(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 
-	err, email, password := verificaUtente(Mjson, mongodb)
+	err := verificaUtente(Mjson, mongodb)
 
 	if err != nil {
 		conn.Write([]byte("errore: " + err.Error()))
 
 	} else {
 		// `{"some":"json"}`
-		data := "" + email + " " + password
+		data := Mjson
 		token := Encoding(data)
 
 		conn.Write([]byte(token))
@@ -66,7 +66,7 @@ func login(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 	conn.Close()
 }
 
-func verificaUtente(Mjson string, mongodb *mongo.Database) (error, string, string) {
+func verificaUtente(Mjson string, mongodb *mongo.Database) error {
 	coll := mongodb.Collection("utenti")
 
 	l1 := Utente{}
@@ -80,6 +80,6 @@ func verificaUtente(Mjson string, mongodb *mongo.Database) (error, string, strin
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 
 	fmt.Println("result3: ", result, "\nerror3: ", err, "\nMS: ", Mjson, "\nfILTER3: ", filter)
-	return err, l1.Email, l1.Password
+	return err
 
 }

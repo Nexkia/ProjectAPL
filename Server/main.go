@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net"
@@ -104,20 +103,13 @@ func SplitFunc(message string) (r []string, err error) {
 }
 
 func Autentificazione(data string, mongodb *mongo.Database) bool {
-	u := Utente{}
 
 	//decodifichiamo il token
 	data1 := Decoding(data)
 
-	vet := strings.Split(data1, " ")
-
-	u.Email = vet[0]
-	u.Password = vet[1]
-
 	//convertiamo l'utente in json, per poter usare la verificaUtente
-	utenteJson, _ := json.Marshal(u)
 
-	err, _, _ := verificaUtente(string(utenteJson), mongodb)
+	err := verificaUtente(data1, mongodb)
 
 	if err != nil {
 		return false
