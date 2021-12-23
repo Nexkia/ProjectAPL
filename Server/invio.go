@@ -27,7 +27,7 @@ func invio() {
 	pc1 := preAssemblato{Nome: "pc1", PcAssemblato: PcAssemblato{Prezzo: 400}}
 	pc2 := preAssemblato{Nome: "pc2", PcAssemblato: PcAssemblato{Prezzo: 400}}
 	pc3 := preAssemblato{Nome: "pc3", PcAssemblato: PcAssemblato{Prezzo: 400}}
-	pc4 := preAssemblato{Nome: "pc4", PcAssemblato: PcAssemblato{Prezzo: 400}}
+	pc4 := preAssemblato{Nome: "pc4", PcAssemblato: PcAssemblato{Prezzo: 40}}
 
 	coll.InsertOne(context.TODO(), pc1)
 	coll.InsertOne(context.TODO(), pc2)

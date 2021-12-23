@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
+	"net"
+	"strconv"
 
 	//"net"
 
@@ -12,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func homepage(token string /*conn net.Conn,*/, mongodb *mongo.Database) {
+func homepage(conn net.Conn, mongodb *mongo.Database) {
 	coll := mongodb.Collection("preAssemblati")
 
 	//greater then, filtra per un prezzo maggiore di 300
@@ -23,24 +24,30 @@ func homepage(token string /*conn net.Conn,*/, mongodb *mongo.Database) {
 
 	cursor, err := coll.Find(context.TODO(), filter)
 	defer cursor.Close(context.TODO())
+	//limit rappresenta il numero di risultati trovati
 	limit := cursor.RemainingBatchLength()
 	pc := make([]preAssemblato, limit)
 
+	index := 0
 	for cursor.Next(context.TODO()) {
-		index := 0
+
 		err = cursor.Decode(&pc[index])
+		index++
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
-	//limit rappresenta il numero di risultati trovati
 
 	//trasformiamo l'oggetto in json e in byte
 	pcjson, err := json.Marshal(pc)
-	test := preAssemblato{}
-	json.Unmarshal(pcjson, &test)
-	fmt.Println("test:", test)
-	//conn.Write(pcjson)
 
-	fmt.Println("pc:", pc, " err: ", err, "\nfiltro: ", filter)
+	size := len(pcjson)
+
+	conn.Write([]byte(strconv.Itoa(size)))
+	conn.Write(pcjson)
+	//test := preAssemblato{}
+	//json.Unmarshal(pcjson, &test)
+	//fmt.Println("test:", test)
+
+	//fmt.Println("pc:", string(pcjson), " err: ", err, "\nfiltro: ", filter)
 }

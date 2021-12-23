@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net"
@@ -42,7 +43,7 @@ func main() {
 	//------------------------------------------------------------------
 	//go invio()
 	for {
-		go homepage("a" /*conn,*/, mongodb)
+
 		// accept connection on port
 		conn, err := ln.Accept()
 		if err != nil {
@@ -81,6 +82,10 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 	case 2:
 		fmt.Println("caso 2: ", MP)
 
+		if Autentificazione(ID, mongodb) {
+			go homepage(conn, mongodb)
+		}
+
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}
@@ -95,5 +100,28 @@ func SplitFunc(message string) (r []string, err error) {
 	}
 	vet := strings.Split(message, " ")
 	return vet, nil
+
+}
+
+func Autentificazione(data string, mongodb *mongo.Database) bool {
+	u := Utente{}
+
+	//decodifichiamo il token
+	data1 := Decoding(data)
+
+	vet := strings.Split(data1, " ")
+
+	u.Email = vet[0]
+	u.Password = vet[1]
+
+	//convertiamo l'utente in json, per poter usare la verificaUtente
+	utenteJson, _ := json.Marshal(u)
+
+	err, _, _ := verificaUtente(string(utenteJson), mongodb)
+
+	if err != nil {
+		return false
+	}
+	return true
 
 }
