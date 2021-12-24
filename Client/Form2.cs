@@ -1,4 +1,5 @@
 ﻿using Client.Data;
+using Client.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -76,18 +77,23 @@ namespace Client
             var returnType = c1.GetType();
             Console.WriteLine("Tipo c1: {0}", returnType);
 
-            preAssemblato[] a= new preAssemblato[10];
+            int dim = 10;
+            PreAssemblato[] a= new PreAssemblato[dim];
 
-            int index = 0;
+                 int index = 0;
             foreach (var pc in c1)
             {
-                a[index] = JsonConvert.DeserializeObject< preAssemblato>(pc.ToString());
-                Console.WriteLine("Tipo a:"+ a[index].Nome);
+                a[index] = JsonConvert.DeserializeObject<PreAssemblato>(pc.ToString());
+                a[index].Inserimento();
+                Console.WriteLine("nome pc: " + a[index].Nome );
+                
+                //b[index].toStringComponenti();
+                populateItems(index,a[index],dim);
                 index++;
-
+                
             }
-            
 
+            
 
             // Close everything.
             stream.Close();
@@ -170,6 +176,61 @@ namespace Client
         }
 
         private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listItem1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void populateItems(int i,PreAssemblato pre,int dim)
+        {
+          //  Console.WriteLine(pre.Stampa());
+            ListItem[] listItems= new ListItem[dim];
+
+          //  for(int i = 0; i < listItems.Length; i++){
+            
+                Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
+                listItems[i] = new ListItem();
+
+                listItems[i].Icon = Resources.imageNotFound1;
+                listItems[i].IconBackground = Color.SteelBlue;
+                listItems[i].Title = "Nome: "+pre.Nome+" Prezzo: "+pre.Prezzo;//"qui si mette il titolo";
+                listItems[i].Message = pre.Stampa();//"qui si mette il messaggio";
+
+                //aggiunge al flow label
+
+            if(flowLayoutPanel1.Controls.Count<0){
+
+           flowLayoutPanel1.Controls.Clear();
+           }
+           else
+                flowLayoutPanel1.Controls.Add(listItems[i]);
+
+
+           // }
+        }
+
+        private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

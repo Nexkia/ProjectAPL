@@ -8,12 +8,29 @@ using System.Threading.Tasks;
 
 namespace Client.Data.Componenti
 {
-    class pcAssemblato
+    
+    class PcAssemblato
     {
-		[JsonProperty("prezzoTot")]
-		public float Prezzo { get; set; }
-		[JsonProperty("componente")]
-		public Componente[] Componenti { get; set; }
+        private Componente[] componenti;
 
-	}
+        
+       public PcAssemblato()
+        {
+            this.componenti = new Componente[8];
+            for (int i = 0; i < 8; i++)
+            {
+                componenti[i] = new Componente();
+            }
+        }
+
+        [JsonProperty("prezzoTot")]
+        public float Prezzo { get; set; }
+        [JsonProperty("componenti")]
+        public Componente[] Componenti { get => componenti; set => componenti = value; }
+
+
+
+
+
+    }
 }
