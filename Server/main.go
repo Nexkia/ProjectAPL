@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -103,13 +104,11 @@ func SplitFunc(message string) (r []string, err error) {
 }
 
 func Autentificazione(data string, mongodb *mongo.Database) bool {
-
+	coll := mongodb.Collection("utenti")
 	//decodifichiamo il token
-	data1 := Decoding(data)
-
-	//convertiamo l'utente in json, per poter usare la verificaUtente
-
-	err := verificaUtente(data1, mongodb)
+	filter := bson.D{{"password", data}}
+	var result bson.D
+	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 
 	return err == nil
 }

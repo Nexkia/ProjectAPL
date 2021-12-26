@@ -26,14 +26,15 @@ func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 	//conversione della stringa in byte
 	json.Unmarshal([]byte(Mjson), &l1)
 	filter := bson.D{{"email", "" + l1.Email + ""}}
+	var result bson.D
+	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 
-	var result4 bson.D
-	err := coll.FindOne(context.TODO(), filter).Decode(&result4)
-
-	fmt.Println("result3: ", result4, "\nerror3: ", err, "\nMS: ", Mjson, "\nfILTER3: ", filter)
+	fmt.Println("result3: ", result, "\nerror3: ", err, "\nMS: ", Mjson, "\nfILTER3: ", filter)
 
 	if err != nil {
 		//inserimento dell'utente nel database
+		encodedPsw := Encoding(l1.Email, l1.Password)
+		l1.Password = encodedPsw
 		res, err := coll.InsertOne(context.TODO(), l1)
 
 		fmt.Println("utente:", res, " errore: ", err)
@@ -58,8 +59,10 @@ func login(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 
 	} else {
 		// `{"some":"json"}`
-		data := Mjson
-		token := Encoding(data)
+		l1 := Utente{}
+		//conversione del Json in byte
+		json.Unmarshal([]byte(Mjson), &l1)
+		token := Encoding(l1.Email, l1.Password)
 
 		conn.Write([]byte(token))
 	}
@@ -74,6 +77,7 @@ func verificaUtente(Mjson string, mongodb *mongo.Database) error {
 	//conversione del Json in byte
 	json.Unmarshal([]byte(Mjson), &l1)
 	fmt.Println("Mjson:", Mjson, " l1: ", l1)
+	l1.Password = Encoding(l1.Email, l1.Password)
 	filter := bson.D{{"email", "" + l1.Email + ""}, {"password", "" + l1.Password + ""}}
 
 	var result bson.D
