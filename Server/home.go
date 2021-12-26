@@ -18,7 +18,7 @@ func homepage(conn net.Conn, mongodb *mongo.Database) {
 
 	//greater then, filtra per un prezzo maggiore di 300
 	//filter := bson.D{{"prezzo", bson.D{{"$gt", 300}}}}
-	filter := bson.D{{"pcassemblato.prezzoTot", bson.D{{"$gt", 300}}}}
+	filter := bson.D{{"prezzoTot", bson.D{{"$gt", 300}}}}
 	/*var result bson.D
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)*/
 

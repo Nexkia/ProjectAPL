@@ -12,8 +12,11 @@ func verificaCompatibilita(cp Cpu, sm SchedaMadre) bool {
 }
 
 type preAssemblato struct {
-	Nome         string `bson:"nome" json:"nome"`
-	PcAssemblato `bson:"pcassemblato" json:"pcassemblato"`
+	Nome       string        `bson:"nome" json:"nome"`
+	Prezzo     float64       `bson:"prezzoTot" json:"prezzoTot"`
+	Componenti [6]Componente `bson:"componenti" json:"componenti"`
+	Ram        `bson:"ram" json:"ram"`
+	Memoria    `bson:"memoria" json:"memoria"`
 }
 
 func (pc *PcAssemblato) prezzoTot() {
@@ -25,7 +28,7 @@ func (pc *PcAssemblato) prezzoTot() {
 
 type PcAssemblato struct {
 	Prezzo     float64       `bson:"prezzoTot" json:"prezzoTot"`
-	Componenti [8]Componente `bson:"componente" json:"componente"`
+	Componenti [8]Componente `bson:"componenti" json:"componenti"`
 }
 
 type Componente struct {

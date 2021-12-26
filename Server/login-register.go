@@ -13,7 +13,7 @@ import (
 type Utente struct {
 	Email      string `bson:"email" json:"email"`
 	Indirizzo  string `bson:"indirizzo" json:"indirizzo"`
-	NomeUtente string `bson:"nome" json:"nome"`
+	NomeUtente string `bson:"nome" json:"nomeutente"`
 	Password   string `bson:"password" json:"password"`
 }
 
