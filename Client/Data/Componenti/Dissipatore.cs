@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Dissipatore:Componente
+    class Dissipatore
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; set; }
         

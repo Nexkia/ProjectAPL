@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Telaio:Componente
+    class Telaio
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
+
         [JsonProperty("taglia")]
         public string Taglia { get; set; }
 

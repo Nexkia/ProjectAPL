@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class SchedaVideo: Componente
+    class SchedaVideo
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
+
         [JsonProperty("tdp")]
         public int Tdp { get; set; }
         [JsonProperty("frequenza")]

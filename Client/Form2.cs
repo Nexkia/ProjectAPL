@@ -81,17 +81,21 @@ namespace Client
             PreAssemblato[] a= new PreAssemblato[dim];
 
                  int index = 0;
-            foreach (var pc in c1)
+            foreach (JObject pc in c1)
             {
+               
                 a[index] = JsonConvert.DeserializeObject<PreAssemblato>(pc.ToString());
-                a[index].Inserimento();
-                Console.WriteLine("nome pc: " + a[index].Nome );
+               // a[index].Inserimento();
+
+                Console.WriteLine("prezzo pc: " + a[index].Prezzo );
                 
                 //b[index].toStringComponenti();
-                populateItems(index,a[index],dim);
+               // populateItems(index,a[index],dim);
                 index++;
                 
             }
+
+            populateItems(a,index);
 
             
 
@@ -187,24 +191,28 @@ namespace Client
 
        
 
-        private void populateItems(int i,PreAssemblato pre,int dim)
+        private void populateItems(PreAssemblato[] pre,int index)
         {
           //  Console.WriteLine(pre.Stampa());
-            ListItem[] listItems= new ListItem[dim];
+            ListItem[] listItems= new ListItem[index];
 
-          //  for(int i = 0; i < listItems.Length; i++){
+           for(int i = 0; i < listItems.Length; i++){
             
-                Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
+               // Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
                 listItems[i] = new ListItem();
 
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
-                listItems[i].Title = "Nome: "+pre.Nome+" Prezzo: "+pre.Prezzo;//"qui si mette il titolo";
-                listItems[i].Message = pre.Stampa();//"qui si mette il messaggio";
+               listItems[i].Title = "Nome: "+pre[i].Nome+" Prezzo: "+pre[i].Prezzo;//"qui si mette il titolo";
+                string message = pre[i].Componenti[0].Marca + " " + pre[i].Componenti[0].Modello + "\n" +
+                                 pre[i].Ram.Componente.Categoria+" "+pre[i].Ram.Capienza + " GB"  + "\n" +
+                                 pre[i].Memoria.Tipo +" " + pre[i].Memoria.Dimensione + " GB" + "\n"+
+                                 pre[i].Componenti[2].Marca + " " + pre[i].Componenti[2].Modello + "\n";
+                listItems[i].Message = message;
 
                 //aggiunge al flow label
 
-            if(flowLayoutPanel1.Controls.Count<0){
+            if (flowLayoutPanel1.Controls.Count<0){
 
            flowLayoutPanel1.Controls.Clear();
            }
@@ -212,7 +220,7 @@ namespace Client
                 flowLayoutPanel1.Controls.Add(listItems[i]);
 
 
-           // }
+            }
         }
 
         private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
@@ -233,6 +241,32 @@ namespace Client
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void buttonMyBuild_Click(object sender, EventArgs e)
+        {
+            //pulisco la tendina
+            flowLayoutPanel1.Controls.Clear();
+
+            if (comboBox1.Text=="Build Guidata") {
+                Console.WriteLine("valore combobox: " + comboBox1.Text);
+                
+            }
+            else
+            {
+                Console.WriteLine("valore combobox: " + comboBox1.Text);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+           
         }
     }
 }

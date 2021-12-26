@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Ram: Componente
+    class Ram
 
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
+
         [JsonProperty("frequenza")]
         public float Frequenza { get; set; }
         [JsonProperty("capienza")]

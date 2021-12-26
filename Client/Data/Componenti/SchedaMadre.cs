@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class SchedaMadre: Componente
+    class SchedaMadre
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
+
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; set; }
         [JsonProperty("ram")]

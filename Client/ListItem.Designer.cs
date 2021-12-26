@@ -92,7 +92,7 @@ namespace Client
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblMessage);
             this.Name = "ListItem";
-            this.Size = new System.Drawing.Size(752, 385);
+            this.Size = new System.Drawing.Size(752, 170);
             this.Load += new System.EventHandler(this.ListItem_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

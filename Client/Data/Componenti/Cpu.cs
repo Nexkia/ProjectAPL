@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Cpu: Componente
+    class Cpu
     {
+        [JsonProperty("componente")]
+        public Componente Componente { get; set; }
         [JsonProperty("tdp")]
         public int Tdp { get; set; }
         [JsonProperty("frequenza")]
