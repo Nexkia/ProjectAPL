@@ -56,7 +56,7 @@ type RamDetail struct {
 }
 
 type SchedaMadreDetail struct {
-	Componente  `bson:"schdamadre" json:"schedamadre"`
+	Componente  `bson:"schedamadre" json:"schedamadre"`
 	Valutazione int      `bson:"valutazione" json:"valutazione"`
 	CpuSocket   []string `bson:"cpusocket" json:"cpusocket"`
 	Ram         []string `bson:"ram" json:"ram"`
