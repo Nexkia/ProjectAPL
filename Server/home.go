@@ -44,6 +44,8 @@ func homepage(conn net.Conn, mongodb *mongo.Database) {
 	size := len(pcjson)
 
 	conn.Write([]byte(strconv.Itoa(size)))
+	okmsg := make([]byte, 256)
+	conn.Read(okmsg)
 	conn.Write(pcjson)
 	//test := preAssemblato{}
 	//json.Unmarshal(pcjson, &test)
