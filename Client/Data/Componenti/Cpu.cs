@@ -9,8 +9,10 @@ namespace Client.Data
 {
     class Cpu
     {
-        [JsonProperty("componente")]
-        public Componente Componente { get; set; }
+        [JsonProperty("cpu")]
+        Componente componente;
+        [JsonProperty("Valutazione")]
+        public int Valutazione { get; set; }
         [JsonProperty("tdp")]
         public int Tdp { get; set; }
         [JsonProperty("frequenza")]
@@ -22,9 +24,6 @@ namespace Client.Data
         [JsonProperty("thread")]
         public int Thread { get; set; }
 
-
-
-      
     }
 
     

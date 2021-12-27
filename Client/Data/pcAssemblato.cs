@@ -8,22 +8,12 @@ using System.Threading.Tasks;
 
 namespace Client.Data.Componenti
 {
-    
-    class PcAssemblato
-    {
-       
+    class Pcassemblato
+	{
+		[JsonProperty("prezzoTot")]
+		public float Prezzo { get; set; }
+		[JsonProperty("componenti")]
+		public Componente[] Componenti { get; set; }
 
-        
-       
-
-        [JsonProperty("prezzoTot")]
-        public float Prezzo { get; set; }
-        [JsonProperty("componenti")]
-        public Componente[] Componenti { get ; set ; }
-
-
-
-
-
-    }
+	}
 }

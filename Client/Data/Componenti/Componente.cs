@@ -15,10 +15,10 @@ namespace Client.Data
         public float Prezzo { get;  set; }
         [JsonProperty("marca")]
         public string Marca { get;  set; }
+        [JsonProperty("capienza")]
+        public string Capienza { get; set; }
         [JsonProperty("img")]
         public string Img { get;  set; }
-        [JsonProperty("valutazione")]
-        public int Valutazione { get; set; }
         [JsonProperty("modello")]
         public string Modello { get; set; }
         [JsonProperty("categoria")]

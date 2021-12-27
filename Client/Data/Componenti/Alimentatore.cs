@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Alimentatore
+    class Alimentatore: Componente
     {
-        [JsonProperty("componente")]
-        public Componente Componente { get; set; }
-
+        [JsonProperty("alimentatore")]
+        Componente componente;
+        [JsonProperty("Valutazione")]
+        public int Valutazione { get; set; }
         [JsonProperty("watt")]
         public int Watt { get; set; }
         

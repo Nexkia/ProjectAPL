@@ -10,13 +10,13 @@ namespace Client.Data
     class Ram
 
     {
-        [JsonProperty("componente")]
-        public Componente Componente { get; set; }
-
+        [JsonProperty("ram")]
+        Componente componente;
+        [JsonProperty("Valutazione")]
+        public int Valutazione { get; set; }
         [JsonProperty("frequenza")]
         public float Frequenza { get; set; }
-        [JsonProperty("capienza")]
-        public int Capienza { get; set; }
+
         [JsonProperty("standard")]
         public string Standard { get; set; }
  

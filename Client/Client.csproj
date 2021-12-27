@@ -317,8 +317,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
+    <Compile Include="Connection\Protocol.cs" />
+    <Compile Include="Connection\Socket.cs" />
     <Compile Include="Data\Componenti\Alimentatore.cs" />
+    <Compile Include="Data\Componenti\CasePc.cs" />
     <Compile Include="Data\Componenti\Cpu.cs" />
     <Compile Include="Data\Componenti\Componente.cs" />
     <Compile Include="Data\Componenti\Dissipatore.cs" />
@@ -326,9 +328,8 @@
     <Compile Include="Data\Componenti\Ram.cs" />
     <Compile Include="Data\Componenti\SchedaMadre.cs" />
     <Compile Include="Data\Componenti\SchedaVideo.cs" />
-    <Compile Include="Data\Componenti\Telaio.cs" />
-    <Compile Include="Data\PcAssemblato.cs" />
-    <Compile Include="Data\PreAssemblato.cs" />
+    <Compile Include="Data\Pcassemblato.cs" />
+    <Compile Include="Data\Preassemblato.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

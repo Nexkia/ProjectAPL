@@ -1,4 +1,5 @@
-﻿using Client.Data;
+﻿using Client.Connection;
+using Client.Data;
 using Client.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,55 +23,27 @@ namespace Client
 {
     public partial class Form2 : Form
     {
+
+        Protocol pt = new Protocol();
         Form1 vecchioForm;
         string token;
         public Form2(Form1 f,string token)
         {
             InitializeComponent();
              vecchioForm = f;
-            this.token = token;
-            
+            this.pt.Token = token;
+
         }
         
-        private void Form2_Load(object sender, EventArgs e)
+        private async void Form2_Load(object sender, EventArgs e)
         {
-            string host = "localhost";
-            Int32 port = 13000;
-            // var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), (port));
-            TcpClient client = new TcpClient(host, port);
-
-            NetworkStream stream = client.GetStream();
-
-
-            //conversione da Json a Byte
-            byte[] outJson = Encoding.ASCII.GetBytes("2 "+token+" " + "\n");
-
-            stream.Write(outJson, 0, outJson.Length);
-
-            Console.WriteLine("Sent: {0}",  outJson);
-
-            //--------------ricezione grandezza messaggio in byte----------------------
-            var data1 = new Byte[256];
-            // String to store the response ASCII representation.
-            String responseData1 = String.Empty;
-
-            // Read the first batch of the TcpServer response bytes.
-            Int32 bytes1 = stream.Read(data1, 0, data1.Length);
-            responseData1 = System.Text.Encoding.ASCII.GetString(data1, 0, bytes1);
-            Console.WriteLine("Received: {0}", responseData1);
-
-            //--------------ricezione dei dati e split----------------------
-            // Buffer to store the response bytes.
-            var data = new Byte[int.Parse(responseData1)];
-
-            // String to store the response ASCII representation.
-            String responseData = String.Empty;
-
-            // Read the first batch of the TcpServer response bytes.
-            Int32 bytes = stream.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-            Console.WriteLine("Received: {0}", responseData);
-
+            SocketTCP sckt = new SocketTCP();
+            // Richiede due messaggi 
+            pt.ProtocolID = "2"; pt.Data = "";
+            string responce = await sckt.send(pt);
+            int datalen = int.Parse(await sckt.receive(256));
+            responce = await sckt.send(pt);
+            string responseData = await sckt.receive(datalen);
 
             JArray c1= JsonConvert.DeserializeObject<JArray>(responseData);
           
@@ -78,13 +51,13 @@ namespace Client
             Console.WriteLine("Tipo c1: {0}", returnType);
 
             int dim = 10;
-            PreAssemblato[] a= new PreAssemblato[dim];
+            Preassemblato[] a= new Preassemblato[dim];
 
                  int index = 0;
             foreach (JObject pc in c1)
             {
                
-                a[index] = JsonConvert.DeserializeObject<PreAssemblato>(pc.ToString());
+                a[index] = JsonConvert.DeserializeObject<Preassemblato>(pc.ToString());
                // a[index].Inserimento();
 
                 Console.WriteLine("prezzo pc: " + a[index].Prezzo );
@@ -97,11 +70,7 @@ namespace Client
 
             populateItems(a,index);
 
-            
-
-            // Close everything.
-            stream.Close();
-            client.Close();
+           
             
         }
 
@@ -191,10 +160,14 @@ namespace Client
 
        
 
-        private void populateItems(PreAssemblato[] pre,int index)
+        private void populateItems(Preassemblato[] pre,int index)
         {
           //  Console.WriteLine(pre.Stampa());
             ListItem[] listItems= new ListItem[index];
+
+            string[] vet = { "cpu", "schedaVideo", "memoria", "ram" };
+            
+
 
            for(int i = 0; i < listItems.Length; i++){
             
@@ -204,15 +177,27 @@ namespace Client
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
                listItems[i].Title = "Nome: "+pre[i].Nome+" Prezzo: "+pre[i].Prezzo;//"qui si mette il titolo";
-                string message = pre[i].Componenti[0].Marca + " " + pre[i].Componenti[0].Modello + "\n" +
-                                 pre[i].Ram.Componente.Categoria+" "+pre[i].Ram.Capienza + " GB"  + "\n" +
-                                 pre[i].Memoria.Tipo +" " + pre[i].Memoria.Dimensione + " GB" + "\n"+
-                                 pre[i].Componenti[2].Marca + " " + pre[i].Componenti[2].Modello + "\n";
+
+                string message="";
+                //8 come il numero dei componenti
+                for (int j = 0; j < 8; j++)
+                {
+                    if(Array.Exists(vet, x => x == pre[i].Componenti[j].Categoria))
+                    {
+                        message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello; 
+
+                        if (int.Parse(pre[i].Componenti[j].Capienza) > 0) {
+                            message += " "+pre[i].Componenti[j].Capienza + " GB";
+                        }
+
+                        message+= "\n";
+                    }
+
+                }
                 listItems[i].Message = message;
 
                 //aggiunge al flow label
-
-            if (flowLayoutPanel1.Controls.Count<0){
+                if (flowLayoutPanel1.Controls.Count<0){
 
            flowLayoutPanel1.Controls.Clear();
            }

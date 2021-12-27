@@ -10,10 +10,10 @@ namespace Client.Data
     class Memoria
 
     {
-        [JsonProperty("componente")]
-        public Componente Componente { get; set; }
-        [JsonProperty("dimensione")]
-        public int Dimensione { get; set; }
+        [JsonProperty("memoria")]
+        Componente componente;
+        [JsonProperty("Valutazione")]
+        public int Valutazione { get; set; }
         [JsonProperty("tipo")]
         public string Tipo { get; set; }
 

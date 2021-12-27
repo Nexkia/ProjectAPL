@@ -8,28 +8,14 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class PreAssemblato
+    class Preassemblato
 
     {
-        
-
         [JsonProperty("nome")]
         public string Nome { get; set; }
-
         [JsonProperty("prezzoTot")]
         public float Prezzo { get; set; }
         [JsonProperty("componenti")]
         public Componente[] Componenti { get; set; }
-
-
-        [JsonProperty("ram")]
-        public Ram Ram { get; set; }
-
-
-        [JsonProperty("memoria")]
-        public Memoria Memoria { get; set; }
-
-
-
     }
 }

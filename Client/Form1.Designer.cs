@@ -64,7 +64,7 @@ namespace Client
             resources.ApplyResources(this.Register, "Register");
             this.Register.Name = "Register";
             this.Register.UseVisualStyleBackColor = true;
-            this.Register.Click += new System.EventHandler(this.Register_Click);
+            this.Register.Click += new System.EventHandler(this.Register_ClickAsync);
             // 
             // label1
             // 

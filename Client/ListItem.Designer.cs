@@ -56,7 +56,7 @@ namespace Client
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(185, 29);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(564, 353);
+            this.lblMessage.Size = new System.Drawing.Size(564, 141);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "label2- del testo";
             this.lblMessage.Click += new System.EventHandler(this.lbl_MessageClick1);
