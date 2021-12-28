@@ -7,9 +7,11 @@ require go.mongodb.org/mongo-driver v1.8.1
 require github.com/naamancurtis/mongo-go-struct-to-bson v0.1.0 // indirect
 
 require (
+	github.com/alexjohnj/caesar v0.0.0-20140417104920-a77bc70e5d50
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
+	github.com/odysseus/vigenere v0.0.0-20160229231241-ef60629652ab
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.0.2 // indirect

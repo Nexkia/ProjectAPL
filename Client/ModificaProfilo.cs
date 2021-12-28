@@ -26,10 +26,10 @@ namespace Client
         private async void save_Click(object sender, EventArgs e)
         {
             SocketTCP skt = new SocketTCP();
-            pt.ProtocolID = "4";
+            pt.SetProtocolID("modificaUtente");
             pt.Data =TextEmail.Text+"-"+TextOldPassword.Text;
             string ok = await skt.send(pt);
-            string check = await skt.receive(256);
+            string check = await skt.receive();
             Console.WriteLine(check);
             if (!check.Contains("err"))
             {
@@ -43,7 +43,7 @@ namespace Client
                 string update = await skt.sendSingleMsg(json_update+pt.end);
 
                 //aggiorna il token, che cambia con la nuova password
-                pt.Token = await skt.receive(256);
+                pt.Token = await skt.receive();
                 Console.WriteLine(json_update);
 
                 this.Close();
@@ -59,10 +59,10 @@ namespace Client
         {
             SocketTCP skt = new SocketTCP();
             Utente u;
-            pt.ProtocolID = "3"; pt.Data = "";
+            pt.SetProtocolID("getUtente"); pt.Data = "";
             Console.WriteLine("token: " + pt.Token);
             string ok = await skt.send(pt);
-            string user = await skt.receive(256);
+            string user = await skt.receive();
             u = JsonConvert.DeserializeObject<Utente>(user);
             TextName.Text = u.Nome;
             TextEmail.Text = u.Email;

@@ -108,10 +108,10 @@ namespace Client
                                 }
                                 );
                             //conversione da Json a Byte
-                            pt.ProtocolID = "0"; pt.Token = ""; pt.Data = Json;
+                            pt.SetProtocolID("register"); pt.Token = ""; pt.Data = Json;
                             string responce = await sckt.send(pt);
                             Console.WriteLine(responce);
-                            string result = await sckt.receive(256);
+                            string result = await sckt.receive();
 
 
                             if (result.Contains("Registrazione"))
@@ -172,10 +172,10 @@ namespace Client
                         Password = password
                     }
                     );
-                    pt.ProtocolID = "1"; pt.Token = ""; pt.Data = Json;
+                    pt.SetProtocolID("login"); pt.Token = ""; pt.Data = Json;
                     string responce = await sckt.send(pt);
                     Console.WriteLine(responce);
-                    string responseData = await sckt.receive(256);
+                    string responseData = await sckt.receive();
                     pt.Token = responseData;
 
                     if (responseData.Contains("errore: "))

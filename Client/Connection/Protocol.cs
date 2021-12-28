@@ -8,10 +8,24 @@ namespace Client.Connection
 {
     public class Protocol
     {
-        public string ProtocolID { get; set; }
+        private string ProtocolID { get; set; }
         public string Token { get; set; }
         public string Data { get; set; }
         public string limit = " ";
         public string end = "\n";
+        private Dictionary<string, string> dict = new Dictionary<string, string> {
+
+            { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},{"modificaUtente","4"},{"profilo","5"}
+
+        };
+        public void SetProtocolID(string NameFunction)
+        {
+            this.ProtocolID = this.dict[NameFunction];
+        }
+        public string GetProtocolID()
+        {
+            return this.ProtocolID;
+        }
+
     }
 }

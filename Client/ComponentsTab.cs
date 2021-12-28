@@ -102,5 +102,15 @@ namespace Client
         {
 
         }
+
+        private void label4ComponentsTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3ComponentsTab_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

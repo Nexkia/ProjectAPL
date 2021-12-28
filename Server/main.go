@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -41,8 +42,9 @@ func main() {
 	mongodb := client.Database("apl_database")
 	//------------------------------------------------------------------
 	//go invio()
+
 	for {
-		go homepage("a" /*conn,*/, mongodb)
+
 		// accept connection on port
 		conn, err := ln.Accept()
 		if err != nil {
@@ -80,7 +82,18 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 		go login(Mjson, conn, mongodb)
 	case 2:
 		fmt.Println("caso 2: ", MP)
-
+		if Autentificazione(ID, mongodb) {
+			go homepage(conn, mongodb)
+		}
+	case 3:
+		fmt.Println("caso 3: ", MP)
+		go getUtente(ID, conn, mongodb)
+	case 4:
+		fmt.Println("caso 4: ", MP)
+		go updateUtente(Mjson, ID, conn, mongodb)
+	case 5:
+		fmt.Println("caso 5: ", MP)
+		go sendComponents(Mjson, conn, mongodb)
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}
@@ -96,4 +109,14 @@ func SplitFunc(message string) (r []string, err error) {
 	vet := strings.Split(message, " ")
 	return vet, nil
 
+}
+
+func Autentificazione(data string, mongodb *mongo.Database) bool {
+	coll := mongodb.Collection("utenti")
+	//decodifichiamo il token
+	filter := bson.D{{"password", data}}
+	var result bson.D
+	err := coll.FindOne(context.TODO(), filter).Decode(&result)
+
+	return err == nil
 }
