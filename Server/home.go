@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net"
-	"strconv"
 
 	//"net"
 
@@ -42,11 +42,17 @@ func homepage(conn net.Conn, mongodb *mongo.Database) {
 	pcjson, err := json.Marshal(pc)
 
 	size := len(pcjson)
+	rest := size % 256
+	div := size / 256
+	for i := 0; i < div*256; i = i + 256 {
+		fmt.Println(i, i+256)
+		conn.Write(pcjson[i : i+256])
+	}
+	if rest > 0 {
+		conn.Write(pcjson[div*256 : size])
+	}
+	conn.Write([]byte("\n"))
 
-	conn.Write([]byte(strconv.Itoa(size)))
-	okmsg := make([]byte, 256)
-	conn.Read(okmsg)
-	conn.Write(pcjson)
 	//test := preAssemblato{}
 	//json.Unmarshal(pcjson, &test)
 	//fmt.Println("test:", test)

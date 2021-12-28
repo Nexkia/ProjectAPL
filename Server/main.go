@@ -91,6 +91,9 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 	case 4:
 		fmt.Println("caso 4: ", MP)
 		go updateUtente(Mjson, ID, conn, mongodb)
+	case 5:
+		fmt.Println("caso 5: ", MP)
+		go sendComponents(Mjson, conn, mongodb)
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}
