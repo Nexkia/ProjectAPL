@@ -12,9 +12,13 @@ namespace Client
 {
     public partial class ListItem : UserControl
     {
+
+         
         public ListItem()
         {
             InitializeComponent();
+           
+            
         }
 
 
@@ -24,6 +28,8 @@ namespace Client
         private Color _iconBack;
         private string _message;
         private Image _icon;
+        
+        
 
         [Category ("Custom Props")]
         public string Title
@@ -31,7 +37,6 @@ namespace Client
             get { return _title; }
             set { _title = value;lblTitle.Text = value; }
         }
-
         [Category("Custom Props")]
         public Color IconBackground
         {
@@ -53,11 +58,12 @@ namespace Client
             set { _icon = value; pictureBox1.Image = value; }
         }
 
+        
         #endregion
 
-        
 
-       
+
+
 
         private void lblMessage_MouseEnter(object sender, EventArgs e)
         {
@@ -98,6 +104,7 @@ namespace Client
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
             Console.WriteLine("hai cliccato");
+            
         }
     }
 }

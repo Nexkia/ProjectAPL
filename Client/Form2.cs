@@ -26,17 +26,20 @@ namespace Client
 
         Protocol pt = new Protocol();
         Form1 vecchioForm;
-        string token;
+      
         public Form2(Form1 f,string token)
         {
             InitializeComponent();
              vecchioForm = f;
             this.pt.Token = token;
+            comboBox1.Text = "Build Guidata";
+
 
         }
         
         private async void Form2_Load(object sender, EventArgs e)
         {
+            
             SocketTCP sckt = new SocketTCP();
             // Richiede due messaggi 
             pt.ProtocolID = "2"; pt.Data = "";
@@ -58,12 +61,10 @@ namespace Client
             {
                
                 a[index] = JsonConvert.DeserializeObject<Preassemblato>(pc.ToString());
-               // a[index].Inserimento();
+               
 
                 Console.WriteLine("prezzo pc: " + a[index].Prezzo );
                 
-                //b[index].toStringComponenti();
-               // populateItems(index,a[index],dim);
                 index++;
                 
             }
@@ -177,6 +178,7 @@ namespace Client
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
                listItems[i].Title = "Nome: "+pre[i].Nome+" Prezzo: "+pre[i].Prezzo;//"qui si mette il titolo";
+                
 
                 string message="";
                 //8 come il numero dei componenti
@@ -202,6 +204,7 @@ namespace Client
            flowLayoutPanel1.Controls.Clear();
            }
            else
+                    
                 flowLayoutPanel1.Controls.Add(listItems[i]);
 
 
@@ -233,14 +236,97 @@ namespace Client
 
         }
 
+
+        private void populateItemsBuildG()
+        {
+            //  Console.WriteLine(pre.Stampa());
+            Profiles[] profiles = new Profiles[4];
+
+            for (int i = 0; i < profiles.Length; i++)
+
+            {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
+                profiles[i] = new Profiles(flowLayoutPanel1);
+
+                switch (i)
+                {
+                    case 0:
+                        
+
+                        profiles[i].Title = "Basic";
+                        profiles[i].Price = "a partire da 300€";
+                        profiles[i].Message = "\n" +"► Socket AM4 with B450 chipset" + "\n" +
+                                             "► Scheda grafica integrata" + "\n" +
+                                             "► RAM 8GB DDR4 2133 MHz" + "\n" +
+                                             "► SSD 250GB SATA" + "\n" +
+                                             "► Bassi consumi " + "\n" +
+                                             "► Ideale per navigare in Internet, guardare film e ascoltare musica";
+                        break;
+
+                    case 1:
+                        
+                        profiles[i].Title = "Advanced";
+                        profiles[i].Price = "a partire da 600€";
+                        profiles[i].Message = "\n" + "► CPU Intel Core i3 Quad Core" + "\n" +
+                                             "► Scheda grafica di fascia media" + "\n" +
+                                             "► RAM 8GB DDR4 2400 MHz" + "\n" +
+                                             "► SSD 500GB SATA" + "\n" +
+                                             "► Consumi medi " + "\n" +
+                                             "► Consigliato per il lavoro d'ufficio e per giocare ai videogiochi casualmente";
+                        break;
+
+                    case 2:
+                       
+                        profiles[i].Title = "Gamer";
+                        profiles[i].Price = "a partire da 1100€";
+                        profiles[i].Message = "\n" + "► CPU Intel Core i5 11th gen 6 - Core" + "\n" +
+                                             "► GPU NVidia RTX 3060 Ti or AMD RX 6700 XT" + "\n" +
+                                             "► RAM 16GB DDR4 3000 MHz" + "\n" +
+                                             "► SSD 1TB M.2 NVME" + "\n" +
+                                             "► Consumi Alti " + "\n" +
+                                             "► Consigliato per appassionati di videogiochi";
+                        break;
+ 
+                    case 3:
+                        profiles[i].Title = "Pro";
+                        profiles[i].Price = "a partire da 1800€";
+                        profiles[i].Message = "\n" + "► CPU Intel Core i7/ i9 11th gen" + "\n" +
+                                             "► GPU NVidia RTX 3070 / RTX 3080 Ti" + "\n" +
+                                             "► RAM 16GB DDR4 3200 MHz" + "\n" +
+                                             "► SSD 1TB M.2 NVME" + "\n" +
+                                             "► Consumi Alti " + "\n" +
+                                             "► Consigliato per lavori di modellazione 3d";
+                        break;
+
+                }
+
+
+                
+
+                //aggiunge al flow label
+                if (flowLayoutPanel1.Controls.Count < 0)
+                {
+
+                    flowLayoutPanel1.Controls.Clear();
+                }
+                else
+                    flowLayoutPanel1.Controls.Add(profiles[i]);
+
+
+            }
+        }
+
+
         private void buttonMyBuild_Click(object sender, EventArgs e)
         {
             //pulisco la tendina
+            
             flowLayoutPanel1.Controls.Clear();
 
             if (comboBox1.Text=="Build Guidata") {
                 Console.WriteLine("valore combobox: " + comboBox1.Text);
-                
+                populateItemsBuildG();
+
+
             }
             else
             {

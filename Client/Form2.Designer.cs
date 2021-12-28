@@ -134,14 +134,14 @@ namespace Client
             // 
             this.comboBox1.DisplayMember = "Solo";
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Build Solo",
+            "Build Guidata"});
             this.comboBox1.Location = new System.Drawing.Point(927, 184);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(142, 24);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.Items.Insert(0, "Build Solo");
-            this.comboBox1.Items.Insert(1, "Build Guidata");
-            this.comboBox1.SelectedIndex = 1;
             // 
             // Form2
             // 

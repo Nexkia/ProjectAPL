@@ -49,7 +49,6 @@ namespace Client
             this.labelIndirizzo = new System.Windows.Forms.Label();
             this.buttonMostraIP = new System.Windows.Forms.Button();
             this.buttonCP = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login
@@ -170,18 +169,10 @@ namespace Client
             this.buttonCP.UseVisualStyleBackColor = true;
             this.buttonCP.Click += new System.EventHandler(this.buttonCP_Click);
             // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCP);
             this.Controls.Add(this.buttonMostraIP);
             this.Controls.Add(this.labelIndirizzo);
@@ -229,7 +220,6 @@ namespace Client
         private System.Windows.Forms.Label labelIndirizzo;
         private System.Windows.Forms.Button buttonMostraIP;
         private System.Windows.Forms.Button buttonCP;
-        private System.Windows.Forms.Button button1;
     }
 }
 
