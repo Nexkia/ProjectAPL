@@ -226,8 +226,16 @@ namespace Client
 
         }
 
-        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ModificaProfilo mdp = new ModificaProfilo(pt);
+            mdp.Show();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vecchioForm.Visible = true;
+            this.Close();
 
         }
 

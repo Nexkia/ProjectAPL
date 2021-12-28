@@ -39,7 +39,7 @@ namespace Client
             this.buttonMyBuild = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
@@ -110,7 +110,7 @@ namespace Client
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(53, 24);
@@ -119,16 +119,17 @@ namespace Client
             // 
             // menuToolStripMenuItem
             // 
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
-            this.menuToolStripMenuItem.Text = "Modifica Profilo";
-            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
+            this.editToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.editToolStripMenuItem.Text = "Modifica Profilo";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // comboBox1
             // 
@@ -174,7 +175,7 @@ namespace Client
         private Button buttonMyBuild;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem menuToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ComboBox comboBox1;
     }

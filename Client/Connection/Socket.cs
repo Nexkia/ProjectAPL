@@ -38,6 +38,19 @@ namespace Client.Connection
             return "done";
         }
 
+        public async Task<string> sendSingleMsg(string single)
+        {
+            await Task.Run(() =>
+            {
+                string message = single;
+                Console.WriteLine("Sended: {0}", message);
+                byte[] outJson = Encoding.ASCII.GetBytes(message);
+                stream.Write(outJson, 0, outJson.Length);
+            });
+
+            return "done";
+        }
+
         public async Task<string> receive(int dim) {
             string result = await Task.Run(() =>
             {

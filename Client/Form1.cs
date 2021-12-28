@@ -182,6 +182,8 @@ namespace Client
                     {
 
                         Console.WriteLine("Login fallito," + responseData);
+                        MessageBox.Show("Login fallito, Email o Password errate",
+                       "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {

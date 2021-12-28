@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Connection
 {
-    class Protocol
+    public class Protocol
     {
         public string ProtocolID { get; set; }
         public string Token { get; set; }
