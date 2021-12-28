@@ -55,4 +55,5 @@ func updateUtente(data string, token string, conn net.Conn, mongodb *mongo.Datab
 		}},
 	}
 	coll.UpdateOne(context.TODO(), filter, updateMongo)
+	conn.Write([]byte(u.Password))
 }
