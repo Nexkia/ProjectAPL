@@ -40,8 +40,8 @@ namespace Client
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.pictureBox1ComponentsTab = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1ComponentsTab = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox2ComponentsTab = new System.Windows.Forms.PictureBox();
             this.label2ComponentsTab = new System.Windows.Forms.Label();
@@ -60,8 +60,9 @@ namespace Client
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.label1ComponentsTab);
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(769, 55);
+            this.panel1.Size = new System.Drawing.Size(577, 45);
             this.panel1.TabIndex = 0;
             // 
             // label1ComponentsTab
@@ -70,9 +71,10 @@ namespace Client
             this.label1ComponentsTab.BackColor = System.Drawing.Color.Transparent;
             this.label1ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.label1ComponentsTab.Location = new System.Drawing.Point(3, 10);
+            this.label1ComponentsTab.Location = new System.Drawing.Point(2, 8);
+            this.label1ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1ComponentsTab.Name = "label1ComponentsTab";
-            this.label1ComponentsTab.Size = new System.Drawing.Size(763, 42);
+            this.label1ComponentsTab.Size = new System.Drawing.Size(572, 34);
             this.label1ComponentsTab.TabIndex = 1;
             this.label1ComponentsTab.Text = "titolo";
             this.label1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -80,12 +82,14 @@ namespace Client
             // label4ComponentsTab
             // 
             this.label4ComponentsTab.AutoEllipsis = true;
-            this.label4ComponentsTab.Location = new System.Drawing.Point(519, 205);
+            this.label4ComponentsTab.Location = new System.Drawing.Point(389, 167);
+            this.label4ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4ComponentsTab.Name = "label4ComponentsTab";
-            this.label4ComponentsTab.Size = new System.Drawing.Size(242, 96);
+            this.label4ComponentsTab.Size = new System.Drawing.Size(182, 78);
             this.label4ComponentsTab.TabIndex = 6;
             this.label4ComponentsTab.Text = "testo3";
             this.label4ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label4ComponentsTab.Click += new System.EventHandler(this.label4ComponentsTab_Click);
             // 
             // checkBox1ComponentsTab
             // 
@@ -93,9 +97,10 @@ namespace Client
             this.checkBox1ComponentsTab.BackColor = System.Drawing.Color.Maroon;
             this.checkBox1ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox1ComponentsTab.Location = new System.Drawing.Point(53, 304);
+            this.checkBox1ComponentsTab.Location = new System.Drawing.Point(40, 247);
+            this.checkBox1ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1ComponentsTab.Name = "checkBox1ComponentsTab";
-            this.checkBox1ComponentsTab.Size = new System.Drawing.Size(150, 52);
+            this.checkBox1ComponentsTab.Size = new System.Drawing.Size(112, 42);
             this.checkBox1ComponentsTab.TabIndex = 7;
             this.checkBox1ComponentsTab.Text = "Confronta";
             this.checkBox1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -104,12 +109,14 @@ namespace Client
             // 
             // pictureBox3ComponentsTab
             // 
-            this.pictureBox3ComponentsTab.Location = new System.Drawing.Point(24, 3);
+            this.pictureBox3ComponentsTab.Location = new System.Drawing.Point(18, 2);
+            this.pictureBox3ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3ComponentsTab.Name = "pictureBox3ComponentsTab";
-            this.pictureBox3ComponentsTab.Size = new System.Drawing.Size(157, 141);
+            this.pictureBox3ComponentsTab.Size = new System.Drawing.Size(118, 115);
             this.pictureBox3ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3ComponentsTab.TabIndex = 3;
             this.pictureBox3ComponentsTab.TabStop = false;
+            this.pictureBox3ComponentsTab.Click += new System.EventHandler(this.pictureBox3ComponentsTab_Click);
             // 
             // checkBox2ComponentsTab
             // 
@@ -117,9 +124,10 @@ namespace Client
             this.checkBox2ComponentsTab.BackColor = System.Drawing.Color.Maroon;
             this.checkBox2ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox2ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox2ComponentsTab.Location = new System.Drawing.Point(316, 304);
+            this.checkBox2ComponentsTab.Location = new System.Drawing.Point(237, 247);
+            this.checkBox2ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox2ComponentsTab.Name = "checkBox2ComponentsTab";
-            this.checkBox2ComponentsTab.Size = new System.Drawing.Size(150, 52);
+            this.checkBox2ComponentsTab.Size = new System.Drawing.Size(112, 42);
             this.checkBox2ComponentsTab.TabIndex = 8;
             this.checkBox2ComponentsTab.Text = "Confronta";
             this.checkBox2ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,9 +139,10 @@ namespace Client
             this.checkBox3ComponentsTab.BackColor = System.Drawing.Color.Maroon;
             this.checkBox3ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox3ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox3ComponentsTab.Location = new System.Drawing.Point(572, 304);
+            this.checkBox3ComponentsTab.Location = new System.Drawing.Point(429, 247);
+            this.checkBox3ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox3ComponentsTab.Name = "checkBox3ComponentsTab";
-            this.checkBox3ComponentsTab.Size = new System.Drawing.Size(150, 52);
+            this.checkBox3ComponentsTab.Size = new System.Drawing.Size(112, 42);
             this.checkBox3ComponentsTab.TabIndex = 9;
             this.checkBox3ComponentsTab.Text = "Confronta";
             this.checkBox3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,26 +151,29 @@ namespace Client
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(514, 10);
+            this.panel2.Location = new System.Drawing.Point(386, 8);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2, 367);
+            this.panel2.Size = new System.Drawing.Size(2, 298);
             this.panel2.TabIndex = 10;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(252, 8);
+            this.panel3.Location = new System.Drawing.Point(189, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2, 367);
+            this.panel3.Size = new System.Drawing.Size(2, 298);
             this.panel3.TabIndex = 11;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panel5.Controls.Add(this.pictureBox3ComponentsTab);
-            this.panel5.Location = new System.Drawing.Point(541, 55);
+            this.panel5.Location = new System.Drawing.Point(406, 45);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(207, 147);
+            this.panel5.Size = new System.Drawing.Size(155, 119);
             this.panel5.TabIndex = 13;
             // 
             // panel6
@@ -169,41 +181,46 @@ namespace Client
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panel6.Controls.Add(this.flowLayoutPanel1);
             this.panel6.Controls.Add(this.pictureBox1ComponentsTab);
-            this.panel6.Location = new System.Drawing.Point(22, 55);
+            this.panel6.Location = new System.Drawing.Point(16, 45);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(205, 146);
+            this.panel6.Size = new System.Drawing.Size(154, 119);
             this.panel6.TabIndex = 14;
-            // 
-            // pictureBox1ComponentsTab
-            // 
-            this.pictureBox1ComponentsTab.Location = new System.Drawing.Point(24, 3);
-            this.pictureBox1ComponentsTab.Name = "pictureBox1ComponentsTab";
-            this.pictureBox1ComponentsTab.Size = new System.Drawing.Size(157, 141);
-            this.pictureBox1ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1ComponentsTab.TabIndex = 1;
-            this.pictureBox1ComponentsTab.TabStop = false;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(255, 49);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(191, 40);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(120, 56);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(90, 46);
             this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // pictureBox1ComponentsTab
+            // 
+            this.pictureBox1ComponentsTab.Location = new System.Drawing.Point(18, 2);
+            this.pictureBox1ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1ComponentsTab.Name = "pictureBox1ComponentsTab";
+            this.pictureBox1ComponentsTab.Size = new System.Drawing.Size(118, 115);
+            this.pictureBox1ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1ComponentsTab.TabIndex = 1;
+            this.pictureBox1ComponentsTab.TabStop = false;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panel4.Controls.Add(this.pictureBox2ComponentsTab);
-            this.panel4.Location = new System.Drawing.Point(277, 55);
+            this.panel4.Location = new System.Drawing.Point(208, 45);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(212, 146);
+            this.panel4.Size = new System.Drawing.Size(159, 119);
             this.panel4.TabIndex = 12;
             // 
             // pictureBox2ComponentsTab
             // 
-            this.pictureBox2ComponentsTab.Location = new System.Drawing.Point(32, 5);
+            this.pictureBox2ComponentsTab.Location = new System.Drawing.Point(24, 4);
+            this.pictureBox2ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2ComponentsTab.Name = "pictureBox2ComponentsTab";
-            this.pictureBox2ComponentsTab.Size = new System.Drawing.Size(157, 141);
+            this.pictureBox2ComponentsTab.Size = new System.Drawing.Size(118, 115);
             this.pictureBox2ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2ComponentsTab.TabIndex = 2;
             this.pictureBox2ComponentsTab.TabStop = false;
@@ -212,9 +229,10 @@ namespace Client
             // label2ComponentsTab
             // 
             this.label2ComponentsTab.AutoEllipsis = true;
-            this.label2ComponentsTab.Location = new System.Drawing.Point(6, 202);
+            this.label2ComponentsTab.Location = new System.Drawing.Point(4, 164);
+            this.label2ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2ComponentsTab.Name = "label2ComponentsTab";
-            this.label2ComponentsTab.Size = new System.Drawing.Size(245, 96);
+            this.label2ComponentsTab.Size = new System.Drawing.Size(184, 78);
             this.label2ComponentsTab.TabIndex = 4;
             this.label2ComponentsTab.Text = "testo1";
             this.label2ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -222,16 +240,17 @@ namespace Client
             // label3ComponentsTab
             // 
             this.label3ComponentsTab.AutoEllipsis = true;
-            this.label3ComponentsTab.Location = new System.Drawing.Point(260, 205);
+            this.label3ComponentsTab.Location = new System.Drawing.Point(195, 167);
+            this.label3ComponentsTab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3ComponentsTab.Name = "label3ComponentsTab";
-            this.label3ComponentsTab.Size = new System.Drawing.Size(253, 96);
+            this.label3ComponentsTab.Size = new System.Drawing.Size(190, 78);
             this.label3ComponentsTab.TabIndex = 15;
             this.label3ComponentsTab.Text = "testo2";
             this.label3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ComponentsTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.label3ComponentsTab);
@@ -246,8 +265,9 @@ namespace Client
             this.Controls.Add(this.checkBox1ComponentsTab);
             this.Controls.Add(this.label4ComponentsTab);
             this.Controls.Add(this.panel5);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ComponentsTab";
-            this.Size = new System.Drawing.Size(761, 378);
+            this.Size = new System.Drawing.Size(571, 307);
             this.Load += new System.EventHandler(this.ComponentsTab_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3ComponentsTab)).EndInit();

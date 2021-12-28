@@ -42,12 +42,13 @@ namespace Client
             
             SocketTCP sckt = new SocketTCP();
             // Richiede due messaggi 
-            pt.ProtocolID = "2"; pt.Data = "";
+            pt.SetProtocolID("home"); pt.Data = "";
             string responce = await sckt.send(pt);
-            int datalen = int.Parse(await sckt.receive(256));
-            responce = await sckt.send(pt);
-            string responseData = await sckt.receive(datalen);
-
+            string responseData= "";
+            do
+            {
+                responseData += await sckt.receive();
+            } while (!responseData.Contains("\n"));
             JArray c1= JsonConvert.DeserializeObject<JArray>(responseData);
           
             var returnType = c1.GetType();
