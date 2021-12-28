@@ -42,6 +42,7 @@ func main() {
 	mongodb := client.Database("apl_database")
 	//------------------------------------------------------------------
 	//go invio()
+
 	for {
 
 		// accept connection on port
@@ -81,11 +82,15 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 		go login(Mjson, conn, mongodb)
 	case 2:
 		fmt.Println("caso 2: ", MP)
-
 		if Autentificazione(ID, mongodb) {
 			go homepage(conn, mongodb)
 		}
-
+	case 3:
+		fmt.Println("caso 3: ", MP)
+		go getUtente(ID, conn, mongodb)
+	case 4:
+		fmt.Println("caso 4: ", MP)
+		go updateUtente(Mjson, ID, conn, mongodb)
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}

@@ -22,7 +22,6 @@ func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 	coll := mongodb.Collection("utenti")
 
 	l1 := Utente{}
-
 	//conversione della stringa in byte
 	json.Unmarshal([]byte(Mjson), &l1)
 	filter := bson.D{{"email", "" + l1.Email + ""}}
