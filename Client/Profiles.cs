@@ -17,81 +17,36 @@ namespace Client
 {
     public partial class Profiles : UserControl
     {
-        FlowLayoutPanel vecchioFlowLayoutPanel;
+        FlowLayoutPanel vecchioFlowLayoutPanel1;
         Protocol pt = new Protocol();
-        public Profiles(FlowLayoutPanel vfp)
+        public Profiles(FlowLayoutPanel vfp1)
         {
             InitializeComponent();
-            vecchioFlowLayoutPanel = vfp;
+            vecchioFlowLayoutPanel1 = vfp1;
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prototypes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        #region Properties
 
         private string _title;
-        private string _price;
-        private string _message;
 
-
-        [Category("Custom Props")]
-        public string Title
-        {
+        public string Title{
             get { return _title; }
-            set { _title = value; label1Prototypes.Text = value; }
-        }
-
-        [Category("Custom Props")]
-        public string Price
-        {
-            get { return _price; }
-            set { _price = value; label2Prototypes.Text = value; }
-        }
-
-        [Category("Custom Props")]
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; label3Prototypes.Text = value; }
-        }
-
-        
-
-        #endregion
-
-
-
-
+            set { _title = value; label1Prototypes.Text = value; }}
+        public string Price{set {  label2Prototypes.Text = value; }}
+        public string Message{set { label3Prototypes.Text = value; }}
 
         private void lblMessage_MouseEnter(object sender, EventArgs e)
         {
-
             this.BackColor = Color.Silver;
-
-
-
         }
 
         private void lblMessage_MouseLeave(object sender, EventArgs e)
         {
-
             this.BackColor = Color.White;
         }
-
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
             Console.WriteLine(this.Title);
-            vecchioFlowLayoutPanel.Controls.Clear();
+            vecchioFlowLayoutPanel1.Controls.Clear();
             populateItemsComponenti(this.Title);
         }
 
@@ -99,7 +54,7 @@ namespace Client
         {
             SocketTCP skt = new SocketTCP();
             ComponentsTab[] componentsTab = new ComponentsTab[8];
-            string[] vet = { "cpu", "schedaMadre","schedaVideo","casepc","dissipatore","alimentatore", "memoria", "ram" };
+           // string[] vet = { "cpu", "schedaMadre","schedaVideo","casepc","dissipatore","alimentatore", "memoria", "ram" };
             pt.SetProtocolID("profilo");pt.Token="";pt.Data = nameProfile;
             string ok = await skt.send(pt);
 
@@ -118,8 +73,7 @@ namespace Client
 
                 Componente[] pezzo = new Componente[3];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(responce);
-                if (Array.Exists(vet, x => x =="cpu" /*pre[i].Componenti[j].Categoria*/))
-                    {
+                
                         componentsTab[i].Title = pezzo[0].Categoria;//"qui si mette il titolo";
 
                         componentsTab[i].Icon1 = Resources.imageNotFound2;
@@ -131,16 +85,16 @@ namespace Client
                         componentsTab[i].Icon3 = Resources.imageNotFound2;
                         componentsTab[i].Message3 = pezzo[2].Modello;
 
-                    }
+                   
 
                  //aggiunge al flow label
-                if (vecchioFlowLayoutPanel.Controls.Count < 0)
+                if (vecchioFlowLayoutPanel1.Controls.Count < 0)
                 {
 
-                    vecchioFlowLayoutPanel.Controls.Clear();
+                    vecchioFlowLayoutPanel1.Controls.Clear();
                 }
                 else
-                    vecchioFlowLayoutPanel.Controls.Add(componentsTab[i]);
+                    vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
 
 
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Preassemblato
+   public class Preassemblato
 
     {
         [JsonProperty("nome")]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,98 +14,67 @@ namespace Client
     public partial class ListItem : UserControl
     {
 
-         
-        public ListItem()
+        FlowLayoutPanel vecchioflowLayoutPanel2;
+        public ListItem(FlowLayoutPanel vfp2)
         {
             InitializeComponent();
-           
-            
+            vecchioflowLayoutPanel2 = vfp2;
+
+
         }
 
-
-        #region Properties
-
-        private string _title;
-        private Color _iconBack;
-        private string _message;
-        private Image _icon;
-        
-        
-
-        [Category ("Custom Props")]
-        public string Title
-        {
-            get { return _title; }
-            set { _title = value;lblTitle.Text = value; }
-        }
-        [Category("Custom Props")]
-        public Color IconBackground
-        {
-            get { return _iconBack; }
-            set { _iconBack = value; panel1.BackColor = value; }
-        }
-
-        [Category("Custom Props")]
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; lblMessage.Text = value; }
-        }
-
-        [Category("Custom Props")]
-        public Image Icon
-        {
-            get { return _icon; }
-            set { _icon = value; pictureBox1.Image = value; }
-        }
-
-        
-        #endregion
-
-
-
-
-
+        public string Title{set { lblTitle.Text = value; }}
+        public Color IconBackground{set {  panel1.BackColor = value; }}
+        public string Message{set {  lblMessage.Text = value; }}
+        public Image Icon{set { pictureBox1.Image = value; }}
+        public Preassemblato pre { get; set; }
+      
         private void lblMessage_MouseEnter(object sender, EventArgs e)
         {
-           
                 this.BackColor = Color.Silver;
-           
-
-           
         }
 
         private void lblMessage_MouseLeave(object sender, EventArgs e)
         {
-
             this.BackColor = Color.White;
-        }
-
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-           
-        }
-
-        private void ListItem_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
             Console.WriteLine("hai cliccato");
+            vecchioflowLayoutPanel2.Controls.Clear();
+
+            populateItemsInfo();
+        }
+
+        private  void populateItemsInfo()
+        {
+         
+            Info info = new Info();
+            info.Title = "Nome: " + pre.Nome+ " Prezzo:"+pre.Prezzo;
+
+            string message = "";
+            //8 come il numero dei componenti
+            for (int j = 0; j < 8; j++)
+            {
+                
+                    message += "• "+pre.Componenti[j].Categoria + "\n"
+                              + pre.Componenti[j].Marca + " " + pre.Componenti[j].Modello+" "+ pre.Componenti[j].Prezzo+" €";
+
+                    if (int.Parse(pre.Componenti[j].Capienza) > 0)
+                    {
+                        message += " " + pre.Componenti[j].Capienza + " GB";
+                    }
+
+                    message += "\n";
+                
+
+            }
+            info.Message = message;
+
+                    vecchioflowLayoutPanel2.Controls.Add(info);
+            }
+
             
         }
-    }
 }

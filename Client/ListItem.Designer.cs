@@ -71,7 +71,7 @@ namespace Client
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 167);
             this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+           
             // 
             // pictureBox1
             // 
@@ -81,7 +81,7 @@ namespace Client
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            
             // 
             // ListItem
             // 
@@ -93,7 +93,7 @@ namespace Client
             this.Controls.Add(this.lblMessage);
             this.Name = "ListItem";
             this.Size = new System.Drawing.Size(752, 170);
-            this.Load += new System.EventHandler(this.ListItem_Load);
+            
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

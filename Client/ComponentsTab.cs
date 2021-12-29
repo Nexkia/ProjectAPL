@@ -82,35 +82,5 @@ namespace Client
         #endregion
 
 
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComponentsTab_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2ComponentsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3ComponentsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4ComponentsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3ComponentsTab_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

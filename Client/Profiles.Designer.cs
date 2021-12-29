@@ -50,7 +50,7 @@ namespace Client
             this.label1Prototypes.TabIndex = 0;
             this.label1Prototypes.Text = "titolo";
             this.label1Prototypes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1Prototypes.Click += new System.EventHandler(this.label1_Click);
+     
             // 
             // label2Prototypes
             // 
@@ -106,7 +106,7 @@ namespace Client
             this.Controls.Add(this.panel1);
             this.Name = "Profiles";
             this.Size = new System.Drawing.Size(751, 297);
-            this.Load += new System.EventHandler(this.prototypes_Load);
+           
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

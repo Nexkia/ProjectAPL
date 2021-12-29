@@ -24,6 +24,7 @@ using Microsoft.Azure.Documents;
 using Client.Data.Componenti;
 using Client.Data;
 using Client.Connection;
+using Client.Controlli;
 
 namespace Client
 {
@@ -45,106 +46,123 @@ namespace Client
 
         private async void Register_ClickAsync(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
+            int ris;
+            CheckFields controlloR = new CheckFields();
 
-            String nomeUtente;
-            String emailR;
-            String indirizzo;
-            String inserisciPasswordR;
-            String confermaPasswordR;
+            ris =controlloR.CheckRegister(textBoxNomeUtente.Text, textBoxEmailR.Text, textBoxIndirizzo.Text,
+                textBoxInserisciPasswordR.Text, textBoxConfermaPasswordR.Text);
 
-            if (textBoxNomeUtente.Text != string.Empty &&
-                textBoxEmailR.Text != string.Empty && textBoxIndirizzo.Text != string.Empty &&
-                textBoxInserisciPasswordR.Text != string.Empty && textBoxConfermaPasswordR.Text != string.Empty)
+            switch (ris)
             {
-                nomeUtente = textBoxNomeUtente.Text;
-                // codiceFiscale = textBoxCodiceFiscale.Text.ToUpper();// trasforma i caratteri in maiuscole
-                emailR = textBoxEmailR.Text;
-                indirizzo = textBoxIndirizzo.Text;
-                inserisciPasswordR = textBoxInserisciPasswordR.Text;
-                confermaPasswordR = textBoxConfermaPasswordR.Text;
+                case 0:
+                    SocketTCP sckt = new SocketTCP();
+                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
+                    string Json = JsonSerializer.Serialize(
+                        new
+                        {
+                            Email = textBoxEmailR.Text,
+                            Indirizzo = textBoxIndirizzo.Text,
+                            NomeUtente = textBoxNomeUtente.Text,
+                            Password = textBoxConfermaPasswordR.Text
+                        }
+                        );
+                    //conversione da Json a Byte
+                    pt.SetProtocolID("register"); pt.Token = ""; pt.Data = Json;
+                    string responce = await sckt.send(pt);
+                    Console.WriteLine(responce);
+                    string result = await sckt.receive();
 
-                //controllo sul nome utente, che non deve avere spazi
-                bool isValidNomeUtente = nomeUtente.Contains(" ");
-                // bool isValidCodiceFiscale = codiceFiscale.Contains(" ");
-                bool isValidEmailR = emailR.Contains(" ");
-                bool isValidIndirizzo = indirizzo.Contains(" ");
-                bool isValidinserisciPasswordR = inserisciPasswordR.Contains(" ");
-                bool isValidconfermaPasswordR = confermaPasswordR.Contains(" ");
-                if (isValidNomeUtente || isValidEmailR
-                    || isValidinserisciPasswordR || isValidconfermaPasswordR || isValidIndirizzo)
-                {
-                    MessageBox.Show("Togliere gli spazi all'interno dei campi",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    //controllo formato email
-                    bool isValidEmailR1 = emailR.Contains("@");
-                    bool isValidEmailR2 = emailR.Contains(".");
-                    if (!isValidEmailR1 || !isValidEmailR2)
+
+                    if (result.Contains("Registrazione"))
                     {
-                        MessageBox.Show("Email non valida",
-                        "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        textBoxNomeUtente.Text = string.Empty;
+                        textBoxEmailR.Text = string.Empty;
+                        textBoxIndirizzo.Text = string.Empty;
+                        textBoxInserisciPasswordR.Text = string.Empty;
+                        textBoxConfermaPasswordR.Text = string.Empty;
+
                     }
                     else
                     {
-                        //controlla che le due password siano uguali
-                        if (inserisciPasswordR != confermaPasswordR)
-                        {
-                            MessageBox.Show("Le due password inserite sono diverse",
-                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                        else
-                        {
-                            //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-                            string Json = JsonSerializer.Serialize(
-                                new
-                                {
-                                    Email = emailR,
-                                    Indirizzo = indirizzo,
-                                    NomeUtente = nomeUtente,
-                                    Password = confermaPasswordR
-                                }
-                                );
-                            //conversione da Json a Byte
-                            pt.SetProtocolID("register"); pt.Token = ""; pt.Data = Json;
-                            string responce = await sckt.send(pt);
-                            Console.WriteLine(responce);
-                            string result = await sckt.receive();
-
-
-                            if (result.Contains("Registrazione"))
-                            {
-                                textBoxNomeUtente.Text = string.Empty;
-                                textBoxEmailR.Text = string.Empty; ;
-                                textBoxIndirizzo.Text = string.Empty; ;
-                                textBoxInserisciPasswordR.Text = string.Empty; ;
-                                textBoxConfermaPasswordR.Text = string.Empty; ;
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Email o Codice Fiscale già usati in altri account",
-                                   "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
+                        MessageBox.Show("Email o Codice Fiscale già usati in altri account",
+                           "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
-            }
-            else
-            {
+                    break;
 
-                MessageBox.Show("Riempire tutti i campi",
-                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                case 1:
+                   MessageBox.Show("Riempire tutti i campi","Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 2:
+                    MessageBox.Show("Togliere gli spazi all'interno dei campi", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 3:
+                    MessageBox.Show("Email non valida", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 4:
+                    MessageBox.Show("Le due password inserite sono diverse", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
 
+            }
 
         }
 
 
         private async void Login_Click(object sender, EventArgs e)
         {
+            
+            CheckFields controlloL = new CheckFields();
+            int ris;
+
+            ris = controlloL.CheckLogin(textBoxEmail.Text, textBoxPassword.Text);
+
+            switch (ris)
+            {
+                case 0:
+                    SocketTCP sckt = new SocketTCP();
+                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
+
+                    string Json = JsonSerializer.Serialize(new
+                    {
+                        Email = textBoxEmail.Text,
+                        Password = textBoxPassword.Text
+                    }
+                    );
+                    pt.SetProtocolID("login"); pt.Token = ""; pt.Data = Json;
+                    string responce = await sckt.send(pt);
+                    Console.WriteLine(responce);
+                    string responseData = await sckt.receive();
+                    pt.Token = responseData;
+
+                    if (responseData.Contains("errore: "))
+                    {
+
+                        Console.WriteLine("Login fallito," + responseData);
+                        MessageBox.Show("Login fallito, Email o Password errate",
+                       "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login effettuato");
+                        Form2 f2 = new Form2(this, pt.Token); // Instantiate a Form2 object.
+                        f2.Show(); // Show Form2 and
+                        this.Visible = false; //invisible form1
+                    }
+                    //------------------------------------------------------------
+                    textBoxEmail.Text = string.Empty;
+                    textBoxPassword.Text = string.Empty;
+                    break;
+                case 1:
+                    MessageBox.Show("Riempire tutti i campi",
+                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 2:
+                    MessageBox.Show("Email non valida",
+                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
+
+            /*
             String email;
             String password;
             SocketTCP sckt = new SocketTCP();
@@ -201,7 +219,7 @@ namespace Client
             {
                 MessageBox.Show("Riempire tutti i campi",
                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            }*/
         }
 
 
