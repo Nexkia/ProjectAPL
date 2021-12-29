@@ -43,7 +43,7 @@ namespace Client
             SocketTCP sckt = new SocketTCP();
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = "";
-            string responce = await sckt.send(pt);
+            string response = await sckt.send(pt);
             string responseData= "";
             do
             {
@@ -330,6 +330,12 @@ namespace Client
         {
             
            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormCatalog fcg = new FormCatalog();
+            fcg.Show();
         }
     }
 }

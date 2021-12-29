@@ -99,51 +99,56 @@ namespace Client
         {
             SocketTCP skt = new SocketTCP();
             ComponentsTab[] componentsTab = new ComponentsTab[8];
-            string[] vet = { "cpu", "schedaMadre","schedaVideo","casepc","dissipatore","alimentatore", "memoria", "ram" };
             pt.SetProtocolID("profilo");pt.Token="";pt.Data = nameProfile;
             string ok = await skt.send(pt);
 
-
-            //ci sono 8 iterazionei, una per ogni componente
-            for (int i = 0; i < componentsTab.Length; i++)
-
-            {
-                string okmsg = await skt.sendSingleMsg("ok"); 
+            Dictionary<string, string> order = new Dictionary<string, string>{
+                { "schedaMadre","0" },{ "cpu","1" },{"ram","2"},{"schedaVideo","3"},
+                {"alimentatore","4"},{"casepc","5"},{"memoria","6"},{"dissipatore","7"},
+            };
+            Componente[,] showElements = new Componente[8, 3];
+            for (int i = 0; i < componentsTab.Length; i++) { 
+                string okmsg = await skt.sendSingleMsg("ok");
                 componentsTab[i] = new ComponentsTab();
-                string responce = "";
+                string response = "";
                 do
                 {
-                    responce += await skt.receive();
-                } while (!responce.Contains("\n"));
+                    response += await skt.receive();
+                } while (!response.Contains("\n"));
 
                 Componente[] pezzo = new Componente[3];
-                pezzo = JsonConvert.DeserializeObject<Componente[]>(responce);
-                if (Array.Exists(vet, x => x =="cpu" /*pre[i].Componenti[j].Categoria*/))
-                    {
-                        componentsTab[i].Title = pezzo[0].Categoria;//"qui si mette il titolo";
-
-                        componentsTab[i].Icon1 = Resources.imageNotFound2;
-                        componentsTab[i].Message1 =pezzo[0].Modello ;
-
-                        componentsTab[i].Icon2 = Resources.imageNotFound2;
-                        componentsTab[i].Message2 = pezzo[1].Modello;
-
-                        componentsTab[i].Icon3 = Resources.imageNotFound2;
-                        componentsTab[i].Message3 = pezzo[2].Modello;
-
-                    }
-
-                 //aggiunge al flow label
-                if (vecchioFlowLayoutPanel.Controls.Count < 0)
-                {
-
-                    vecchioFlowLayoutPanel.Controls.Clear();
+                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
+                int idx = int.Parse(order[pezzo[0].Categoria]); 
+                for (int j = 0; j < 3; j++){
+                    showElements[idx,j] = new Componente();
+                    showElements[idx, j] = pezzo[j];
                 }
-                else
-                    vecchioFlowLayoutPanel.Controls.Add(componentsTab[i]);
-
 
             }
+                //ci sono 8 iterazionei, una per ogni componente
+                for (int i = 0; i < componentsTab.Length; i++){
+                    componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
+
+                    componentsTab[i].Icon1 = Resources.imageNotFound2;
+                    componentsTab[i].Message1 = showElements[i, 0].Modello ;
+
+                    componentsTab[i].Icon2 = Resources.imageNotFound2;
+                    componentsTab[i].Message2 = showElements[i, 1].Modello;
+
+                    componentsTab[i].Icon3 = Resources.imageNotFound2;
+                    componentsTab[i].Message3 = showElements[i, 2].Modello;
+
+                     //aggiunge al flow label
+                    if (vecchioFlowLayoutPanel.Controls.Count < 0)
+                    {
+
+                        vecchioFlowLayoutPanel.Controls.Clear();
+                    }
+                    else
+                        vecchioFlowLayoutPanel.Controls.Add(componentsTab[i]);
+
+
+                }
         }
 
     }

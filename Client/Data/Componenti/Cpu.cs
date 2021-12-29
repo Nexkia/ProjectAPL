@@ -22,7 +22,7 @@ namespace Client.Data
         [JsonProperty("core")]
         public int Core { get; private set; }
         [JsonProperty("thread")]
-        public int Thread { get; privateset; }
+        public int Thread { get; private set; }
 
     }
 
