@@ -83,7 +83,7 @@ func invio() {
 	// 		{Prezzo: 100, Marca: "Corsair", Capienza: 16, Modello: "Ballistix", Categoria: "ram"},
 	// 	},
 	// }
-	coll := client.Database("apl_database").Collection("catalogo")
+	coll := client.Database("apl_database").Collection("componenti")
 	rand.Seed(time.Now().UnixNano())
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
 	catalogo := make([]Componente, 32)

@@ -13,7 +13,7 @@ import (
 
 func sendComponents(profile string, conn net.Conn, mongodb *mongo.Database) {
 	fmt.Println(profile)
-	coll := mongodb.Collection("catalogo")
+	coll := mongodb.Collection("componenti")
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
 	for i := 0; i < 8; i++ {
 		ok := make([]byte, 256)
