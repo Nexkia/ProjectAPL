@@ -34,10 +34,10 @@ func updateUtente(data string, token string, conn net.Conn, mongodb *mongo.Datab
 	password = strings.Trim(password, "\n")
 	check_token := Encoding(email, password)
 	if token != check_token {
-		conn.Write([]byte("err password diversa"))
+		conn.Write([]byte("err password diversa \n"))
 		return
 	}
-	conn.Write([]byte("ok"))
+	conn.Write([]byte("ok\n"))
 	update, _ := bufio.NewReader(conn).ReadString('\n')
 	fmt.Println(update)
 	u := Utente{}
