@@ -42,34 +42,18 @@ namespace Client
             
             SocketTCP sckt = new SocketTCP();
             // Richiede due messaggi 
-            pt.ProtocolID = "2"; pt.Data = "";
+            pt.SetProtocolID("home"); pt.Data = "";
             string responce = await sckt.send(pt);
-            int datalen = int.Parse(await sckt.receive(256));
-            responce = await sckt.send(pt);
-            string responseData = await sckt.receive(datalen);
-
-            JArray c1= JsonConvert.DeserializeObject<JArray>(responseData);
-          
-            var returnType = c1.GetType();
-            Console.WriteLine("Tipo c1: {0}", returnType);
-
-            int dim = 10;
-            Preassemblato[] a= new Preassemblato[dim];
-
-                 int index = 0;
-            foreach (JObject pc in c1)
+            string responseData= "";
+            do
             {
-               
-                a[index] = JsonConvert.DeserializeObject<Preassemblato>(pc.ToString());
-               
-
-                Console.WriteLine("prezzo pc: " + a[index].Prezzo );
-                
-                index++;
-                
-            }
-
-            populateItems(a,index);
+                responseData += await sckt.receive();
+            } while (!responseData.Contains("\n"));
+   
+            int dim = 3;
+            Preassemblato[] a= new Preassemblato[dim];
+            a = JsonConvert.DeserializeObject<Preassemblato[]>(responseData);
+            populateItems(a,dim);
 
            
             

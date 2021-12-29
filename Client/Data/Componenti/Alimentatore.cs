@@ -12,9 +12,9 @@ namespace Client.Data
         [JsonProperty("alimentatore")]
         Componente componente;
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("watt")]
-        public int Watt { get; set; }
+        public int Watt { get; private set; }
         
     }
 }

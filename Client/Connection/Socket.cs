@@ -29,7 +29,7 @@ namespace Client.Connection
         public async Task<string> send(Protocol p) {
             await Task.Run(() =>
             {
-            string message = p.ProtocolID + p.limit + p.Token + p.limit + p.Data + p.end;
+            string message = p.GetProtocolID()+ p.limit + p.Token + p.limit + p.Data + p.end;
             Console.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             stream.Write(outJson, 0, outJson.Length);            
@@ -51,10 +51,10 @@ namespace Client.Connection
             return "done";
         }
 
-        public async Task<string> receive(int dim) {
+        public async Task<string> receive() {
             string result = await Task.Run(() =>
             {
-                var data = new Byte[dim];
+                var data = new Byte[256];
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;

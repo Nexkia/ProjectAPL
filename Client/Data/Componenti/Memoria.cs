@@ -13,9 +13,9 @@ namespace Client.Data
         [JsonProperty("memoria")]
         Componente componente;
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("tipo")]
-        public string Tipo { get; set; }
+        public string Tipo { get; private set; }
 
     }
 }

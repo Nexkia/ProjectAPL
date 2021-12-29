@@ -1,4 +1,8 @@
-﻿using Client.Properties;
+﻿using Client.Connection;
+using Client.Data;
+using Client.Properties;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +18,7 @@ namespace Client
     public partial class Profiles : UserControl
     {
         FlowLayoutPanel vecchioFlowLayoutPanel;
+        Protocol pt = new Protocol();
         public Profiles(FlowLayoutPanel vfp)
         {
             InitializeComponent();
@@ -85,35 +90,46 @@ namespace Client
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
-            Console.WriteLine("hai cliccato");
+            Console.WriteLine(this.Title);
             vecchioFlowLayoutPanel.Controls.Clear();
-            populateItemsComponenti();
+            populateItemsComponenti(this.Title);
         }
 
-        private void populateItemsComponenti()
+        private async void populateItemsComponenti(string nameProfile)
         {
-           
+            SocketTCP skt = new SocketTCP();
             ComponentsTab[] componentsTab = new ComponentsTab[8];
             string[] vet = { "cpu", "schedaMadre","schedaVideo","casepc","dissipatore","alimentatore", "memoria", "ram" };
+            pt.SetProtocolID("profilo");pt.Token="";pt.Data = nameProfile;
+            string ok = await skt.send(pt);
+
 
             //ci sono 8 iterazionei, una per ogni componente
             for (int i = 0; i < componentsTab.Length; i++)
 
             {
+                string okmsg = await skt.sendSingleMsg("ok"); 
                 componentsTab[i] = new ComponentsTab();
+                string responce = "";
+                do
+                {
+                    responce += await skt.receive();
+                } while (!responce.Contains("\n"));
 
-                    if (Array.Exists(vet, x => x =="cpu" /*pre[i].Componenti[j].Categoria*/))
+                Componente[] pezzo = new Componente[3];
+                pezzo = JsonConvert.DeserializeObject<Componente[]>(responce);
+                if (Array.Exists(vet, x => x =="cpu" /*pre[i].Componenti[j].Categoria*/))
                     {
-                        componentsTab[i].Title = "categoria"+i;//"qui si mette il titolo";
+                        componentsTab[i].Title = pezzo[0].Categoria;//"qui si mette il titolo";
 
                         componentsTab[i].Icon1 = Resources.imageNotFound2;
-                        componentsTab[i].Message1 ="modello1" ;
+                        componentsTab[i].Message1 =pezzo[0].Modello ;
 
                         componentsTab[i].Icon2 = Resources.imageNotFound2;
-                        componentsTab[i].Message2 = "modello2";
+                        componentsTab[i].Message2 = pezzo[1].Modello;
 
                         componentsTab[i].Icon3 = Resources.imageNotFound2;
-                        componentsTab[i].Message3 = "modello3";
+                        componentsTab[i].Message3 = pezzo[2].Modello;
 
                     }
 

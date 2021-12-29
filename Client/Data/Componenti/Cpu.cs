@@ -12,17 +12,17 @@ namespace Client.Data
         [JsonProperty("cpu")]
         Componente componente;
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("tdp")]
-        public int Tdp { get; set; }
+        public int Tdp { get; private set; }
         [JsonProperty("frequenza")]
-        public float Frequenza { get; set; }
+        public float Frequenza { get; private set; }
         [JsonProperty("socket")]
-        public string Socket { get; set; }
+        public string Socket { get; private set; }
         [JsonProperty("core")]
-        public int Core { get; set; }
+        public int Core { get; private set; }
         [JsonProperty("thread")]
-        public int Thread { get; set; }
+        public int Thread { get; privateset; }
 
     }
 
