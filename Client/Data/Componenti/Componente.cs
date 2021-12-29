@@ -12,17 +12,17 @@ namespace Client.Data
     class Componente
     {
         [JsonProperty("prezzo")]
-        public float Prezzo { get;  set; }
+        public float Prezzo { get;  private set; }
         [JsonProperty("marca")]
-        public string Marca { get;  set; }
+        public string Marca { get; private set; }
         [JsonProperty("capienza")]
-        public string Capienza { get; set; }
+        public string Capienza { get; private set; }
         [JsonProperty("img")]
-        public string Img { get;  set; }
+        public string Img { get; private set; }
         [JsonProperty("modello")]
-        public string Modello { get; set; }
+        public string Modello { get; private set; }
         [JsonProperty("categoria")]
-        public string Categoria { get; set; }
+        public string Categoria { get; private set; }
 
     }
 }

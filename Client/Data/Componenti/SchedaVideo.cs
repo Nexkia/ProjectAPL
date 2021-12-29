@@ -12,13 +12,13 @@ namespace Client.Data
         [JsonProperty("schedavideo")]
         Componente componente;
         [JsonProperty("valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("tdp")]
-        public int Tdp { get; set; }
+        public int Tdp { get; private set; }
         [JsonProperty("frequenza")]
-        public float Frequenza { get; set; }
+        public float Frequenza { get; private set; }
         [JsonProperty("vram")]
-        public int Vram { get; set; }
+        public int Vram { get; private set; }
 
 
     }

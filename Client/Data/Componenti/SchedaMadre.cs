@@ -12,13 +12,13 @@ namespace Client.Data
         [JsonProperty("schedamadre")]
         Componente componente;
         [JsonProperty("valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]
-        public string[] CpuSocket { get; set; }
+        public string[] CpuSocket { get; private  set; }
         [JsonProperty("ram")]
-        public string[] Ram { get; set; }
+        public string[] Ram { get; private set; }
         [JsonProperty("ssdm2")]
-        public bool SsdM2 { get; set; }
+        public bool SsdM2 { get; private set; }
 
     }
 }
