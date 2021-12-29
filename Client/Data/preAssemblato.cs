@@ -12,10 +12,11 @@ namespace Client.Data
 
     {
         [JsonProperty("nome")]
-        public string Nome { get; set; }
+        public string Nome { get; private set; }
         [JsonProperty("prezzoTot")]
-        public float Prezzo { get; set; }
+        public float Prezzo { get; private set; }
         [JsonProperty("componenti")]
-        public Componente[] Componenti { get; set; }
+        public Componente[] Componenti { get; private set; }
+
     }
 }

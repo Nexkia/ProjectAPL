@@ -49,28 +49,11 @@ namespace Client
             {
                 responseData += await sckt.receive();
             } while (!responseData.Contains("\n"));
-            JArray c1= JsonConvert.DeserializeObject<JArray>(responseData);
-          
-            var returnType = c1.GetType();
-            Console.WriteLine("Tipo c1: {0}", returnType);
-
-            int dim = 10;
+   
+            int dim = 3;
             Preassemblato[] a= new Preassemblato[dim];
-
-                 int index = 0;
-            foreach (JObject pc in c1)
-            {
-               
-                a[index] = JsonConvert.DeserializeObject<Preassemblato>(pc.ToString());
-               
-
-                Console.WriteLine("prezzo pc: " + a[index].Prezzo );
-                
-                index++;
-                
-            }
-
-            populateItems(a,index);
+            a = JsonConvert.DeserializeObject<Preassemblato[]>(responseData);
+            populateItems(a,dim);
 
            
             

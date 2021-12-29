@@ -11,9 +11,9 @@ namespace Client.Data.Componenti
     class Pcassemblato
 	{
 		[JsonProperty("prezzoTot")]
-		public float Prezzo { get; set; }
+		public float Prezzo { get; private set; }
 		[JsonProperty("componenti")]
-		public Componente[] Componenti { get; set; }
+		public Componente[] Componenti { get; private set; }
 
 	}
 }

@@ -12,9 +12,9 @@ namespace Client.Data
         [JsonProperty("dissipatore")]
         Componente componente;
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; set; }
+        public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]
-        public string[] CpuSocket { get; set; }
+        public string[] CpuSocket { get; private set; }
         
 
     }
