@@ -38,10 +38,10 @@ func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 
 		fmt.Println("utente:", res, " errore: ", err)
 
-		conn.Write([]byte("Registrazione effettuata"))
+		conn.Write([]byte("Registrazione effettuata\n"))
 	} else {
 
-		conn.Write([]byte("email gia' usata"))
+		conn.Write([]byte("email gia' usata\n"))
 
 	}
 
@@ -54,7 +54,7 @@ func login(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 	err := verificaUtente(Mjson, mongodb)
 
 	if err != nil {
-		conn.Write([]byte("errore: " + err.Error()))
+		conn.Write([]byte("errore: " + err.Error() + "\n"))
 
 	} else {
 		// `{"some":"json"}`

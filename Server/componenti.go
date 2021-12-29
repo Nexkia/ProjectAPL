@@ -39,7 +39,7 @@ type Componente struct {
 }
 
 type CpuDetail struct {
-	Componente  `bson:"cpu" json:"cpu"`
+	Modello     string  `bson:"modello_cpu" json:"modello_cpu"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
 	Tdp         int     `bson:"tdp" json:"tdp"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
@@ -49,14 +49,14 @@ type CpuDetail struct {
 }
 
 type RamDetail struct {
-	Componente  `bson:"ram" json:"ram"`
+	Modello     string  `bson:"modello_ram" json:"modello_ram"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
 	Standard    string  `bson:"standard" json:"standard"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
 }
 
 type SchedaMadreDetail struct {
-	Componente  `bson:"schedamadre" json:"schedamadre"`
+	Modello     string   `bson:"modello_shedaMadre" json:"modello_shedaMadre"`
 	Valutazione int      `bson:"valutazione" json:"valutazione"`
 	CpuSocket   []string `bson:"cpusocket" json:"cpusocket"`
 	Ram         []string `bson:"ram" json:"ram"`
@@ -64,7 +64,7 @@ type SchedaMadreDetail struct {
 }
 
 type SchedaVideoDetail struct {
-	Componente  `bson:"schedavideo" json:"schedavideo"`
+	Modello     string  `bson:"modello_gpu" json:"modello_gpu"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
 	Tdp         int     `bson:"tdp" json:"tdp"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
@@ -72,25 +72,25 @@ type SchedaVideoDetail struct {
 }
 
 type MemoriaDetail struct {
-	Componente  `bson:"memoria" json:"memoria"`
+	Modello     string `bson:"modello_memoria" json:"modello_memoria"`
 	Valutazione int    `bson:"valutazione" json:"valutazione"`
 	Tipo        string `bson:"tipo" json:"tipo"`
 }
 
 type CasePCDetail struct {
-	Componente  `bson:"casepc" json:"casepc"`
+	Modello     string `bson:"modello_casepc" json:"modello_casepc"`
 	Valutazione int    `bson:"valutazione" json:"valutazione"`
 	Taglia      string `bson:"taglia" json:"taglia"`
 }
 
 type DissipatoreDetail struct {
-	Componente  `bson:"dissipatore" json:"dissipatore"`
+	Modello     string   `bson:"modello_dissipatore" json:"modello_dissipatore"`
 	Valutazione int      `bson:"valutazione" json:"valutazione"`
 	CpuSocket   []string `bson:"cpusocket" json:"cpusocket"`
 }
 
 type AlimentatoreDetail struct {
-	Componente  `bson:"alimentatore" json:"alimentatore"`
-	Valutazione int `bson:"valutazione" json:"valutazione"`
-	Watt        int `bson:"watt" json:"watt"`
+	Modello     string `bson:"modello_alimentatore" json:"modello_alimentatore"`
+	Valutazione int    `bson:"valutazione" json:"valutazione"`
+	Watt        int    `bson:"watt" json:"watt"`
 }
