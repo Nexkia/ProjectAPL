@@ -42,7 +42,10 @@ namespace Client
             for (int i = 0; i < cp.Length; i++){
                 string elem = cp[i].Marca + " " + cp[i].Modello + " " + cp[i].Prezzo;
                 checkedListBox1.Items.Add(elem);
+
             }
+            Confronto cf = new Confronto(cp[0],cp[1]);
+            cf.Show();
         }
 
 
@@ -113,6 +116,11 @@ namespace Client
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormCatalog_Load(object sender, EventArgs e)
         {
 
         }

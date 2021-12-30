@@ -57,9 +57,9 @@ namespace Client
             pt.SetProtocolID("profilo");pt.Token="";pt.Data = nameProfile;
             string ok = await skt.send(pt);
 
-            Dictionary<string, string> order = new Dictionary<string, string>{
-                { "schedaMadre","0" },{ "cpu","1" },{"ram","2"},{"schedaVideo","3"},
-                {"alimentatore","4"},{"casepc","5"},{"memoria","6"},{"dissipatore","7"},
+            Dictionary<string, int> order = new Dictionary<string, int>{
+                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
+                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             Componente[,] showElements = new Componente[8, 3];
             for (int i = 0; i < componentsTab.Length; i++) { 
@@ -73,7 +73,7 @@ namespace Client
 
                 Componente[] pezzo = new Componente[3];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                int idx = int.Parse(order[pezzo[0].Categoria]); 
+                int idx = order[pezzo[0].Categoria]; 
                 for (int j = 0; j < 3; j++){
                     showElements[idx,j] = new Componente();
                     showElements[idx, j] = pezzo[j];
@@ -94,13 +94,13 @@ namespace Client
                     componentsTab[i].Message3 = showElements[i, 2].Modello;
 
                      //aggiunge al flow label
-                    if (vecchioFlowLayoutPanel.Controls.Count < 0)
+                    if (vecchioFlowLayoutPanel1.Controls.Count < 0)
                     {
 
-                        vecchioFlowLayoutPanel.Controls.Clear();
+                        vecchioFlowLayoutPanel1.Controls.Clear();
                     }
                     else
-                        vecchioFlowLayoutPanel.Controls.Add(componentsTab[i]);
+                        vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
 
 
                 }

@@ -9,8 +9,8 @@ namespace Client.Data
 {
     class CasePC
     {
-        [JsonProperty("casepc")]
-        Componente componente;
+        [JsonProperty("modello_casepc")]
+        public string Modello { get; private set; }
         [JsonProperty("valutazione")]
         public int Valutazione { get; private set;}
         [JsonProperty("taglia")]

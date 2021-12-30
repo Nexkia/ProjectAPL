@@ -9,8 +9,8 @@ namespace Client.Data
 {
     class Dissipatore
     {
-        [JsonProperty("dissipatore")]
-        Componente componente;
+        [JsonProperty("modello_dissipatore")]
+        public string Modello { get; private set; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]

@@ -9,8 +9,8 @@ namespace Client.Data
 {
     class SchedaMadre
     {
-        [JsonProperty("schedamadre")]
-        Componente componente;
+        [JsonProperty("modello_schedaMadre")]
+        public string Modello { get; private set; }
         [JsonProperty("valutazione")]
         public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]
