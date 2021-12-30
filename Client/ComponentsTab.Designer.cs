@@ -89,7 +89,7 @@ namespace Client
             this.label4ComponentsTab.TabIndex = 6;
             this.label4ComponentsTab.Text = "testo3";
             this.label4ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label4ComponentsTab.Click += new System.EventHandler(this.label4ComponentsTab_Click);
+           
             // 
             // checkBox1ComponentsTab
             // 
@@ -105,7 +105,7 @@ namespace Client
             this.checkBox1ComponentsTab.Text = "Confronta";
             this.checkBox1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1ComponentsTab.UseVisualStyleBackColor = false;
-            this.checkBox1ComponentsTab.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            
             // 
             // pictureBox3ComponentsTab
             // 
@@ -116,7 +116,7 @@ namespace Client
             this.pictureBox3ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3ComponentsTab.TabIndex = 3;
             this.pictureBox3ComponentsTab.TabStop = false;
-            this.pictureBox3ComponentsTab.Click += new System.EventHandler(this.pictureBox3ComponentsTab_Click);
+           
             // 
             // checkBox2ComponentsTab
             // 
@@ -224,7 +224,7 @@ namespace Client
             this.pictureBox2ComponentsTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2ComponentsTab.TabIndex = 2;
             this.pictureBox2ComponentsTab.TabStop = false;
-            this.pictureBox2ComponentsTab.Click += new System.EventHandler(this.pictureBox2ComponentsTab_Click);
+           
             // 
             // label2ComponentsTab
             // 
@@ -268,7 +268,7 @@ namespace Client
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ComponentsTab";
             this.Size = new System.Drawing.Size(571, 307);
-            this.Load += new System.EventHandler(this.ComponentsTab_Load);
+           
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3ComponentsTab)).EndInit();
             this.panel5.ResumeLayout(false);

@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Client.Data
 {
-    class Componente
+    public class Componente
     {
         [JsonProperty("prezzo")]
         public float Prezzo { get;  private set; }

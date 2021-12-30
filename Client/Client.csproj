@@ -325,6 +325,7 @@
     </Compile>
     <Compile Include="Connection\Protocol.cs" />
     <Compile Include="Connection\Socket.cs" />
+    <Compile Include="Controlli\CheckFields.cs" />
     <Compile Include="Data\Componenti\Alimentatore.cs" />
     <Compile Include="Data\Componenti\CasePc.cs" />
     <Compile Include="Data\Componenti\Cpu.cs" />
@@ -354,6 +355,11 @@
     </Compile>
     <Compile Include="FormCatalog.Designer.cs">
       <DependentUpon>FormCatalog.cs</DependentUpon>
+    <Compile Include="Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Info.Designer.cs">
+      <DependentUpon>Info.cs</DependentUpon>
     </Compile>
     <Compile Include="ListItem.cs">
       <SubType>UserControl</SubType>
@@ -386,6 +392,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCatalog.resx">
       <DependentUpon>FormCatalog.cs</DependentUpon>
+    <EmbeddedResource Include="Info.resx">
+      <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListItem.resx">
       <DependentUpon>ListItem.cs</DependentUpon>

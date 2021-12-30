@@ -17,81 +17,36 @@ namespace Client
 {
     public partial class Profiles : UserControl
     {
-        FlowLayoutPanel vecchioFlowLayoutPanel;
+        FlowLayoutPanel vecchioFlowLayoutPanel1;
         Protocol pt = new Protocol();
-        public Profiles(FlowLayoutPanel vfp)
+        public Profiles(FlowLayoutPanel vfp1)
         {
             InitializeComponent();
-            vecchioFlowLayoutPanel = vfp;
+            vecchioFlowLayoutPanel1 = vfp1;
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prototypes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        #region Properties
 
         private string _title;
-        private string _price;
-        private string _message;
 
-
-        [Category("Custom Props")]
-        public string Title
-        {
+        public string Title{
             get { return _title; }
-            set { _title = value; label1Prototypes.Text = value; }
-        }
-
-        [Category("Custom Props")]
-        public string Price
-        {
-            get { return _price; }
-            set { _price = value; label2Prototypes.Text = value; }
-        }
-
-        [Category("Custom Props")]
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; label3Prototypes.Text = value; }
-        }
-
-        
-
-        #endregion
-
-
-
-
+            set { _title = value; label1Prototypes.Text = value; }}
+        public string Price{set {  label2Prototypes.Text = value; }}
+        public string Message{set { label3Prototypes.Text = value; }}
 
         private void lblMessage_MouseEnter(object sender, EventArgs e)
         {
-
             this.BackColor = Color.Silver;
-
-
-
         }
 
         private void lblMessage_MouseLeave(object sender, EventArgs e)
         {
-
             this.BackColor = Color.White;
         }
-
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
             Console.WriteLine(this.Title);
-            vecchioFlowLayoutPanel.Controls.Clear();
+            vecchioFlowLayoutPanel1.Controls.Clear();
             populateItemsComponenti(this.Title);
         }
 

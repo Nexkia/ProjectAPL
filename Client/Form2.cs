@@ -26,7 +26,9 @@ namespace Client
 
         Protocol pt = new Protocol();
         Form1 vecchioForm;
-      
+
+        Preassemblato[] ricevuto;
+        int dimRicevuto;
         public Form2(Form1 f,string token)
         {
             InitializeComponent();
@@ -55,6 +57,8 @@ namespace Client
             a = JsonConvert.DeserializeObject<Preassemblato[]>(responseData);
             populateItems(a,dim);
 
+            ricevuto = a;
+            dimRicevuto = dim;
            
             
         }
@@ -70,10 +74,12 @@ namespace Client
 
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Home(object sender, EventArgs e)
         {
-            vecchioForm.Visible = true;
-            this.Close();
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
+            populateItems(ricevuto, dimRicevuto);
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,8 +163,9 @@ namespace Client
            for(int i = 0; i < listItems.Length; i++){
             
                // Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
-                listItems[i] = new ListItem();
+                listItems[i] = new ListItem(flowLayoutPanel2);
 
+                listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
                listItems[i].Title = "Nome: "+pre[i].Nome+" Prezzo: "+pre[i].Prezzo;//"qui si mette il titolo";
@@ -310,9 +317,10 @@ namespace Client
 
         private void buttonMyBuild_Click(object sender, EventArgs e)
         {
-            //pulisco la tendina
+            //pulisco le tendine
             
             flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
 
             if (comboBox1.Text=="Build Guidata") {
                 Console.WriteLine("valore combobox: " + comboBox1.Text);
