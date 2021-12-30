@@ -15,7 +15,8 @@ namespace Client.Connection
         public string end = "\n";
         private Dictionary<string, string> dict = new Dictionary<string, string> {
 
-            { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},{"modificaUtente","4"},{"profilo","5"}
+            { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},
+            {"modificaUtente","4"},{"profilo","5"},{"catalogo","6"}
 
         };
         public void SetProtocolID(string NameFunction)
