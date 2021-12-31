@@ -9,8 +9,8 @@ namespace Client.Data
 {
     class SchedaVideo
     {
-        [JsonProperty("schedavideo")]
-        Componente componente;
+        [JsonProperty("modello_schedaVideo")]
+        public string Modello { get; private set; }
         [JsonProperty("valutazione")]
         public int Valutazione { get; private set; }
         [JsonProperty("tdp")]

@@ -44,16 +44,15 @@ namespace Client
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-
-            this.button1.Location = new System.Drawing.Point(862, 12);
+            this.button1.Location = new System.Drawing.Point(823, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 45);
+            this.button1.Size = new System.Drawing.Size(145, 55);
             this.button1.TabIndex = 0;
             this.button1.Text = "Home";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,17 +62,17 @@ namespace Client
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.SlateGray;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(52, 85);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(19, 105);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(590, 447);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 550);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint_2);
             // 
             // button2
             // 
-
-            this.button2.Location = new System.Drawing.Point(1018, 89);
+            this.button2.Location = new System.Drawing.Point(975, 94);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 55);
             this.button2.TabIndex = 2;
@@ -83,24 +82,20 @@ namespace Client
             // 
             // Checkout
             // 
-
-            this.Checkout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Checkout.Location = new System.Drawing.Point(1018, 12);
-
+            this.Checkout.Location = new System.Drawing.Point(975, 15);
+            this.Checkout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Checkout.Name = "Checkout";
-            this.Checkout.Size = new System.Drawing.Size(109, 45);
+            this.Checkout.Size = new System.Drawing.Size(145, 55);
             this.Checkout.TabIndex = 3;
             this.Checkout.Text = "Checkout";
             this.Checkout.UseVisualStyleBackColor = true;
             // 
             // buttonMyBuild
             // 
-
-            this.buttonMyBuild.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonMyBuild.Location = new System.Drawing.Point(1169, 12);
-
+            this.buttonMyBuild.Location = new System.Drawing.Point(1126, 15);
+            this.buttonMyBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMyBuild.Name = "buttonMyBuild";
-            this.buttonMyBuild.Size = new System.Drawing.Size(109, 45);
+            this.buttonMyBuild.Size = new System.Drawing.Size(145, 55);
             this.buttonMyBuild.TabIndex = 4;
             this.buttonMyBuild.Text = "My Build";
             this.buttonMyBuild.UseVisualStyleBackColor = true;
@@ -114,8 +109,8 @@ namespace Client
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(54, 542);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(65, 664);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -126,22 +121,21 @@ namespace Client
             this.editToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(45, 19);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(54, 24);
             this.toolStripMenuItem1.Text = "Menu";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.editToolStripMenuItem.Text = "Modifica Profilo";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -152,38 +146,40 @@ namespace Client
             this.comboBox1.Items.AddRange(new object[] {
             "Build Solo",
             "Build Guidata"});
-
+            this.comboBox1.Location = new System.Drawing.Point(1128, 94);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(143, 24);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(732, 432);
+            this.button3.Location = new System.Drawing.Point(395, 13);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 7;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-          
-            this.comboBox1.Location = new System.Drawing.Point(1169, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(145, 24);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.SlateGray;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(883, 173);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(823, 166);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(413, 482);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(457, 489);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1295, 664);
             this.Controls.Add(this.button3);
-            this.ClientSize = new System.Drawing.Size(1319, 667);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonMyBuild);
@@ -192,7 +188,7 @@ namespace Client
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
