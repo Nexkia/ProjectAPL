@@ -24,104 +24,52 @@ namespace Client
 
         private async void cpu_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
-            pt.Data= cpuButton.Text;
-            string response = String.Empty;
-            string ok = await sckt.send(pt);
-            // n elem
-            string nelem = await sckt.receive();
-            Componente[] cp = new Componente[int.Parse(nelem)];
-            ok = await sckt.sendSingleMsg("ok");
-            do
-            {
-                response += await sckt.receive();
-            } while (!response.Contains("\n"));
-
-            cp = JsonConvert.DeserializeObject<Componente[]>(response);
-            Console.WriteLine(response);
-
-            listView_record.Items.Clear();
-            listViewCatalogo.Items.Clear();
-
-            for (int i = 0; i < cp.Length; i++){
-                
-                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
-                lvitem.SubItems.Add("" + cp[i].Marca+ "");
-                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
-                
-                listView_record.Items.Add(lvitem);
-                
-            }
-            Console.WriteLine("fine del for");
-           
+            pt.Data = cpuButton.Text;
+            GetElements(pt);
         }
 
 
         private async void schedaMadre_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = schedaMadreButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
+            GetElements(pt);
         }
 
         private async void ram_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = ramButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
+            GetElements(pt);
         }
 
         private async void memoria_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = memoriaButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
+            GetElements(pt);
         }
 
         private async void alimentatore_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = alimentatoreButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
+            GetElements(pt);
+
         }
 
         private async void schedaVideo_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = schedaVideoButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
-
+            GetElements(pt);
         }
 
         private async void casepc_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = casepcButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
-
+            GetElements(pt);
         }
 
         private async void dissipatore_Click(object sender, EventArgs e)
         {
-            SocketTCP sckt = new SocketTCP();
             pt.Data = dissipatoreButton.Text;
-            string ok = await sckt.send(pt);
-            string responce = await sckt.receive();
-            Console.WriteLine(responce);
-
+            GetElements(pt);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,6 +195,40 @@ namespace Client
         private void listView_record_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        private async void GetElements(Protocol pt) {
+            SocketTCP sckt = new SocketTCP();
+            string response = String.Empty;
+            string ok = await sckt.send(pt);
+            // n elem
+            string nelem = await sckt.receive();
+            Componente[] cp = new Componente[int.Parse(nelem)];
+            ok = await sckt.sendSingleMsg("ok");
+            do
+            {
+                response += await sckt.receive();
+            } while (!response.Contains("\n"));
+
+            cp = JsonConvert.DeserializeObject<Componente[]>(response);
+            Console.WriteLine(response);
+
+            listView_record.Items.Clear();
+            listViewCatalogo.Items.Clear();
+
+            for (int i = 0; i < cp.Length; i++)
+            {
+
+                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
+                lvitem.SubItems.Add("" + cp[i].Categoria + "");
+                lvitem.SubItems.Add("" + cp[i].Marca + "");
+                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+
+                listView_record.Items.Add(lvitem);
+
+            }
+            Console.WriteLine("fine del for");
         }
     }
 }

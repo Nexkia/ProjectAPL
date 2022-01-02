@@ -325,9 +325,7 @@ namespace Client
 
         private async void populateItemsBuilSolo()
         {
-            
             SocketTCP skt = new SocketTCP();
-           
             pt.SetProtocolID("buildSolo"); pt.Token = ""; pt.Data = "";
             string ok = await skt.send(pt);
 
@@ -336,14 +334,14 @@ namespace Client
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
 
-            string okmsg = await skt.sendSingleMsg("ok");
-            string nElements = await skt.receive();
-            int n = int.Parse(nElements);
-          Componente[,] showElements = new Componente[8, n];
+
+            List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                 okmsg = await skt.sendSingleMsg("ok");
-               
+                string okmsg = await skt.sendSingleMsg("ok");
+                string nElements = await skt.receive();
+                int n = int.Parse(nElements);
+                okmsg = await skt.sendSingleMsg("ok");
                 string response = "";
                 do
                 {
@@ -352,11 +350,14 @@ namespace Client
 
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                int idx = order[pezzo[0].Categoria];
-                for (int j = 0; j < n; j++)
+                List<Componente> singleComponent = pezzo.ToList();
+                myList.Add(singleComponent);
+                foreach (List<Componente> subList in myList)
                 {
-                    showElements[idx, j] = new Componente();
-                    showElements[idx, j] = pezzo[j];
+                    foreach (Componente item in subList)
+                    {
+                        Console.WriteLine(item.Modello);
+                    }
                 }
 
             }
@@ -367,7 +368,8 @@ namespace Client
                 flowLayoutPanel1.Controls.Clear();
             }
             else
-                flowLayoutPanel1.Controls.Add(componentsSolo);
+                Console.WriteLine("b");
+               // flowLayoutPanel1.Controls.Add(componentsSolo);
         }
 
         private void buttonMyBuild_Click(object sender, EventArgs e)
