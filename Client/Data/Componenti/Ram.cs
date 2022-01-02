@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Ram
+    class Ram : IFactory
 
     {
         [JsonProperty("modello_ram")]
@@ -19,6 +19,34 @@ namespace Client.Data
 
         [JsonProperty("standard")]
         public string Standard { get; private set; }
- 
+
+        public bool getCompatibility()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] getDetail()
+        {
+            string[] detail = new string[2] {
+                Convert.ToString(this.Frequenza),
+                this.Standard,
+            };
+            return detail;
+        }
+
+        public string getModello()
+        {
+            return this.Modello;
+        }
+
+        public string[] getMoreDetail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getValutazione()
+        {
+            return this.Valutazione;
+        }
     }
 }
