@@ -39,13 +39,22 @@ namespace Client
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Console.WriteLine(response);
-            for (int i = 0; i < cp.Length; i++){
-                string elem = cp[i].Marca + " " + cp[i].Modello + " " + cp[i].Prezzo;
-                checkedListBox1.Items.Add(elem);
 
+            listView_record.Items.Clear();
+            listViewCatalogo.Items.Clear();
+
+            for (int i = 0; i < cp.Length; i++){
+                
+                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
+                lvitem.SubItems.Add("" + cp[i].Categoria + "");
+                lvitem.SubItems.Add("" + cp[i].Marca+ "");
+                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+                
+                listView_record.Items.Add(lvitem);
+                
             }
-            Confronto cf = new Confronto(cp[0],cp[1]);
-            cf.Show();
+            Console.WriteLine("fine del for");
+           
         }
 
 
@@ -117,10 +126,125 @@ namespace Client
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
+            
         }
 
         private void FormCatalog_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAggiungi_Click(object sender, EventArgs e)
+        {
+            if (listViewCatalogo.Items.Count < 3)
+            {
+                if (listView_record.SelectedItems.Count > 0)
+                {
+
+
+                    ListViewItem item = listView_record.SelectedItems[0];
+
+
+                    string modello = item.SubItems[0].Text.ToString();
+                    string categoria = item.SubItems[1].Text.ToString();
+                    string marca = item.SubItems[2].Text.ToString();
+                    string prezzo = item.SubItems[3].Text.ToString();
+
+                    //rimuoviamo l'elemento selezionato dalla listView_record
+                    listView_record.Items.Remove(listView_record.SelectedItems[0]);
+
+
+                    ListViewItem lvitem = new ListViewItem("" + modello + "");
+                    lvitem.SubItems.Add("" + categoria + "");
+                    lvitem.SubItems.Add("" + marca + "");
+                    lvitem.SubItems.Add("" + prezzo + "");
+                    
+
+                    listViewCatalogo.Items.Add(lvitem);
+
+                }
+                else
+                {
+                    MessageBox.Show("Nessun componente è stato selezionato",
+                              "Errore Aggiungi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("E' stato raggiunto il numero massimo di componenti",
+                              "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
+        }
+
+        private void buttonRimuovi_Click(object sender, EventArgs e)
+        {
+            if (listViewCatalogo.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewCatalogo.SelectedItems[0];
+
+
+                string modello = item.SubItems[0].Text.ToString();
+                string categoria = item.SubItems[1].Text.ToString();
+                string marca = item.SubItems[2].Text.ToString();
+                string prezzo = item.SubItems[3].Text.ToString();
+                
+
+                //rimuoviamo l'elemento selezionato dalla listViewCatalogo
+                listViewCatalogo.Items.Remove(listViewCatalogo.SelectedItems[0]);
+
+
+                ListViewItem lvitem = new ListViewItem("" + modello + "");
+                lvitem.SubItems.Add("" + categoria + "");
+                lvitem.SubItems.Add("" + marca + "");
+                lvitem.SubItems.Add("" + prezzo + "");
+                listView_record.Items.Add(lvitem);
+
+            }
+            else
+            {
+                MessageBox.Show("Nessun componente è stato selezionato",
+                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void buttonConfronta_Click(object sender, EventArgs e)
+        {
+            if (listViewCatalogo.Items.Count >0  && listViewCatalogo.Items.Count <4 )
+            {
+                string[] modelli = new string[listViewCatalogo.Items.Count];
+                string[] prezzi=new string[listViewCatalogo.Items.Count];
+
+                string categoria="default";
+                
+                for(int i=0;i< listViewCatalogo.Items.Count; i++)
+                {
+                    ListViewItem item = listViewCatalogo.Items[i];
+                    
+                    modelli[i] = item.SubItems[0].Text.ToString();
+                    categoria = item.SubItems[1].Text.ToString();
+                    prezzi[i] = item.SubItems[3].Text.ToString();
+                    Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria);
+                }
+
+                Confronto cf = new Confronto(modelli,prezzi,categoria);
+                cf.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Per avviare il confronto bisogna scegliere almeno un componente",
+                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void listViewCatalogo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_record_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

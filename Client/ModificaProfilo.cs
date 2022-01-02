@@ -27,7 +27,7 @@ namespace Client
 
         private async void save_Click(object sender, EventArgs e)
         {
-            int ris;
+            string ris;
             CheckFields controlloM = new CheckFields();
 
             ris = controlloM.CheckRegister(TextName.Text, TextEmail.Text, TextIndirizzo.Text,
@@ -35,7 +35,7 @@ namespace Client
 
             switch (ris)
             {
-                case 0:
+                case "Email o Codice Fiscale già usati in altri account":
                     SocketTCP skt = new SocketTCP();
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextEmail.Text + "-" + TextOldPassword.Text;
@@ -65,18 +65,10 @@ namespace Client
                                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
-                case 1:
-                    MessageBox.Show("Riempire tutti i campi", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                default:
+                    MessageBox.Show(ris, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
-                case 2:
-                    MessageBox.Show("Togliere gli spazi all'interno dei campi", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                case 3:
-                    MessageBox.Show("Email non valida", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                case 4:
-                    MessageBox.Show("Le due password inserite sono diverse", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
+                
             }
                     
         }

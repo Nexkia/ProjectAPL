@@ -32,6 +32,9 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,15 +47,18 @@ namespace Client
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.listView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(823, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(491, 94);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 55);
+            this.button1.Size = new System.Drawing.Size(102, 57);
             this.button1.TabIndex = 0;
             this.button1.Text = "Home";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,7 +68,7 @@ namespace Client
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.SlateGray;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(19, 105);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(22, 214);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 550);
@@ -71,10 +77,10 @@ namespace Client
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(975, 94);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(601, 96);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 55);
+            this.button2.Size = new System.Drawing.Size(100, 55);
             this.button2.TabIndex = 2;
             this.button2.Text = "Carrello";
             this.button2.UseVisualStyleBackColor = true;
@@ -82,20 +88,20 @@ namespace Client
             // 
             // Checkout
             // 
-            this.Checkout.Location = new System.Drawing.Point(975, 15);
+            this.Checkout.Location = new System.Drawing.Point(602, 15);
             this.Checkout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Checkout.Name = "Checkout";
-            this.Checkout.Size = new System.Drawing.Size(145, 55);
+            this.Checkout.Size = new System.Drawing.Size(100, 55);
             this.Checkout.TabIndex = 3;
             this.Checkout.Text = "Checkout";
             this.Checkout.UseVisualStyleBackColor = true;
             // 
             // buttonMyBuild
             // 
-            this.buttonMyBuild.Location = new System.Drawing.Point(1126, 15);
+            this.buttonMyBuild.Location = new System.Drawing.Point(709, 15);
             this.buttonMyBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMyBuild.Name = "buttonMyBuild";
-            this.buttonMyBuild.Size = new System.Drawing.Size(145, 55);
+            this.buttonMyBuild.Size = new System.Drawing.Size(100, 55);
             this.buttonMyBuild.TabIndex = 4;
             this.buttonMyBuild.Text = "My Build";
             this.buttonMyBuild.UseVisualStyleBackColor = true;
@@ -110,7 +116,7 @@ namespace Client
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(65, 664);
+            this.menuStrip1.Size = new System.Drawing.Size(65, 788);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -146,21 +152,21 @@ namespace Client
             this.comboBox1.Items.AddRange(new object[] {
             "Build Solo",
             "Build Guidata"});
-            this.comboBox1.Location = new System.Drawing.Point(1128, 94);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Location = new System.Drawing.Point(709, 78);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 24);
+            this.comboBox1.Size = new System.Drawing.Size(100, 24);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(395, 13);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(495, 15);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.Size = new System.Drawing.Size(100, 55);
             this.button3.TabIndex = 7;
-            this.button3.Text = "button3";
+            this.button3.Text = "Catalogo";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -168,17 +174,50 @@ namespace Client
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.SlateGray;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(823, 166);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(825, 214);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(457, 489);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(407, 550);
             this.flowLayoutPanel2.TabIndex = 7;
+            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            // 
+            // listView
+            // 
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView.HideSelection = false;
+            this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.listView.Location = new System.Drawing.Point(22, 67);
+            this.listView.Name = "listView";
+            this.listView.Scrollable = false;
+            this.listView.Size = new System.Drawing.Size(408, 142);
+            this.listView.TabIndex = 8;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.Visible = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Modello";
+            this.columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Categoria";
+            this.columnHeader2.Width = 150;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 664);
+            this.ClientSize = new System.Drawing.Size(821, 778);
+            this.Controls.Add(this.listView);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.comboBox1);
@@ -186,7 +225,6 @@ namespace Client
             this.Controls.Add(this.Checkout);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form2";
@@ -213,5 +251,8 @@ namespace Client
         private ComboBox comboBox1;
         private Button button3;
         private FlowLayoutPanel flowLayoutPanel2;
+        private ListView listView;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
     }
 }

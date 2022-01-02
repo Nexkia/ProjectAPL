@@ -27,40 +27,42 @@ namespace Client
         Protocol pt = new Protocol();
         Form1 vecchioForm;
 
-        Preassemblato[] ricevuto;
-        int dimRicevuto;
-        public Form2(Form1 f,string token)
+
+
+         Preassemblato[] ricevuto;
+         int dimRicevuto;
+        public Form2(Form1 f, string token)
         {
             InitializeComponent();
-             vecchioForm = f;
+            vecchioForm = f;
             this.pt.Token = token;
             comboBox1.Text = "Build Guidata";
 
 
         }
-        
+
         private async void Form2_Load(object sender, EventArgs e)
         {
-            
+
             SocketTCP sckt = new SocketTCP();
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = "";
             string response = await sckt.send(pt);
-            string responseData= "";
+            string responseData = "";
             do
             {
                 responseData += await sckt.receive();
             } while (!responseData.Contains("\n"));
-   
+
             int dim = 3;
-            Preassemblato[] a= new Preassemblato[dim];
+            Preassemblato[] a = new Preassemblato[dim];
             a = JsonConvert.DeserializeObject<Preassemblato[]>(responseData);
-            populateItems(a,dim);
+            populateItems(a, dim);
 
             ricevuto = a;
             dimRicevuto = dim;
-           
-            
+
+
         }
 
 
@@ -70,7 +72,7 @@ namespace Client
             base.OnClosed(e);
         }
 
-        
+
 
 
 
@@ -78,8 +80,13 @@ namespace Client
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel2.Controls.Clear();
+
+            listView.Items.Clear();
+            listView.Visible=false ;
+
+            this.restringiForm2();
             populateItems(ricevuto, dimRicevuto);
-            
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,7 +107,7 @@ namespace Client
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-           
+
 
 
 
@@ -115,8 +122,8 @@ namespace Client
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            
-            
+
+
         }
 
         private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -131,7 +138,7 @@ namespace Client
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
@@ -149,57 +156,59 @@ namespace Client
 
         }
 
-       
 
-        private void populateItems(Preassemblato[] pre,int index)
+
+        private void populateItems(Preassemblato[] pre, int index)
         {
-          //  Console.WriteLine(pre.Stampa());
-            ListItem[] listItems= new ListItem[index];
+            //  Console.WriteLine(pre.Stampa());
+            ListItem[] listItems = new ListItem[index];
 
             string[] vet = { "cpu", "schedaVideo", "memoria", "ram" };
-            
 
 
-           for(int i = 0; i < listItems.Length; i++){
-            
-               // Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
-                listItems[i] = new ListItem(flowLayoutPanel2);
+
+            for (int i = 0; i < listItems.Length; i++) {
+
+                // Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
+                listItems[i] = new ListItem(flowLayoutPanel2, this,flowLayoutPanel1);
 
                 listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
-               listItems[i].Title = "Nome: "+pre[i].Nome+" Prezzo: "+pre[i].Prezzo;//"qui si mette il titolo";
-                
+                listItems[i].Title = "Nome: " + pre[i].Nome + " Prezzo: " + pre[i].Prezzo;//"qui si mette il titolo";
 
-                string message="";
+
+                string message = "";
                 //8 come il numero dei componenti
                 for (int j = 0; j < 8; j++)
                 {
-                    if(Array.Exists(vet, x => x == pre[i].Componenti[j].Categoria))
+                    if (Array.Exists(vet, x => x == pre[i].Componenti[j].Categoria))
                     {
-                        message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello; 
+                        message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello;
 
                         if (int.Parse(pre[i].Componenti[j].Capienza) > 0) {
-                            message += " "+pre[i].Componenti[j].Capienza + " GB";
+                            message += " " + pre[i].Componenti[j].Capienza + " GB";
                         }
 
-                        message+= "\n";
+                        message += "\n";
                     }
 
                 }
                 listItems[i].Message = message;
 
                 //aggiunge al flow label
-                if (flowLayoutPanel1.Controls.Count<0){
+                if (flowLayoutPanel1.Controls.Count < 0) {
 
-           flowLayoutPanel1.Controls.Clear();
-           }
-           else
-                    
-                flowLayoutPanel1.Controls.Add(listItems[i]);
+                    flowLayoutPanel1.Controls.Clear();
+                }
+                else
+
+                    flowLayoutPanel1.Controls.Add(listItems[i]);
 
 
             }
+
+            
         }
 
         private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
@@ -244,16 +253,16 @@ namespace Client
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1);
+                profiles[i] = new Profiles(flowLayoutPanel1,listView);
 
                 switch (i)
                 {
                     case 0:
-                        
+
 
                         profiles[i].Title = "Basic";
                         profiles[i].Price = "a partire da 300€";
-                        profiles[i].Message = "\n" +"► Socket AM4 with B450 chipset" + "\n" +
+                        profiles[i].Message = "\n" + "► Socket AM4 with B450 chipset" + "\n" +
                                              "► Scheda grafica integrata" + "\n" +
                                              "► RAM 8GB DDR4 2133 MHz" + "\n" +
                                              "► SSD 250GB SATA" + "\n" +
@@ -262,7 +271,7 @@ namespace Client
                         break;
 
                     case 1:
-                        
+
                         profiles[i].Title = "Advanced";
                         profiles[i].Price = "a partire da 600€";
                         profiles[i].Message = "\n" + "► CPU Intel Core i3 Quad Core" + "\n" +
@@ -274,7 +283,7 @@ namespace Client
                         break;
 
                     case 2:
-                       
+
                         profiles[i].Title = "Gamer";
                         profiles[i].Price = "a partire da 1100€";
                         profiles[i].Message = "\n" + "► CPU Intel Core i5 11th gen 6 - Core" + "\n" +
@@ -284,7 +293,7 @@ namespace Client
                                              "► Consumi Alti " + "\n" +
                                              "► Consigliato per appassionati di videogiochi";
                         break;
- 
+
                     case 3:
                         profiles[i].Title = "Pro";
                         profiles[i].Price = "a partire da 1800€";
@@ -299,7 +308,7 @@ namespace Client
                 }
 
 
-                
+
 
                 //aggiunge al flow label
                 if (flowLayoutPanel1.Controls.Count < 0)
@@ -314,36 +323,109 @@ namespace Client
             }
         }
 
+        private async void populateItemsBuilSolo()
+        {
+            
+            SocketTCP skt = new SocketTCP();
+           
+            pt.SetProtocolID("buildSolo"); pt.Token = ""; pt.Data = "";
+            string ok = await skt.send(pt);
+
+            Dictionary<string, int> order = new Dictionary<string, int>{
+                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
+                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
+            };
+
+            string okmsg = await skt.sendSingleMsg("ok");
+            string nElements = await skt.receive();
+            int n = int.Parse(nElements);
+          Componente[,] showElements = new Componente[8, n];
+            for (int i = 0; i < 8; i++)
+            {
+                 okmsg = await skt.sendSingleMsg("ok");
+               
+                string response = "";
+                do
+                {
+                    response += await skt.receive();
+                } while (!response.Contains("\n"));
+
+                Componente[] pezzo = new Componente[n];
+                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
+                int idx = order[pezzo[0].Categoria];
+                for (int j = 0; j < n; j++)
+                {
+                    showElements[idx, j] = new Componente();
+                    showElements[idx, j] = pezzo[j];
+                }
+
+            }
+            //aggiunge al flow label
+            if (flowLayoutPanel1.Controls.Count < 0)
+            {
+
+                flowLayoutPanel1.Controls.Clear();
+            }
+            else
+                flowLayoutPanel1.Controls.Add(componentsSolo);
+        }
 
         private void buttonMyBuild_Click(object sender, EventArgs e)
         {
             //pulisco le tendine
-            
+
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel2.Controls.Clear();
 
-            if (comboBox1.Text=="Build Guidata") {
+            listView.Items.Clear();
+            listView.Visible = false;
+
+            this.restringiForm2();
+
+            if (comboBox1.Text == "Build Guidata") {
                 Console.WriteLine("valore combobox: " + comboBox1.Text);
                 populateItemsBuildG();
-
 
             }
             else
             {
+                populateItemsBuilSolo();
                 Console.WriteLine("valore combobox: " + comboBox1.Text);
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-           
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             FormCatalog fcg = new FormCatalog();
             fcg.Show();
+        }
+
+        public void allargaForm2()
+        { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
+            {
+                this.ClientSize = new System.Drawing.Size(933, 632);
+                flowLayoutPanel2.Visible = true;
+            }
+        }
+
+        public void restringiForm2()
+        { if (this.ClientSize.Width != 821 && this.ClientSize.Height != 778)
+            {
+                this.ClientSize = new System.Drawing.Size(616, 632);
+                flowLayoutPanel2.Visible = false;
+                
+            }
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

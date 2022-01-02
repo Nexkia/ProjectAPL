@@ -14,7 +14,7 @@ namespace Client.Controlli
     {
 
 
-        public int CheckRegister(string nomeUtente1,string email1,string indirizzo1, string inserisciPassword1,string confermaPassword1)
+        public string CheckRegister(string nomeUtente1,string email1,string indirizzo1, string inserisciPassword1,string confermaPassword1)
         {
            string nomeUtente = nomeUtente1;
            string emailR = email1;
@@ -36,7 +36,7 @@ namespace Client.Controlli
                 if (isValidNomeUtente || isValidEmailR
                     || isValidinserisciPasswordR || isValidconfermaPasswordR || isValidIndirizzo)
                 {
-                    return 2;
+                    return "Togliere gli spazi all'interno dei campi";
                   
                 }
                 else
@@ -46,7 +46,7 @@ namespace Client.Controlli
                     bool isValidEmailR2 = emailR.Contains(".");
                     if (!isValidEmailR1 || !isValidEmailR2)
                     {
-                        return 3;
+                        return "Email non valida";
                         
                     }
                     else
@@ -54,12 +54,13 @@ namespace Client.Controlli
                         //controlla che le due password siano uguali
                         if (inserisciPasswordR != confermaPasswordR)
                         {
-                            return 4;
+                            return "Le due password inserite sono diverse";
                           
                         }
                         else
                         {
-                            return 0;
+                            //questa è la return che viene utilizzata quando tutto procede senza problemi
+                            return "Email o Codice Fiscale già usati in altri account";
                             
                         }
                     }
@@ -67,12 +68,12 @@ namespace Client.Controlli
             }
             else
             {
-                return 1;
+                return "Riempire tutti i campi";
               
             }
         }
 
-        public int CheckLogin(String email1, String password1)
+        public string CheckLogin(String email1, String password1)
         {
             String email=email1;
             String password=password1;
@@ -85,19 +86,20 @@ namespace Client.Controlli
                 bool isValidEmail2 = email.Contains(".");
                 if (!isValidEmail1 || !isValidEmail2)
                 {
-                    return 2;
+                    return "Email non valida";
                     
 
                 }
                 else
                 {
-                    return 0;
+                    //questa è la return che viene utilizzata quando tutto procede senza problemi
+                    return "Login fallito, Email o Password errate";
                     
                 }
             }
             else
             {
-                return 1;
+                return "Riempire tutti i campi";
                 
             }
         }

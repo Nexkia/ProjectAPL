@@ -39,14 +39,13 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Set the start position of the form to the center of the screen.
-            //Form.StartPosition = FormStartPosition.CenterScreen;
+            
 
         }
 
         private async void Register_ClickAsync(object sender, EventArgs e)
         {
-            int ris;
+            string ris;
             CheckFields controlloR = new CheckFields();
 
             ris =controlloR.CheckRegister(textBoxNomeUtente.Text, textBoxEmailR.Text, textBoxIndirizzo.Text,
@@ -54,7 +53,7 @@ namespace Client
 
             switch (ris)
             {
-                case 0:
+                case "Email o Codice Fiscale già usati in altri account":
                     SocketTCP sckt = new SocketTCP();
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string Json = JsonSerializer.Serialize(
@@ -85,23 +84,14 @@ namespace Client
                     }
                     else
                     {
-                        MessageBox.Show("Email o Codice Fiscale già usati in altri account",
+                        MessageBox.Show(ris,
                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
-
-                case 1:
-                   MessageBox.Show("Riempire tutti i campi","Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                default:
+                    MessageBox.Show(ris, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
-                case 2:
-                    MessageBox.Show("Togliere gli spazi all'interno dei campi", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                case 3:
-                    MessageBox.Show("Email non valida", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                case 4:
-                    MessageBox.Show("Le due password inserite sono diverse", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
+                
 
             }
 
@@ -112,13 +102,13 @@ namespace Client
         {
             
             CheckFields controlloL = new CheckFields();
-            int ris;
+            string ris;
 
             ris = controlloL.CheckLogin(textBoxEmail.Text, textBoxPassword.Text);
 
             switch (ris)
             {
-                case 0:
+                case "Login fallito, Email o Password errate":
                     SocketTCP sckt = new SocketTCP();
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
@@ -138,8 +128,7 @@ namespace Client
                     {
 
                         Console.WriteLine("Login fallito," + responseData);
-                        MessageBox.Show("Login fallito, Email o Password errate",
-                       "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(ris,"Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -152,74 +141,13 @@ namespace Client
                     textBoxEmail.Text = string.Empty;
                     textBoxPassword.Text = string.Empty;
                     break;
-                case 1:
-                    MessageBox.Show("Riempire tutti i campi",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                default:
+                    MessageBox.Show(ris,"Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
-                case 2:
-                    MessageBox.Show("Email non valida",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
+                
             }
 
-            /*
-            String email;
-            String password;
-            SocketTCP sckt = new SocketTCP();
-
-            if (textBoxEmail.Text != string.Empty && textBoxPassword.Text != string.Empty)
-            {
-
-                email = textBoxEmail.Text;
-                password = textBoxPassword.Text;
-                bool isValidEmail1 = email.Contains("@");
-                bool isValidEmail2 = email.Contains(".");
-                if (!isValidEmail1 || !isValidEmail2)
-                {
-                    MessageBox.Show("Email non valida",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                }
-                else
-                {
-                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-
-                    string Json = JsonSerializer.Serialize(new
-                    {
-                        Email = email,
-                        Password = password
-                    }
-                    );
-                    pt.SetProtocolID("login"); pt.Token = ""; pt.Data = Json;
-                    string responce = await sckt.send(pt);
-                    Console.WriteLine(responce);
-                    string responseData = await sckt.receive();
-                    pt.Token = responseData;
-
-                    if (responseData.Contains("errore: "))
-                    {
-
-                        Console.WriteLine("Login fallito," + responseData);
-                        MessageBox.Show("Login fallito, Email o Password errate",
-                       "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Login effettuato");
-                        Form2 f2 = new Form2(this, pt.Token); // Instantiate a Form2 object.
-                        f2.Show(); // Show Form2 and
-                        this.Visible = false; //invisible form1
-                    }
-                    //------------------------------------------------------------
-                    textBoxEmail.Text = string.Empty;
-                    textBoxPassword.Text = string.Empty;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Riempire tutti i campi",
-                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }*/
+            
         }
 
 
@@ -318,6 +246,7 @@ namespace Client
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2(this, "bho"); // Instantiate a Form2 object.
+            
             f2.Show(); // Show Form2 and
             this.Visible = false; //invisible form1
         }

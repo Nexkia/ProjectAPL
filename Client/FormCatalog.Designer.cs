@@ -37,15 +37,27 @@ namespace Client
             this.schedaVideoButton = new System.Windows.Forms.Button();
             this.casepcButton = new System.Windows.Forms.Button();
             this.dissipatoreButton = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.buttonAggiungi = new System.Windows.Forms.Button();
+            this.listView_record = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCatalogo = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonRimuovi = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cpuButton
             // 
-            this.cpuButton.Location = new System.Drawing.Point(60, 68);
-            this.cpuButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cpuButton.Location = new System.Drawing.Point(964, 373);
+            this.cpuButton.Margin = new System.Windows.Forms.Padding(4);
             this.cpuButton.Name = "cpuButton";
-            this.cpuButton.Size = new System.Drawing.Size(100, 28);
+            this.cpuButton.Size = new System.Drawing.Size(151, 39);
             this.cpuButton.TabIndex = 0;
             this.cpuButton.Text = "cpu";
             this.cpuButton.UseVisualStyleBackColor = true;
@@ -53,10 +65,10 @@ namespace Client
             // 
             // schedaMadreButton
             // 
-            this.schedaMadreButton.Location = new System.Drawing.Point(188, 68);
-            this.schedaMadreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.schedaMadreButton.Location = new System.Drawing.Point(964, 135);
+            this.schedaMadreButton.Margin = new System.Windows.Forms.Padding(4);
             this.schedaMadreButton.Name = "schedaMadreButton";
-            this.schedaMadreButton.Size = new System.Drawing.Size(108, 28);
+            this.schedaMadreButton.Size = new System.Drawing.Size(151, 39);
             this.schedaMadreButton.TabIndex = 1;
             this.schedaMadreButton.Text = "schedaMadre";
             this.schedaMadreButton.UseVisualStyleBackColor = true;
@@ -64,10 +76,10 @@ namespace Client
             // 
             // ramButton
             // 
-            this.ramButton.Location = new System.Drawing.Point(317, 68);
-            this.ramButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ramButton.Location = new System.Drawing.Point(964, 193);
+            this.ramButton.Margin = new System.Windows.Forms.Padding(4);
             this.ramButton.Name = "ramButton";
-            this.ramButton.Size = new System.Drawing.Size(100, 28);
+            this.ramButton.Size = new System.Drawing.Size(151, 39);
             this.ramButton.TabIndex = 2;
             this.ramButton.Text = "ram";
             this.ramButton.UseVisualStyleBackColor = true;
@@ -75,10 +87,10 @@ namespace Client
             // 
             // memoriaButton
             // 
-            this.memoriaButton.Location = new System.Drawing.Point(449, 68);
-            this.memoriaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.memoriaButton.Location = new System.Drawing.Point(964, 74);
+            this.memoriaButton.Margin = new System.Windows.Forms.Padding(4);
             this.memoriaButton.Name = "memoriaButton";
-            this.memoriaButton.Size = new System.Drawing.Size(100, 28);
+            this.memoriaButton.Size = new System.Drawing.Size(151, 39);
             this.memoriaButton.TabIndex = 3;
             this.memoriaButton.Text = "memoria";
             this.memoriaButton.UseVisualStyleBackColor = true;
@@ -86,10 +98,10 @@ namespace Client
             // 
             // alimentatoreButton
             // 
-            this.alimentatoreButton.Location = new System.Drawing.Point(571, 68);
-            this.alimentatoreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.alimentatoreButton.Location = new System.Drawing.Point(964, 440);
+            this.alimentatoreButton.Margin = new System.Windows.Forms.Padding(4);
             this.alimentatoreButton.Name = "alimentatoreButton";
-            this.alimentatoreButton.Size = new System.Drawing.Size(100, 28);
+            this.alimentatoreButton.Size = new System.Drawing.Size(151, 39);
             this.alimentatoreButton.TabIndex = 4;
             this.alimentatoreButton.Text = "alimentatore";
             this.alimentatoreButton.UseVisualStyleBackColor = true;
@@ -97,10 +109,10 @@ namespace Client
             // 
             // schedaVideoButton
             // 
-            this.schedaVideoButton.Location = new System.Drawing.Point(697, 68);
-            this.schedaVideoButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.schedaVideoButton.Location = new System.Drawing.Point(964, 252);
+            this.schedaVideoButton.Margin = new System.Windows.Forms.Padding(4);
             this.schedaVideoButton.Name = "schedaVideoButton";
-            this.schedaVideoButton.Size = new System.Drawing.Size(108, 28);
+            this.schedaVideoButton.Size = new System.Drawing.Size(151, 39);
             this.schedaVideoButton.TabIndex = 5;
             this.schedaVideoButton.Text = "schedaVideo";
             this.schedaVideoButton.UseVisualStyleBackColor = true;
@@ -108,10 +120,10 @@ namespace Client
             // 
             // casepcButton
             // 
-            this.casepcButton.Location = new System.Drawing.Point(827, 68);
-            this.casepcButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.casepcButton.Location = new System.Drawing.Point(964, 312);
+            this.casepcButton.Margin = new System.Windows.Forms.Padding(4);
             this.casepcButton.Name = "casepcButton";
-            this.casepcButton.Size = new System.Drawing.Size(100, 28);
+            this.casepcButton.Size = new System.Drawing.Size(151, 39);
             this.casepcButton.TabIndex = 6;
             this.casepcButton.Text = "casepc";
             this.casepcButton.UseVisualStyleBackColor = true;
@@ -119,32 +131,131 @@ namespace Client
             // 
             // dissipatoreButton
             // 
-            this.dissipatoreButton.Location = new System.Drawing.Point(955, 68);
-            this.dissipatoreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dissipatoreButton.Location = new System.Drawing.Point(964, 13);
+            this.dissipatoreButton.Margin = new System.Windows.Forms.Padding(4);
             this.dissipatoreButton.Name = "dissipatoreButton";
-            this.dissipatoreButton.Size = new System.Drawing.Size(100, 28);
+            this.dissipatoreButton.Size = new System.Drawing.Size(151, 39);
             this.dissipatoreButton.TabIndex = 7;
             this.dissipatoreButton.Text = "dissipatore";
             this.dissipatoreButton.UseVisualStyleBackColor = true;
             this.dissipatoreButton.Click += new System.EventHandler(this.dissipatore_Click);
             // 
-            // checkedListBox1
+            // buttonAggiungi
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(60, 161);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(993, 463);
-            this.checkedListBox1.TabIndex = 8;
-            this.checkedListBox1.UseWaitCursor = true;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.buttonAggiungi.Location = new System.Drawing.Point(642, 697);
+            this.buttonAggiungi.Name = "buttonAggiungi";
+            this.buttonAggiungi.Size = new System.Drawing.Size(151, 45);
+            this.buttonAggiungi.TabIndex = 10;
+            this.buttonAggiungi.Text = "Aggiungi";
+            this.buttonAggiungi.UseVisualStyleBackColor = true;
+            this.buttonAggiungi.Click += new System.EventHandler(this.buttonAggiungi_Click);
+            // 
+            // listView_record
+            // 
+            this.listView_record.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView_record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView_record.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.listView_record.HideSelection = false;
+            this.listView_record.Location = new System.Drawing.Point(12, 13);
+            this.listView_record.Name = "listView_record";
+            this.listView_record.Size = new System.Drawing.Size(945, 653);
+            this.listView_record.TabIndex = 12;
+            this.listView_record.UseCompatibleStateImageBehavior = false;
+            this.listView_record.View = System.Windows.Forms.View.Details;
+            this.listView_record.SelectedIndexChanged += new System.EventHandler(this.listView_record_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Modello";
+            this.columnHeader1.Width = 175;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Categoria";
+            this.columnHeader2.Width = 175;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Marca";
+            this.columnHeader3.Width = 175;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Prezzo";
+            this.columnHeader4.Width = 175;
+            // 
+            // listViewCatalogo
+            // 
+            this.listViewCatalogo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.listViewCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewCatalogo.HideSelection = false;
+            this.listViewCatalogo.Location = new System.Drawing.Point(12, 697);
+            this.listViewCatalogo.Name = "listViewCatalogo";
+            this.listViewCatalogo.Size = new System.Drawing.Size(608, 207);
+            this.listViewCatalogo.TabIndex = 13;
+            this.listViewCatalogo.UseCompatibleStateImageBehavior = false;
+            this.listViewCatalogo.View = System.Windows.Forms.View.Details;
+            this.listViewCatalogo.SelectedIndexChanged += new System.EventHandler(this.listViewCatalogo_SelectedIndexChanged);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Modello";
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Categoria";
+            this.columnHeader6.Width = 150;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Marca";
+            this.columnHeader7.Width = 150;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Prezzo";
+            this.columnHeader8.Width = 150;
+            // 
+            // buttonRimuovi
+            // 
+            this.buttonRimuovi.Location = new System.Drawing.Point(806, 697);
+            this.buttonRimuovi.Name = "buttonRimuovi";
+            this.buttonRimuovi.Size = new System.Drawing.Size(151, 45);
+            this.buttonRimuovi.TabIndex = 14;
+            this.buttonRimuovi.Text = "Rimuovi";
+            this.buttonRimuovi.UseVisualStyleBackColor = true;
+            this.buttonRimuovi.Click += new System.EventHandler(this.buttonRimuovi_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(642, 783);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(315, 96);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Confronta";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonConfronta_Click);
             // 
             // FormCatalog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 678);
-            this.Controls.Add(this.checkedListBox1);
+            this.ClientSize = new System.Drawing.Size(1140, 916);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonRimuovi);
+            this.Controls.Add(this.listViewCatalogo);
+            this.Controls.Add(this.listView_record);
+            this.Controls.Add(this.buttonAggiungi);
             this.Controls.Add(this.dissipatoreButton);
             this.Controls.Add(this.casepcButton);
             this.Controls.Add(this.schedaVideoButton);
@@ -153,7 +264,7 @@ namespace Client
             this.Controls.Add(this.ramButton);
             this.Controls.Add(this.schedaMadreButton);
             this.Controls.Add(this.cpuButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormCatalog";
             this.Text = "FormCatalog";
             this.Load += new System.EventHandler(this.FormCatalog_Load);
@@ -171,6 +282,18 @@ namespace Client
         private System.Windows.Forms.Button schedaVideoButton;
         private System.Windows.Forms.Button casepcButton;
         private System.Windows.Forms.Button dissipatoreButton;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button buttonAggiungi;
+        private System.Windows.Forms.ListView listView_record;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView listViewCatalogo;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button buttonRimuovi;
+        private System.Windows.Forms.Button button1;
     }
 }
