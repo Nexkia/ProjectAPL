@@ -17,12 +17,16 @@ namespace Client
     public partial class Confronto : Form
     {
         Protocol pt = new Protocol();
-        Componente[] componenti;
-        public Confronto(params Componente[] componenenti)
+
+        string categoria;
+        string[] modelli, prezzi;
+        public Confronto( string[] modelli, string[] prezzi,string categoria)
         {
             InitializeComponent();
             pt.SetProtocolID("confronto");pt.Token = "";
-            this.componenti = componenenti;
+            this.modelli = modelli;
+            this.prezzi = prezzi;
+            this.categoria = categoria;
         }
 
         private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -33,18 +37,18 @@ namespace Client
         private async void Confronto_Load(object sender, EventArgs e1)
         {
             SocketTCP sckt = new SocketTCP();
-            for (int i = 0; i < componenti.Length; i++) {
-                pt.Data += componenti[i].Modello+"!";
+            for (int i = 0; i < modelli.Length; i++) {
+                pt.Data += modelli[i]+"!";
             }
             string ok = await sckt.send(pt);
 
             ComponentFactory factory = new ConcreteConstructorFabric();
-            IFactory componenteF = factory.GetComponent(componenti[0].Categoria);
+            IFactory componenteF = factory.GetComponent(this.categoria);
             Type categoria = componenteF.GetType();
             Type genericListType = typeof(List<>).MakeGenericType(categoria);
             IList MyList = (IList)Activator.CreateInstance(genericListType);
 
-            for (int i = 0; i < componenti.Length; i++)
+            for (int i = 0; i < modelli.Length; i++)
             {
                 string single = await sckt.sendSingleMsg("ok");
                 string response = await sckt.receive();
@@ -53,41 +57,7 @@ namespace Client
             }
             //Console.WriteLine(a.GetType());
 
-            //switch ()
-            //{
-            //    case "schedaMadre":
-            //       SchedaMadre a = JsonConvert.DeserializeObject<SchedaMadre>(response);
-            //        Console.WriteLine(a.ToString());
-            //        break;
-            //    case "cpu":
-            //        Cpu[] b = JsonConvert.DeserializeObject<Cpu[]>(response);
-            //        Console.WriteLine(b[0].Valutazione+" "+b[1].Valutazione);
-            //        break;
-            //    case "schedaVideo":
-            //        SchedaVideo c = JsonConvert.DeserializeObject<SchedaVideo>(response);
-            //        Console.WriteLine(c.ToString());
-            //        break;
-            //    case "casepc":
-            //        CasePC d = JsonConvert.DeserializeObject<CasePC>(response);
-            //        Console.WriteLine(d.ToString());
-            //        break;
-            //    case "alimentatore":
-            //        Alimentatore e = JsonConvert.DeserializeObject<Alimentatore>(response);
-            //        Console.WriteLine(e.ToString());
-            //        break;
-            //    case "dissipatore":
-            //        Dissipatore f = JsonConvert.DeserializeObject<Dissipatore>(response);
-            //        Console.WriteLine(f.ToString());
-            //        break;
-            //    case "memoria":
-            //        Memoria g = JsonConvert.DeserializeObject<Memoria>(response);
-            //        Console.WriteLine(g.ToString());
-            //        break;
-            //    case "ram":
-            //        Ram h=  JsonConvert.DeserializeObject<Ram>(response);
-            //        Console.WriteLine(h.ToString());
-            //        break;
-            //}
+           
 
 
         }

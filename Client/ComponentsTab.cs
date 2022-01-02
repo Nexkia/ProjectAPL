@@ -142,77 +142,34 @@ namespace Client
         {
             RiempiListView();
 
+            string[] modelli = new string[vecchialistView.Items.Count];
+            string[] prezzi = new string[vecchialistView.Items.Count];
 
-            string categoria0,modello0, marca0, prezzo0,
-                    categoria1, modello1, marca1, prezzo1,
-                    categoria2, modello2, marca2, prezzo2;
+            string categoria="default";
 
-            categoria0 = modello0 = marca0 = prezzo0 =
-            categoria1 = modello1 = marca1 = prezzo1 =
-            categoria2 = modello2 = marca2 = prezzo2 = "default";
-
-
-            if (vecchialistView.Items.Count >= 1)
+            for (int i = 0; i < vecchialistView.Items.Count; i++)
             {
-                ListViewItem item0 = vecchialistView.Items[0];
-                
+                ListViewItem item = vecchialistView.Items[i];
 
-                 modello0 = item0.SubItems[0].Text.ToString();
-                 categoria0 = item0.SubItems[1].Text.ToString();
-                marca0 = item0.SubItems[2].Text.ToString();
-                 prezzo0 = item0.SubItems[3].Text.ToString();
-
-
-                if (vecchialistView.Items.Count >= 2)
-                {
-                    ListViewItem item1 = vecchialistView.Items[1];
-                     modello1 = item1.SubItems[0].Text.ToString();
-                     categoria1 = item1.SubItems[1].Text.ToString();
-                    marca1 = item1.SubItems[2].Text.ToString();
-                     prezzo1 = item1.SubItems[3].Text.ToString();
-
-
-                    if (vecchialistView.Items.Count == 3)
-                    {
-                        ListViewItem item2 = vecchialistView.Items[2];
-                        modello2 = item2.SubItems[0].Text.ToString();
-                        categoria2 = item2.SubItems[1].Text.ToString();
-                        marca2 = item2.SubItems[2].Text.ToString();
-                        prezzo2 = item2.SubItems[3].Text.ToString();
-
-                    }
-                }
+                modelli[i] = item.SubItems[0].Text.ToString();
+                categoria = item.SubItems[1].Text.ToString();
+                prezzi[i] = item.SubItems[3].Text.ToString();
+                Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria);
             }
-
-            if (categoria2 == "default" && categoria1 == "default" && categoria0 == "default")  //ci sono 0 componenti
+            if (modelli.Length > 0)
+            {
+                Confronto cf = new Confronto(modelli, prezzi, categoria);
+                cf.Show();
+            }
+            else
             {
                 MessageBox.Show("Prima di premere confronta, spuntare almeno un componente",
-                         "Errore ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            "Errore ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        
+               
+            
 
-            }
-            else if (categoria2 == "default" && categoria1 == "default")  //c'è un solo componente
-            {
-                Console.WriteLine("C'è un solo componente");
-                Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-
-            }
-            else if (categoria2 == "default")//ci sono 2 componenti
-            {
-                Console.WriteLine("Ci sono 2 componenti");
-                Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-
-            }
-            else //ci sono 3 componenti
-            {
-                Console.WriteLine("Ci sono 3 componenti");
-                Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-            }
         }
 
        

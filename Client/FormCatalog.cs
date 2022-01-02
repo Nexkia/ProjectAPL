@@ -40,9 +40,8 @@ namespace Client
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Console.WriteLine(response);
 
-
-            
-
+            listView_record.Items.Clear();
+            listViewCatalogo.Items.Clear();
 
             for (int i = 0; i < cp.Length; i++){
                 
@@ -55,8 +54,7 @@ namespace Client
                 
             }
             Console.WriteLine("fine del for");
-           // Confronto cf = new Confronto(cp[0],cp[1]);
-           // cf.Show();
+           
         }
 
 
@@ -215,77 +213,23 @@ namespace Client
         {
             if (listViewCatalogo.Items.Count >0  && listViewCatalogo.Items.Count <4 )
             {
-                ListViewItem item0 = listViewCatalogo.Items[0];
+                string[] modelli = new string[listViewCatalogo.Items.Count];
+                string[] prezzi=new string[listViewCatalogo.Items.Count];
 
-                string categoria1, modello1, marca1, prezzo1,
-                       categoria2, modello2, marca2, prezzo2;
-
-                categoria1 = modello1 = marca1 = prezzo1 =
-                categoria2 = modello2 = marca2 = prezzo2 = "default";
-
-                string modello0 = item0.SubItems[0].Text.ToString();
-                string categoria0 = item0.SubItems[1].Text.ToString();
-                string marca0 = item0.SubItems[2].Text.ToString();
-                string prezzo0 = item0.SubItems[3].Text.ToString();
-
-                if (listViewCatalogo.Items.Count >=2)
-                {   ListViewItem item1 = listViewCatalogo.Items[1];
-                     modello1 = item1.SubItems[0].Text.ToString();
-                    categoria1 = item1.SubItems[1].Text.ToString();
-                    marca1 = item1.SubItems[2].Text.ToString();
-                     prezzo1 = item1.SubItems[3].Text.ToString();
-
-                    if (listViewCatalogo.Items.Count == 3){
-                        ListViewItem item2 = listViewCatalogo.Items[2];
-                        modello2 = item2.SubItems[0].Text.ToString();
-                        categoria2 = item2.SubItems[1].Text.ToString();
-                         marca2 = item2.SubItems[2].Text.ToString();
-                        prezzo2 = item2.SubItems[3].Text.ToString();}
-                }
-
-               
-
-               
-                if (categoria2 == "default" && categoria1 == "default")  //c'è un solo componente
+                string categoria="default";
+                
+                for(int i=0;i< listViewCatalogo.Items.Count; i++)
                 {
-                    Console.WriteLine("C'è un solo componente");
-                    Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                    Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                    Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-
-                }
-                else if (categoria2 == "default")//ci sono 2 componenti
-                {
-                    Console.WriteLine("Ci sono 2 componenti");
-
-                    if (categoria1 == categoria0)
-                    {
-                        Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                        Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                        Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-                    }
-                    else
-                    {
-                        MessageBox.Show("I 2 componenti selezionati devono appartenere alla stessa categoria",
-                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    ListViewItem item = listViewCatalogo.Items[i];
                     
+                    modelli[i] = item.SubItems[0].Text.ToString();
+                    categoria = item.SubItems[1].Text.ToString();
+                    prezzi[i] = item.SubItems[3].Text.ToString();
+                    Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria);
                 }
-                else //ci sono 3 componenti
-                {
-                    Console.WriteLine("Ci sono 3 componenti");
-                    if (categoria1 == categoria0 && categoria0==categoria2)
-                    {
-                        Console.WriteLine("modello0: " + modello0 + " modello1: " + modello1 + " modello2: " + modello2);
-                        Console.WriteLine("marca0: " + marca0 + " marca1: " + marca1 + " marca2: " + marca2);
-                        Console.WriteLine("prezzo0: " + prezzo0 + " prezzo1: " + prezzo1 + " prezzo2: " + prezzo2);
-                    }
-                    else
-                    {
-                        MessageBox.Show("I 3 componenti selezionati devono appartenere alla stessa categoria",
-                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
+
+                Confronto cf = new Confronto(modelli,prezzi,categoria);
+                cf.Show();
 
             }
             else
@@ -296,6 +240,11 @@ namespace Client
         }
 
         private void listViewCatalogo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_record_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

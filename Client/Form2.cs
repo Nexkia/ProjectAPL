@@ -323,6 +323,19 @@ namespace Client
             }
         }
 
+        private void populateItemsBuilSolo()
+        {
+            ComponentsSolo componentsSolo = new ComponentsSolo();
+
+            //aggiunge al flow label
+            if (flowLayoutPanel1.Controls.Count < 0)
+            {
+
+                flowLayoutPanel1.Controls.Clear();
+            }
+            else
+                flowLayoutPanel1.Controls.Add(componentsSolo);
+        }
 
         private void buttonMyBuild_Click(object sender, EventArgs e)
         {
@@ -343,6 +356,7 @@ namespace Client
             }
             else
             {
+                populateItemsBuilSolo();
                 Console.WriteLine("valore combobox: " + comboBox1.Text);
             }
         }

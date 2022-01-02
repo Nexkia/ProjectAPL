@@ -318,6 +318,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="ComponentsSolo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComponentsSolo.Designer.cs">
+      <DependentUpon>ComponentsSolo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComponentsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -391,6 +397,9 @@
     <Compile Include="Profiles.Designer.cs">
       <DependentUpon>Profiles.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ComponentsSolo.resx">
+      <DependentUpon>ComponentsSolo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComponentsTab.resx">
       <DependentUpon>ComponentsTab.cs</DependentUpon>
     </EmbeddedResource>

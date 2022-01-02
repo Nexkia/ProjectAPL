@@ -166,6 +166,7 @@ namespace Client
             this.listView_record.TabIndex = 12;
             this.listView_record.UseCompatibleStateImageBehavior = false;
             this.listView_record.View = System.Windows.Forms.View.Details;
+            this.listView_record.SelectedIndexChanged += new System.EventHandler(this.listView_record_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
