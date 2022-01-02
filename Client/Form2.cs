@@ -323,10 +323,43 @@ namespace Client
             }
         }
 
-        private void populateItemsBuilSolo()
+        private async void populateItemsBuilSolo()
         {
-            ComponentsSolo componentsSolo = new ComponentsSolo();
+            
+            SocketTCP skt = new SocketTCP();
+           
+            pt.SetProtocolID("buildSolo"); pt.Token = ""; pt.Data = "";
+            string ok = await skt.send(pt);
 
+            Dictionary<string, int> order = new Dictionary<string, int>{
+                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
+                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
+            };
+
+            string okmsg = await skt.sendSingleMsg("ok");
+            string nElements = await skt.receive();
+            int n = int.Parse(nElements);
+          Componente[,] showElements = new Componente[8, n];
+            for (int i = 0; i < 8; i++)
+            {
+                 okmsg = await skt.sendSingleMsg("ok");
+               
+                string response = "";
+                do
+                {
+                    response += await skt.receive();
+                } while (!response.Contains("\n"));
+
+                Componente[] pezzo = new Componente[n];
+                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
+                int idx = order[pezzo[0].Categoria];
+                for (int j = 0; j < n; j++)
+                {
+                    showElements[idx, j] = new Componente();
+                    showElements[idx, j] = pezzo[j];
+                }
+
+            }
             //aggiunge al flow label
             if (flowLayoutPanel1.Controls.Count < 0)
             {

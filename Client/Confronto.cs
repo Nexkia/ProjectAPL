@@ -52,8 +52,9 @@ namespace Client
             {
                 string single = await sckt.sendSingleMsg("ok");
                 string response = await sckt.receive();
-                var a = JsonConvert.DeserializeObject(response, categoria);
+                IFactory a = (IFactory)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
+               
             }
             //Console.WriteLine(a.GetType());
 
