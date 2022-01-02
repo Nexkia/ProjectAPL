@@ -16,9 +16,29 @@ namespace Client.Data
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; private set; }
 
-        public void Stampa()
+        public bool getCompatibility()
         {
             throw new NotImplementedException();
+        }
+
+        public string[] getDetail()
+        {
+            return this.CpuSocket;
+        }
+
+        public string getModello()
+        {
+            return this.Modello;
+        }
+
+        public string[] getMoreDetail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getValutazione()
+        {
+            return this.Valutazione;
         }
     }
 }
