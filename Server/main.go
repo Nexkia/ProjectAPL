@@ -93,13 +93,16 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 		go updateUtente(Mjson, ID, conn, mongodb)
 	case 5:
 		fmt.Println("caso 5: ", MP)
-		go sendComponents(Mjson, conn, mongodb)
+		go sendComponents(Mjson, 3, conn, mongodb)
 	case 6:
 		fmt.Println("caso 6: ", MP)
 		go listCatalogo(Mjson, conn, mongodb)
 	case 7:
 		fmt.Println("caso 7:", MP)
 		go Confronto(Mjson, conn, mongodb)
+	case 8:
+		fmt.Println("caso 8:", MP)
+		go sendComponents(Mjson, 0, conn, mongodb)
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}

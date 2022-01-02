@@ -6,12 +6,13 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func sendComponents(profile string, conn net.Conn, mongodb *mongo.Database) {
+func sendComponents(profile string, limit int, conn net.Conn, mongodb *mongo.Database) {
 	fmt.Println(profile)
 	coll := mongodb.Collection("componenti")
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
@@ -22,7 +23,11 @@ func sendComponents(profile string, conn net.Conn, mongodb *mongo.Database) {
 		cursor, err := coll.Find(context.TODO(), filter)
 		defer cursor.Close(context.TODO())
 		//limit rappresenta il numero di risultati trovati
-		limit := 3
+		if limit != 3 {
+			limit = cursor.RemainingBatchLength()
+			conn.Write([]byte(strconv.Itoa(limit)))
+			conn.Read(ok)
+		}
 		comp := make([]Componente, limit)
 
 		index := 0
