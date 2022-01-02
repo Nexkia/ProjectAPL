@@ -19,10 +19,12 @@ namespace Client
     {
         FlowLayoutPanel vecchioFlowLayoutPanel1;
         Protocol pt = new Protocol();
-        public Profiles(FlowLayoutPanel vfp1)
+        ListView vecchialistView;
+        public Profiles(FlowLayoutPanel vfp1,ListView vlw)
         {
             InitializeComponent();
             vecchioFlowLayoutPanel1 = vfp1;
+            vecchialistView = vlw;
         }
 
         private string _title;
@@ -64,7 +66,7 @@ namespace Client
             Componente[,] showElements = new Componente[8, 3];
             for (int i = 0; i < componentsTab.Length; i++) { 
                 string okmsg = await skt.sendSingleMsg("ok");
-                componentsTab[i] = new ComponentsTab();
+                componentsTab[i] = new ComponentsTab(vecchialistView);
                 string response = "";
                 do
                 {
@@ -85,16 +87,19 @@ namespace Client
                     componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
 
                     componentsTab[i].Icon1 = Resources.imageNotFound2;
-                    componentsTab[i].Message1 = showElements[i, 0].Modello ;
+                    componentsTab[i].MostraModello1 = showElements[i, 0].Modello ;
+                    componentsTab[i].Componente1= showElements[i, 0];
 
                     componentsTab[i].Icon2 = Resources.imageNotFound2;
-                    componentsTab[i].Message2 = showElements[i, 1].Modello;
+                    componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
+                    componentsTab[i].Componente2 = showElements[i, 1];
 
                     componentsTab[i].Icon3 = Resources.imageNotFound2;
-                    componentsTab[i].Message3 = showElements[i, 2].Modello;
+                    componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
+                    componentsTab[i].Componente3 = showElements[i, 2];
 
-                     //aggiunge al flow label
-                    if (vecchioFlowLayoutPanel1.Controls.Count < 0)
+                //aggiunge al flow label
+                if (vecchioFlowLayoutPanel1.Controls.Count < 0)
                     {
 
                         vecchioFlowLayoutPanel1.Controls.Clear();

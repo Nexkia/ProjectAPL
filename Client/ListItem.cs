@@ -13,18 +13,24 @@ namespace Client
 {
     public partial class ListItem : UserControl
     {
-
+        Form2 vecchioForm2;
+        FlowLayoutPanel vecchioflowLayoutPanel1;
         FlowLayoutPanel vecchioflowLayoutPanel2;
-        public ListItem(FlowLayoutPanel vfp2)
+        
+        public ListItem(FlowLayoutPanel vfp2,Form2 f2,FlowLayoutPanel vfp1)
         {
             InitializeComponent();
+            vecchioflowLayoutPanel1 = vfp1;
             vecchioflowLayoutPanel2 = vfp2;
+            vecchioForm2 = f2;
+            
 
 
         }
 
-        public string Title{set { lblTitle.Text = value; }}
-        public Color IconBackground{set {  panel1.BackColor = value; }}
+        
+        public string Title{  set { lblTitle.Text = value; }}
+        public Color IconBackground{  set {  panel1.BackColor = value; }}
         public string Message{set {  lblMessage.Text = value; }}
         public Image Icon{set { pictureBox1.Image = value; }}
         public Preassemblato pre { get; set; }
@@ -44,6 +50,7 @@ namespace Client
             Console.WriteLine("hai cliccato");
             vecchioflowLayoutPanel2.Controls.Clear();
 
+            vecchioForm2.allargaForm2();
             populateItemsInfo();
         }
 
@@ -60,11 +67,13 @@ namespace Client
                 
                     message += "• "+pre.Componenti[j].Categoria + "\n"
                               + pre.Componenti[j].Marca + " " + pre.Componenti[j].Modello+" "+ pre.Componenti[j].Prezzo+" €";
-
-                    if (int.Parse(pre.Componenti[j].Capienza) > 0)
+                
+                if (int.Parse(pre.Componenti[j].Capienza) > 0)
                     {
                         message += " " + pre.Componenti[j].Capienza + " GB";
-                    }
+                    
+                }
+                
 
                     message += "\n";
                 
@@ -72,9 +81,21 @@ namespace Client
             }
             info.Message = message;
 
-                    vecchioflowLayoutPanel2.Controls.Add(info);
+            //resetto il colore degli altri user control
+            foreach (Control control in vecchioflowLayoutPanel1.Controls)
+            {
+                
+                control.ForeColor = Color.Black;
             }
 
+           this.ForeColor = Color.Red;
+
+
+            
+            vecchioflowLayoutPanel2.Controls.Add(info);
+            }
+
+       
             
         }
 }
