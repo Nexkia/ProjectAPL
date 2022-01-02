@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Client.Data
 {
-    public class Componente
+    public class Componente : IFactory
     {
         [JsonProperty("prezzo")]
         public float Prezzo { get;  private set; }
@@ -24,5 +24,9 @@ namespace Client.Data
         [JsonProperty("categoria")]
         public string Categoria { get; private set; }
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class SchedaMadre
+    class SchedaMadre : IFactory
     {
         [JsonProperty("modello_schedaMadre")]
         public string Modello { get; private set; }
@@ -20,5 +20,9 @@ namespace Client.Data
         [JsonProperty("ssdm2")]
         public bool SsdM2 { get; private set; }
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

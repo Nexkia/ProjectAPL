@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Ram
+    class Ram : IFactory
 
     {
         [JsonProperty("modello_ram")]
@@ -19,6 +19,10 @@ namespace Client.Data
 
         [JsonProperty("standard")]
         public string Standard { get; private set; }
- 
+
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

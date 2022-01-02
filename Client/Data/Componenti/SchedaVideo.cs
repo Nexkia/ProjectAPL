@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class SchedaVideo
+    class SchedaVideo : IFactory
     {
         [JsonProperty("modello_schedaVideo")]
         public string Modello { get; private set; }
@@ -20,6 +20,9 @@ namespace Client.Data
         [JsonProperty("vram")]
         public int Vram { get; private set; }
 
-
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
