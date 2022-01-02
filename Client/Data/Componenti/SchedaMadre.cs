@@ -20,9 +20,29 @@ namespace Client.Data
         [JsonProperty("ssdm2")]
         public bool SsdM2 { get; private set; }
 
-        public void Stampa()
+        public bool getCompatibility()
         {
-            throw new NotImplementedException();
+            return this.SsdM2;
+        }
+
+        public string[] getDetail()
+        {
+            return this.CpuSocket;
+        }
+
+        public string getModello()
+        {
+            return this.Modello;
+        }
+
+        public string[] getMoreDetail()
+        {
+            return this.Ram;
+        }
+
+        public int getValutazione()
+        {
+            return this.Valutazione;
         }
     }
 }

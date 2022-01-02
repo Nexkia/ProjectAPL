@@ -16,9 +16,30 @@ namespace Client.Data
         [JsonProperty("taglia")]
         public string Taglia { get; private set; }
 
-        public void Stampa()
+        public bool getCompatibility()
         {
             throw new NotImplementedException();
+        }
+
+        public string[] getDetail()
+        {
+            string[] detail = new string[1] { this.Taglia };
+            return detail;
+        }
+
+        public string getModello()
+        {
+            return this.Modello;
+        }
+
+        public string[] getMoreDetail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getValutazione()
+        {
+            return this.Valutazione;
         }
     }
 }
