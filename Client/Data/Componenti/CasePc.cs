@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class CasePC
+    class CasePC : IFactory
     {
         [JsonProperty("modello_casepc")]
         public string Modello { get; private set; }
@@ -16,5 +16,9 @@ namespace Client.Data
         [JsonProperty("taglia")]
         public string Taglia { get; private set; }
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

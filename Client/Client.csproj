@@ -317,12 +317,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentFactory.cs" />
     <Compile Include="ComponentsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ComponentsTab.Designer.cs">
       <DependentUpon>ComponentsTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConcreteConstructorFabric.cs" />
     <Compile Include="Confronto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +370,7 @@
     <Compile Include="Info.Designer.cs">
       <DependentUpon>Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="IFactory.cs" />
     <Compile Include="ListItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

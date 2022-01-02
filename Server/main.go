@@ -97,6 +97,9 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 	case 6:
 		fmt.Println("caso 6: ", MP)
 		go listCatalogo(Mjson, conn, mongodb)
+	case 7:
+		fmt.Println("caso 7:", MP)
+		go Confronto(Mjson, conn, mongodb)
 	default:
 		fmt.Println("CASO DI DEFAULT")
 	}

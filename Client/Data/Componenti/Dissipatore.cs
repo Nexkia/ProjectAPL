@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Dissipatore
+    class Dissipatore : IFactory
     {
         [JsonProperty("modello_dissipatore")]
         public string Modello { get; private set; }
@@ -15,7 +15,10 @@ namespace Client.Data
         public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; private set; }
-        
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

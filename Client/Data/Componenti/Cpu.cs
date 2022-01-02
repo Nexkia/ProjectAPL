@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Cpu
+    class Cpu : IFactory
     {
         [JsonProperty("modello_cpu")]
         public string Modello { get; private set; }
@@ -24,6 +24,10 @@ namespace Client.Data
         [JsonProperty("thread")]
         public int Thread { get; private set; }
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     

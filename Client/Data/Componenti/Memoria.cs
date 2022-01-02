@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Memoria
+    class Memoria : IFactory
 
     {
         [JsonProperty("modello_memoria")]
@@ -17,5 +17,9 @@ namespace Client.Data
         [JsonProperty("tipo")]
         public string Tipo { get; private set; }
 
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

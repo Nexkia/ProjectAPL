@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Data
 {
-    class Alimentatore
+    class Alimentatore : IFactory
     {
         [JsonProperty("modello_alimentatore")]
         public string Modello { get; private set; }
@@ -15,6 +15,10 @@ namespace Client.Data
         public int Valutazione { get; private set; }
         [JsonProperty("watt")]
         public int Watt { get; private set; }
-        
+
+        public void Stampa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
