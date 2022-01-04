@@ -65,7 +65,7 @@ type SchedaMadreDetail struct {
 }
 
 type SchedaVideoDetail struct {
-	Modello     string  `bson:"modello_schedaVideo" json:"modello_schdaVideo"`
+	Modello     string  `bson:"modello_schedaVideo" json:"modello_schedaVideo"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
 	Tdp         int     `bson:"tdp" json:"tdp"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
