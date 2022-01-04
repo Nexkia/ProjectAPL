@@ -41,7 +41,6 @@ type Componente struct {
 type CpuDetail struct {
 	Modello     string  `bson:"modello_cpu" json:"modello_cpu"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
-	Tdp         int     `bson:"tdp" json:"tdp"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
 	Socket      string  `bson:"socket" json:"socket"`
 	Core        int     `bson:"core" json:"core"`
@@ -49,26 +48,25 @@ type CpuDetail struct {
 }
 
 type RamDetail struct {
-	Modello     string  `bson:"modello_ram" json:"modello_ram"`
-	Valutazione int     `bson:"valutazione" json:"valutazione"`
-	Standard    string  `bson:"standard" json:"standard"`
-	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
+	Modello     string `bson:"modello_ram" json:"modello_ram"`
+	Valutazione int    `bson:"valutazione" json:"valutazione"`
+	Standard    string `bson:"standard" json:"standard"`
+	Frequenza   int    `bson:"frequenza" json:"frequenza"`
 }
 
 type SchedaMadreDetail struct {
-	Modello     string   `bson:"modello_shedaMadre" json:"modello_shedaMadre"`
-	Valutazione int      `bson:"valutazione" json:"valutazione"`
-	CpuSocket   []string `bson:"cpusocket" json:"cpusocket"`
-	Ram         []string `bson:"ram" json:"ram"`
-	SsdM2       bool     `bson:"ssd" json:"ssd"`
+	Modello     string `bson:"modello_schedaMadre" json:"modello_schedaMadre"`
+	Valutazione int    `bson:"valutazione" json:"valutazione"`
+	CpuSocket   string `bson:"cpusocket" json:"cpusocket"`
+	Chipset     string `bson:"chipset" json:"chipset"`
+	Ram         string `bson:"ram" json:"ram"`
 }
 
 type SchedaVideoDetail struct {
-	Modello     string  `bson:"modello_gpu" json:"modello_gpu"`
-	Valutazione int     `bson:"valutazione" json:"valutazione"`
-	Tdp         int     `bson:"tdp" json:"tdp"`
-	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
-	Vram        int     `bson:"vram" json:"vram"`
+	Modello     string `bson:"modello_schedaVideo" json:"modello_schedaVideo"`
+	Valutazione int    `bson:"valutazione" json:"valutazione"`
+	Tdp         int    `bson:"tdp" json:"tdp"`
+	Vram        int    `bson:"vram" json:"vram"`
 }
 
 type MemoriaDetail struct {

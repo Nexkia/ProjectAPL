@@ -41,7 +41,7 @@ func main() {
 	}()
 	mongodb := client.Database("apl_database")
 	//------------------------------------------------------------------
-	//go invio()
+	go invio()
 
 	for {
 

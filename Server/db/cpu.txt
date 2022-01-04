@@ -1,0 +1,234 @@
+AMD Ryzen 5 3600 Socket AM4 Clock 3.6 GHz Turbo 4.2 GHz 6 Cores 12 Threads USD 199.00
+AMD Athlon 3000G Socket AM4 Clock 3.5 GHz 2 Cores 4 Threads USD 49.00
+AMD Ryzen 3 3100 Socket AM4 Clock 3.6 GHz Turbo 3.9 GHz 4 Cores 8 Threads USD 99.00
+AMD Ryzen 3 3200G Socket AM4 Clock 3.6 GHz Turbo 4.0 GHz 4 Cores 4 Threads USD 99.00
+AMD Ryzen 3 3300X Socket AM4 Clock 3.8 GHz Turbo 4.3 GHz 4 Cores 8 Threads USD 120.00
+AMD Ryzen 5 3400G Socket AM4 Clock 3.7 GHz Turbo 4.2 GHz 4 Cores 8 Threads USD 149.00
+AMD Ryzen 5 3500X Socket AM4 Clock 3.6 GHz Turbo 4.1 GHz 6 Cores 6 Threads USD 179.00
+AMD Ryzen 5 5600G Socket AM4 Clock 3.9 GHz Turbo 4.4 GHz 6 Cores 12 Threads USD 259.00
+AMD Ryzen 5 5600X Socket AM4 Clock 3.7 GHz Turbo 4.6 GHz 6 Cores 12 Threads USD 289.00
+AMD Ryzen 7 3700X Socket AM4 Clock 3.6 GHz Turbo 4.4 GHz 8 Cores 16 Threads USD 329.00
+AMD Ryzen 7 5700G Socket AM4 Clock 3.8 GHz Turbo 4.6 GHz 8 Cores 16 Threads USD 319.00
+AMD Ryzen 7 5800X Socket AM4 Clock 3.8 GHz Turbo 4.7 GHz 8 Cores 16 Threads USD 379.00
+AMD Ryzen 9 3900X Socket AM4 Clock 3.8 GHz Turbo 4.6 GHz 12 Cores 24 Threads USD 499.00
+AMD Ryzen 9 3950X Socket AM4 Clock 3.5 GHz Turbo 4.7 GHz 16 Cores 32 Threads USD 724.99
+AMD Ryzen 9 5900X Socket AM4 Clock 3.7 GHz Turbo 4.8 GHz 12 Cores 24 Threads USD 519.00
+AMD Ryzen 9 5950X Socket AM4 Clock 3.4 GHz Turbo 4.9 GHz 16 Cores 32 Threads USD 749.00
+AMD Ryzen Threadripper 3960X Socket TRX40 Clock 3.8 GHz Turbo 4.5 GHz 24 Cores 48 Threads USD 1399.00
+AMD Ryzen Threadripper 3970X Socket TRX40 Clock 3.7 GHz Turbo 4.5 GHz 32 Cores 64 Threads USD 1993.99
+AMD Ryzen Threadripper 3990X Socket TRX40 Clock 2.9 GHz Turbo 4.3 GHz 64 Cores 128 Threads USD 3968.99
+Intel Core i3-10100 Socket 1200 Clock 3.6 GHz Turbo 4.1 GHz 4 Cores 8 Threads USD 114.99
+Intel Core i3-10100F Socket 1200 Clock 3.6 GHz Turbo 4.3 GHz 4 Cores 8 Threads USD 109.99
+Intel Core i5-10400 Socket 1200 Clock 2.9 GHz Turbo 4.0 GHz 6 Cores 12 Threads USD 164.99
+Intel Core i5-10400F Socket 1200 Clock 2.9 GHz Turbo 4.0 GHz 6 Cores 12 Threads USD 150.99
+Intel Core i5-10600K Socket 1200 Clock 4.1 GHz Turbo 4.8 GHz 6 Cores 12 Threads USD 229.99
+Intel Core i5-10600KF Socket 1200 Clock 4.1 GHz Turbo 4.8 GHz 6 Cores 12 Threads USD 199.99
+Intel Core i5-11400 Socket 1200 Clock 2.6 GHz 6 Cores 12 Threads USD 189.99
+Intel Core i5-11400F Socket 1200 Clock 2.6 GHz 6 Cores 12 Threads USD 199.99  
+Intel Core i5-11500 Socket 1200 Clock 2.7 GHz 6 Cores 12 Threads USD 213.99
+Intel Core i5-11600K Socket 1200 Clock 3.9 GHz 6 Cores 12 Threads USD 269.99
+Intel Core i5-11600KF Socket 1200 Clock 3.9 GHz 6 Cores 12 Threads USD 279.99          
+Intel Core i5-12600K Socket 1700 Clock 3.6 GHz 6 Cores 12 Threads USD 299.99
+Intel Core i5-12600KF Socket 1700 Clock 3.7 GHz Turbo 3.0 GHz 6 Cores 12 Threads USD 269.99
+Intel Core i7-10700K Socket 1200 Clock 3.8 GHz Turbo 5.1 GHz 8 Cores 16 Threads USD 349.99
+Intel Core i7-10700KF Socket 1200 Clock 3.8 GHz Turbo 5.1 GHz 8 Cores 16 Threads USD 304.99
+Intel Core i7-11700 Socket 1200 Clock 2.5 GHz 8 Cores 16 Threads USD 339.99
+Intel Core i7-11700K Socket 1200 Clock 3.6 GHz 8 Cores 16 Threads USD 419.99
+Intel Core i7-11700KF Socket 1200 Clock 3.6 GHz 8 Cores 16 Threads USD 429.99 
+Intel Core i7-12700K Socket 1700 Clock 3.6 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 419.99
+Intel Core i7-12700KF Socket 1700 Clock 3.6 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 409.99
+Intel Core i9-10850K Socket 1200 Clock 3.6 GHz Turbo 5.2 GHz 10 Cores 20 Threads USD 409.99
+Intel Core i9-10900K Socket 1200 Clock 3.7 GHz Turbo 5.3 GHz 10 Cores 20 Threads USD 463.99
+Intel Core i9-10900KF Socket 1200 Clock 3.7 GHz Turbo 5.3 GHz 10 Cores 20 Threads USD 429.99
+Intel Core i9-12900K Socket 1700 Clock 3.2 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 619.99
+Intel Core i9-12900KF Socket 1700 Clock 3.2 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 589.99
+AMD A10-6790K Socket FM2 Clock 4.0 GHz Turbo 4.3 GHz 4 Cores 4 Threads USD 163.99
+AMD A10-7800 Socket FM2+ Clock 3.5 GHz Turbo 3.9 GHz 2 Cores 2 Threads USD 110.99
+AMD A10-7850K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 170.99  
+AMD A10-7860K Socket FM2+ Clock 3.6 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 175.99
+AMD A10-7870K Socket FM2+ Clock 3.9 GHz Turbo 4.1 GHz 2 Cores 2 Threads USD 180.99          
+AMD A10-7890K Socket FM2+ Clock 4.1 GHz Turbo 4.3 GHz 2 Cores 2 Threads USD 199.99 
+AMD A10-9700 Socket AM4 Clock 3.5 GHz 4 Cores 4 Threads USD 68.94
+AMD A10-9700E Socket AM4 Clock  GHz 4 Cores 4 Threads USD 130.00
+AMD A12-9800 Socket AM4 Clock 3.8 GHz 4 Cores 4 Threads USD 200.99 
+AMD A12-9800E Socket AM4 Clock 3.1 GHz 4 Cores 4 Threads USD 205.99
+AMD A4-5300 Socket FM2 Clock 3.4 GHz Turbo 3.6 GHz 2 Cores 2 Threads USD 131.90  
+AMD A4-7300 Socket FM2 Clock 3.8 GHz Turbo 4.0 GHz 1 Cores 1 Threads USD 141.90  
+AMD A6-6400K Socket FM2 Clock 3.9 GHz Turbo 4.1 GHz 2 Cores 2 Threads USD 151.90  
+AMD A6-7400K Socket FM2+ Clock 3.5 GHz Turbo 3.9 GHz 1 Cores 1 Threads USD 171.90
+AMD A6-7470K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 1 Cores 1 Threads USD 181.60
+AMD A6-9500 Socket AM4 Clock 3.5 GHz 2 Cores 2 Threads USD 60.81
+AMD A6-9500E Socket AM4 Clock 3.0 GHz 2 Cores 2 Threads USD 100.90  
+AMD A8-6600K Socket FM2 Clock 3.9 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 80.90  
+AMD A8-7600 Socket FM2+ Clock 3.1 GHz Turbo 3.8 GHz 2 Cores 2 Threads USD 73.32
+AMD A8-7650K Socket FM2+ Clock 3.3 GHz Turbo 3.7 GHz 2 Cores 2 Threads USD 85.90  
+AMD A8-7650K Socket FM2+ Clock 3.3 GHz Turbo 3.7 GHz 2 Cores 2 Threads USD 76.00
+AMD A8-7670K Socket FM2+ Clock 3.6 GHz Turbo 3.9 GHz 2 Cores 2 Threads USD 89.90  
+AMD A8-9600 Socket AM4 Clock 3.1 GHz 4 Cores 4 Threads USD 72.65
+AMD Athlon 200GE Socket AM4 Clock 3.2 GHz 2 Cores 4 Threads USD 55.00
+AMD Athlon 220GE Socket AM4 Clock 3.4 GHz 2 Cores 4 Threads USD 63.00
+AMD Athlon 240GE Socket AM4 Clock 3.5 GHz 2 Cores 4 Threads USD 63.00
+AMD Athlon X4 845 Socket FM2+ Clock 3.5 GHz Turbo 3.8 GHz 2 Cores 2 Threads USD 45.90  
+AMD Athlon X4 860K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 32.90  
+AMD Athlon X4 860K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 27.90  
+AMD Athlon X4 870K Socket FM2+ Clock 3.9 GHz Turbo 4.1 GHz 2 Cores 2 Threads USD 68.90  
+AMD Athlon X4 880K Socket FM2+ Clock 4.0 GHz Turbo 4.2 GHz 2 Cores 2 Threads USD 45.90  
+AMD Athlon X4 950 Socket AM4 Clock 3.5 GHz 4 Cores 4 Threads USD 25.90   
+AMD FX-4300 Socket AM3+ Clock 3.8 GHz Turbo 4.0 GHz 4 Cores 4 Threads USD 90.05
+AMD FX-4350 Socket AM3+ Clock 4.2 GHz Turbo 4.3 GHz 4 Cores 4 Threads USD 35.90  
+AMD FX-6300 Socket AM3+ Clock 3.5 GHz Turbo 4.1 GHz 6 Cores 6 Threads USD 88.71
+AMD FX-6350 Socket AM3+ Clock 3.9 GHz Turbo 4.2 GHz 6 Cores 6 Threads USD 25.90  
+AMD FX-8150 Socket AM3+ Clock 3.6 GHz Turbo 4.2 GHz 8 Cores 8 Threads USD 55.90  
+AMD FX-8300 Socket AM3+ Clock 3.3 GHz Turbo 4.2 GHz 8 Cores 8 Threads USD 143.61
+AMD FX-8320 Socket AM3+ Clock 3.5 GHz Turbo 4.0 GHz 8 Cores 8 Threads USD 57.90  
+AMD FX-8320E Socket AM3+ Clock 3.2 GHz Turbo 4.0 GHz 8 Cores 8 Threads USD 132.61
+AMD FX-8350 Socket AM3+ Clock 4.0 GHz Turbo 4.2 GHz 8 Cores 8 Threads USD 84.95
+AMD FX-8370 Socket AM3+ Clock 4.0 GHz Turbo 4.3 GHz 8 Cores 8 Threads USD 56.90  
+AMD FX-8370 Socket AM3+ Clock 4.0 GHz Turbo 4.3 GHz 8 Cores 8 Threads USD 140.86
+AMD FX-8370E Socket AM3+ Clock 3.3 GHz Turbo 4.3 GHz 4 Cores 4 Threads USD 55.90   
+AMD FX-9370 Socket AM3+ Clock 4.4 GHz Turbo 4.7 GHz 4 Cores 4 Threads USD 209.95
+AMD FX-9590 Socket AM3+ Clock 4.7 GHz Turbo 5.0 GHz 8 Cores 8 Threads USD 231.22
+AMD Ryzen 3 1200 Socket AM4 Clock 3.1 GHz Turbo 3.4 GHz 4 Cores 4 Threads USD 80.99
+AMD Ryzen 3 1300X Socket AM4 Clock 3.5 GHz Turbo 3.7 GHz 4 Cores 4 Threads USD 62.84
+AMD Ryzen 3 2200G Socket AM4 Clock 3.5 GHz Turbo 3.7 GHz 4 Cores 4 Threads USD 79.99
+AMD Ryzen 5 1400 Socket AM4 Clock 3.2 GHz Turbo 3.4 GHz 4 Cores 8 Threads USD 139.99
+AMD Ryzen 5 1500X Socket AM4 Clock 3.5 GHz Turbo 3.7 GHz 4 Cores 8 Threads USD 152.99
+AMD Ryzen 5 1600 Socket AM4 Clock 3.2 GHz Turbo 3.6 GHz 6 Cores 12 Threads USD 104.99
+AMD Ryzen 5 1600 AF Socket AM4 Clock 3.2 GHz Turbo 3.6 GHz 6 Cores 12 Threads USD 109.99
+AMD Ryzen 5 1600X Socket AM4 Clock 3.6 GHz Turbo 4.0 GHz 6 Cores 12 Threads USD 204.99
+AMD Ryzen 5 2400G Socket AM4 Clock 3.6 GHz Turbo 3.9 GHz 4 Cores 8 Threads USD 123.89
+AMD Ryzen 5 2600 Socket AM4 Clock 3.4 GHz Turbo 3.9 GHz 6 Cores 12 Threads USD 75.90  
+AMD Ryzen 5 2600 Socket AM4 Clock 3.4 GHz Turbo 3.9 GHz 6 Cores 12 Threads USD 133.00
+AMD Ryzen 5 2600X Socket AM4 Clock 3.6 GHz Turbo 4.1 GHz 6 Cores 12 Threads USD 149.99
+AMD Ryzen 5 2600X Socket AM4 Clock 3.6 GHz Turbo 4.2 GHz 6 Cores 12 Threads USD 269.99
+AMD Ryzen 5 3600X Socket AM4 Clock 3.8 GHz Turbo 4.4 GHz 6 Cores 12 Threads USD 239.00
+AMD Ryzen 5 3600XT Socket AM4 Clock 3.8 GHz Turbo 4.5 GHz 6 Cores 12 Threads USD 249.00
+AMD Ryzen 7 1700 Socket AM4 Clock 3.0 GHz Turbo 3.7 GHz 8 Cores 16 Threads USD 301.72
+AMD Ryzen 7 1700X Socket AM4 Clock 3.4 GHz Turbo 3.8 GHz 8 Cores 16 Threads USD 199.99
+AMD Ryzen 7 1800X Socket AM4 Clock 3.6 GHz Turbo 4.0 GHz 8 Cores 16 Threads USD 249.99
+AMD Ryzen 7 2700 Socket AM4 Clock 3.2 GHz Turbo 4.1 GHz 8 Cores 16 Threads USD 149.99
+AMD Ryzen 7 2700 Socket AM4 Clock 3.2 GHz Turbo 4.1 GHz 8 Cores 16 Threads USD 169.99
+AMD Ryzen 7 2700X Socket AM4 Clock 3.7 GHz Turbo 4.3 GHz 8 Cores 16 Threads USD 249.99
+AMD Ryzen 7 3800X Socket AM4 Clock 3.9 GHz Turbo 4.5 GHz 8 Cores 16 Threads USD 399.00
+AMD Ryzen 7 3800XT Socket AM4 Clock 3.9 GHz Turbo 4.7 GHz 8 Cores 16 Threads USD 399.00
+AMD Ryzen 9 3900XT Socket AM4 Clock 3.8 GHz Turbo 4.7 GHz 12 Cores 24 Threads USD 469.99
+AMD Ryzen Threadripper 1900X Socket TR4 Clock 3.8 GHz Turbo 4.0 GHz 8 Cores 16 Threads USD 180.09
+AMD Ryzen Threadripper 1920X Socket TR4 Clock 3.5 GHz Turbo 4.0 GHz 12 Cores 24 Threads USD 249.90
+AMD Ryzen Threadripper 1950X Socket TR4 Clock 3.4 GHz Turbo 4.0 GHz 16 Cores 32 Threads USD 417.13
+AMD Ryzen Threadripper 2920X Socket TR4 Clock 3.5 GHz Turbo 4.3 GHz 12 Cores 24 Threads USD 386.53
+AMD Ryzen Threadripper 2950X Socket TR4 Clock 3.5 GHz Turbo 4.4 GHz 16 Cores 32 Threads USD 714.99
+AMD Ryzen Threadripper 2970WX Socket TR4 Clock 3.0 GHz Turbo 4.2 GHz 24 Cores 48 Threads USD 999.99
+AMD Ryzen Threadripper 2990WX Socket TR4 Clock 3.0 GHz Turbo 4.0 GHz 32 Cores 64 Threads USD 1699.99
+Intel Celeron G1840 Socket 1150 Clock 2.8 GHz 2 Cores 2 Threads USD 49.99
+Intel Core i3-10105 Socket 1200 Clock 3.7 GHz 4 Cores 8 Threads USD 48.90  
+Intel Core i3-10300 Socket 1200 Clock 3.7 GHz Turbo 4.2 GHz 4 Cores 8 Threads USD 171.99
+Intel Core i3-10320 Socket 1200 Clock 3.8 GHz Turbo 4.4 GHz 4 Cores 8 Threads USD 172.99
+Intel Core i3-4130 Socket 1150 Clock 3.4 GHz 2 Cores 4 Threads USD 127.99  
+Intel Core i3-4160 Socket 1150 Clock 3.6 GHz 2 Cores 4 Threads USD 157.73
+Intel Core i3-4170 Socket 1150 Clock 3.7 GHz 2 Cores 4 Threads USD 150.90  
+Intel Core i3-4330 Socket 1150 Clock  GHz 2 Cores 4 Threads USD 121.88
+Intel Core i3-6098P Socket 1151 Clock 3.6 GHz 2 Cores 4 Threads USD 113.90  
+Intel Core i3-6100 Socket 1151 Clock 3.7 GHz 2 Cores 4 Threads USD 114.99
+Intel Core i3-6100T Socket 1151 Clock 3.2 GHz 2 Cores 4 Threads USD 126.34
+Intel Core i3-6300 Socket 1151 Clock 3.8 GHz 2 Cores 4 Threads USD 137.57
+Intel Core i3-6300T Socket 1151 Clock 3.3 GHz 2 Cores 4 Threads USD 119.90   
+Intel Core i3-6320 Socket 1151 Clock 3.9 GHz 2 Cores 4 Threads USD 178.70
+Intel Core i3-7100 Socket 1151 Clock 3.9 GHz 2 Cores 4 Threads USD 129.99
+Intel Core i3-7100T Socket 1151 Clock 3.4 GHz 2 Cores 4 Threads USD 135.99
+Intel Core i3-7300 Socket 1151 Clock 4.0 GHz 2 Cores 4 Threads USD 157.29
+Intel Core i3-7300T Socket 1151 Clock 3.5 GHz 2 Cores 4 Threads USD 164.33
+Intel Core i3-7320 Socket 1151 Clock 4.1 GHz 2 Cores 4 Threads USD 154.66
+Intel Core i3-7350K Socket 1151 Clock 4.2 GHz 2 Cores 4 Threads USD 159.99
+Intel Core i3-8100 Socket 1151 Clock 3.6 GHz 4 Cores 4 Threads USD 119.99
+Intel Core i3-8300 Socket 1151 Clock 3.7 GHz 4 Cores 4 Threads USD 147.00
+Intel Core i3-8350K Socket 1151 Clock 4.0 GHz 4 Cores 4 Threads USD 179.99
+Intel Core i3-9100 Socket 1151 Clock 3.6 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 109.99
+Intel Core i3-9100F Socket 1151 Clock 3.6 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 72.99
+Intel Core i3-9300 Socket 1151 Clock 3.7 GHz Turbo 4.3 GHz 4 Cores 4 Threads USD 168.99
+Intel Core i3-9320 Socket 1151 Clock 3.7 GHz Turbo 4.4 GHz 4 Cores 4 Threads USD 161.90  
+Intel Core i3-9350KF Socket 1151 Clock 4.0 GHz Turbo 4.6 GHz 4 Cores 4 Threads USD 219.99
+Intel Core i5-10500 Socket 1200 Clock 3.1 GHz 6 Cores 12 Threads USD 219.99
+Intel Core i5-10600 Socket 1200 Clock 3.3 GHz 6 Cores 12 Threads USD 227.99
+Intel Core i5-11600 Socket 1200 Clock 2.8 GHz 6 Cores 12 Threads USD 151.90  
+Intel Core i5-2500K Socket 1155 Clock 3.3 GHz Turbo 3.7 GHz 4 Cores 4 Threads USD 151.90  
+Intel Core i5-3570K Socket 1155 Clock 3.4 GHz Turbo 3.8 GHz 4 Cores 4 Threads USD 160.90  
+Intel Core i5-4440 Socket 1150 Clock GHz 4 Cores 4 Threads USD 170.90  
+Intel Core i5-4460 Socket 1150 Clock 3.2 GHz Turbo 3.4 GHz 4 Cores 4 Threads USD 193.78
+Intel Core i5-4590 Socket 1150 Clock 3.3 GHz Turbo 3.7 GHz 4 Cores 4 Threads USD 179.99
+Intel Core i5-4670K Socket 1150 Clock 3.4 GHz Turbo 3.8 GHz 4 Cores 4 Threads USD 151.90  
+Intel Core i5-4690 Socket 1150 Clock 3.5 GHz Turbo 3.9 GHz 4 Cores 4 Threads USD 219.29
+Intel Core i5-4690K Socket 1150 Clock 3.5 GHz Turbo 3.9 GHz 4 Cores 4 Threads USD 200.90  
+Intel Core i5-5675C Socket 1150 Clock 3.1 GHz Turbo 3.6 GHz 4 Cores 4 Threads USD 215.90   
+Intel Core i5-6400 Socket 1151 Clock 2.7 GHz Turbo 3.3 GHz 4 Cores 4 Threads USD 179.99
+Intel Core i5-6402P Socket 1151 Clock  GHz 4 Cores 4 Threads USD 160.90  
+Intel Core i5-6500 Socket 1151 Clock 3.2 GHz Turbo 3.6 GHz 4 Cores 4 Threads USD 189.99
+Intel Core i5-6600 Socket 1151 Clock 3.3 GHz Turbo 3.9 GHz 4 Cores 4 Threads USD 246.32
+Intel Core i5-6600K Socket 1151 Clock 3.5 GHz Turbo 3.9 GHz 4 Cores 4 Threads USD 219.99
+Intel Core i5-7400 Socket 1151 Clock 3.0 GHz Turbo 3.5 GHz 4 Cores 4 Threads USD 182.00
+Intel Core i5-7500 Socket 1151 Clock 3.4 GHz Turbo 3.8 GHz 4 Cores 4 Threads USD 202.00
+Intel Core i5-7600 Socket 1151 Clock 3.5 GHz Turbo 4.1 GHz 4 Cores 4 Threads USD 229.99
+Intel Core i5-7600K Socket 1151 Clock 3.8 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 242.99
+Intel Core i5-7640X Socket 2066 Clock 4.0 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 199.99
+Intel Core i5-8400 Socket 1151 Clock 2.8 GHz Turbo 4.0 GHz 6 Cores 6 Threads USD 189.99
+Intel Core i5-8500 Socket 1151 Clock 3.0 GHz Turbo 4.1 GHz 6 Cores 6 Threads USD 209.95
+Intel Core i5-8600 Socket 1151 Clock 3.1 GHz Turbo 4.3 GHz 6 Cores 6 Threads USD 224.00
+Intel Core i5-8600K Socket 1151 Clock 3.6 GHz Turbo 4.3 GHz 6 Cores 6 Threads USD 243.00
+Intel Core i5-9400 Socket 1151 Clock 2.9 GHz Turbo 4.1 GHz 6 Cores 6 Threads USD 167.65
+Intel Core i5-9400F Socket 1151 Clock 2.9 GHz Turbo 4.1 GHz 6 Cores 6 Threads USD 142.99
+Intel Core i5-9500 Socket 1151 Clock 3.0 GHz Turbo 4.4 GHz 6 Cores 6 Threads USD 209.99
+Intel Core i5-9600 Socket 1151 Clock 3.1 GHz Turbo 4.6 GHz 6 Cores 6 Threads USD 249.99
+Intel Core i5-9600K Socket 1151 Clock 3.7 GHz 6 Cores 6 Threads USD 247.00
+Intel Core i5-9600KF Socket 1151 Clock 3.7 GHz Turbo 4.6 GHz 6 Cores 6 Threads USD 189.99
+Intel Core i7-10700 Socket 1200 Clock 2.9 GHz 8 Cores 16 Threads USD 279.99
+Intel Core i7-10700F Socket 1200 Clock 2.9 GHz 8 Cores 16 Threads USD 269.99
+Intel Core i7-2600K Socket 1155 Clock 3.4 GHz Turbo 3.8 GHz 4 Cores 8 Threads USD 170.90   
+Intel Core i7-3770K Socket 1155 Clock 3.5 GHz Turbo 3.9 GHz 4 Cores 8 Threads USD 189.90  
+Intel Core i7-4770K Socket 1150 Clock 3.5 GHz Turbo 3.9 GHz 4 Cores 8 Threads USD 200.90  
+Intel Core i7-4790 Socket 1150 Clock 3.6 GHz Turbo 4.0 GHz 4 Cores 8 Threads USD 270.90  
+Intel Core i7-4790K Socket 1150 Clock 4.0 GHz Turbo 4.4 GHz 4 Cores 8 Threads USD 310.90  
+Intel Core i7-4790K Socket 1150 Clock 4.0 GHz Turbo 4.4 GHz 4 Cores 8 Threads USD 324.77
+Intel Core i7-5775C Socket 1150 Clock 3.3 GHz Turbo 3.7 GHz 4 Cores 8 Threads USD 300.90  
+Intel Core i7-6700 Socket 1151 Clock 3.4 GHz Turbo 4.0 GHz 4 Cores 8 Threads USD 314.99
+Intel Core i7-6700K Socket 1151 Clock 4.0 GHz Turbo 4.2 GHz 4 Cores 8 Threads USD 329.99
+Intel Core i7-7700 Socket 1151 Clock 3.6 GHz Turbo 4.2 GHz 4 Cores 8 Threads USD 326.82
+Intel Core i7-7700K Socket 1151 Clock 4.2 GHz Turbo 4.5 GHz 4 Cores 8 Threads USD 329.99
+Intel Core i7-7740X Socket 2066 Clock 4.3 GHz Turbo 4.5 GHz 4 Cores 8 Threads USD 349.18
+Intel Core i7-7800X Socket 2066 Clock 3.5 GHz 6 Cores 12 Threads USD 361.97
+Intel Core i7-7820X Socket 2066 Clock 3.6 GHz Turbo 4.5 GHz 8 Cores 16 Threads USD 510.63
+Intel Core i7-8086K Socket 1151 Clock 4.0 GHz Turbo 5.0 GHz 6 Cores 12 Threads USD 425.00
+Intel Core i7-8700 Socket 1151 Clock 3.2 GHz Turbo 4.6 GHz 6 Cores 12 Threads USD 216.99
+Intel Core i7-8700K Socket 1151 Clock 3.7 GHz Turbo 4.7 GHz 6 Cores 12 Threads USD 289.99
+Intel Core i7-9700K Socket 1151 Clock 3.6 GHz Turbo 4.9 GHz 8 Cores 8 Threads USD 364.99
+Intel Core i7-9700KF Socket 1151 Clock 3.6 GHz Turbo 4.9 GHz 8 Cores 8 Threads USD 315.99
+Intel Core i9-10900 Socket 1200 Clock 2.8 GHz 10 Cores 20 Threads USD 452.99
+Intel Core i9-10900F Socket 1200 Clock 2.8 GHz 10 Cores 20 Threads USD 364.99
+Intel Core i9-10900X Socket 2066 Clock 3.7 GHz Turbo 4.5 GHz 10 Cores 20 Threads USD 588.99
+Intel Core i9-10920X Socket 2066 Clock 3.5 GHz Turbo 4.6 GHz 12 Cores 24 Threads USD 699.99
+Intel Core i9-10940X Socket 2066 Clock 3.3 GHz Turbo 4.6 GHz 14 Cores 28 Threads USD 799.99
+Intel Core i9-10980XE Socket 2066 Clock 3.0 GHz Turbo 4.8 GHz 18 Cores 36 Threads USD 989.99
+Intel Core i9-11900 Socket 1200 Clock 2.5 GHz 8 Cores 16 Threads USD 449.99
+Intel Core i9-11900F Socket 1200 Clock 2.5 GHz 8 Cores 16 Threads USD 445.90   
+Intel Core i9-11900K Socket 1200 Clock 3.5 GHz Turbo 5.2 GHz 8 Cores 16 Threads USD 549.99
+Intel Core i9-11900KF Socket 1200 Clock 3.5 GHz 8 Cores 16 Threads USD 539.99
+Intel Core i9-7900X Socket 2066 Clock 3.3 GHz Turbo 4.5 GHz 10 Cores 20 Threads USD 774.99
+Intel Core i9-7920X Socket 2066 Clock 2.9 GHz Turbo 4.4 GHz 12 Cores 24 Threads USD 794.60
+Intel Core i9-7940X Socket 2066 Clock 3.1 GHz Turbo 4.4 GHz 14 Cores 28 Threads USD 1349.00
+Intel Core i9-7960X Socket 2066 Clock 2.8 GHz Turbo 4.4 GHz 16 Cores 32 Threads USD 1399.99
+Intel Core i9-7980XE Socket 2066 Clock 2.6 GHz Turbo 4.4 GHz 18 Cores 36 Threads USD 1799.98
+Intel Core i9-9900K Socket 1151 Clock 3.6 GHz Turbo 5.0 GHz 8 Cores 16 Threads USD 439.99
+Intel Core i9-9900KF Socket 1151 Clock 3.6 GHz Turbo 5.0 GHz 8 Cores 16 Threads USD 349.99
+Intel Core i9-9900KS Socket 1151 Clock 4.0 GHz Turbo 5.0 GHz 8 Cores 16 Threads USD 449.99
+Intel Pentium G3240 Socket 1150 Clock  GHz 2 Cores 2 Threads USD 25.90   
+Intel Pentium G3250 Socket 1150 Clock  GHz 2 Cores 2 Threads USD 35.90  
+Intel Pentium G3258 Socket 1150 Clock 3.2 GHz 2 Cores 2 Threads USD 40.90  
+Intel Pentium G3260 Socket 1150 Clock 3.3 GHz 2 Cores 2 Threads USD 45.90
+Intel Pentium G4400 Socket 1151 Clock 3.3 GHz 2 Cores 2 Threads USD 55.89
+Intel Pentium G4500 Socket 1151 Clock 3.5 GHz 2 Cores 2 Threads USD 83.18
+Intel Pentium G4520 Socket 1151 Clock 3.6 GHz 2 Cores 2 Threads USD 115.36
+Intel Pentium G4560 Socket 1151 Clock 3.5 GHz 2 Cores 4 Threads USD 59.99
+Intel Pentium G4600 Socket 1151 Clock 3.6 GHz 2 Cores 4 Threads USD 96.25
+Intel Pentium G4620 Socket 1151 Clock 3.7 GHz 2 Cores 4 Threads USD 104.99
+Intel Pentium Gold G5400 Socket 1151 Clock 3.7 GHz 2 Cores 4 Threads USD 56.99
+Intel Pentium Gold G5420 Socket 1151 Clock 3.8 GHz 2 Cores 4 Threads USD 55.99 
+Intel Pentium Gold G5500 Socket 1151 Clock 3.8 GHz 2 Cores 4 Threads USD 91.60
+Intel Pentium Gold G5600 Socket 1151 Clock 3.9 GHz 2 Cores 4 Threads USD 92.99

@@ -59,11 +59,11 @@ namespace Client
                 IFactory a = (IFactory)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
 
+
                 //string[] b = a.getDetail();
                 //Console.WriteLine("modello: " + a.getModello() + " Valutazione: " + a.getValutazione() + " Detail: " + b[0]);
 
                 
-
             }
             ConfrontaParametri(MyList, categoriaOriginale, capienze);
 

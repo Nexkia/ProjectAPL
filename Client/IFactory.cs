@@ -11,7 +11,5 @@ namespace Client
         string[] getDetail();
         int getValutazione();
         string getModello();
-        string[] getMoreDetail();
-        bool getCompatibility();
     }
 }
