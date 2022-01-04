@@ -7,7 +7,7 @@ func getDetailType(detailType string) (interface{}, error) {
 	switch detailType {
 	case "cpu":
 		return &CpuDetail{}, nil
-	case "schdaVideo":
+	case "schedaVideo":
 		return &SchedaVideoDetail{}, nil
 	case "schedaMadre":
 		return &SchedaMadreDetail{}, nil

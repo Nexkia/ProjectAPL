@@ -1,0 +1,556 @@
+Aerocool Project 7 ATX 750W  
+BitFenix Formula 80 PLUS Gold ATX 450W USD 71.18  
+BitFenix Whisper M 80 PLUS Gold ATX 550W USD 95.31 
+Cooler Master MasterWatt ATX 450W  
+Corsair CX450 ATX 450W USD 54.99 
+Corsair CX450M ATX 450W USD 64.99 
+Corsair CX550 ATX 550W USD 64.99 
+Corsair RM Series RM1000i ATX 1000W  
+Corsair RM Series RM650 ATX 650W USD 114.98 
+Corsair RM Series RM750 ATX 750W USD 129.95 
+Corsair RM Series RM850 ATX 850W USD 114.99 
+Corsair RM Series RM850i ATX 850W  
+Corsair RM550x ATX 550W USD 109.99 
+Corsair RM750x ATX 750W USD 129.99 
+Corsair RMX Series RM1000x ATX 1000W USD 199.99 
+Corsair RMX Series RM750x ATX 750W USD 134.99 
+Corsair RMX Series RM850x ATX 850W USD 149.99 
+Corsair RMX Series RMX550 ATX 550W  
+Corsair RMX Series RMX550x ATX 550W  
+Corsair RMX Series RMX650 ATX 650W  
+Corsair RMX Series RMX650x ATX 650W  
+Corsair RMX Series RMX750 ATX 750W  
+Corsair RMX Series RMX850 ATX 850W  
+Corsair TX550M ATX 550W USD 99.99 
+Corsair TX550M Series Modular ATX 550W  
+Corsair TX650M ATX 650W USD 94.99 
+Corsair TX650M Series Modular ATX 650W  
+Corsair TX750M ATX 750W USD 109.99 
+Corsair TX750M Series Modular ATX 750W  
+Corsair TX850M ATX 850W USD 109.99 
+Corsair TX850M Series Modular ATX 850W  
+Corsair Vengeance Series V500 ATX 500W  
+Corsair Vengeance Series V550M ATX 550W  
+Cougar VTX ATX 450W  
+EVGA 450B ATX 450W  
+EVGA 500B ATX 500W  
+EVGA SuperNOVA 550 G3 ATX 550W USD 79.99 
+EVGA SuperNOVA 650 G3 ATX 650W USD 88.97 
+EVGA Supernova 750 G2L ATX 750W  
+EVGA SuperNOVA 750 G3 ATX 750W USD 133.98 
+EVGA SuperNOVA 850 G2 ATX 850W USD 146.69 
+EVGA SuperNOVA G2 ATX 750W  
+EVGA SuperNOVA G3 ATX 1000W  
+EVGA SuperNOVA P2 ATX 850W  
+EVGA SuperNOVA P2 80 PLUS Platinum ATX 650W  
+Kolink Enclave 80 PLUS Gold ATX 500W  
+PHANTEKS AMP 80 PLUS Gold ATX 650W USD 105.99 
+Seasonic Core GM 80 PLUS Gold ATX 500W USD 79.99 
+Seasonic FOCUS 550 GOLD ATX 550W USD 79.99 
+Seasonic Focus GX 80 PLUS Gold ATX 850W USD 148.22 
+Seasonic Focus PX 80 Plus Platinum 750 Watt ATX 750W USD 149.00 
+Seasonic P-Series, Fanless 80 PLUS Platinum ATX 400W USD 117.10 
+Seasonic PRIME 650 GOLD ATX 650W USD 104.93 
+Seasonic PRIME 750 W Platinum ATX 750W USD 149.90 
+Seasonic Prime PX 80 PLUS Platinum ATX 650W  
+Seasonic Prime Ultra 80 PLUS Platinum ATX 650W USD 134.99 
+Seasonic Snow Silent ATX 1050W  
+Super Flower Golden Green HX ATX 450W  
+Super Flower Leadex 80 PLUS Platinum, black ATX 650W  
+Super Flower Leadex II ATX 750W  
+Super Flower Leadex III 80 PLUS Gold ATX 550W  
+Super Flower Leadex III ARGB 80 PLUS Gold ATX 850W  
+Super Flower Platinum King ATX 650W  
+Aerocool Aero Bronze 500W 80 PLUS Bronze ATX 500W  
+Aerocool Aero Bronze 550M 80 PLUS Bronze ATX 550W  
+Aerocool Aero Bronze 550W 80 PLUS Bronze ATX 550W  
+Aerocool Aero Bronze 600W 80 PLUS Bronze ATX 600W  
+Aerocool Aero Bronze 650M 80 PLUS Bronze ATX 650W  
+Aerocool Aero Bronze 650W 80 PLUS Bronze ATX 650W  
+Aerocool Aero Bronze 700W 80 PLUS Bronze ATX 700W  
+Aerocool Aero Bronze 750M 80 PLUS Bronze ATX 750W  
+Aerocool Aero Bronze 750W 80 PLUS Bronze ATX 750W  
+Aerocool Aero Bronze 850M 80 PLUS Bronze ATX 850W  
+Aerocool Aero Cylon 400W 80 PLUS ATX 400W  
+Aerocool Aero White 500 80 PLUS ATX 500W  
+Aerocool Aero White 550 80 PLUS ATX 550W  
+Aerocool Aero White 600 80 PLUS ATX 600W  
+Aerocool Aero White 650 80 PLUS ATX 650W  
+Aerocool Aero White 700 80 PLUS ATX 700W  
+Aerocool Cylon RGB 500W 80 PLUS ATX 500W  
+Aerocool Cylon RGB 600W 80 PLUS ATX 600W  
+Aerocool Cylon RGB 700W 80 PLUS ATX 700W  
+Aerocool Project 7 ATX 850W USD 179.99 
+Aerocool Xpredator 400 80 PLUS Bronze ATX 400W  
+Aerocool Xpredator 500 ATX 500W  
+Aerocool Xpredator 600 ATX 600W  
+Aerocool Xpredator 700 ATX 700W  
+Aerocool Xpredator 750M ATX 750W  
+Aerocool Xpredator Gold 650GM ATX 650W  
+Antec EAG Pro 550W 80 PLUS Gold ATX 550W  
+Antec EDGE EDG550 ATX 550W  
+Antec EDGE EDG650 ATX 650W  
+Antec EDGE EDG750 ATX 750W  
+Antec High Current Gamer ATX 520W USD 99.99 
+Antec High Current Gamer ATX 620W USD 99.99 
+Antec High Current Gamer HCG-620M ATX 620W  
+Antec High Current Gamer HCG-750M ATX 750W  
+Antec High Current Gamer HCG-850M ATX 850W  
+Antec High Current Gamer HCG650 80 PLUS Gold ATX 650W  
+Antec High Current Gamer HCG750 80 PLUS Gold ATX 750W  
+Antec High Current Gamer HCG850 80Plus Gold ATX 850W  
+Antec High Current Pro HCP-1000 Platinum ATX 1000W  
+Antec High Current Pro HCP-1300 Platinum ATX 1300W  
+Antec High Current Pro HCP-850 Platinum ATX 850W  
+Antec NE450M EC Semi Modular ATX 450W  
+Antec NE550M EC Semi Modular ATX 550W  
+Antec NE650M EC Semi Modular ATX 650W  
+Antec True Power TP550C ATX 550W  
+Antec True Power TP650C ATX 650W  
+Antec True Power TP750C ATX 750W  
+Antec VP Strictly Power ATX 450W  
+ASUS ROG Strix 550G 80 PLUS Gold ATX 550W  
+ASUS ROG Strix 650G 80 PLUS Gold ATX 650W  
+ASUS ROG Strix 750G 80 PLUS Gold ATX 750W  
+ASUS ROG Thor 80 PLUS Platinum ATX 850W  
+ASUS ROG Thor 80 PLUS Platinum ATX 1200W  
+BitFenix Formula 80 PLUS Gold ATX 750W  
+BitFenix Whisper M 80 PLUS Gold ATX 750W  
+Chieftec A-90 Serie GDP-550C 90 Plus Gold ATX 550W  
+Chieftec A-90 Serie GDP-650C 90 Plus Gold ATX 650W  
+Chieftec A-90 Serie GDP-750C 90 Plus Gold ATX 750W  
+Chieftec Force CPS-400S ATX 400W  
+Chieftec Force CPS-500S ATX 500W  
+Chieftec Force CPS-650S ATX 650W  
+Chieftec Force CPS-750S ATX 750W  
+Chieftec IArena Serie GPA-350B8 ATX 350W  
+Chieftec IArena Serie GPA-350S8 ATX 350W  
+Chieftec IArena Serie GPA-400B8 ATX 400W  
+Chieftec IArena Serie GPA-400S8 ATX 400W  
+Chieftec IArena Serie GPA-450B8 ATX 450W  
+Chieftec IArena Serie GPA-450S8 ATX 450W  
+Chieftec IArena Serie GPA-500S8 ATX 500W  
+Chieftec IArena Serie GPB-300S ATX 300W  
+Chieftec IArena Serie GPB-350S ATX 350W  
+Chieftec IArena Serie GPB-400S ATX 400W  
+Chieftec IArena Serie GPB-450S ATX 450W  
+Chieftec IArena Serie GPB-500S ATX 500W  
+Chieftec Navitas ATX 1250W  
+Chieftec Navitas 80 PLUS Gold ATX 1000W  
+Chieftec Navitas Serie GPM-450S ATX 450W  
+Chieftec Navitas Serie GPM-550S ATX 550W  
+Chieftec Navitas Serie GPM-650S ATX 650W  
+Chieftec Navitas Serie GPM-750S ATX 750W  
+Chieftec Power Smart 80 PLUS Gold ATX 1250W  
+Chieftec Power Smart 80 PLUS Gold ATX 1450W  
+Chieftec Power Smart 80 PLUS Gold ATX 1350W  
+Chieftec PSF-400B 80 PLUS Bronze ATX 400W  
+Chieftec Smart Serie GPS-400A8 ATX 400W  
+Chieftec Smart Serie GPS-500A8 ATX 500W  
+Chieftec Smart Serie GPS-600A8 ATX 600W  
+Chieftec Smart Serie GPS-700A8 ATX 700W  
+Cooler Master MasterWatt ATX 550W  
+Cooler Master MasterWatt, 80 PLUS-Bronze ATX 750W  
+Cooler Master MasterWatt, 80 PLUS-Bronze ATX 650W  
+Corsair AX1000 High Performance ATX 1000W  
+Corsair AX1500i Digital ATX Power Supply ATX 1500W USD 449.99 
+Corsair AX760i Digital ATX Power Supply ATX 760W USD 229.99 
+Corsair AX850 High Performance ATX 850W  
+Corsair Builder Series CX450 ATX 450W  
+Corsair Builder Series CX450M Modular ATX 450W  
+Corsair Builder Series CX500 ATX 500W  
+Corsair Builder Series CX550 ATX 550W  
+Corsair Builder Series CX550M Modular ATX 550W  
+Corsair Builder Series CX600 ATX 600W  
+Corsair Builder Series CX650 ATX 650W  
+Corsair Builder Series CX650M Modular ATX 650W  
+Corsair Builder Series CX750 ATX 750W  
+Corsair Builder Series CX750 Rev. 2 ATX 750W  
+Corsair Builder Series CX750M Modular ATX 750W  
+Corsair Builder Series CX850M Modular ATX 850W  
+Corsair CV Series CV450 ATX 450W  
+Corsair CV Series CV550 ATX 550W  
+Corsair CV Series CV650 ATX 650W  
+Corsair CV Series CV650 Dual EPS ATX 650W  
+Corsair CX550F RGB ATX 550W  
+Corsair CX550F RGB ATX 550W  
+Corsair CX550M ATX 550W USD 72.93 
+Corsair CX650 ATX 650W USD 77.18 
+Corsair CX650F RGB ATX 650W  
+Corsair CX650F RGB ATX 650W  
+Corsair CX650M ATX 650W USD 59.99 
+Corsair CX750 ATX 750W USD 87.66 
+Corsair CX750F RGB ATX 750W  
+Corsair CX750F RGB ATX 750W  
+Corsair CX750M ATX 750W USD 79.99 
+Corsair CX850M ATX 850W USD 87.99 
+Corsair HX1000 ATX 1000W USD 219.99 
+Corsair HX1000 High Performance ATX 1000W  
+Corsair HX1000i High Performance ATX 1000W  
+Corsair HX1000i High-Performance ATX Power Supply ATX 1000W USD 262.92 
+Corsair HX1200 High Performance ATX 1200W  
+Corsair HX1200i High Performance ATX 1200W  
+Corsair HX750 ATX 750W USD 158.88 
+Corsair HX750 High Performance ATX 750W  
+Corsair HX750i High Performance ATX 750W  
+Corsair HX750i High-Performance ATX Power Supply ATX 750W USD 194.99 
+Corsair HX850 ATX 850W USD 187.99 
+Corsair HX850 High Performance ATX 850W  
+Corsair HX850i High Performance ATX 850W  
+Corsair HX850i High-Performance ATX Power Supply ATX 850W USD 224.99 
+Corsair Professional Platinum Series AX1200i ATX 1200W  
+Corsair Professional Platinum Series AX1500i ATX 1500W  
+Corsair Professional Platinum Series AX1600i ATX 1600W  
+Corsair Professional Platinum Series AX760 ATX 760W  
+Corsair Professional Platinum Series AX860 ATX 860W  
+Corsair Professional Platinum Series AX860I ATX 860W  
+Corsair RM Series RM650i ATX 650W  
+Corsair RM Series RM750i ATX 750W  
+Corsair RM1000 ATX 1000W USD 199.99 
+Corsair RM1000x ATX 1000W USD 204.99 
+Corsair RM650i ATX 650W USD 97.99 
+Corsair RM650x ATX 650W USD 99.99 
+Corsair RM850i ATX 850W USD 159.99 
+Corsair RM850x ATX 850W USD 149.99 
+Corsair RM850x ATX 850W USD 169.99 
+Corsair RMX Series 2018 RMX750 - white ATX 750W  
+Corsair RMX Series 2018 RMX850 ATX 850W  
+Corsair RMX Series RMX750 - white ATX 750W  
+Corsair RMX Series RMX850 ATX 850W  
+Corsair Vengeance Series V650M ATX 650W  
+Corsair VS Series VS350 ATX 350W  
+Corsair VS Series VS450 ATX 450W  
+Corsair VS Series VS450 ATX 450W  
+Corsair VS Series VS550 ATX 550W USD 54.96 
+Corsair VS Series VS550 ATX 550W USD 54.96 
+Corsair VS Series VS650 ATX 650W  
+Corsair VS Series VS650 ATX 650W  
+Corsair VS400 ATX 400W USD 29.99 
+Corsair VS500 ATX 500W USD 39.99 
+Corsair VS600 ATX 600W USD 49.99 
+Cougar CMD 500 digitales ATX 500W  
+Cougar CMD 600 digitales ATX 600W  
+Cougar GX 1050 V3 ATX 1050W  
+Cougar GX 600 V3 ATX 600W  
+Cougar GX 800 V3 ATX 800W  
+Cougar GX-F ATX 750W  
+Cougar GX-F ATX 650W  
+Cougar GX-F ATX 550W USD 119.26 
+Cougar GX-S ATX 750W  
+Cougar GX-S ATX 650W  
+Cougar GX-S ATX 550W  
+Cougar GX-S ATX 450W  
+Cougar LX500 ATX 500W  
+Cougar LX600 ATX 600W  
+Cougar STX ATX 750W  
+Cougar STX ATX 550W  
+Cougar STX ATX 650W  
+Cougar STX ATX 450W  
+Cougar STX ATX 350W  
+Cougar VTX ATX 700W  
+Cougar VTX ATX 600W  
+Cougar VTX ATX 500W  
+Cougar VTX ATX 400W  
+Enermax Digifanless digitales ATX 550W USD 229.99 
+Enermax Maxpro ATX 500W  
+Enermax Platimax ATX 750W  
+Enermax Platimax ATX 1000W  
+Enermax Platimax ATX 1700W  
+Enermax Platimax ATX 850W USD 121.29 
+Enermax Platimax D.F. ATX 600W USD 82.79 
+Enermax Platimax D.F. 80 PLUS Platin ATX 500W  
+Enermax Revolution87+ ATX 850W  
+EVGA 1000GQ ATX 1000W USD 159.99 
+EVGA 400 N1 ATX 400W USD 44.99 
+EVGA 430 W1 ATX 430W USD 48.03 
+EVGA 450 B3 ATX 450W USD 59.99 
+EVGA 450 BT ATX 450W USD 54.99 
+EVGA 450 BV ATX 450W USD 42.32 
+EVGA 500 B1 ATX 500W USD 44.99 
+EVGA 500 BQ ATX 500W USD 55.99 
+EVGA 500 BV ATX 500W USD 54.09 
+EVGA 500 W1 ATX 500W USD 41.06 
+EVGA 550 B3 ATX 550W USD 77.19 
+EVGA 550 N1 ATX 550W USD 51.99 
+EVGA 600 B1 ATX 600W USD 52.77 
+EVGA 600 BQ ATX 600W USD 39.99 
+EVGA 600 W1 ATX 600W USD 62.99 
+EVGA 650 B3 ATX 650W USD 89.99 
+EVGA 650 BQ ATX 650W USD 39.99 
+EVGA 650 GQ ATX 650W USD 79.99 
+EVGA 650 N1 ATX 650W USD 52.99 
+EVGA 700 B1 ATX 700W USD 79.99 
+EVGA 700B ATX 700W  
+EVGA 750 B3 ATX 750W USD 89.99 
+EVGA 750 GQ ATX 750W USD 89.78 
+EVGA 750 N1 ATX 750W USD 69.99 
+EVGA 850 B3 ATX 850W USD 109.95 
+EVGA 850 BQ ATX 850W USD 59.99 
+EVGA 850 GQ ATX 850W USD 159.99 
+EVGA B3 ATX 850W  
+EVGA B3 ATX 750W  
+EVGA B3 ATX 650W  
+EVGA B3 ATX 550W  
+EVGA B3 ATX 450W  
+EVGA BQ ATX 850W  
+EVGA BQ ATX 750W  
+EVGA BQ ATX 650W  
+EVGA BQ ATX 600W  
+EVGA BQ ATX 500W  
+EVGA SuperNOVA 1000 G2 ATX 1000W USD 159.00 
+EVGA SuperNOVA 1000 P2 ATX 1000W USD 269.99 
+EVGA SuperNOVA 1000 PS ATX 1000W  
+EVGA SuperNOVA 1000 T2 ATX 1000W USD 329.99 
+EVGA SuperNOVA 1050 GS ATX 1050W USD 69.99 
+EVGA SuperNOVA 1200 P2 ATX 1200W USD 289.54 
+EVGA SuperNOVA 1300 G2 ATX 1300W USD 92.57 
+EVGA SuperNOVA 1600 G2 ATX 1600W USD 352.37 
+EVGA SuperNOVA 1600 P2 ATX 1600W USD 414.90 
+EVGA SuperNOVA 1600 T2 ATX 1600W USD 455.98 
+EVGA SuperNOVA 550 G2 ATX 550W USD 74.52 
+EVGA SuperNOVA 550 GS ATX 550W USD 82.54 
+EVGA SuperNOVA 650 G1 ATX 650W USD 108.11 
+EVGA SuperNOVA 650 G2 ATX 650W USD 119.99 
+EVGA SuperNOVA 650 P2 ATX 650W USD 139.99 
+EVGA SuperNOVA 750 B1 ATX 750W USD 64.99 
+EVGA SuperNOVA 750 B2 ATX 750W USD 123.15 
+EVGA SuperNOVA 750 G1 ATX 750W USD 109.99 
+EVGA SuperNOVA 750 G2 ATX 750W USD 114.99 
+EVGA SuperNOVA 750 P2 ATX 750W USD 159.99 
+EVGA SuperNOVA 750 T2 ATX 750W USD 176.98 
+EVGA SuperNOVA 850 B2 ATX 850W  
+EVGA Supernova 850 G2L ATX 850W USD 91.75 
+EVGA SuperNOVA 850 G3 ATX 850W USD 139.99 
+EVGA SuperNOVA 850 GS ATX 850W USD 126.00 
+EVGA SuperNOVA 850 P2 ATX 850W USD 239.99 
+EVGA SuperNOVA 850 T2 ATX 850W USD 249.40 
+EVGA SuperNOVA G1 ATX 1000W  
+EVGA SuperNOVA G1 ATX 650W  
+EVGA SuperNOVA G2 ATX 850W  
+EVGA SuperNOVA G2L ATX 850W  
+EVGA SuperNOVA G2L 80 PLUS Gold ATX 750W  
+EVGA SuperNOVA G3 ATX 550W  
+EVGA SuperNOVA G3 ATX 650W USD 95.19 
+EVGA SuperNOVA G3 ATX 850W USD 129.99 
+EVGA SuperNOVA GQ ATX 1000W  
+EVGA SuperNOVA GQ ATX 850W  
+EVGA SuperNOVA GQ ATX 750W  
+EVGA SuperNOVA GQ ATX 650W  
+EVGA SuperNOVA GS 550 ATX 550W  
+EVGA SuperNOVA P2 ATX 1200W  
+EVGA SuperNOVA P2 ATX 1600W  
+EVGA SuperNOVA T2 ATX 1600W  
+EVGA SuperNOVA T2 ATX 1000W  
+EVGA SuperNOVA T2 ATX 850W  
+EVGA W1 ATX 600W  
+Fractal Design Ion+ Platinum ATX 660W  
+Fractal Design Ion+ Platinum ATX 760W  
+Fractal Design Ion+ Platinum ATX 560W  
+Fractal Design Ion+ Platinum ATX 860W  
+Gigabyte Aorus P750W ATX 750W  
+Gigabyte Aorus P850W ATX 850W  
+Gigabyte B700H 80 PLUS Bronze ATX 700W USD 69.99 
+Gigabyte G750H 80 PLUS Gold ATX 750W USD 65.99 
+Gigabyte P450B ATX 450W USD 39.99 
+Gigabyte P550B ATX 550W USD 69.99 
+Gigabyte P850GM ATX 850W USD 113.99 
+Gigabyte PB500 ATX 500W USD 48.99 
+Gigabyte PW400 ATX 400W USD 44.99 
+Gigabyte XP1200M ATX 1200W USD 279.99 
+IN WIN Classic C750 80Plus Platinum ATX 750W  
+IN WIN Classic C900 80Plus Platinum ATX 900W  
+IN WIN GreenMe ATX 750W  
+IN WIN GreenMe ATX 550W  
+IN WIN GreenMe ATX 650W  
+IN WIN Power Man IP-P1K0BK7-2 ATX 1000W  
+IN WIN Power Man IP-P1K2BK7-2 ATX 1200W  
+InWin DESERT FOX Commander III 80 PLUS Gold ATX 600W USD 118.55 
+InWin Power Man IP-S550HQ3-2, 80 PLUS Bronze ATX 550W  
+InWin Power Man IP-S650HQ3-2, 80 PLUS Bronze ATX 650W  
+Kolink Classic Power 80 PLUS Bronze ATX 700W  
+Kolink Classic Power 80 PLUS Bronze ATX 600W  
+Kolink Classic Power 80 PLUS Bronze ATX 500W  
+Kolink Classic Power 80 PLUS Bronze ATX 400W  
+Kolink Continuum 80 PLUS Platinum ATX 1200W  
+Kolink Continuum 80 PLUS Platinum ATX 1050W  
+Kolink Continuum 80 PLUS Platinum ATX 1500W  
+Kolink Continuum 80 PLUS Platinum ATX 850W  
+Kolink Continuum 80 PLUS Platinum ATX 1050W  
+Kolink Continuum 80 PLUS Platinum ATX 1200W  
+Kolink Core 80 PLUS ATX 400W  
+Kolink Core 80 PLUS ATX 500W  
+Kolink Core 80 PLUS ATX 300W  
+Kolink Core 80 PLUS ATX 600W  
+Kolink Core 80 PLUS ATX 700W  
+Kolink Core 80 PLUS ATX 1000W  
+Kolink Core 80 PLUS ATX 850W  
+Kolink Core RGB 80 PLUS ATX 500W  
+Kolink Core S Series 80 PLUS ATX 700W  
+Kolink Core S Series 80 PLUS ATX 600W  
+Kolink Core S Series 80 PLUS ATX 500W  
+Kolink Enclave 80 PLUS Gold ATX 600W  
+Kolink Enclave 80 PLUS Gold ATX 700W  
+Kolink Modular Power 80 PLUS Bronze ATX 600W  
+Kolink Modular Power 80 PLUS Bronze ATX 700W  
+Kolink Modular Power 80 PLUS Bronze ATX 500W  
+Kolink Modular Power 80 PLUS Bronze ATX 850W  
+NZXT E500 Modular ATX 500W  
+NZXT E650 Modular ATX 650W  
+NZXT E850 Modular ATX 850W USD 149.99 
+PHANTEKS AMP 80 PLUS Gold ATX 750W USD 117.03 
+PHANTEKS Revolt Pro 80 PLUS Gold ATX 850W USD 129.99 
+PHANTEKS Revolt Pro 80 PLUS Gold ATX 1000W USD 169.99 
+PHANTEKS Revolt X 80 PLUS Platinum ATX 1000W USD 229.99 
+PHANTEKS Revolt X 80 PLUS Platinum ATX 1200W USD 248.99 
+Seasonic CONNECT 750 Gold ATX 750W USD 164.99 
+Seasonic Eco 80 PLUS Bronze ATX 430W  
+Seasonic FOCUS 650 GOLD ATX 650W USD 99.99 
+Seasonic FOCUS 750 GOLD ATX 750W USD 103.99 
+Seasonic Focus 80 PLUS Gold ATX 450W USD 64.90 
+Seasonic Focus Plus ATX 850W USD 134.99 
+Seasonic Focus Plus Gold ATX 550W USD 94.48 
+Seasonic Focus Plus Gold ATX 650W USD 109.99 
+Seasonic Focus Plus Gold ATX 750W USD 129.99 
+Seasonic Focus Plus Gold ATX 1000W USD 179.99 
+Seasonic Focus Plus PCGH Edition ATX 550W  
+Seasonic Focus Plus Platinum ATX 550W USD 107.99 
+Seasonic Focus PX 80 PLUS Platinum ATX 550W USD 109.99 
+Seasonic Focus PX 80 PLUS Platinum ATX 850W USD 169.99 
+Seasonic Focus PX 80 Plus Platinum 650 Watt ATX 650W USD 129.99 
+Seasonic Focus+ ATX 650W USD 125.99 
+Seasonic Focus+ ATX 750W USD 139.99 
+Seasonic Focus+ ATX 850W USD 167.99 
+Seasonic M12II 850 ATX 850W USD 89.90 
+Seasonic M12II EVO 620 ATX 620W USD 79.99 
+Seasonic M12II Evo 80 PLUS Bronze ATX 520W USD 53.48 
+Seasonic M12II Evo, AM2 80 PLUS Bronze ATX 620W USD 79.99 
+Seasonic M12II-750 EVO ATX 750W  
+Seasonic Platinum 1000 ATX 1000W  
+Seasonic Platinum 460 Fanless ATX 460W USD 125.34 
+Seasonic Platinum 520 Fanless ATX 520W USD 152.79 
+Seasonic PLATINUM 660 ATX 660W  
+Seasonic Platinum 760 ATX 760W USD 33.83 
+Seasonic PLATINUM 860 ATX 860W USD 125.34 
+Seasonic Prime ATX 850W  
+Seasonic Prime ATX 650W  
+Seasonic Prime ATX 750W  
+Seasonic Prime ATX 550W USD 119.99 
+Seasonic Prime ATX 750W USD 191.99 
+Seasonic Prime ATX 850W USD 219.99 
+Seasonic Prime ATX 1000W USD 259.90 
+Seasonic Prime ATX 1000W USD 269.63 
+Seasonic PRIME 1200 PLATINUM ATX 1000W USD 229.90 
+Seasonic PRIME 1200 W Gold ATX 1200W  
+Seasonic PRIME 750 GOLD ATX 750W  
+Seasonic Prime 80 PLUS Gold ATX 1300W USD 219.99 
+Seasonic Prime 80 PLUS Platinum ATX 1300W USD 264.48 
+Seasonic Prime Fanless 80 PLUS Titanium ATX 600W USD 219.99 
+Seasonic Prime Fanless PX ATX 450W USD 149.99 
+Seasonic Prime Fanless PX ATX 500W USD 155.99 
+Seasonic Prime Fanless TX ATX 700W USD 249.99 
+Seasonic Prime GX 80 PLUS Gold ATX 650W  
+Seasonic Prime PX 80 PLUS Platinum ATX 1000W USD 246.55 
+Seasonic Prime Snow Silent 80 PLUS Gold ATX 550W USD 94.99 
+Seasonic Prime Snow Silent 80 PLUS Platinum ATX 650W USD 149.90 
+Seasonic Prime Snow Silent 80 PLUS Titanium ATX 750W USD 196.48 
+Seasonic Prime TX 80 PLUS Titanium ATX 650W  
+Seasonic Prime TX 80 PLUS Titanium ATX 850W USD 231.45 
+Seasonic Prime Ultra ATX 650W USD 114.99 
+Seasonic Prime Ultra 80 PLUS Gold ATX 550W USD 104.99 
+Seasonic Prime Ultra 80 PLUS Gold ATX 1000W USD 173.85 
+Seasonic Prime Ultra 80 PLUS Platinum ATX 850W  
+Seasonic Prime Ultra 80 PLUS Platinum ATX 750W USD 159.99 
+Seasonic Prime Ultra 80 PLUS Platinum ATX 1000W USD 234.99 
+Seasonic PRIME ULTRA 850 GOLD ATX 850W  
+Seasonic S12G ATX 550W  
+Seasonic S12G-750 ATX 750W  
+Seasonic S12II ATX 430W  
+Seasonic S12II 430 ATX 430W USD 60.98 
+Seasonic S12II 620 ATX 620W USD 75.24 
+Seasonic S12III 80 PLUS Bronze ATX 550W USD 52.99 
+Seasonic S12III 80 PLUS Bronze ATX 500W USD 54.99 
+Seasonic S12III 80 PLUS Bronze ATX 650W USD 64.99 
+Seasonic Snow Silent ATX 750W USD 149.99 
+Streacom ZeroFlex 240 misc 240W  
+Super Flower Golden Green HX ATX 750W  
+Super Flower Golden Green HX ATX 650W  
+Super Flower Golden Green HX ATX 350W  
+Super Flower Golden Silent ATX 500W  
+Super Flower Leadex ATX 1300W  
+Super Flower Leadex ATX 1000W  
+Super Flower Leadex ATX 1000W  
+Super Flower Leadex ATX 1200W  
+Super Flower Leadex ATX 850W  
+Super Flower Leadex ATX 1000W  
+Super Flower Leadex ATX 850W  
+Super Flower Leadex ATX 550W  
+Super Flower Leadex ATX 550W  
+Super Flower Leadex ATX 750W  
+Super Flower Leadex ATX 850W  
+Super Flower Leadex ATX 1000W  
+Super Flower Leadex ATX 550W  
+Super Flower Leadex ATX 550W  
+Super Flower Leadex ATX 550W  
+Super Flower Leadex ATX 750W  
+Super Flower Leadex 80 PLUS Gold ATX 1600W  
+Super Flower Leadex 80 PLUS Platinum ATX 1200W  
+Super Flower Leadex 80 PLUS Platinum ATX 1600W  
+Super Flower Leadex 80 PLUS Platinum 8Pack Edt. ATX 2000W  
+Super Flower Leadex 80 PLUS Titanium ATX 750W  
+Super Flower Leadex 80 PLUS Titanium ATX 1000W  
+Super Flower Leadex 80 PLUS Titanium ATX 850W  
+Super Flower Leadex 80 PLUS Titanium ATX 1600W  
+Super Flower Leadex II ATX 1000W  
+Super Flower Leadex II ATX 850W  
+Super Flower Leadex II ATX 850W  
+Super Flower Leadex II 80 PLUS Gold ATX 1200W  
+Super Flower Leadex II 80 PLUS Gold ATX 1000W  
+Super Flower Leadex II 80 PLUS Gold ATX 1200W  
+Super Flower Leadex Platinum Special Edition ATX 1000W  
+Super Flower Leadex Platinum Special Edition 80 PLUS Platin ATX 1200W  
+Thermaltake Berlin ATX 630W  
+Thermaltake Cologne ATX 730W  
+Thermaltake Frankfurt ATX 830W  
+Thermaltake Hamburg ATX 530W  
+Thermaltake London ATX 550W  
+Thermaltake Madrid ATX 850W  
+Thermaltake Munich ATX 430W  
+Thermaltake Paris ATX 650W  
+Thermaltake Rome ATX 750W  
+Thermaltake Smart Pro RGB 80Plus Bronze modular ATX 850W USD 99.99 
+Thermaltake Smart SE ATX 630W USD 47.99 
+Thermaltake Smart SE ATX 530W USD 47.99 
+Thermaltake Toughpower DPS G 80 PLUS Platinum ATX 1200W  
+Thermaltake Toughpower DPS G RGB 80Plus Gold ATX 850W  
+Thermaltake Toughpower GF1 A-RGB 80 Plus Gold ATX 650W  
+Thermaltake Toughpower Grand RGB 80 PLUS Gold modular ATX 650W USD 110.49 
+Thermaltake Toughpower iRGB 80 PLUS Platinum ATX 1200W  
+Thermaltake Toughpower iRGB 80 PLUS Titanium ATX 1250W  
+Thermaltake Toughpower PF1 A-RGB 80 Plus Platinum ATX 850W  
+Thermaltake TR2 S ATX 700W  
+Thermaltake TR2 S 80 PLUS ATX 500W  
+XFX Black Edition ATX 1050W  
+XFX Core Edition PRO V2 ATX 450W  
+XFX PRO1000W Black Edition Full Modular ATX 1000W  
+XFX XT ATX 600W  
+XFX XTR Series ATX 550W  
+XFX XTS Fanless Series ATX 520W  
+XFX XTS Fanless Series ATX 460W  
+XFX XXX Edition Pro ATX 850W  
+Xigmatek Maverick ATX 400W  
+Xilence Performance A+ ATX 830W  
+Xilence Performance C Series XP400 ATX 300W  
+Xilence Performance C Series XP500 ATX 350W  
+Xilence Performance C Series XP600 ATX 450W  
+Xilence Performance C Series XP700 ATX 550W  
+Zalman 1000EBT ATX 1000W  
+Zalman 1200EBT 80 PLUS Gold ATX 1200W  
+Zalman 500GVM ATX 500W  
+Zalman 500TX ATX 500W  
+Zalman 600GVM ATX 600W  
+Zalman 600TX ATX 600W  
+Zalman 650EBT ATX 650W  
+Zalman 700GVM ATX 700W  
+Zalman 700TX ATX 700W  
+Zalman 750EBT 80 PLUS Gold ATX 750W  
+Zalman 850EBT ATX 850W  
