@@ -129,8 +129,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).Socket.(\w{1,}\+?).Clock.(\w?.\w?).\w{1,3}.(
-		Turbo\s\w\.\w.\w{1,}.)?(\d{1,}).Cores.(\d{1,}).Threads.USD.(\d{1,}.\d{1,2}))`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).Socket.(\w{1,}\+?).Clock.(\w?.\w?).\w{1,3}.(Turbo\s\w\.\w.\w{1,}.)?(\d{1,}).Cores.(\d{1,}).Threads.USD.(\d{1,}.\d{1,2}))`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	cpu := Componente{}
 	cpu_detail := CpuDetail{}
@@ -218,8 +217,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).\s(\d{1,2})\sGB.(
-		DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).\s(\d{1,2})\sGB.(DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ram := Componente{}
 	ram_detail := RamDetail{}
@@ -277,8 +275,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(\d{3,4})\sGB(\d{3,4}\sGB\s|\s)(
-		NVM|SATA).Protocol.(M.2|SATA).(FormatUSD.)?(\d{1,}.\d{1,}.)?(Format)?)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(\d{3,4})\sGB(\d{3,4}\sGB\s|\s)(NVM|SATA).Protocol.(M.2|SATA).(FormatUSD.)?(\d{1,}.\d{1,}.)?(Format)?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ssd := Componente{}
 	ssd_detail := MemoriaDetail{}
