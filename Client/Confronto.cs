@@ -679,8 +679,6 @@ namespace Client
                 }
             }
         }
-        
-       
         public void MostraAlimentatore(IList componenti, schedaConfronto sc)
         {
 
@@ -765,7 +763,6 @@ namespace Client
                 }
             }
         }
-
         public void MostraDissipatore(IList componenti, schedaConfronto sc)
         {
 
@@ -1246,6 +1243,7 @@ namespace Client
             return message;
         }
 
+
         public void ColoraValutazione(schedaConfronto sc,params string[] abc)
         {
             if (abc.Length == 2) {
@@ -1302,46 +1300,6 @@ namespace Client
 
             
         }
-
-        public void ColoraLabelDet1(schedaConfronto sc, params string[] abc)
-        {
-            if (abc.Length == 2)
-            {
-                if (MaxNumber(abc[0], abc[1]) == "a")
-                {
-                    sc.labelMod1Det1Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1]) == "b")
-                {
-                    sc.labelMod2Det1Color(Color.Red);
-                }
-            }
-
-            if (abc.Length == 3)
-            {   //resetto i colori, mettendoli neri
-                sc.labelMod1Det1Color(Color.Black);
-                sc.labelMod2Det1Color(Color.Black);
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
-                    sc.labelMod1Det1Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
-                    sc.labelMod2Det1Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
-                    sc.labelMod3Det1Color(Color.Red);
-                }
-            }
-
-
-        }
-
         public void ColoraLabelDet1Min(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1398,7 +1356,6 @@ namespace Client
 
 
         }
-
         public void ColoraLabelDet2(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1455,7 +1412,6 @@ namespace Client
 
 
         }
-
         public void ColoraLabelDet3(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1512,64 +1468,6 @@ namespace Client
 
 
         }
-
-        public void ColoraLabelDet3Min(schedaConfronto sc, params string[] abc)
-        {
-            if (abc.Length == 2)
-            {
-                if (MinNumber(abc[0], abc[1]) == "a")
-                {
-                    sc.labelMod1Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1]) == "b")
-                {
-                    sc.labelMod2Det3Color(Color.Red);
-                }
-            }
-
-            if (abc.Length == 3)
-            {   //resetto i colori, mettendoli neri
-                sc.labelMod1Det3Color(Color.Black);
-                sc.labelMod2Det3Color(Color.Black);
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "a")
-                {
-                    sc.labelMod1Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "b")
-                {
-                    sc.labelMod2Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "c")
-                {
-                    sc.labelMod3Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "ab")
-                {
-                    sc.labelMod1Det3Color(Color.Red);
-                    sc.labelMod2Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "bc")
-                {
-                    sc.labelMod2Det3Color(Color.Red);
-                    sc.labelMod3Det3Color(Color.Red);
-                }
-
-                if (MinNumber(abc[0], abc[1], abc[2]) == "ac")
-                {
-                    sc.labelMod1Det3Color(Color.Red);
-                    sc.labelMod3Det3Color(Color.Red);
-                }
-            }
-
-
-        }
-
         public void ColoraLabelDet4(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1626,7 +1524,6 @@ namespace Client
 
 
         }
-
         public void ColoraLabelDet5(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1683,7 +1580,6 @@ namespace Client
 
 
         }
-
         public void ColoraLabelDet6(schedaConfronto sc, params string[] abc)
         {
             if (abc.Length == 2)
@@ -1740,9 +1636,5 @@ namespace Client
 
 
         }
-
-
-
-
     }
 }

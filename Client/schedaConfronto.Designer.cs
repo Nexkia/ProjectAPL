@@ -505,7 +505,7 @@ namespace Client
             this.panelNascosto2.Name = "panelNascosto2";
             this.panelNascosto2.Size = new System.Drawing.Size(259, 482);
             this.panelNascosto2.TabIndex = 48;
-            this.panelNascosto2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNascondi2_Paint);
+            
             // 
             // panel1
             // 
@@ -559,7 +559,7 @@ namespace Client
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(875, 535);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            
             // 
             // labelMod2Det2
             // 

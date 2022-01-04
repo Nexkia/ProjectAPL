@@ -16,7 +16,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using ListViewItem = System.Windows.Forms.ListViewItem;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Client
@@ -325,6 +327,9 @@ namespace Client
 
         private async void populateItemsBuilSolo()
         {
+
+            ComponentsSolo[] componentsSolo; 
+
             SocketTCP skt = new SocketTCP();
             pt.SetProtocolID("buildSolo"); pt.Token = ""; pt.Data = "";
             string ok = await skt.send(pt);
@@ -352,24 +357,49 @@ namespace Client
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
                 myList.Add(singleComponent);
+
+                int index = 0;
+
+                componentsSolo = new ComponentsSolo[myList.Count];
+
                 foreach (List<Componente> subList in myList)
                 {
+                    componentsSolo[index] = new ComponentsSolo(listViewCarrello);
+
+                    Console.WriteLine("Lista superiore://////////////////////////////////////");
+
+                    componentsSolo[index].impostaCategoria(subList[0].Categoria);
                     foreach (Componente item in subList)
                     {
-                        Console.WriteLine(item.Modello);
+
+
+                        ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
+                        lvitem.SubItems.Add("" + item.Marca + "");
+                        lvitem.SubItems.Add("" + item.Prezzo + "");
+                        lvitem.SubItems.Add("" + item.Capienza + "");
+                        lvitem.SubItems.Add("" + item.Categoria + "");
+
+                        componentsSolo[index].addListView(lvitem);
+                        Console.WriteLine("Modello: "+item.Modello+" Marca: "+item.Marca+" Prezzo: "+item.Prezzo);
                     }
+
+                   
+                    
+                    index++;
+
+                    //aggiunge al flow label
+                    if (flowLayoutPanel1.Controls.Count < 0)
+                    {
+
+                        flowLayoutPanel1.Controls.Clear();
+                    }
+                    else
+                        flowLayoutPanel1.Controls.Add(componentsSolo[i]);
+
                 }
-
+                
             }
-            //aggiunge al flow label
-            if (flowLayoutPanel1.Controls.Count < 0)
-            {
 
-                flowLayoutPanel1.Controls.Clear();
-            }
-            else
-                Console.WriteLine("b");
-               // flowLayoutPanel1.Controls.Add(componentsSolo);
         }
 
         private void buttonMyBuild_Click(object sender, EventArgs e)
@@ -426,6 +456,11 @@ namespace Client
         }
 
         private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

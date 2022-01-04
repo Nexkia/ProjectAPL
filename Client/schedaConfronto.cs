@@ -105,35 +105,5 @@ namespace Client
 
 
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-           
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelModello1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelNascondi2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBoxMod2Det2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
