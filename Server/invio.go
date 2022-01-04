@@ -231,8 +231,8 @@ func invio() {
 			ram.Marca = elem[1]
 			ram.Modello = modello
 			ram.Capienza, _ = strconv.Atoi(elem[3])
-			if elem[9] != "" {
-				ram.Prezzo, _ = strconv.ParseFloat(elem[9], 64)
+			if elem[8] != "" {
+				ram.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
 			} else {
 				ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 			}
@@ -262,7 +262,7 @@ func invio() {
 			hdd.Capienza, _ = strconv.Atoi(elem[3])
 			hdd.Capienza = hdd.Capienza * 1000
 			if elem[6] != "" {
-				ram.Prezzo, _ = strconv.ParseFloat(elem[9], 64)
+				ram.Prezzo, _ = strconv.ParseFloat(elem[6], 64)
 			} else {
 				ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 			}
@@ -306,8 +306,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:/(^\w{1,})\s(.{1,})For\
-	ssocket\s(.{1,}),\s(\w{1,}\+?\-?(\V3)?)\s(USD\s(\d{1,}.\d{1,}))?/gm)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,})\s(.{1,})For\ssocket\s(.{1,}),\s(\w{1,}\+?\-?(V3)?)\s(USD\s(\d{1,}.\d{1,}))?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	cpucooler := Componente{}
 	cpucooler_detail := DissipatoreDetail{}
@@ -343,8 +342,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,})\s(.{1,}ATX).Socket.(\w{1,}(\+)?(\-\w{1,})?).
-	Chipset.(\w{1,}).\d.Ramslots.(USD.)?(\d{1,}.\d{1,2})?)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,})\s(.{1,}ATX).Socket.(\w{1,}(\+)?(\-\w{1,})?).Chipset.(\w{1,}).\d.Ramslots.(USD.)?(\d{1,}.\d{1,2})?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	mb := Componente{}
 	mb_detail := SchedaMadreDetail{}
@@ -366,8 +364,8 @@ func invio() {
 			ram_number := rand.Intn((max_ram - min_ram)) + min_ram
 			mb_detail.Ram = "DDR" + strconv.Itoa(ram_number)
 			mb_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
-			coll_comp.InsertOne(context.TODO(), ssd)
-			coll_detail.InsertOne(context.TODO(), ssd_detail)
+			coll_comp.InsertOne(context.TODO(), mb)
+			coll_detail.InsertOne(context.TODO(), mb_detail)
 		}
 	}
 }
