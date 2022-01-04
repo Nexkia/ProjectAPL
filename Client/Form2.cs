@@ -366,7 +366,7 @@ namespace Client
                 {
                     componentsSolo[index] = new ComponentsSolo(listViewCarrello);
 
-                    Console.WriteLine("Lista superiore://////////////////////////////////////");
+                   
 
                     componentsSolo[index].impostaCategoria(subList[0].Categoria);
                     foreach (Componente item in subList)
@@ -380,7 +380,7 @@ namespace Client
                         lvitem.SubItems.Add("" + item.Categoria + "");
 
                         componentsSolo[index].addListView(lvitem);
-                        Console.WriteLine("Modello: "+item.Modello+" Marca: "+item.Marca+" Prezzo: "+item.Prezzo);
+                        
                     }
 
                    

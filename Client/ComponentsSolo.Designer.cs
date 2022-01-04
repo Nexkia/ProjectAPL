@@ -104,6 +104,7 @@ namespace Client
             this.labelCategoria.TabIndex = 0;
             this.labelCategoria.Text = "labelCategoria";
             this.labelCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelCategoria.Click += new System.EventHandler(this.labelCategoria_Click);
             // 
             // buttonCarrello
             // 

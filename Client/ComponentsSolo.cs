@@ -58,18 +58,25 @@ namespace Client
                 lvitem.SubItems.Add("" + capienza + "");
                 lvitem.SubItems.Add("" + categoria + "");
 
-                int a = 0;
-                // if (vecchioCarrello.Items. == false)
-                foreach (ListViewItem value in vecchioCarrello.Items)
-                {
-                    if (value.SubItems == lvitem.SubItems)
-                    {
-                        a = 1;
-                    }
-                }
+                
+               
 
-                if(a==0)
-                vecchioCarrello.Items.Add(lvitem);
+                ListViewItem risultato = vecchioCarrello.FindItemWithText(modello);
+
+                if (risultato == null)
+                {
+                    vecchioCarrello.Items.Add(lvitem);
+                }
+                else
+                {
+                    MessageBox.Show("Componente già presente nel carrello",
+                          "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               
+                
+                
+                
+                
 
 
             }
@@ -78,6 +85,11 @@ namespace Client
                 MessageBox.Show("Nessun componente è stato selezionato",
                           "Errore Aggiungi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void labelCategoria_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

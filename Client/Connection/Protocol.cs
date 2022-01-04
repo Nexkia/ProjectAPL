@@ -11,7 +11,7 @@ namespace Client.Connection
         private string ProtocolID { get; set; }
         public string Token { get; set; }
         public string Data { get; set; }
-        public string limit = " ";
+        public string limit = "#453";
         public string end = "\n";
         private Dictionary<string, string> dict = new Dictionary<string, string> {
 
