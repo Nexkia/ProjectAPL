@@ -93,6 +93,9 @@
     <Reference Include="SharpCompress, Version=0.30.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>packages\SharpCompress.0.30.1\lib\net461\SharpCompress.dll</HintPath>
     </Reference>
+    <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b2e6337a5d77bfbc, processorArchitecture=MSIL">
+      <HintPath>packages\starkbank-ecdsa.1.3.3\lib\net452\StarkbankEcdsa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.AppContext.4.1.0\lib\net463\System.AppContext.dll</HintPath>
@@ -397,6 +400,12 @@
     <Compile Include="Profiles.Designer.cs">
       <DependentUpon>Profiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="schedaConfronto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="schedaConfronto.Designer.cs">
+      <DependentUpon>schedaConfronto.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ComponentsSolo.resx">
       <DependentUpon>ComponentsSolo.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +445,9 @@
     </Compile>
     <EmbeddedResource Include="Profiles.resx">
       <DependentUpon>Profiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="schedaConfronto.resx">
+      <DependentUpon>schedaConfronto.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Core\Compression\Snappy\lib\linux\libsnappy64.so" />
     <None Include="Core\Compression\Snappy\lib\osx\libsnappy64.dylib" />

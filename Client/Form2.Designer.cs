@@ -50,6 +50,12 @@ namespace Client
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCarrello = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +122,7 @@ namespace Client
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(65, 788);
+            this.menuStrip1.Size = new System.Drawing.Size(65, 778);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -134,14 +140,14 @@ namespace Client
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.editToolStripMenuItem.Text = "Modifica Profilo";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -200,6 +206,7 @@ namespace Client
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.Visible = false;
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -211,11 +218,51 @@ namespace Client
             this.columnHeader2.Text = "Categoria";
             this.columnHeader2.Width = 150;
             // 
+            // listViewCarrello
+            // 
+            this.listViewCarrello.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.listViewCarrello.HideSelection = false;
+            this.listViewCarrello.Location = new System.Drawing.Point(833, 22);
+            this.listViewCarrello.Name = "listViewCarrello";
+            this.listViewCarrello.Size = new System.Drawing.Size(398, 171);
+            this.listViewCarrello.TabIndex = 9;
+            this.listViewCarrello.UseCompatibleStateImageBehavior = false;
+            this.listViewCarrello.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Modello";
+            this.columnHeader3.Width = 81;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Marca";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Prezzo";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Capienza";
+            this.columnHeader6.Width = 76;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Categoria";
+            this.columnHeader7.Width = 83;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 778);
+            this.ClientSize = new System.Drawing.Size(1260, 778);
+            this.Controls.Add(this.listViewCarrello);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
@@ -254,5 +301,11 @@ namespace Client
         private ListView listView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
+        private ListView listViewCarrello;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
     }
 }
