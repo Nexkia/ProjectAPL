@@ -14,20 +14,22 @@ namespace Client.Data
         [JsonProperty("valutazione")]
         public int Valutazione { get; private set; }
         [JsonProperty("cpusocket")]
-        public string[] CpuSocket { get; private  set; }
+        public string CpuSocket { get; private  set; }
         [JsonProperty("ram")]
-        public string[] Ram { get; private set; }
-        [JsonProperty("ssdm2")]
-        public bool SsdM2 { get; private set; }
+        public string Ram { get; private set; }
+        [JsonProperty("chipset")]
+        public string Chipset { get; private set; }
 
-        public bool getCompatibility()
-        {
-            return this.SsdM2;
-        }
-
+ 
         public string[] getDetail()
         {
-            return this.CpuSocket;
+            string[] detail = new string[3] {
+                this.CpuSocket,
+                this.Ram,
+                this.Chipset,
+
+            };
+            return detail;
         }
 
         public string getModello()
@@ -35,10 +37,6 @@ namespace Client.Data
             return this.Modello;
         }
 
-        public string[] getMoreDetail()
-        {
-            return this.Ram;
-        }
 
         public int getValutazione()
         {

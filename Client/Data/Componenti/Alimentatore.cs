@@ -16,11 +16,7 @@ namespace Client.Data
         [JsonProperty("watt")]
         public int Watt { get; private set; }
 
-        public bool getCompatibility()
-        {
-            throw new NotImplementedException();
-        }
-
+    
         public string[] getDetail()
         {
             string[] detail = new string[1] { Convert.ToString(this.Watt) };
@@ -32,10 +28,6 @@ namespace Client.Data
             return this.Modello;
         }
 
-        public string[] getMoreDetail()
-        {
-            throw new NotImplementedException();
-        }
 
         public int getValutazione()
         {

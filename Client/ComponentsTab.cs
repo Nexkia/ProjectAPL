@@ -108,6 +108,7 @@ namespace Client
                 lvitem1.SubItems.Add("" + _componente1.Categoria + "");
                 lvitem1.SubItems.Add("" + _componente1.Marca + "");
                 lvitem1.SubItems.Add("" + _componente1.Prezzo + "");
+                lvitem1.SubItems.Add("" + _componente1.Capienza + "");
 
                 vecchialistView.Items.Add(lvitem1);
             }
@@ -119,6 +120,7 @@ namespace Client
                 lvitem2.SubItems.Add("" + _componente2.Categoria + "");
                 lvitem2.SubItems.Add("" + _componente2.Marca + "");
                 lvitem2.SubItems.Add("" + _componente2.Prezzo + "");
+                lvitem2.SubItems.Add("" + _componente2.Capienza + "");
 
                 vecchialistView.Items.Add(lvitem2);
             }
@@ -130,6 +132,7 @@ namespace Client
                 lvitem3.SubItems.Add("" + _componente3.Categoria + "");
                 lvitem3.SubItems.Add("" + _componente3.Marca + "");
                 lvitem3.SubItems.Add("" + _componente3.Prezzo + "");
+                lvitem3.SubItems.Add("" + _componente3.Capienza + "");
 
                 vecchialistView.Items.Add(lvitem3);
             }
@@ -144,6 +147,7 @@ namespace Client
 
             string[] modelli = new string[vecchialistView.Items.Count];
             string[] prezzi = new string[vecchialistView.Items.Count];
+            string[] capienze = new string[vecchialistView.Items.Count];
 
             string categoria="default";
 
@@ -154,11 +158,12 @@ namespace Client
                 modelli[i] = item.SubItems[0].Text.ToString();
                 categoria = item.SubItems[1].Text.ToString();
                 prezzi[i] = item.SubItems[3].Text.ToString();
-                Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria);
+                capienze[i] = item.SubItems[4].Text.ToString();
+                Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+" capienza:"+capienze[i]);
             }
             if (modelli.Length > 0)
             {
-                Confronto cf = new Confronto(modelli, prezzi, categoria);
+                Confronto cf = new Confronto(modelli, prezzi,capienze, categoria);
                 cf.Show();
             }
             else

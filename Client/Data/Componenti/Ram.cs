@@ -20,10 +20,6 @@ namespace Client.Data
         [JsonProperty("standard")]
         public string Standard { get; private set; }
 
-        public bool getCompatibility()
-        {
-            throw new NotImplementedException();
-        }
 
         public string[] getDetail()
         {
@@ -37,11 +33,6 @@ namespace Client.Data
         public string getModello()
         {
             return this.Modello;
-        }
-
-        public string[] getMoreDetail()
-        {
-            throw new NotImplementedException();
         }
 
         public int getValutazione()

@@ -13,8 +13,7 @@ namespace Client.Data
         public string Modello { get; private set; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; private set; }
-        [JsonProperty("tdp")]
-        public int Tdp { get; private set; }
+
         [JsonProperty("frequenza")]
         public float Frequenza { get; private set; }
         [JsonProperty("socket")]
@@ -24,15 +23,11 @@ namespace Client.Data
         [JsonProperty("thread")]
         public int Thread { get; private set; }
 
-        public bool getCompatibility()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public string[] getDetail()
         {
-            string[] detail = new string[5] { 
-                Convert.ToString(this.Tdp) ,
+            string[] detail = new string[4] { 
                 Convert.ToString(this.Frequenza),
                 this.Socket,
                 Convert.ToString(this.Core),
@@ -44,11 +39,6 @@ namespace Client.Data
         public string getModello()
         {
             return this.Modello;
-        }
-
-        public string[] getMoreDetail()
-        {
-            throw new NotImplementedException();
         }
 
         public int getValutazione()

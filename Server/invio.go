@@ -320,9 +320,13 @@ func invio() {
 				ssd.Capienza, _ = strconv.Atoi(elem[3])
 				if elem[8] != "" {
 					ssd.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
+					if ssd.Prezzo == 0 {
+						ssd.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
+					}
 				} else {
 					ssd.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 				}
+
 				ssd_detail.Modello = modello
 				ssd_detail.Tipo = "ssd"
 				ssd_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
