@@ -29,25 +29,26 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelConfronto = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel2
+            // flowLayoutPanelConfronto
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(38, 40);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(512, 291);
-            this.flowLayoutPanel2.TabIndex = 1;
-            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            this.flowLayoutPanelConfronto.AutoScroll = true;
+            this.flowLayoutPanelConfronto.Location = new System.Drawing.Point(37, 49);
+            this.flowLayoutPanelConfronto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanelConfronto.Name = "flowLayoutPanelConfronto";
+            this.flowLayoutPanelConfronto.Size = new System.Drawing.Size(911, 579);
+            this.flowLayoutPanelConfronto.TabIndex = 1;
+            this.flowLayoutPanelConfronto.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
             // 
             // Confronto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientSize = new System.Drawing.Size(1010, 639);
+            this.Controls.Add(this.flowLayoutPanelConfronto);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Confronto";
             this.Text = "Confronto";
             this.Load += new System.EventHandler(this.Confronto_Load);
@@ -57,6 +58,6 @@ namespace Client
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelConfronto;
     }
 }

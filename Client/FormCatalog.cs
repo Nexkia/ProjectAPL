@@ -24,8 +24,8 @@ namespace Client
 
         private async void cpu_Click(object sender, EventArgs e)
         {
-            pt.Data = cpuButton.Text;
-            GetElements(pt);
+            pt.Data =  cpuButton.Text;
+             GetElements( pt);
         }
 
 
@@ -92,12 +92,15 @@ namespace Client
 
 
                     ListViewItem item = listView_record.SelectedItems[0];
-
+                    
 
                     string modello = item.SubItems[0].Text.ToString();
                     string categoria = item.SubItems[1].Text.ToString();
+                    
                     string marca = item.SubItems[2].Text.ToString();
+                    
                     string prezzo = item.SubItems[3].Text.ToString();
+                    string capienza = item.SubItems[4].Text.ToString();
 
                     //rimuoviamo l'elemento selezionato dalla listView_record
                     listView_record.Items.Remove(listView_record.SelectedItems[0]);
@@ -107,9 +110,11 @@ namespace Client
                     lvitem.SubItems.Add("" + categoria + "");
                     lvitem.SubItems.Add("" + marca + "");
                     lvitem.SubItems.Add("" + prezzo + "");
-                    
+                    lvitem.SubItems.Add("" + capienza + "");
+
 
                     listViewCatalogo.Items.Add(lvitem);
+                    
 
                 }
                 else
@@ -137,7 +142,8 @@ namespace Client
                 string categoria = item.SubItems[1].Text.ToString();
                 string marca = item.SubItems[2].Text.ToString();
                 string prezzo = item.SubItems[3].Text.ToString();
-                
+                string capienza = item.SubItems[4].Text.ToString();
+
 
                 //rimuoviamo l'elemento selezionato dalla listViewCatalogo
                 listViewCatalogo.Items.Remove(listViewCatalogo.SelectedItems[0]);
@@ -147,6 +153,7 @@ namespace Client
                 lvitem.SubItems.Add("" + categoria + "");
                 lvitem.SubItems.Add("" + marca + "");
                 lvitem.SubItems.Add("" + prezzo + "");
+                lvitem.SubItems.Add("" + capienza + "");
                 listView_record.Items.Add(lvitem);
 
             }
@@ -163,6 +170,7 @@ namespace Client
             {
                 string[] modelli = new string[listViewCatalogo.Items.Count];
                 string[] prezzi=new string[listViewCatalogo.Items.Count];
+                string[] capienze = new string[listViewCatalogo.Items.Count];
 
                 string categoria="default";
                 
@@ -173,10 +181,11 @@ namespace Client
                     modelli[i] = item.SubItems[0].Text.ToString();
                     categoria = item.SubItems[1].Text.ToString();
                     prezzi[i] = item.SubItems[3].Text.ToString();
-                    Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria);
+                    capienze[i] = item.SubItems[4].Text.ToString();
+                    Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
 
-                Confronto cf = new Confronto(modelli,prezzi,categoria);
+                Confronto cf = new Confronto(modelli,prezzi, capienze,categoria);
                 cf.Show();
 
             }
@@ -224,6 +233,7 @@ namespace Client
                 lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 lvitem.SubItems.Add("" + cp[i].Marca + "");
                 lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+                lvitem.SubItems.Add("" + cp[i].Capienza+ "");
 
                 listView_record.Items.Add(lvitem);
 

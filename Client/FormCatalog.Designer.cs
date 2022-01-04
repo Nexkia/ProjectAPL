@@ -152,6 +152,7 @@ namespace Client
             // 
             // listView_record
             // 
+            this.listView_record.BackColor = System.Drawing.SystemColors.HighlightText;
             this.listView_record.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -250,7 +251,7 @@ namespace Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 916);
+            this.ClientSize = new System.Drawing.Size(1140, 967);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonRimuovi);
             this.Controls.Add(this.listViewCatalogo);
