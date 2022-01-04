@@ -95,6 +95,8 @@ func invio() {
 	max_price := 300
 	min_val := 1
 	max_val := 10
+	min_ram := 3
+	max_ram := 4
 	content, err := ioutil.ReadFile("db/case.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -361,6 +363,8 @@ func invio() {
 			mb_detail.Modello = modello
 			mb_detail.CpuSocket = elem[3]
 			mb_detail.Chipset = elem[6]
+			ram_number := rand.Intn((max_ram - min_ram)) + min_ram
+			mb_detail.Ram = "DDR" + strconv.Itoa(ram_number)
 			mb_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
 			coll_comp.InsertOne(context.TODO(), ssd)
 			coll_detail.InsertOne(context.TODO(), ssd_detail)

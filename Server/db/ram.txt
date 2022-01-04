@@ -1,6 +1,4 @@
 Corsair Vengeance LPX Series black DDR4-3200 16 GB DDR4-3200 Kit of 2USD 62.99
-ADATA Lancer DDR5-5200 16 GB DDR5-5200 Kit of 1
-ADATA Premier DDR5-4800 16 GB DDR5-4800 Kit of 1
 ADATA XPG Spectrix D80 red 32 GB DDR4-3200 Kit of 2
 ADATA XPG Spectrix D80 black 16 GB DDR4-3200 Kit of 2
 ADATA XPG Spectrix RGB D41 grey 16 GB DDR4-3200 Kit of 2
@@ -155,9 +153,6 @@ Crucial Ballistix Tactical LP DDR3-1600 CL8 8 GB DDR3-1600 Kit of 1
 Crucial Ballistix Tactical, DDR4-3000, CL16 - 16 GB Kit 16 GB DDR4-3000 Kit of 2USD 227.53
 Crucial DDR4-2133 CL15 4 GB DDR4-2133 Kit of 1
 Crucial DDR4-2133 CL15 8 GB DDR4-2133 Kit of 1USD 68.99
-Crucial DDR5-4800 16 GB DDR5-4800 Kit of 2
-Crucial DDR5-4800 64 GB DDR5-4800 Kit of 2
-Crucial DDR5-4800 32 GB DDR5-4800 Kit of 2
 Crucial Value Series DDR4-2133, CL15 - 16 GB Kit 16 GB DDR4-2133 Kit of 2
 Crucial Value Series DDR4-2133, CL15 - 8 GB 8 GB DDR4-2133 Kit of 1
 Gigabyte Aorus RGB Memory 16 GB DDR4-3200 Kit of 2USD 149.99
@@ -225,10 +220,6 @@ HyperX Savage black DDR4-2666 CL13  XMP 8 GB DDR4-2666 Kit of 2
 INNO3D iChill Memory 16 GB DDR4-3200 Kit of 2
 INNO3D iChill Memory 16 GB DDR4-3600 Kit of 2
 Intenso Desktop Pro DDR4-2133 CL15 8 GB DDR4-2133 Kit of 1
-Kingston Fury Beast 32 GB DDR5-4800 Kit of 2
-Kingston Fury Beast 16 GB DDR5-4800 Kit of 1
-Kingston Fury Beast Black 32 GB DDR5-5200 Kit of 1
-Kingston Fury Beast Black 16 GB DDR5-5200 Kit of 1
 Kingston Value  DDR3-1600  CL11 4 GB DDR3-1600 Kit of 1USD 22.96
 Kingston Value  DDR4-2133  CL15 16 GB DDR4-2133 Kit of 1
 Kingston Value  DDR4-2133  CL15  kit 32 GB DDR4-2133 Kit of 1
@@ -240,8 +231,6 @@ Kingston Value DDR3-1600  CL11 8 GB DDR3-1600 Kit of 1USD 42.99
 Kingston Value DDR3-1600  CL11 16 GB DDR3-1600 Kit of 2USD 73.99
 Kingston Value DDR3-1600 CL11 ECC Modul 8 GB DDR3-1600 Kit of 1
 Kingston Value DDR4-2133  CL15 16 GB DDR4-2133 Kit of 2
-Kingston ValueRAM 32 GB DDR5-4800 Kit of 2
-Kingston ValueRAM 16 GB DDR5-4800 Kit of 1
 Team Group Dark Pro Series grey, DDR4-3200, CL16 - 8 GB Kit 8 GB DDR4-3200 Kit of 2
 Team Group Dark Pro Series red, DDR4-3000, CL15 - 16 GB Kit 16 GB DDR4-3000 Kit of 2
 Team Group Dark Pro Series red, DDR4-3000, CL15 - 8 GB Kit 8 GB DDR4-3000 Kit of 2
