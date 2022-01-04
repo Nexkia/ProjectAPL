@@ -15,21 +15,15 @@ namespace Client.Data
         public int Valutazione { get; private set; }
         [JsonProperty("tdp")]
         public int Tdp { get; private set; }
-        [JsonProperty("frequenza")]
-        public float Frequenza { get; private set; }
+
         [JsonProperty("vram")]
         public int Vram { get; private set; }
 
-        public bool getCompatibility()
-        {
-            throw new NotImplementedException();
-        }
 
         public string[] getDetail()
         {
-            string[] detail = new string[3] {
+            string[] detail = new string[2] {
                 Convert.ToString(this.Tdp),
-                Convert.ToString(this.Frequenza),
                 Convert.ToString(this.Vram),
             };
             return detail;
@@ -38,11 +32,6 @@ namespace Client.Data
         public string getModello()
         {
             return this.Modello;
-        }
-
-        public string[] getMoreDetail()
-        {
-            throw new NotImplementedException();
         }
 
         public int getValutazione()

@@ -16,10 +16,6 @@ namespace Client.Data
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; private set; }
 
-        public bool getCompatibility()
-        {
-            throw new NotImplementedException();
-        }
 
         public string[] getDetail()
         {
@@ -31,10 +27,7 @@ namespace Client.Data
             return this.Modello;
         }
 
-        public string[] getMoreDetail()
-        {
-            throw new NotImplementedException();
-        }
+ 
 
         public int getValutazione()
         {

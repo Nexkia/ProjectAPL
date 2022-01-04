@@ -54,6 +54,7 @@ namespace Client
                 string response = await sckt.receive();
                 IFactory a = (IFactory)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
+
                
             }
             //Console.WriteLine(a.GetType());
