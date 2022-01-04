@@ -56,7 +56,7 @@ type RamDetail struct {
 }
 
 type SchedaMadreDetail struct {
-	Modello     string   `bson:"modello_shedaMadre" json:"modello_shedaMadre"`
+	Modello     string   `bson:"modello_schedaMadre" json:"modello_schedaMadre"`
 	Valutazione int      `bson:"valutazione" json:"valutazione"`
 	CpuSocket   []string `bson:"cpusocket" json:"cpusocket"`
 	Ram         []string `bson:"ram" json:"ram"`
@@ -64,7 +64,7 @@ type SchedaMadreDetail struct {
 }
 
 type SchedaVideoDetail struct {
-	Modello     string  `bson:"modello_gpu" json:"modello_gpu"`
+	Modello     string  `bson:"modello_schedaVideo" json:"modello_schedaVideo"`
 	Valutazione int     `bson:"valutazione" json:"valutazione"`
 	Tdp         int     `bson:"tdp" json:"tdp"`
 	Frequenza   float64 `bson:"frequenza" json:"frequenza"`
