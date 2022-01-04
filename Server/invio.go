@@ -98,6 +98,7 @@ func invio() {
 	min_ram := 3
 	max_ram := 4
 	limit := 80
+	n_send := 0
 	content, err := ioutil.ReadFile("db/case.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -107,11 +108,12 @@ func invio() {
 	cspc := Componente{}
 	cspc_detail := CasePCDetail{}
 	var flag_check bool
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				cspc.Categoria = "casepc"
 				cspc.Marca = elem[1]
 				cspc.Modello = modello
@@ -136,11 +138,14 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	cpu := Componente{}
 	cpu_detail := CpuDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+
+	n_send = 0
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				cpu.Categoria = "cpu"
 				cpu.Marca = elem[1]
 				cpu.Modello = modello
@@ -161,6 +166,7 @@ func invio() {
 		}
 	}
 
+	n_send = 0
 	content, err = ioutil.ReadFile("db/gpu.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -169,11 +175,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	gpu := Componente{}
 	gpu_detail := SchedaVideoDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				gpu.Categoria = "schedaVideo"
 				gpu.Marca = elem[1]
 				gpu.Modello = modello
@@ -192,6 +199,7 @@ func invio() {
 		}
 	}
 
+	n_send = 0
 	content, err = ioutil.ReadFile("db/psu.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -200,11 +208,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	psu := Componente{}
 	psu_detail := AlimentatoreDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				psu.Categoria = "alimentatore"
 				psu.Marca = elem[1]
 				psu.Modello = modello
@@ -222,6 +231,7 @@ func invio() {
 		}
 	}
 
+	n_send = 0
 	content, err = ioutil.ReadFile("db/ram.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -230,12 +240,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ram := Componente{}
 	ram_detail := RamDetail{}
-	for i, elem := range result {
-		if i < limit {
-
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				ram.Categoria = "ram"
 				ram.Marca = elem[1]
 				ram.Modello = modello
@@ -254,6 +264,8 @@ func invio() {
 			}
 		}
 	}
+
+	n_send = 0
 	content, err = ioutil.ReadFile("db/hdd.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -262,11 +274,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	hdd := Componente{}
 	hdd_detail := MemoriaDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit/2 {
+				n_send++
 				hdd.Categoria = "memoria"
 				hdd.Marca = elem[1]
 				hdd.Modello = modello
@@ -285,6 +298,8 @@ func invio() {
 			}
 		}
 	}
+
+	n_send = 0
 	content, err = ioutil.ReadFile("db/ssd.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -293,12 +308,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ssd := Componente{}
 	ssd_detail := MemoriaDetail{}
-	for i, elem := range result {
-		if i < limit {
-
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit/2 {
+				n_send++
 				ssd.Categoria = "memoria"
 				ssd.Marca = elem[1]
 				ssd.Modello = modello
@@ -316,6 +331,8 @@ func invio() {
 			}
 		}
 	}
+
+	n_send = 0
 	content, err = ioutil.ReadFile("db/cpucooler.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -324,11 +341,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	cpucooler := Componente{}
 	cpucooler_detail := DissipatoreDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				cpucooler.Categoria = "dissipatore"
 				cpucooler.Marca = elem[1]
 				cpucooler.Modello = modello
@@ -354,6 +372,8 @@ func invio() {
 			}
 		}
 	}
+
+	n_send = 0
 	content, err = ioutil.ReadFile("db/motherboard.txt")
 	if err != nil {
 		fmt.Println("err")
@@ -362,11 +382,12 @@ func invio() {
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	mb := Componente{}
 	mb_detail := SchedaMadreDetail{}
-	for i, elem := range result {
-		if i < limit {
-			modello := strings.TrimSuffix(elem[2], " ")
-			flag_check = controlloModello(modello, coll_comp)
-			if flag_check {
+	for _, elem := range result {
+		modello := strings.TrimSuffix(elem[2], " ")
+		flag_check = controlloModello(modello, coll_comp)
+		if flag_check {
+			if n_send < limit {
+				n_send++
 				mb.Categoria = "schedaMadre"
 				mb.Marca = elem[1]
 				mb.Modello = modello
