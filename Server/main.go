@@ -6,8 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"net"
+	"regexp"
 	"strconv"
-	"strings"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -115,7 +115,12 @@ func SplitFunc(message string) (r []string, err error) {
 	if message == "" {
 		return nil, errors.New("errore messaggio vuoto")
 	}
-	vet := strings.Split(message, " ")
+	reg := regexp.MustCompile(`(\d)\s(.{1,}=)?\s(.{1,})?`)
+	res := reg.FindAllStringSubmatch(message, -1)
+	vet := make([]string, 3)
+	vet[0] = res[0][1]
+	vet[1] = res[0][2]
+	vet[2] = res[0][3]
 	return vet, nil
 
 }
