@@ -37,7 +37,7 @@ namespace Client
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonCarrello = new System.Windows.Forms.Button();
             this.Checkout = new System.Windows.Forms.Button();
             this.buttonMyBuild = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -81,16 +81,16 @@ namespace Client
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint_2);
             // 
-            // button2
+            // buttonCarrello
             // 
-            this.button2.Location = new System.Drawing.Point(601, 96);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 55);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Carrello";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonCarrello.Location = new System.Drawing.Point(601, 94);
+            this.buttonCarrello.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCarrello.Name = "buttonCarrello";
+            this.buttonCarrello.Size = new System.Drawing.Size(100, 57);
+            this.buttonCarrello.TabIndex = 2;
+            this.buttonCarrello.Text = "Carrello";
+            this.buttonCarrello.UseVisualStyleBackColor = true;
+            this.buttonCarrello.Click += new System.EventHandler(this.buttonCarrello_Click);
             // 
             // Checkout
             // 
@@ -270,7 +270,7 @@ namespace Client
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonMyBuild);
             this.Controls.Add(this.Checkout);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonCarrello);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -288,7 +288,7 @@ namespace Client
 
         private System.Windows.Forms.Button button1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button2;
+        private Button buttonCarrello;
         private Button Checkout;
         private Button buttonMyBuild;
         private MenuStrip menuStrip1;

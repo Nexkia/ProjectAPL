@@ -15,11 +15,12 @@ namespace Client
     public partial class ComponentsSolo : UserControl
     {
         ListView vecchioCarrello;
+      
         public ComponentsSolo(ListView vc)
         {
             InitializeComponent();
             vecchioCarrello=vc;
-
+            
         }
 
 
@@ -34,7 +35,7 @@ namespace Client
 
         private void buttonCarrello_Click(object sender, EventArgs e)
         {
-            if (listViewSolo.SelectedItems.Count > 0)
+            if (listViewSolo.SelectedItems.Count > 0 )
             {
 
 
@@ -61,16 +62,18 @@ namespace Client
                 
                
 
-                ListViewItem risultato = vecchioCarrello.FindItemWithText(modello);
+                ListViewItem risultato = vecchioCarrello.FindItemWithText(categoria);
 
                 if (risultato == null)
                 {
                     vecchioCarrello.Items.Add(lvitem);
+                    
                 }
                 else
                 {
-                    MessageBox.Show("Componente già presente nel carrello",
-                          "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tipo di componente già presente nel carrello, " +
+                        "sceglierne uno di categoria diversa","Errore",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                
                 

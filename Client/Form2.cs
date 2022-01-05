@@ -19,6 +19,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
+
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Client
@@ -29,7 +30,7 @@ namespace Client
         Protocol pt = new Protocol();
         Form1 vecchioForm;
 
-
+        
 
          Preassemblato[] ricevuto;
          int dimRicevuto;
@@ -40,7 +41,7 @@ namespace Client
             this.pt.Token = token;
             comboBox1.Text = "Build Guidata";
 
-
+            
         }
 
         private async void Form2_Load(object sender, EventArgs e)
@@ -218,8 +219,11 @@ namespace Client
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonCarrello_Click(object sender, EventArgs e)
         {
+            FormCarrello carrello = new FormCarrello(listViewCarrello);
+            carrello.Show();
+            // carrello.Visible = false;
 
         }
 
