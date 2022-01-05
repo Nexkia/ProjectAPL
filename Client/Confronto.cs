@@ -59,6 +59,7 @@ namespace Client
                 IFactory a = (IFactory)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
 
+                Console.WriteLine("getmodello: " + a.getModello());
 
                 //string[] b = a.getDetail();
                 //Console.WriteLine("modello: " + a.getModello() + " Valutazione: " + a.getValutazione() + " Detail: " + b[0]);
@@ -90,11 +91,11 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                    sc.label7Invisible(); sc.label8Invisible();
-                     sc.panel8Invisible(); 
-                    sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                     sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                     sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                    sc.label6Invisible(); sc.label7Invisible(); 
+                    sc.panel7Invisible(); 
+                    sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); 
+                    sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); 
+                    sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraSchedaVideo(componenti, sc);
                     break;
@@ -102,11 +103,10 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                    sc.label7Invisible(); sc.label8Invisible();
-                    sc.panel8Invisible();
-                    sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                    sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                    sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                     sc.label7Invisible();
+                     sc.labelMod1Det5Invisible();
+                     sc.labelMod2Det5Invisible();
+                     sc.labelMod3Det5Invisible(); 
 
                     MostraSchedaMadre(componenti, sc);
                     break;
@@ -115,11 +115,10 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                     sc.label7Invisible(); sc.label8Invisible();
-                      sc.panel8Invisible();
-                     sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                     sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                    sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                     sc.label7Invisible(); 
+                     sc.labelMod1Det5Invisible(); 
+                     sc.labelMod2Det5Invisible(); 
+                    sc.labelMod3Det5Invisible(); 
 
                     MostraRam(componenti, sc);
                     break;
@@ -129,11 +128,11 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); sc.label8Invisible();
-                    sc.panel6Invisible(); sc.panel7Invisible(); sc.panel8Invisible();
-                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); 
+                    sc.panel6Invisible(); sc.panel7Invisible(); 
+                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); 
+                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); 
+                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraAlimentatore(componenti, sc);
 
@@ -142,11 +141,11 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); sc.label8Invisible();
-                    sc.panel6Invisible(); sc.panel7Invisible(); sc.panel8Invisible();
-                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); 
+                    sc.panel6Invisible(); sc.panel7Invisible(); 
+                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); 
+                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); 
+                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraDissipatore(componenti, sc);
 
@@ -156,11 +155,11 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                     sc.label6Invisible(); sc.label7Invisible(); sc.label8Invisible();
-                     sc.panel7Invisible(); sc.panel8Invisible();
-                     sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                     sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                     sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                     sc.label6Invisible(); sc.label7Invisible(); 
+                     sc.panel7Invisible(); 
+                     sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); 
+                     sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); 
+                     sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible();
 
                     MostraMemoria(componenti, sc);
                     break;
@@ -168,11 +167,11 @@ namespace Client
                     sc.labelCategoriaName(categoria);
 
                     //rendo invisibile tutto ciò che non serve
-                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); sc.label8Invisible();
-                    sc.panel6Invisible(); sc.panel7Invisible(); sc.panel8Invisible();
-                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); sc.labelMod1Det6Invisible();
-                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); sc.labelMod2Det6Invisible();
-                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); sc.labelMod3Det6Invisible();
+                    sc.label5Invisible(); sc.label6Invisible(); sc.label7Invisible(); 
+                    sc.panel6Invisible(); sc.panel7Invisible(); 
+                    sc.labelMod1Det3Invisible(); sc.labelMod1Det4Invisible(); sc.labelMod1Det5Invisible(); 
+                    sc.labelMod2Det3Invisible(); sc.labelMod2Det4Invisible(); sc.labelMod2Det5Invisible(); 
+                    sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraCasePc(componenti, sc);
                     break;
@@ -201,20 +200,19 @@ namespace Client
                 string[] a = componente1.getDetail();
 
 
-                sc.label4Name("Tdp");
+                sc.label4Name("frequenza");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
-                sc.label5Name("frequenza");
+                sc.label5Name("socket");
                 sc.labelMod1Det3Name(Convert.ToString(a[1]));
 
-                sc.label6Name("socket");
+                sc.label6Name("Core");
                 sc.labelMod1Det4Name(Convert.ToString(a[2]));
 
-                sc.label7Name("Core");
+                sc.label7Name("Thread");
                 sc.labelMod1Det5Name(Convert.ToString(a[3]));
 
-                sc.label8Name("Thread");
-                sc.labelMod1Det6Name(Convert.ToString(a[4]));
+                
 
 
                 if (componenti.Count > 1)
@@ -234,30 +232,29 @@ namespace Client
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
-                    //Tdp
+                    //frequenza
                     string[] b = componente2.getDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
-                    //frequenza
+                    //socket
                     sc.labelMod2Det3Name(Convert.ToString(b[1]));
 
-                    //socket
+                    //Core
                     sc.labelMod2Det4Name(Convert.ToString(b[2]));
 
-                    //Core
+                    //Thread
                     sc.labelMod2Det5Name(Convert.ToString(b[3]));
 
-                    //Thread
-                    sc.labelMod2Det6Name(Convert.ToString(b[4]));
+                   
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
-                    ColoraLabelDet2(sc, a[0], b[0]);//Tdp
-                    ColoraLabelDet3(sc, a[1], b[1]);//frequenza
+                    ColoraLabelDet2(sc, a[0], b[0]);//frequenza
                                                     //socket
-                    ColoraLabelDet5(sc, a[3], b[3]);//core
-                    ColoraLabelDet6(sc, a[4], b[4]);//Thread
+                    ColoraLabelDet4(sc, a[2], b[2]);//core
+                    ColoraLabelDet5(sc, a[3], b[3]);//Thread
+                    
 
 
 
@@ -276,30 +273,29 @@ namespace Client
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
 
-                        //tdp
+                        //frequenza
                         string[] c = componente3.getDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
-                        //frequenza
+                        //socket
                         sc.labelMod3Det3Name(Convert.ToString(c[1]));
 
-                        //socket
+                        //core
                         sc.labelMod3Det4Name(Convert.ToString(c[2]));
 
-                        //Core
+                        //Thread
                         sc.labelMod3Det5Name(Convert.ToString(c[3]));
 
-                        //Thread
-                        sc.labelMod3Det6Name(Convert.ToString(c[4]));
+                        
 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
-                        ColoraLabelDet2(sc, a[0], b[0], c[0]);//Tdp
-                        ColoraLabelDet3(sc, a[1], b[1], c[1]);//frequenza
+                        ColoraLabelDet2(sc, a[0], b[0], c[0]);//frequenza
                                                               //socket
-                        ColoraLabelDet5(sc, a[3], b[3], c[3]);//core
-                        ColoraLabelDet6(sc, a[4], b[4], c[4]);//Thread
+                        ColoraLabelDet4(sc, a[2], b[2], c[2]);//core
+                        ColoraLabelDet5(sc, a[3], b[3], c[3]);//Thread
+                        
 
 
 
@@ -331,11 +327,10 @@ namespace Client
                 sc.label4Name("Tdp");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
-                sc.label5Name("frequenza");
+                sc.label5Name("Vram");
                 sc.labelMod1Det3Name(Convert.ToString(a[1]));
 
-                sc.label6Name("Vram");
-                sc.labelMod1Det4Name(Convert.ToString(a[2]));
+                
 
                 
 
@@ -361,20 +356,18 @@ namespace Client
                     string[] b = componente2.getDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
-                    //frequenza
+                    //Vram
                     sc.labelMod2Det3Name(Convert.ToString(b[1]));
 
-                    //Vram
-                    sc.labelMod2Det4Name(Convert.ToString(b[2]));
-
+                   
                    
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, a[0], b[0]);//Tdp
-                    ColoraLabelDet3(sc, a[1], b[1]);//frequenza
-                    ColoraLabelDet4(sc, a[2], b[2]);//Vram
+                    ColoraLabelDet3(sc, a[1], b[1]);//Vram
+                    
                    
 
 
@@ -398,19 +391,18 @@ namespace Client
                         string[] c = componente3.getDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
-                        //frequenza
+                        //Vram
                         sc.labelMod3Det3Name(Convert.ToString(c[1]));
 
-                        //Vram
-                        sc.labelMod3Det4Name(Convert.ToString(c[2]));
+                        
 
  
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//Tdp
-                        ColoraLabelDet3(sc, a[1], b[1], c[1]);//frequenza
-                        ColoraLabelDet4(sc, a[2], b[2], c[2]);//Vram
+                        ColoraLabelDet3(sc, a[1], b[1], c[1]);//Vram
+                        
 
 
                     }
@@ -435,39 +427,22 @@ namespace Client
                 sc.labelMod1Det1Name(prezzi[0]);
 
 
-                string[] a = componente1.getDetail();
-
-                //if da togliere
-                if (a == null) { a = new string[] { "aaaaaaprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-                
-
                 sc.label4Name("Cpu Socket");
-                sc.labelMod1Det2Name(Convert.ToString(OttieniUnaStringa(a)));
+                string[] a = componente1.getDetail();
+                sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
-                string[] a1 = componente1.getMoreDetail();
-
-                //if da togliere
-                if (a1 == null) { a1 = new string[] { "aaaaaaprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-                
-
+ 
                 sc.label5Name("Ram");
-                sc.labelMod1Det3Name(OttieniUnaStringa(a1));
+                sc.labelMod1Det3Name(a[1]);
 
-
-                sc.label6Name("SsdM2");
-
-                //bool da togliere
-                bool a2 = true;
-                sc.labelMod1Det4Name(Convert.ToString(a2));
-
-
+                sc.label6Name("ChipSet");
+                sc.labelMod1Det4Name(a[2]);
 
 
                 if (componenti.Count > 1)
                 {
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
-
 
 
                     IFactory componente2 = (IFactory)componenti[1];
@@ -482,29 +457,13 @@ namespace Client
 
                     //Cpu socket
                     string[] b = componente2.getDetail();
-
-                    //if da togliere
-                    if (b == null) { b = new string[] { "bbbbbprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-
-
-                    //cpu
-                    sc.labelMod2Det2Name(OttieniUnaStringa(b));
-
-                    string[] b1 = componente2.getMoreDetail();
-
-                    //if da togliere
-                    if (b1 == null) { b1 = new string[] { "bbbbprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-
+                    sc.labelMod2Det2Name(b[0]);
 
                     //RAM
-                    sc.labelMod2Det3Name(OttieniUnaStringa(b1));
+                    sc.labelMod2Det3Name(b[1]);
 
-                    //bool da togliere
-                    bool b2 = true;
-
-                    //ssdm2
-                    sc.labelMod2Det4Name(Convert.ToString(b2));
-
+                    //ChipSet
+                    sc.labelMod2Det4Name(b[2]);
 
 
                     //colora i campi con i valori migliori
@@ -512,10 +471,8 @@ namespace Client
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     //cpu socket
                     //ram
-                    //ssdm2
-
-
-
+                    //ChipSet
+                    
 
                     if (componenti.Count > 2)
                     {
@@ -534,37 +491,21 @@ namespace Client
 
                         //Cpu socket
                         string[] c = componente3.getDetail();
-
-                        //if da togliere
-                        if (c == null) { c = new string[] { "cccccprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-
-
-                        //cpu
-                        sc.labelMod3Det2Name(OttieniUnaStringa(c));
-
-                        string[] c1 = componente3.getMoreDetail();
-
-                        //if da togliere
-                        if (c1 == null) { c1 = new string[] { "cccccprov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5", "prova6", "s7", "s8", "s9", "s0" }; }
-
+                        sc.labelMod3Det2Name(c[0]);
 
                         //RAM
-                        sc.labelMod3Det3Name(OttieniUnaStringa(c1));
+                        sc.labelMod3Det3Name(c[1]);
 
-                        //bool da togliere
-                        bool c2 = true;
-
-                        //ssdm2
-                        sc.labelMod3Det4Name(Convert.ToString(c2));
+                        //ChipSet
+                        sc.labelMod3Det4Name(c[2]);
 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                        //cpu socket
                        //ram
-                       //ssdM2
-
-
+                       //Chipset
+    
                     }
                 }
             }
@@ -765,6 +706,7 @@ namespace Client
         }
         public void MostraDissipatore(IList componenti, schedaConfronto sc)
         {
+            Console.WriteLine("numero componenti: " + componenti.Count);
 
             if (componenti.Count > 0)
             {
@@ -902,7 +844,7 @@ namespace Client
                     string[] b = componente2.getDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
-                    string[] tipo = ConvertiInNumeri("ssdm2", "ssd", "hdd", a[0], b[0]);
+                    string[] tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0]);
 
                     //Capienza
                     sc.labelMod2Det3Name(capienze[1]);
@@ -934,7 +876,7 @@ namespace Client
                         string[] c = componente3.getDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
-                        tipo = ConvertiInNumeri("ssdm2", "ssd", "hdd", a[0], b[0], c[0]);
+                        tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0], c[0]);
 
                         //Capienza
                         sc.labelMod3Det3Name(capienze[2]);
@@ -995,7 +937,7 @@ namespace Client
                     string[] b = componente2.getDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
-                    string[] tipo = ConvertiInNumeri("ultra", "full", "mid", a[0], b[0]);
+                    string[] tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0]);
 
 
 
@@ -1025,7 +967,7 @@ namespace Client
                         string[] c = componente3.getDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
-                         tipo = ConvertiInNumeri("ultra", "full", "mid", a[0], b[0],c[0]);
+                         tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0],c[0]);
 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
@@ -1580,61 +1522,6 @@ namespace Client
 
 
         }
-        public void ColoraLabelDet6(schedaConfronto sc, params string[] abc)
-        {
-            if (abc.Length == 2)
-            {
-                if (MaxNumber(abc[0], abc[1]) == "a")
-                {
-                    sc.labelMod1Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1]) == "b")
-                {
-                    sc.labelMod2Det6Color(Color.Red);
-                }
-            }
-
-            if (abc.Length == 3)
-            {   //resetto i colori, mettendoli neri
-                sc.labelMod1Det6Color(Color.Black);
-                sc.labelMod2Det6Color(Color.Black);
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
-                    sc.labelMod1Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
-                    sc.labelMod2Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
-                    sc.labelMod3Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "ab")
-                {
-                    sc.labelMod1Det6Color(Color.Red);
-                    sc.labelMod2Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "bc")
-                {
-                    sc.labelMod2Det6Color(Color.Red);
-                    sc.labelMod3Det6Color(Color.Red);
-                }
-
-                if (MaxNumber(abc[0], abc[1], abc[2]) == "ac")
-                {
-                    sc.labelMod1Det6Color(Color.Red);
-                    sc.labelMod3Det6Color(Color.Red);
-                }
-            }
-
-
-        }
+       
     }
 }

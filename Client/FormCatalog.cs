@@ -22,51 +22,51 @@ namespace Client
             pt.SetProtocolID("catalogo"); pt.Token = "";
         }
 
-        private async void cpu_Click(object sender, EventArgs e)
+        private  void cpu_Click(object sender, EventArgs e)
         {
             pt.Data =  cpuButton.Text;
              GetElements( pt);
         }
 
 
-        private async void schedaMadre_Click(object sender, EventArgs e)
+        private  void schedaMadre_Click(object sender, EventArgs e)
         {
             pt.Data = schedaMadreButton.Text;
             GetElements(pt);
         }
 
-        private async void ram_Click(object sender, EventArgs e)
+        private  void ram_Click(object sender, EventArgs e)
         {
             pt.Data = ramButton.Text;
             GetElements(pt);
         }
 
-        private async void memoria_Click(object sender, EventArgs e)
+        private  void memoria_Click(object sender, EventArgs e)
         {
             pt.Data = memoriaButton.Text;
             GetElements(pt);
         }
 
-        private async void alimentatore_Click(object sender, EventArgs e)
+        private  void alimentatore_Click(object sender, EventArgs e)
         {
             pt.Data = alimentatoreButton.Text;
             GetElements(pt);
 
         }
 
-        private async void schedaVideo_Click(object sender, EventArgs e)
+        private  void schedaVideo_Click(object sender, EventArgs e)
         {
             pt.Data = schedaVideoButton.Text;
             GetElements(pt);
         }
 
-        private async void casepc_Click(object sender, EventArgs e)
+        private  void casepc_Click(object sender, EventArgs e)
         {
             pt.Data = casepcButton.Text;
             GetElements(pt);
         }
 
-        private async void dissipatore_Click(object sender, EventArgs e)
+        private  void dissipatore_Click(object sender, EventArgs e)
         {
             pt.Data = dissipatoreButton.Text;
             GetElements(pt);

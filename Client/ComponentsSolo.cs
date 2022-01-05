@@ -15,11 +15,12 @@ namespace Client
     public partial class ComponentsSolo : UserControl
     {
         ListView vecchioCarrello;
+      
         public ComponentsSolo(ListView vc)
         {
             InitializeComponent();
             vecchioCarrello=vc;
-
+            
         }
 
 
@@ -34,7 +35,7 @@ namespace Client
 
         private void buttonCarrello_Click(object sender, EventArgs e)
         {
-            if (listViewSolo.SelectedItems.Count > 0)
+            if (listViewSolo.SelectedItems.Count > 0 )
             {
 
 
@@ -58,18 +59,27 @@ namespace Client
                 lvitem.SubItems.Add("" + capienza + "");
                 lvitem.SubItems.Add("" + categoria + "");
 
-                int a = 0;
-                // if (vecchioCarrello.Items. == false)
-                foreach (ListViewItem value in vecchioCarrello.Items)
-                {
-                    if (value.SubItems == lvitem.SubItems)
-                    {
-                        a = 1;
-                    }
-                }
+                
+               
 
-                if(a==0)
-                vecchioCarrello.Items.Add(lvitem);
+                ListViewItem risultato = vecchioCarrello.FindItemWithText(categoria);
+
+                if (risultato == null)
+                {
+                    vecchioCarrello.Items.Add(lvitem);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Tipo di componente già presente nel carrello, " +
+                        "sceglierne uno di categoria diversa","Errore",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               
+                
+                
+                
+                
 
 
             }
@@ -78,6 +88,11 @@ namespace Client
                 MessageBox.Show("Nessun componente è stato selezionato",
                           "Errore Aggiungi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void labelCategoria_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

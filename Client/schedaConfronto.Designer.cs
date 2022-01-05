@@ -37,7 +37,6 @@ namespace Client
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.panelVerticale1 = new System.Windows.Forms.Panel();
             this.panelVerticale2 = new System.Windows.Forms.Panel();
             this.panelVerticale3 = new System.Windows.Forms.Panel();
@@ -48,7 +47,6 @@ namespace Client
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.labelModello1 = new System.Windows.Forms.Label();
             this.labelModello2 = new System.Windows.Forms.Label();
             this.labelModello3 = new System.Windows.Forms.Label();
@@ -59,31 +57,25 @@ namespace Client
             this.labelMod1Det3 = new System.Windows.Forms.Label();
             this.labelMod1Det4 = new System.Windows.Forms.Label();
             this.labelMod1Det5 = new System.Windows.Forms.Label();
-            this.labelMod1Det6 = new System.Windows.Forms.Label();
             this.labelMod2Det1 = new System.Windows.Forms.Label();
             this.labelMod2Det3 = new System.Windows.Forms.Label();
             this.labelMod2Det4 = new System.Windows.Forms.Label();
             this.labelMod2Det5 = new System.Windows.Forms.Label();
-            this.labelMod2Det6 = new System.Windows.Forms.Label();
             this.labelMod3Det1 = new System.Windows.Forms.Label();
             this.labelMod3Det3 = new System.Windows.Forms.Label();
             this.labelMod3Det4 = new System.Windows.Forms.Label();
             this.labelMod3Det5 = new System.Windows.Forms.Label();
-            this.labelMod3Det6 = new System.Windows.Forms.Label();
             this.panelNascosto3 = new System.Windows.Forms.Panel();
             this.panelNascosto2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelMod2Det2 = new System.Windows.Forms.Label();
-            this.labelMod3Det2 = new System.Windows.Forms.Label();
             this.labelMod1Det2 = new System.Windows.Forms.Label();
+            this.labelMod3Det2 = new System.Windows.Forms.Label();
+            this.labelMod2Det2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelCategoria
             // 
-            this.labelCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCategoria.AutoEllipsis = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCategoria.Location = new System.Drawing.Point(250, 0);
@@ -92,6 +84,7 @@ namespace Client
             this.labelCategoria.TabIndex = 0;
             this.labelCategoria.Text = "labelCategoria";
             this.labelCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelCategoria.Click += new System.EventHandler(this.labelCategoria_Click);
             // 
             // panel2
             // 
@@ -111,7 +104,7 @@ namespace Client
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel4.BackColor = System.Drawing.Color.BurlyWood;
             this.panel4.Location = new System.Drawing.Point(125, 200);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(750, 3);
@@ -127,7 +120,7 @@ namespace Client
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel6.BackColor = System.Drawing.Color.BurlyWood;
             this.panel6.Location = new System.Drawing.Point(125, 300);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(750, 3);
@@ -149,20 +142,12 @@ namespace Client
             this.panel8.Size = new System.Drawing.Size(750, 3);
             this.panel8.TabIndex = 7;
             // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel9.Location = new System.Drawing.Point(125, 450);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(750, 3);
-            this.panel9.TabIndex = 8;
-            // 
             // panelVerticale1
             // 
             this.panelVerticale1.BackColor = System.Drawing.Color.Black;
             this.panelVerticale1.Location = new System.Drawing.Point(125, 76);
             this.panelVerticale1.Name = "panelVerticale1";
-            this.panelVerticale1.Size = new System.Drawing.Size(7, 377);
+            this.panelVerticale1.Size = new System.Drawing.Size(7, 326);
             this.panelVerticale1.TabIndex = 9;
             // 
             // panelVerticale2
@@ -170,7 +155,7 @@ namespace Client
             this.panelVerticale2.BackColor = System.Drawing.Color.Black;
             this.panelVerticale2.Location = new System.Drawing.Point(369, 76);
             this.panelVerticale2.Name = "panelVerticale2";
-            this.panelVerticale2.Size = new System.Drawing.Size(7, 377);
+            this.panelVerticale2.Size = new System.Drawing.Size(7, 326);
             this.panelVerticale2.TabIndex = 10;
             // 
             // panelVerticale3
@@ -178,7 +163,7 @@ namespace Client
             this.panelVerticale3.BackColor = System.Drawing.Color.Black;
             this.panelVerticale3.Location = new System.Drawing.Point(624, 76);
             this.panelVerticale3.Name = "panelVerticale3";
-            this.panelVerticale3.Size = new System.Drawing.Size(7, 377);
+            this.panelVerticale3.Size = new System.Drawing.Size(7, 326);
             this.panelVerticale3.TabIndex = 11;
             // 
             // label1
@@ -251,20 +236,10 @@ namespace Client
             this.label7.Text = "label7";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label8
-            // 
-            this.label8.AutoEllipsis = true;
-            this.label8.Location = new System.Drawing.Point(0, 420);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 23);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "label8";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // labelModello1
             // 
             this.labelModello1.AutoEllipsis = true;
-            this.labelModello1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelModello1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelModello1.Location = new System.Drawing.Point(138, 56);
             this.labelModello1.Name = "labelModello1";
             this.labelModello1.Size = new System.Drawing.Size(225, 41);
@@ -275,7 +250,7 @@ namespace Client
             // labelModello2
             // 
             this.labelModello2.AutoEllipsis = true;
-            this.labelModello2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelModello2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelModello2.Location = new System.Drawing.Point(382, 58);
             this.labelModello2.Name = "labelModello2";
             this.labelModello2.Size = new System.Drawing.Size(236, 41);
@@ -286,7 +261,7 @@ namespace Client
             // labelModello3
             // 
             this.labelModello3.AutoEllipsis = true;
-            this.labelModello3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelModello3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelModello3.Location = new System.Drawing.Point(637, 56);
             this.labelModello3.Name = "labelModello3";
             this.labelModello3.Size = new System.Drawing.Size(235, 41);
@@ -371,17 +346,6 @@ namespace Client
             this.labelMod1Det5.Text = "labelMod1Det5";
             this.labelMod1Det5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelMod1Det6
-            // 
-            this.labelMod1Det6.AutoEllipsis = true;
-            this.labelMod1Det6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMod1Det6.Location = new System.Drawing.Point(138, 408);
-            this.labelMod1Det6.Name = "labelMod1Det6";
-            this.labelMod1Det6.Size = new System.Drawing.Size(225, 41);
-            this.labelMod1Det6.TabIndex = 34;
-            this.labelMod1Det6.Text = "labelMod1Det6";
-            this.labelMod1Det6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelMod2Det1
             // 
             this.labelMod2Det1.AutoEllipsis = true;
@@ -425,17 +389,6 @@ namespace Client
             this.labelMod2Det5.TabIndex = 39;
             this.labelMod2Det5.Text = "labelMod2Det5";
             this.labelMod2Det5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelMod2Det6
-            // 
-            this.labelMod2Det6.AutoEllipsis = true;
-            this.labelMod2Det6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMod2Det6.Location = new System.Drawing.Point(382, 408);
-            this.labelMod2Det6.Name = "labelMod2Det6";
-            this.labelMod2Det6.Size = new System.Drawing.Size(236, 41);
-            this.labelMod2Det6.TabIndex = 40;
-            this.labelMod2Det6.Text = "labelMod2Det6";
-            this.labelMod2Det6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelMod3Det1
             // 
@@ -481,31 +434,19 @@ namespace Client
             this.labelMod3Det5.Text = "labelMod3Det5";
             this.labelMod3Det5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelMod3Det6
-            // 
-            this.labelMod3Det6.AutoEllipsis = true;
-            this.labelMod3Det6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMod3Det6.Location = new System.Drawing.Point(634, 408);
-            this.labelMod3Det6.Name = "labelMod3Det6";
-            this.labelMod3Det6.Size = new System.Drawing.Size(238, 41);
-            this.labelMod3Det6.TabIndex = 46;
-            this.labelMod3Det6.Text = "labelMod3Det6";
-            this.labelMod3Det6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panelNascosto3
             // 
-            this.panelNascosto3.Location = new System.Drawing.Point(630, 55);
+            this.panelNascosto3.Location = new System.Drawing.Point(630, 58);
             this.panelNascosto3.Name = "panelNascosto3";
-            this.panelNascosto3.Size = new System.Drawing.Size(244, 482);
+            this.panelNascosto3.Size = new System.Drawing.Size(253, 415);
             this.panelNascosto3.TabIndex = 47;
             // 
             // panelNascosto2
             // 
-            this.panelNascosto2.Location = new System.Drawing.Point(372, 56);
+            this.panelNascosto2.Location = new System.Drawing.Point(372, 58);
             this.panelNascosto2.Name = "panelNascosto2";
-            this.panelNascosto2.Size = new System.Drawing.Size(259, 482);
+            this.panelNascosto2.Size = new System.Drawing.Size(259, 415);
             this.panelNascosto2.TabIndex = 48;
-            
             // 
             // panel1
             // 
@@ -514,17 +455,14 @@ namespace Client
             this.panel1.Controls.Add(this.labelMod1Det2);
             this.panel1.Controls.Add(this.labelMod3Det2);
             this.panel1.Controls.Add(this.labelMod2Det2);
-            this.panel1.Controls.Add(this.labelMod3Det6);
             this.panel1.Controls.Add(this.labelMod3Det5);
             this.panel1.Controls.Add(this.labelMod3Det4);
             this.panel1.Controls.Add(this.labelMod3Det3);
             this.panel1.Controls.Add(this.labelMod3Det1);
-            this.panel1.Controls.Add(this.labelMod2Det6);
             this.panel1.Controls.Add(this.labelMod2Det5);
             this.panel1.Controls.Add(this.labelMod2Det4);
             this.panel1.Controls.Add(this.labelMod2Det3);
             this.panel1.Controls.Add(this.labelMod2Det1);
-            this.panel1.Controls.Add(this.labelMod1Det6);
             this.panel1.Controls.Add(this.labelMod1Det5);
             this.panel1.Controls.Add(this.labelMod1Det4);
             this.panel1.Controls.Add(this.labelMod1Det3);
@@ -535,7 +473,6 @@ namespace Client
             this.panel1.Controls.Add(this.labelModello3);
             this.panel1.Controls.Add(this.labelModello2);
             this.panel1.Controls.Add(this.labelModello1);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -546,7 +483,6 @@ namespace Client
             this.panel1.Controls.Add(this.panelVerticale3);
             this.panel1.Controls.Add(this.panelVerticale2);
             this.panel1.Controls.Add(this.panelVerticale1);
-            this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.panel7);
             this.panel1.Controls.Add(this.panel6);
@@ -555,41 +491,14 @@ namespace Client
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.labelCategoria);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 535);
+            this.panel1.Size = new System.Drawing.Size(875, 476);
             this.panel1.TabIndex = 0;
-            
-            // 
-            // labelMod2Det2
-            // 
-            this.labelMod2Det2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelMod2Det2.AutoEllipsis = true;
-            this.labelMod2Det2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMod2Det2.Location = new System.Drawing.Point(382, 206);
-            this.labelMod2Det2.Margin = new System.Windows.Forms.Padding(0);
-            this.labelMod2Det2.Name = "labelMod2Det2";
-            this.labelMod2Det2.Size = new System.Drawing.Size(236, 41);
-            this.labelMod2Det2.TabIndex = 50;
-            this.labelMod2Det2.Text = "labelMod2Det2";
-            this.labelMod2Det2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelMod3Det2
-            // 
-            this.labelMod3Det2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelMod3Det2.AutoEllipsis = true;
-            this.labelMod3Det2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMod3Det2.Location = new System.Drawing.Point(638, 206);
-            this.labelMod3Det2.Margin = new System.Windows.Forms.Padding(0);
-            this.labelMod3Det2.Name = "labelMod3Det2";
-            this.labelMod3Det2.Size = new System.Drawing.Size(236, 41);
-            this.labelMod3Det2.TabIndex = 51;
-            this.labelMod3Det2.Text = "labelMod3Det2";
-            this.labelMod3Det2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelMod1Det2
             // 
-            this.labelMod1Det2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelMod1Det2.AutoEllipsis = true;
             this.labelMod1Det2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMod1Det2.Location = new System.Drawing.Point(143, 206);
@@ -600,13 +509,37 @@ namespace Client
             this.labelMod1Det2.Text = "labelMod1Det2";
             this.labelMod1Det2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // labelMod3Det2
+            // 
+            this.labelMod3Det2.AutoEllipsis = true;
+            this.labelMod3Det2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMod3Det2.Location = new System.Drawing.Point(638, 206);
+            this.labelMod3Det2.Margin = new System.Windows.Forms.Padding(0);
+            this.labelMod3Det2.Name = "labelMod3Det2";
+            this.labelMod3Det2.Size = new System.Drawing.Size(236, 41);
+            this.labelMod3Det2.TabIndex = 51;
+            this.labelMod3Det2.Text = "labelMod3Det2";
+            this.labelMod3Det2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelMod2Det2
+            // 
+            this.labelMod2Det2.AutoEllipsis = true;
+            this.labelMod2Det2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMod2Det2.Location = new System.Drawing.Point(382, 206);
+            this.labelMod2Det2.Margin = new System.Windows.Forms.Padding(0);
+            this.labelMod2Det2.Name = "labelMod2Det2";
+            this.labelMod2Det2.Size = new System.Drawing.Size(236, 41);
+            this.labelMod2Det2.TabIndex = 50;
+            this.labelMod2Det2.Text = "labelMod2Det2";
+            this.labelMod2Det2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // schedaConfronto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "schedaConfronto";
-            this.Size = new System.Drawing.Size(875, 538);
+            this.Size = new System.Drawing.Size(875, 476);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -622,7 +555,6 @@ namespace Client
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panelVerticale1;
         private System.Windows.Forms.Panel panelVerticale2;
         private System.Windows.Forms.Panel panelVerticale3;
@@ -633,7 +565,6 @@ namespace Client
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelModello1;
         private System.Windows.Forms.Label labelModello2;
         private System.Windows.Forms.Label labelModello3;
@@ -644,17 +575,14 @@ namespace Client
         private System.Windows.Forms.Label labelMod1Det3;
         private System.Windows.Forms.Label labelMod1Det4;
         private System.Windows.Forms.Label labelMod1Det5;
-        private System.Windows.Forms.Label labelMod1Det6;
         private System.Windows.Forms.Label labelMod2Det1;
         private System.Windows.Forms.Label labelMod2Det3;
         private System.Windows.Forms.Label labelMod2Det4;
         private System.Windows.Forms.Label labelMod2Det5;
-        private System.Windows.Forms.Label labelMod2Det6;
         private System.Windows.Forms.Label labelMod3Det1;
         private System.Windows.Forms.Label labelMod3Det3;
         private System.Windows.Forms.Label labelMod3Det4;
         private System.Windows.Forms.Label labelMod3Det5;
-        private System.Windows.Forms.Label labelMod3Det6;
         private System.Windows.Forms.Panel panelNascosto3;
         private System.Windows.Forms.Panel panelNascosto2;
         private System.Windows.Forms.Panel panel1;
