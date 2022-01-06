@@ -36,6 +36,7 @@ namespace Client
             this.lblMessage = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCarrello = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +47,7 @@ namespace Client
             this.lblTitle.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(180, 3);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(569, 26);
+            this.lblTitle.Size = new System.Drawing.Size(370, 26);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "titolo";
             // 
@@ -71,7 +72,6 @@ namespace Client
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 167);
             this.panel1.TabIndex = 3;
-           
             // 
             // pictureBox1
             // 
@@ -81,19 +81,28 @@ namespace Client
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            
+            // 
+            // buttonCarrello
+            // 
+            this.buttonCarrello.Location = new System.Drawing.Point(556, 0);
+            this.buttonCarrello.Name = "buttonCarrello";
+            this.buttonCarrello.Size = new System.Drawing.Size(193, 29);
+            this.buttonCarrello.TabIndex = 4;
+            this.buttonCarrello.Text = "Aggiungi al Carrello";
+            this.buttonCarrello.UseVisualStyleBackColor = true;
+            this.buttonCarrello.Click += new System.EventHandler(this.buttonCarrello_Click);
             // 
             // ListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.buttonCarrello);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblMessage);
             this.Name = "ListItem";
             this.Size = new System.Drawing.Size(752, 170);
-            
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -108,5 +117,6 @@ namespace Client
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Panel panel1;
+        private Button buttonCarrello;
     }
 }

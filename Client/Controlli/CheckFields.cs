@@ -60,7 +60,7 @@ namespace Client.Controlli
                         else
                         {
                             //questa è la return che viene utilizzata quando tutto procede senza problemi
-                            return "Email o Codice Fiscale già usati in altri account";
+                            return "Apri Connessione";
                             
                         }
                     }
@@ -93,7 +93,7 @@ namespace Client.Controlli
                 else
                 {
                     //questa è la return che viene utilizzata quando tutto procede senza problemi
-                    return "Login fallito, Email o Password errate";
+                    return "Apri Connessione";
                     
                 }
             }

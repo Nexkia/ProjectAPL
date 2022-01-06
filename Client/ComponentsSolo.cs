@@ -58,21 +58,43 @@ namespace Client
                 lvitem.SubItems.Add("" + prezzo + "");
                 lvitem.SubItems.Add("" + capienza + "");
                 lvitem.SubItems.Add("" + categoria + "");
+                lvitem.SubItems.Add("Build Solo");
+
+
+                bool componentePresente = false;
+                int i ;
+
+                foreach (ListViewItem elem in vecchioCarrello.Items)
+                {
+                    i = 0;
+                    if (elem.Text == modello) { componentePresente = true; }
+
+                    foreach (ListViewItem.ListViewSubItem subItem in elem.SubItems)
+                    {
+
+                        //evitiamo di mettere due componenti con la stessa categoria (associati a build solo)
+                        if (subItem.Text == categoria) { i++; }
+
+                        if(subItem.Text =="Build Solo") { i++; }
+
+                    }
+                    
+                    if (i == 2) { componentePresente = true; }
+
+                }
 
                 
-               
+                
 
-                ListViewItem risultato = vecchioCarrello.FindItemWithText(categoria);
-
-                if (risultato == null)
+                
+                if (componentePresente == false)
                 {
                     vecchioCarrello.Items.Add(lvitem);
                     
                 }
                 else
                 {
-                    MessageBox.Show("Tipo di componente già presente nel carrello, " +
-                        "sceglierne uno di categoria diversa","Errore",
+                    MessageBox.Show("Modello o Categoria componente già presente","Errore",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                

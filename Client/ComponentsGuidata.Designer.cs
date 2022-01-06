@@ -1,7 +1,7 @@
 ﻿
 namespace Client
 {
-    partial class ComponentsTab
+    partial class ComponentsGuidata
     {
         /// <summary> 
         /// Variabile di progettazione necessaria.
@@ -30,6 +30,7 @@ namespace Client
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonCarrello = new System.Windows.Forms.Button();
             this.buttonConfronta = new System.Windows.Forms.Button();
             this.label1ComponentsTab = new System.Windows.Forms.Label();
             this.label4ComponentsTab = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@ namespace Client
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.buttonCarrello);
             this.panel1.Controls.Add(this.buttonConfronta);
             this.panel1.Controls.Add(this.label1ComponentsTab);
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -66,6 +68,17 @@ namespace Client
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(769, 55);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonCarrello
+            // 
+            this.buttonCarrello.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCarrello.Location = new System.Drawing.Point(414, 6);
+            this.buttonCarrello.Name = "buttonCarrello";
+            this.buttonCarrello.Size = new System.Drawing.Size(164, 42);
+            this.buttonCarrello.TabIndex = 4;
+            this.buttonCarrello.Text = "Aggiungi al Carrello";
+            this.buttonCarrello.UseVisualStyleBackColor = true;
+            this.buttonCarrello.Click += new System.EventHandler(this.buttonCarrello_Click);
             // 
             // buttonConfronta
             // 
@@ -86,7 +99,7 @@ namespace Client
             this.label1ComponentsTab.ForeColor = System.Drawing.Color.White;
             this.label1ComponentsTab.Location = new System.Drawing.Point(3, 7);
             this.label1ComponentsTab.Name = "label1ComponentsTab";
-            this.label1ComponentsTab.Size = new System.Drawing.Size(559, 42);
+            this.label1ComponentsTab.Size = new System.Drawing.Size(405, 42);
             this.label1ComponentsTab.TabIndex = 1;
             this.label1ComponentsTab.Text = "titolo";
             this.label1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -222,7 +235,6 @@ namespace Client
             this.checkBox1ComponentsTab.TabIndex = 7;
             this.checkBox1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1ComponentsTab.UseVisualStyleBackColor = false;
-            this.checkBox1ComponentsTab.CheckedChanged += new System.EventHandler(this.checkBox1ComponentsTab_CheckedChanged);
             // 
             // checkBox2ComponentsTab
             // 
@@ -238,7 +250,6 @@ namespace Client
             this.checkBox2ComponentsTab.TabIndex = 8;
             this.checkBox2ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox2ComponentsTab.UseVisualStyleBackColor = false;
-            this.checkBox2ComponentsTab.CheckedChanged += new System.EventHandler(this.checkBox2ComponentsTab_CheckedChanged);
             // 
             // checkBox3ComponentsTab
             // 
@@ -254,9 +265,8 @@ namespace Client
             this.checkBox3ComponentsTab.TabIndex = 9;
             this.checkBox3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox3ComponentsTab.UseVisualStyleBackColor = false;
-            this.checkBox3ComponentsTab.CheckedChanged += new System.EventHandler(this.checkBox3ComponentsTab_CheckedChanged);
             // 
-            // ComponentsTab
+            // ComponentsGuidata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -274,7 +284,7 @@ namespace Client
             this.Controls.Add(this.label4ComponentsTab);
             this.Controls.Add(this.panel5);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ComponentsTab";
+            this.Name = "ComponentsGuidata";
             this.Size = new System.Drawing.Size(761, 378);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3ComponentsTab)).EndInit();
@@ -307,5 +317,6 @@ namespace Client
         private System.Windows.Forms.CheckBox checkBox2ComponentsTab;
         private System.Windows.Forms.CheckBox checkBox3ComponentsTab;
         private System.Windows.Forms.Button buttonConfronta;
+        private System.Windows.Forms.Button buttonCarrello;
     }
 }

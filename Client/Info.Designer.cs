@@ -46,7 +46,7 @@ namespace Client
             this.label1info.TabIndex = 0;
             this.label1info.Text = "nome pc";
             this.label1info.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1info.Click += new System.EventHandler(this.label1info_Click);
+           
             // 
             // label2info
             // 
@@ -69,7 +69,7 @@ namespace Client
             this.Controls.Add(this.label1info);
             this.Name = "Info";
             this.Size = new System.Drawing.Size(365, 612);
-            this.Load += new System.EventHandler(this.Info_Load);
+           
             this.ResumeLayout(false);
             this.PerformLayout();
 

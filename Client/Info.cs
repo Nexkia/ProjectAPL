@@ -17,21 +17,11 @@ namespace Client
             InitializeComponent();
         }
 
-        private string _title;
-
-        public string Title {set { label1info.Text = value; } }
+   
+        public void Title(string m,float p) {label1info.Text = "Nome: " + m + " Prezzo: " + p;} 
         public string Message {set { label2info.Text = value; } }
+        
 
 
-
-        private void label1info_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Info_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

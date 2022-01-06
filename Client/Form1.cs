@@ -53,7 +53,7 @@ namespace Client
 
             switch (ris)
             {
-                case "Email o Codice Fiscale già usati in altri account":
+                case "Apri Connessione":
                     SocketTCP sckt = new SocketTCP();
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string Json = JsonSerializer.Serialize(
@@ -84,7 +84,7 @@ namespace Client
                     }
                     else
                     {
-                        MessageBox.Show(ris,
+                        MessageBox.Show("Email o Codice Fiscale già usati in altri account",
                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
@@ -108,7 +108,7 @@ namespace Client
 
             switch (ris)
             {
-                case "Login fallito, Email o Password errate":
+                case "Apri Connessione":
                     SocketTCP sckt = new SocketTCP();
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
@@ -128,7 +128,7 @@ namespace Client
                     {
 
                         Console.WriteLine("Login fallito," + responseData);
-                        MessageBox.Show(ris,"Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Login fallito, Email o Password errate", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {

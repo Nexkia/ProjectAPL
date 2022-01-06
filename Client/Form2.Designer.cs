@@ -32,9 +32,9 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("");
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCarrello = new System.Windows.Forms.Button();
@@ -50,12 +50,6 @@ namespace Client
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewCarrello = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,7 +116,7 @@ namespace Client
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(65, 778);
+            this.menuStrip1.Size = new System.Drawing.Size(65, 731);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -186,6 +180,7 @@ namespace Client
             this.flowLayoutPanel2.Size = new System.Drawing.Size(407, 550);
             this.flowLayoutPanel2.TabIndex = 7;
             this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            this.flowLayoutPanel2.Visible = false;
             // 
             // listView
             // 
@@ -195,9 +190,9 @@ namespace Client
             this.listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.listView.Location = new System.Drawing.Point(22, 67);
             this.listView.Name = "listView";
             this.listView.Scrollable = false;
@@ -218,51 +213,11 @@ namespace Client
             this.columnHeader2.Text = "Categoria";
             this.columnHeader2.Width = 150;
             // 
-            // listViewCarrello
-            // 
-            this.listViewCarrello.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.listViewCarrello.HideSelection = false;
-            this.listViewCarrello.Location = new System.Drawing.Point(833, 22);
-            this.listViewCarrello.Name = "listViewCarrello";
-            this.listViewCarrello.Size = new System.Drawing.Size(398, 171);
-            this.listViewCarrello.TabIndex = 9;
-            this.listViewCarrello.UseCompatibleStateImageBehavior = false;
-            this.listViewCarrello.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Modello";
-            this.columnHeader3.Width = 81;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Marca";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Prezzo";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Capienza";
-            this.columnHeader6.Width = 76;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Categoria";
-            this.columnHeader7.Width = 83;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1260, 778);
-            this.Controls.Add(this.listViewCarrello);
+            this.ClientSize = new System.Drawing.Size(822, 731);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
@@ -301,11 +256,5 @@ namespace Client
         private ListView listView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private ListView listViewCarrello;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
-        private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
     }
 }

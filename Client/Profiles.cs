@@ -20,11 +20,13 @@ namespace Client
         FlowLayoutPanel vecchioFlowLayoutPanel1;
         Protocol pt = new Protocol();
         ListView vecchialistView;
-        public Profiles(FlowLayoutPanel vfp1,ListView vlw)
+        ListView vecchioCarrello;
+        public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello)
         {
             InitializeComponent();
             vecchioFlowLayoutPanel1 = vfp1;
             vecchialistView = vlw;
+            vecchioCarrello = carrello;
         }
 
         private string _title;
@@ -55,7 +57,7 @@ namespace Client
         private async void populateItemsComponenti(string nameProfile)
         {
             SocketTCP skt = new SocketTCP();
-            ComponentsTab[] componentsTab = new ComponentsTab[8];
+            ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
             pt.SetProtocolID("profilo");pt.Token="";pt.Data = nameProfile;
             string ok = await skt.send(pt);
 
@@ -66,7 +68,7 @@ namespace Client
             Componente[,] showElements = new Componente[8, 3];
             for (int i = 0; i < componentsTab.Length; i++) { 
                 string okmsg = await skt.sendSingleMsg("ok");
-                componentsTab[i] = new ComponentsTab(vecchialistView);
+                componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
                 string response = "";
                 do
                 {

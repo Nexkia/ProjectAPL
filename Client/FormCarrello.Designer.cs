@@ -30,25 +30,24 @@ namespace Client
         private void InitializeComponent()
         {
             this.panelSfondo = new System.Windows.Forms.Panel();
-            this.listViewNuovoCarrello = new System.Windows.Forms.ListView();
+            this.buttonConferma = new System.Windows.Forms.Button();
+            this.buttonRimuovi = new System.Windows.Forms.Button();
+            this.listViewCarrello = new System.Windows.Forms.ListView();
             this.column1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labelTitolo = new System.Windows.Forms.Label();
-            this.buttonRimuovi = new System.Windows.Forms.Button();
-            this.buttonConferma = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.column6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelSfondo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSfondo
             // 
-            this.panelSfondo.Controls.Add(this.button1);
             this.panelSfondo.Controls.Add(this.buttonConferma);
             this.panelSfondo.Controls.Add(this.buttonRimuovi);
-            this.panelSfondo.Controls.Add(this.listViewNuovoCarrello);
+            this.panelSfondo.Controls.Add(this.listViewCarrello);
             this.panelSfondo.Controls.Add(this.labelTitolo);
             this.panelSfondo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSfondo.Location = new System.Drawing.Point(0, 0);
@@ -56,22 +55,43 @@ namespace Client
             this.panelSfondo.Size = new System.Drawing.Size(885, 484);
             this.panelSfondo.TabIndex = 0;
             // 
-            // listViewNuovoCarrello
+            // buttonConferma
             // 
-            this.listViewNuovoCarrello.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.buttonConferma.Location = new System.Drawing.Point(676, 134);
+            this.buttonConferma.Name = "buttonConferma";
+            this.buttonConferma.Size = new System.Drawing.Size(197, 44);
+            this.buttonConferma.TabIndex = 12;
+            this.buttonConferma.Text = "Conferma Carrello";
+            this.buttonConferma.UseVisualStyleBackColor = true;
+            this.buttonConferma.Click += new System.EventHandler(this.buttonConferma_Click);
+            // 
+            // buttonRimuovi
+            // 
+            this.buttonRimuovi.Location = new System.Drawing.Point(674, 69);
+            this.buttonRimuovi.Name = "buttonRimuovi";
+            this.buttonRimuovi.Size = new System.Drawing.Size(199, 46);
+            this.buttonRimuovi.TabIndex = 11;
+            this.buttonRimuovi.Text = "Rimuovi Elemento";
+            this.buttonRimuovi.UseVisualStyleBackColor = true;
+            this.buttonRimuovi.Click += new System.EventHandler(this.buttonRimuovi_Click);
+            // 
+            // listViewCarrello
+            // 
+            this.listViewCarrello.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.column1,
             this.column2,
             this.column3,
             this.column4,
-            this.column5});
-            this.listViewNuovoCarrello.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewNuovoCarrello.HideSelection = false;
-            this.listViewNuovoCarrello.Location = new System.Drawing.Point(35, 66);
-            this.listViewNuovoCarrello.Name = "listViewNuovoCarrello";
-            this.listViewNuovoCarrello.Size = new System.Drawing.Size(626, 406);
-            this.listViewNuovoCarrello.TabIndex = 10;
-            this.listViewNuovoCarrello.UseCompatibleStateImageBehavior = false;
-            this.listViewNuovoCarrello.View = System.Windows.Forms.View.Details;
+            this.column5,
+            this.column6});
+            this.listViewCarrello.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewCarrello.HideSelection = false;
+            this.listViewCarrello.Location = new System.Drawing.Point(35, 66);
+            this.listViewCarrello.Name = "listViewCarrello";
+            this.listViewCarrello.Size = new System.Drawing.Size(626, 406);
+            this.listViewCarrello.TabIndex = 10;
+            this.listViewCarrello.UseCompatibleStateImageBehavior = false;
+            this.listViewCarrello.View = System.Windows.Forms.View.Details;
             // 
             // column1
             // 
@@ -108,35 +128,10 @@ namespace Client
             this.labelTitolo.TabIndex = 1;
             this.labelTitolo.Text = "Carrello";
             // 
-            // buttonRimuovi
+            // column6
             // 
-            this.buttonRimuovi.Location = new System.Drawing.Point(674, 69);
-            this.buttonRimuovi.Name = "buttonRimuovi";
-            this.buttonRimuovi.Size = new System.Drawing.Size(199, 46);
-            this.buttonRimuovi.TabIndex = 11;
-            this.buttonRimuovi.Text = "Rimuovi Elemento";
-            this.buttonRimuovi.UseVisualStyleBackColor = true;
-            this.buttonRimuovi.Click += new System.EventHandler(this.buttonRimuovi_Click);
-            // 
-            // buttonConferma
-            // 
-            this.buttonConferma.Location = new System.Drawing.Point(676, 134);
-            this.buttonConferma.Name = "buttonConferma";
-            this.buttonConferma.Size = new System.Drawing.Size(197, 44);
-            this.buttonConferma.TabIndex = 12;
-            this.buttonConferma.Text = "Conferma Carrello";
-            this.buttonConferma.UseVisualStyleBackColor = true;
-            this.buttonConferma.Click += new System.EventHandler(this.buttonConferma_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(681, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 52);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.column6.Text = "Tipo";
+            this.column6.Width = 110;
             // 
             // FormCarrello
             // 
@@ -154,7 +149,7 @@ namespace Client
 
         private System.Windows.Forms.Panel panelSfondo;
         private System.Windows.Forms.Label labelTitolo;
-        private System.Windows.Forms.ListView listViewNuovoCarrello;
+        private System.Windows.Forms.ListView listViewCarrello;
         private System.Windows.Forms.ColumnHeader column1;
         private System.Windows.Forms.ColumnHeader column2;
         private System.Windows.Forms.ColumnHeader column3;
@@ -162,6 +157,6 @@ namespace Client
         private System.Windows.Forms.ColumnHeader column5;
         private System.Windows.Forms.Button buttonRimuovi;
         private System.Windows.Forms.Button buttonConferma;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader column6;
     }
 }

@@ -30,7 +30,8 @@ namespace Client
         Protocol pt = new Protocol();
         Form1 vecchioForm;
 
-        
+        FormCarrello carrelloForm;
+       
 
          Preassemblato[] ricevuto;
          int dimRicevuto;
@@ -42,7 +43,12 @@ namespace Client
             comboBox1.Text = "Build Guidata";
 
             
+
+            carrelloForm = new FormCarrello();
         }
+
+       
+
 
         private async void Form2_Load(object sender, EventArgs e)
         {
@@ -72,6 +78,13 @@ namespace Client
         protected override void OnClosed(EventArgs e)
         {
             vecchioForm.Visible = true;
+
+
+            //chiudo il carrello
+            carrelloForm.EnableCloseEvent();
+            carrelloForm.Close();
+
+
             base.OnClosed(e);
         }
 
@@ -92,73 +105,7 @@ namespace Client
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prova1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-
-
-
-
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-
-        }
-
-        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listItem1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+       
 
 
         private void populateItems(Preassemblato[] pre, int index)
@@ -173,12 +120,14 @@ namespace Client
             for (int i = 0; i < listItems.Length; i++) {
 
                 // Console.Write("flowLayoutPanel1.Controls.Count: " + flowLayoutPanel1.Controls.Count);
-                listItems[i] = new ListItem(flowLayoutPanel2, this,flowLayoutPanel1);
+                listItems[i] = new ListItem(flowLayoutPanel2, this,flowLayoutPanel1,carrelloForm.getListView());
 
                 listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.imageNotFound1;
                 listItems[i].IconBackground = Color.SteelBlue;
-                listItems[i].Title = "Nome: " + pre[i].Nome + " Prezzo: " + pre[i].Prezzo;//"qui si mette il titolo";
+                listItems[i].NomeModello = pre[i].Nome;
+                listItems[i].Prezzo= pre[i].Prezzo;
+                
 
 
                 string message = "";
@@ -221,9 +170,10 @@ namespace Client
 
         private void buttonCarrello_Click(object sender, EventArgs e)
         {
-            FormCarrello carrello = new FormCarrello(listViewCarrello);
-            carrello.Show();
-            // carrello.Visible = false;
+
+            carrelloForm.Show();
+            
+        
 
         }
 
@@ -259,7 +209,7 @@ namespace Client
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView);
+                profiles[i] = new Profiles(flowLayoutPanel1,listView,carrelloForm.getListView());
 
                 switch (i)
                 {
@@ -368,7 +318,7 @@ namespace Client
 
                 foreach (List<Componente> subList in myList)
                 {
-                    componentsSolo[index] = new ComponentsSolo(listViewCarrello);
+                    componentsSolo[index] = new ComponentsSolo(carrelloForm.getListView());
 
                    
 
@@ -468,5 +418,7 @@ namespace Client
         {
 
         }
+
+       
     }
 }
