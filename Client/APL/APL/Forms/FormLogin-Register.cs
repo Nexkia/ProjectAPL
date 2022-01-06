@@ -16,18 +16,21 @@ namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
     {
-        Protocol pt = new Protocol();
-        CheckFields controllo = new CheckFields();
-        SocketTCP sckt = new SocketTCP();
+        Protocol pt;
+        CheckFields controllo;
+        SocketTCP sckt ;
         public FormLogin_Register()
         {
             InitializeComponent();
+            pt = new Protocol();
+            controllo = new CheckFields();
+            sckt = new SocketTCP();
         }
         protected override void OnClosed(EventArgs e)
         {
             pt.Token = String.Empty;
             pt.SetProtocolID("close");
-            sckt.send(pt);
+            sckt.sendClose(pt);
             sckt.CloseConnection();
             base.OnClosed(e);
         }

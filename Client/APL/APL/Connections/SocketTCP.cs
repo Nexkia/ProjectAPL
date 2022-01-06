@@ -26,10 +26,13 @@ namespace APL.Connections
         {
             stream.Close();
             client.Close();
+            mut.Close();
         }
+
         public void CloseConnection() {
             stream.Close();
             client.Close();
+            mut.Close();
         }
 
         public Mutex GetMutex() { 
@@ -44,6 +47,14 @@ namespace APL.Connections
                 byte[] outJson = Encoding.ASCII.GetBytes(message);
                 stream.Write(outJson, 0, outJson.Length);
             });
+            return;
+        }
+        public void sendClose(Protocol p)
+        {
+            string message = p.GetProtocolID() + p.Limit + p.Token + p.Limit + p.Data + p.End;
+            Console.WriteLine("Sended: {0}", message);
+            byte[] outJson = Encoding.ASCII.GetBytes(message);
+            stream.Write(outJson, 0, outJson.Length);
             return;
         }
         public async void sendSingleMsg(string single)
