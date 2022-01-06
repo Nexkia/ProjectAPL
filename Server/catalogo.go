@@ -8,12 +8,14 @@ import (
 	"net"
 	"strconv"
 	"strings"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func listCatalogo(msg string, conn net.Conn, mongodb *mongo.Database) {
+func listCatalogo(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	msg := <-inputChannel
 	categoria := strings.Trim(msg, "\n")
 	coll := mongodb.Collection("componenti")
 	filter := bson.D{{"categoria", "" + categoria + ""}}
@@ -46,5 +48,5 @@ func listCatalogo(msg string, conn net.Conn, mongodb *mongo.Database) {
 		conn.Write(byte_tosend[div*256 : size])
 	}
 	conn.Write([]byte("\n"))
-
+	wait.Done()
 }

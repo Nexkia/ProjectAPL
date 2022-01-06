@@ -7,13 +7,15 @@ import (
 	"fmt"
 	"net"
 	"strings"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func getUtente(token string, conn net.Conn, mongodb *mongo.Database) {
+func getUtente(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	token := <-inputChannel
 	coll := mongodb.Collection("utenti")
 	filter := bson.D{{"password", "" + token + ""}}
 	u := Utente{}
@@ -26,9 +28,11 @@ func getUtente(token string, conn net.Conn, mongodb *mongo.Database) {
 		fmt.Println("error parsing")
 	}
 	conn.Write(user)
+	wait.Done()
 }
 
-func updateUtente(data string, token string, conn net.Conn, mongodb *mongo.Database) {
+func updateUtente(inputChannel chan string, token string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	data := <-inputChannel
 	res := strings.Split(data, "-")
 	email, password := res[0], res[1]
 	password = strings.Trim(password, "\n")
@@ -56,4 +60,5 @@ func updateUtente(data string, token string, conn net.Conn, mongodb *mongo.Datab
 	}
 	coll.UpdateOne(context.TODO(), filter, updateMongo)
 	conn.Write([]byte(u.Password))
+	wait.Done()
 }

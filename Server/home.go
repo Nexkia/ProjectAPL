@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"sync"
 
 	//"net"
 
@@ -13,7 +14,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func homepage(conn net.Conn, mongodb *mongo.Database) {
+func homepage(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	ID := <-inputChannel
+	Autentificazione(ID, mongodb)
 	coll := mongodb.Collection("preAssemblati")
 
 	//greater then, filtra per un prezzo maggiore di 300
@@ -52,7 +55,7 @@ func homepage(conn net.Conn, mongodb *mongo.Database) {
 		conn.Write(pcjson[div*256 : size])
 	}
 	conn.Write([]byte("\n"))
-
+	wait.Done()
 	//test := preAssemblato{}
 	//json.Unmarshal(pcjson, &test)
 	//fmt.Println("test:", test)

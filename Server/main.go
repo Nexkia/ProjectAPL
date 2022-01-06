@@ -8,6 +8,7 @@ import (
 	"net"
 	"regexp"
 	"strconv"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -56,57 +57,80 @@ func main() {
 }
 
 func handleRequest(conn net.Conn, mongodb *mongo.Database) {
-	// will listen for message to process ending in newline (\n)
-	message, _ := bufio.NewReader(conn).ReadString('\n')
-	// output message received
-	fmt.Print("Message Received:", string(message))
+	inputChannel := make(chan string, 1000)
+	var waitGroup = sync.WaitGroup{}
+	for { // will listen for message to process ending in newline (\n)
+		fmt.Println("ci sono passato")
+		message, _ := bufio.NewReader(conn).ReadString('\n')
+		// output message received
+		fmt.Print("Message Received:", string(message))
 
-	vetMessage, err := SplitFunc(message)
+		vetMessage, err := SplitFunc(message)
 
-	fmt.Println("Messaggio Protocollo:", vetMessage[0], "Messaggio", vetMessage[1], "errore: ", err)
+		fmt.Println("Messaggio Protocollo:", vetMessage[0], "Messaggio", vetMessage[1], "errore: ", err)
 
-	//conversione ad Int
-	MP, _ := strconv.Atoi(vetMessage[0])
-	ID := vetMessage[1]
-	Mjson := vetMessage[2]
+		//conversione ad Int
+		MP, _ := strconv.Atoi(vetMessage[0])
+		ID := vetMessage[1]
+		Mjson := vetMessage[2]
 
-	fmt.Println(ID)
-	switch MP {
-	case 0:
-		fmt.Println("caso 0: ", MP)
-		go register(Mjson, conn, mongodb)
-
-	case 1:
-		fmt.Println("caso 1: ", MP)
-
-		go login(Mjson, conn, mongodb)
-	case 2:
-		fmt.Println("caso 2: ", MP)
-		if Autentificazione(ID, mongodb) {
-			go homepage(conn, mongodb)
+		fmt.Println(ID)
+		switch MP {
+		case 0:
+			fmt.Println("caso 0: ", MP)
+			go register(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 1:
+			fmt.Println("caso 1: ", MP)
+			go login(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 2:
+			fmt.Println("caso 2: ", MP)
+			go homepage(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- ID
+		case 3:
+			fmt.Println("caso 3: ", MP)
+			go getUtente(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- ID
+		case 4:
+			fmt.Println("caso 4: ", MP)
+			go updateUtente(inputChannel, ID, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 5:
+			fmt.Println("caso 5: ", MP)
+			go sendComponents(inputChannel, 3, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 6:
+			fmt.Println("caso 6: ", MP)
+			go listCatalogo(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 7:
+			fmt.Println("caso 7:", MP)
+			go Confronto(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 8:
+			fmt.Println("caso 8:", MP)
+			go sendComponents(inputChannel, 0, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 9:
+			fmt.Println("caso 9", MP)
+			close(inputChannel)
+			conn.Close()
+			return
+		default:
+			fmt.Println("CASO DI DEFAULT")
 		}
-	case 3:
-		fmt.Println("caso 3: ", MP)
-		go getUtente(ID, conn, mongodb)
-	case 4:
-		fmt.Println("caso 4: ", MP)
-		go updateUtente(Mjson, ID, conn, mongodb)
-	case 5:
-		fmt.Println("caso 5: ", MP)
-		go sendComponents(Mjson, 3, conn, mongodb)
-	case 6:
-		fmt.Println("caso 6: ", MP)
-		go listCatalogo(Mjson, conn, mongodb)
-	case 7:
-		fmt.Println("caso 7:", MP)
-		go Confronto(Mjson, conn, mongodb)
-	case 8:
-		fmt.Println("caso 8:", MP)
-		go sendComponents(Mjson, 0, conn, mongodb)
-	default:
-		fmt.Println("CASO DI DEFAULT")
+		waitGroup.Wait()
 	}
-
 	// send new string back to client
 	//conn.Write([]byte(message + "\n"))
 }
