@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Forms\FormCarrello.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormCatalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormConfronto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormLogin-Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormModificaProfilo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControls\ComponentsSolo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\ComponentsGuidata.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\ListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Profiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\schedaConfronto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
