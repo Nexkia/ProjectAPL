@@ -14,7 +14,6 @@ import (
 func Confronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 	msg_rcv := strings.Trim(msg, "\n")
 	msg_split := strings.Split(msg_rcv, "!")
-	fmt.Println(msg_split)
 	modello1 := msg_split[0]
 	coll := mongodb.Collection("componenti")
 	filter := bson.D{{"modello", "" + modello1 + ""}}

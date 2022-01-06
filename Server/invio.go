@@ -286,9 +286,9 @@ func invio() {
 				hdd.Capienza, _ = strconv.Atoi(elem[3])
 				hdd.Capienza = hdd.Capienza * 1000
 				if elem[6] != "" {
-					ram.Prezzo, _ = strconv.ParseFloat(elem[6], 64)
+					hdd.Prezzo, _ = strconv.ParseFloat(elem[6], 64)
 				} else {
-					ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
+					hdd.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 				}
 				hdd_detail.Modello = modello
 				hdd_detail.Tipo = "hdd"
@@ -319,10 +319,14 @@ func invio() {
 				ssd.Modello = modello
 				ssd.Capienza, _ = strconv.Atoi(elem[3])
 				if elem[8] != "" {
-					ram.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
+					ssd.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
+					if ssd.Prezzo == 0 {
+						ssd.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
+					}
 				} else {
-					ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
+					ssd.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 				}
+
 				ssd_detail.Modello = modello
 				ssd_detail.Tipo = "ssd"
 				ssd_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
