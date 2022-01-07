@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormConfronto : Form
@@ -59,7 +59,7 @@ namespace APL.Forms
                 string response = await sckt.receive();
                 Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
-                Console.WriteLine("getmodello: " + a.getModello());
+                Debug.WriteLine("getmodello: " + a.getModello());
     
             }
             ConfrontaParametri(MyList, categoriaOriginale, capienze);
@@ -213,7 +213,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -255,7 +255,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -333,7 +333,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -369,7 +369,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -436,7 +436,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -471,7 +471,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -540,7 +540,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -579,7 +579,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -640,7 +640,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -669,7 +669,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -695,7 +695,7 @@ namespace APL.Forms
         }
         public void MostraDissipatore(IList componenti, schedaConfronto sc)
         {
-            Console.WriteLine("numero componenti: " + componenti.Count);
+            Debug.WriteLine("numero componenti: " + componenti.Count);
 
             if (componenti.Count > 0)
             {
@@ -729,7 +729,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -761,7 +761,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -821,7 +821,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -854,7 +854,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 
@@ -914,7 +914,7 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Console.WriteLine(componente2.getModello());
+                    Debug.WriteLine(componente2.getModello());
                     sc.labelModello2Name(componente2.getModello());
                     sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
 
@@ -945,7 +945,7 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Console.WriteLine(componente3.getModello());
+                        Debug.WriteLine(componente3.getModello());
                         sc.labelModello3Name(componente3.getModello());
                         sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
 

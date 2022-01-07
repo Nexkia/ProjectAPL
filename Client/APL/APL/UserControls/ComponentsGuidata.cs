@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.UserControls
 {
     public partial class ComponentsGuidata : UserControl
@@ -96,7 +96,7 @@ namespace APL.UserControls
             vecchialistView.Visible = true;
 
             if (checkBox1ComponentsTab.Checked==true ) {
-                Console.WriteLine("checkbox1 spuntata");
+                Debug.WriteLine("checkbox1 spuntata");
                 ListViewItem lvitem1 = new ListViewItem("" + _componente[0].Modello + "");
                 lvitem1.SubItems.Add("" + _componente[0].Categoria + "");
                 lvitem1.SubItems.Add("" + _componente[0].Marca + "");
@@ -108,7 +108,7 @@ namespace APL.UserControls
 
             if (checkBox2ComponentsTab.Checked == true)
             {
-                Console.WriteLine("checkbox2 spuntata");
+                Debug.WriteLine("checkbox2 spuntata");
                 ListViewItem lvitem2 = new ListViewItem("" + _componente[1].Modello + "");
                 lvitem2.SubItems.Add("" + _componente[1].Categoria + "");
                 lvitem2.SubItems.Add("" + _componente[1].Marca + "");
@@ -120,7 +120,7 @@ namespace APL.UserControls
 
             if (checkBox3ComponentsTab.Checked == true)
             {
-                Console.WriteLine("checkbox3 spuntata");
+                Debug.WriteLine("checkbox3 spuntata");
                 ListViewItem lvitem3 = new ListViewItem("" + _componente[2].Modello + "");
                 lvitem3.SubItems.Add("" + _componente[2].Categoria + "");
                 lvitem3.SubItems.Add("" + _componente[2].Marca + "");
@@ -152,7 +152,7 @@ namespace APL.UserControls
                 categoria = item.SubItems[1].Text.ToString();
                 prezzi[i] = item.SubItems[3].Text.ToString();
                 capienze[i] = item.SubItems[4].Text.ToString();
-                Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+" capienza:"+capienze[i]);
+                Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+" capienza:"+capienze[i]);
             }
             if (modelli.Length > 0)
             {

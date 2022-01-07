@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 namespace APL.UserControls
 {
     public partial class Profiles : UserControl
@@ -52,7 +53,7 @@ namespace APL.UserControls
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
-            Console.WriteLine(this.Title);
+            Debug.WriteLine(this.Title);
             vecchioFlowLayoutPanel1.Controls.Clear();
             populateItemsComponenti(this.Title);
         }

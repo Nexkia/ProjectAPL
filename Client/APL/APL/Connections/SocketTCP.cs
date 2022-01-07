@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace APL.Connections
 {
@@ -43,7 +44,7 @@ namespace APL.Connections
             await Task.Run(() =>
             {
                 string message = p.GetProtocolID() + p.Limit + p.Token + p.Limit + p.Data + p.End;
-                Console.WriteLine("Sended: {0}", message);
+                Debug.WriteLine("Sended: {0}", message);
                 byte[] outJson = Encoding.ASCII.GetBytes(message);
                 stream.Write(outJson, 0, outJson.Length);
             });
@@ -52,7 +53,7 @@ namespace APL.Connections
         public void sendClose(Protocol p)
         {
             string message = p.GetProtocolID() + p.Limit + p.Token + p.Limit + p.Data + p.End;
-            Console.WriteLine("Sended: {0}", message);
+            Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             stream.Write(outJson, 0, outJson.Length);
             return;
@@ -62,7 +63,7 @@ namespace APL.Connections
             await Task.Run(() =>
             {
                 string message = single;
-                Console.WriteLine("Sended: {0}", message);
+                Debug.WriteLine("Sended: {0}", message);
                 byte[] outJson = Encoding.ASCII.GetBytes(message);
                 stream.Write(outJson, 0, outJson.Length);
             });
@@ -79,7 +80,7 @@ namespace APL.Connections
                 // Read the first batch of the TcpServer response bytes.
                 Int32 bytes = stream.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                Console.WriteLine("Received: {0}", responseData);
+                Debug.WriteLine("Received: {0}", responseData);
                 return responseData;
             });
             return result;
