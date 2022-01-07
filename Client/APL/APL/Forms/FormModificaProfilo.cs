@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormModificaProfilo : Form
@@ -30,7 +30,7 @@ namespace APL.Forms
         {
             Utente utente;
             pt.SetProtocolID("getUtente");pt.Data = String.Empty;
-            Console.WriteLine("token: " + pt.Token);
+            Debug.WriteLine("token: " + pt.Token);
             sckt.send(pt);
             string user = await sckt.receive();
             utente = JsonConvert.DeserializeObject<Utente>(user);
@@ -52,7 +52,7 @@ namespace APL.Forms
                     pt.Data = TextBoxEmail.Text + "-" + TextBoxVecchiaPassword.Text;
                     sckt.send(pt);
                     string check = await sckt.receive();
-                    Console.WriteLine(check);
+                    Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
                         Utente mod = new Utente();
@@ -64,7 +64,7 @@ namespace APL.Forms
                         sckt.sendSingleMsg(json_update + pt.End);
                         //aggiorna il token, che cambia con la nuova password
                         pt.Token = await sckt.receive();
-                        Console.WriteLine(json_update);
+                        Debug.WriteLine(json_update);
                         this.Close();
                     }
                     else

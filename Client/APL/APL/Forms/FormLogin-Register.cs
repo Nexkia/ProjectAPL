@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
@@ -98,12 +98,12 @@ namespace APL.Forms
                     pt.Token = responseData;
                     if (responseData.Contains("errore: "))
                     {
-                        Console.WriteLine("Login fallito," + responseData);
+                        Debug.WriteLine("Login fallito," + responseData);
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        Console.WriteLine("Login effettuato");
+                        Debug.WriteLine("Login effettuato");
                         FormHome home = new FormHome(this, pt.Token, sckt); // Instantiate a Form2 object.
                         home.Show(); // Show Form2 and
                         this.Visible = false; //invisible form1

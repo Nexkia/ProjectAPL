@@ -18,6 +18,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Diagnostics;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -42,7 +43,7 @@ namespace APL.Forms
             this.sckt = sckt;
             comboBox1.Text = "Build Guidata";
             carrelloForm = new FormCarrello();
-
+            System.Diagnostics.Debug.WriteLine("ciao");
         }
 
         private async void FormHome_Load(object sender, EventArgs e)
@@ -344,14 +345,14 @@ namespace APL.Forms
             this.restringiForm2();
 
             if (comboBox1.Text == "Build Guidata") {
-                Console.WriteLine("valore combobox: " + comboBox1.Text);
+                Debug.WriteLine("valore combobox: " + comboBox1.Text);
                 populateItemsBuildG();
 
             }
             else
             {
                 populateItemsBuilSolo();
-                Console.WriteLine("valore combobox: " + comboBox1.Text);
+                Debug.WriteLine("valore combobox: " + comboBox1.Text);
             }
         }
 
