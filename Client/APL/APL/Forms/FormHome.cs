@@ -71,7 +71,6 @@ namespace APL.Forms
             parent.Visible = true;
             carrelloForm.EnableCloseEvent();
             carrelloForm.Close();
-
             base.OnClosed(e);
         }
 
