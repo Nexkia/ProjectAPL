@@ -46,19 +46,13 @@ namespace APL.Forms
             this.labelTitolo = new System.Windows.Forms.Label();
             this.listViewCheckOut = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.labelNome = new System.Windows.Forms.Label();
-            this.labelCognome = new System.Windows.Forms.Label();
-            this.textBoxCognome = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelSfondo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSfondo
             // 
-            this.panelSfondo.Controls.Add(this.textBoxCognome);
-            this.panelSfondo.Controls.Add(this.labelCognome);
-            this.panelSfondo.Controls.Add(this.labelNome);
-            this.panelSfondo.Controls.Add(this.textBoxNome);
+            this.panelSfondo.Controls.Add(this.button1);
             this.panelSfondo.Controls.Add(this.textBoxAnno);
             this.panelSfondo.Controls.Add(this.labelSplit);
             this.panelSfondo.Controls.Add(this.buttonConfermaCheckout);
@@ -222,40 +216,15 @@ namespace APL.Forms
             this.columnHeader1.Text = "Modello";
             this.columnHeader1.Width = 600;
             // 
-            // textBoxNome
+            // button1
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(691, 378);
-            this.textBoxNome.MaxLength = 1699;
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(178, 27);
-            this.textBoxNome.TabIndex = 16;
-            // 
-            // labelNome
-            // 
-            this.labelNome.AutoSize = true;
-            this.labelNome.Location = new System.Drawing.Point(691, 355);
-            this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(50, 20);
-            this.labelNome.TabIndex = 17;
-            this.labelNome.Text = "Nome";
-            // 
-            // labelCognome
-            // 
-            this.labelCognome.AutoSize = true;
-            this.labelCognome.Location = new System.Drawing.Point(691, 424);
-            this.labelCognome.Name = "labelCognome";
-            this.labelCognome.Size = new System.Drawing.Size(74, 20);
-            this.labelCognome.TabIndex = 18;
-            this.labelCognome.Text = "Cognome";
-            // 
-            // textBoxCognome
-            // 
-            this.textBoxCognome.Location = new System.Drawing.Point(691, 447);
-            this.textBoxCognome.MaxLength = 1699;
-            this.textBoxCognome.Name = "textBoxCognome";
-            this.textBoxCognome.Size = new System.Drawing.Size(178, 27);
-            this.textBoxCognome.TabIndex = 19;
-          
+            this.button1.Location = new System.Drawing.Point(695, 396);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(173, 28);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormCheckOut
             // 
@@ -264,6 +233,7 @@ namespace APL.Forms
             this.ClientSize = new System.Drawing.Size(1077, 592);
             this.Controls.Add(this.panelSfondo);
             this.Name = "FormCheckOut";
+            this.Load += new System.EventHandler(this.FormCheckOut_Load);
             this.panelSfondo.ResumeLayout(false);
             this.panelSfondo.PerformLayout();
             this.ResumeLayout(false);
@@ -289,9 +259,6 @@ namespace APL.Forms
         private System.Windows.Forms.Button buttonConfermaCheckout;
         private System.Windows.Forms.Label labelSplit;
         private System.Windows.Forms.TextBox textBoxAnno;
-        private System.Windows.Forms.TextBox textBoxCognome;
-        private System.Windows.Forms.Label labelCognome;
-        private System.Windows.Forms.Label labelNome;
-        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -57,6 +57,7 @@ namespace APL.Forms
             this.panelSfondo.Name = "panelSfondo";
             this.panelSfondo.Size = new System.Drawing.Size(885, 605);
             this.panelSfondo.TabIndex = 0;
+            this.panelSfondo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSfondo_Paint);
             // 
             // buttonSvuotaCarrello
             // 
