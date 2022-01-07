@@ -15,7 +15,7 @@ type CreditCard struct {
 	number int
 	month  int
 	year   int
-	ccv    int
+	cvv    int
 }
 type InfoPayment struct {
 	email                 string
