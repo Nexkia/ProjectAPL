@@ -155,7 +155,7 @@ namespace APL.Forms
         {
             carrelloForm.Show();
 
-            // carrello.Visible = false;
+           
 
         }
 
@@ -371,7 +371,8 @@ namespace APL.Forms
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
             {
-                this.ClientSize = new System.Drawing.Size(933, 632);
+                //this.ClientSize = new System.Drawing.Size(933, 632);
+                this.ClientSize = new System.Drawing.Size(1238, 972);
                 flowLayoutPanel2.Visible = true;
             }
         }
@@ -379,7 +380,8 @@ namespace APL.Forms
         public void restringiForm2()
         { if (this.ClientSize.Width != 821 && this.ClientSize.Height != 778)
             {
-                this.ClientSize = new System.Drawing.Size(616, 632);
+                //this.ClientSize = new System.Drawing.Size(616, 632);
+                this.ClientSize = new System.Drawing.Size(819, 972);
                 flowLayoutPanel2.Visible = false;
                 
             }

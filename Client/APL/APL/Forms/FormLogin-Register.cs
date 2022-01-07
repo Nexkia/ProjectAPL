@@ -27,8 +27,10 @@ namespace APL.Forms
         {
             pt.Token = String.Empty;
             pt.SetProtocolID("close");
+            sckt.GetMutex().WaitOne();
             sckt.send(pt);
             sckt.CloseConnection();
+            sckt.GetMutex().ReleaseMutex();
             base.OnClosed(e);
         }
         private async void Register_Click(object sender, EventArgs e)
