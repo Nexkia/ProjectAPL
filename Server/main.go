@@ -60,7 +60,6 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 	inputChannel := make(chan string, 1000)
 	var waitGroup = sync.WaitGroup{}
 	for { // will listen for message to process ending in newline (\n)
-		fmt.Println("ci sono passato")
 		message, _ := bufio.NewReader(conn).ReadString('\n')
 		// output message received
 		fmt.Print("Message Received:", string(message))
@@ -126,6 +125,8 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			close(inputChannel)
 			conn.Close()
 			return
+		case 10:
+			fmt.Println("case 10", MP)
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}
@@ -139,7 +140,7 @@ func SplitFunc(message string) (r []string, err error) {
 	if message == "" {
 		return nil, errors.New("errore messaggio vuoto")
 	}
-	reg := regexp.MustCompile(`(\d)\s(.{1,}=)?\s(.{1,})?`)
+	reg := regexp.MustCompile(`(\d*)\s(.{1,}=)?\s(.{1,})?`)
 	res := reg.FindAllStringSubmatch(message, -1)
 	vet := make([]string, 3)
 	vet[0] = res[0][1]
