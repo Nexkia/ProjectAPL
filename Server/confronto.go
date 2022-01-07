@@ -6,12 +6,14 @@ import (
 	"fmt"
 	"net"
 	"strings"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func Confronto(msg string, conn net.Conn, mongodb *mongo.Database) {
+func Confronto(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	msg := <-inputChannel
 	msg_rcv := strings.Trim(msg, "\n")
 	msg_split := strings.Split(msg_rcv, "!")
 	modello1 := msg_split[0]
@@ -40,5 +42,5 @@ func Confronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 	//modello2 := strings.Trim(msg_split[1], "\n")
 
 	//vetresult := make([]CpuDetail, 2)
-
+	wait.Done()
 }

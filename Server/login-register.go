@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,8 +18,8 @@ type Utente struct {
 	Password   string `bson:"password" json:"password"`
 }
 
-func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
-
+func register(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	Mjson := <-inputChannel
 	coll := mongodb.Collection("utenti")
 
 	l1 := Utente{}
@@ -44,28 +45,25 @@ func register(Mjson string, conn net.Conn, mongodb *mongo.Database) {
 		conn.Write([]byte("email gia' usata\n"))
 
 	}
-
-	conn.Close()
-
+	wait.Done()
 }
 
-func login(Mjson string, conn net.Conn, mongodb *mongo.Database) {
-
+func login(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	Mjson := <-inputChannel
 	err := verificaUtente(Mjson, mongodb)
-
 	if err != nil {
 		conn.Write([]byte("errore: " + err.Error() + "\n"))
-
 	} else {
 		// `{"some":"json"}`
 		l1 := Utente{}
 		//conversione del Json in byte
 		json.Unmarshal([]byte(Mjson), &l1)
 		token := Encoding(l1.Email, l1.Password)
-
 		conn.Write([]byte(token))
 	}
-	conn.Close()
+
+	fmt.Println("ho finito")
+	wait.Done()
 }
 
 func verificaUtente(Mjson string, mongodb *mongo.Database) error {

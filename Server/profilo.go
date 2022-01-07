@@ -7,12 +7,14 @@ import (
 	"log"
 	"net"
 	"strconv"
+	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func sendComponents(profile string, limit int, conn net.Conn, mongodb *mongo.Database) {
+func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	profile := <-inputChannel
 	fmt.Println(profile)
 	coll := mongodb.Collection("componenti")
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
@@ -53,4 +55,5 @@ func sendComponents(profile string, limit int, conn net.Conn, mongodb *mongo.Dat
 		}
 		conn.Write([]byte("\n"))
 	}
+	wait.Done()
 }

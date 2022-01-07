@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormCatalogo : Form
@@ -156,7 +156,7 @@ namespace APL.Forms
                     categoria = item.SubItems[1].Text.ToString();
                     prezzi[i] = item.SubItems[3].Text.ToString();
                     capienze[i] = item.SubItems[4].Text.ToString();
-                    Console.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
+                    Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
                 FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token,sckt);
                 cf.Show();
@@ -182,7 +182,7 @@ namespace APL.Forms
             } while (!response.Contains("\n"));
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
-            Console.WriteLine(response);
+            Debug.WriteLine(response);
 
             listView_record.Items.Clear();
             listViewCatalogo.Items.Clear();
@@ -196,7 +196,7 @@ namespace APL.Forms
                 lvitem.SubItems.Add("" + cp[i].Capienza+ "");
                 listView_record.Items.Add(lvitem);
             }
-            Console.WriteLine("fine del for");
+            Debug.WriteLine("fine del for");
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using ListView = System.Windows.Forms.ListView;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormCarrello : Form
@@ -145,10 +145,10 @@ namespace APL.Forms
                     
             }
 
-            Console.WriteLine("i "+tipo+" : " + i);
+            Debug.WriteLine("i "+tipo+" : " + i);
             if (i == 8)
             {
-                Console.WriteLine("Conferma carrello ok");
+                Debug.WriteLine("Conferma carrello ok");
                 return i;
             }
             else{

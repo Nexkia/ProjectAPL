@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.UserControls
 {
     public partial class ListItem : UserControl
@@ -57,7 +57,7 @@ namespace APL.UserControls
 
         private void lbl_MessageClick1(object sender, EventArgs e)
         {
-            Console.WriteLine("hai cliccato");
+            Debug.WriteLine("hai cliccato");
             vecchioflowLayoutPanel2.Controls.Clear();
 
             vecchioForm2.allargaForm2();

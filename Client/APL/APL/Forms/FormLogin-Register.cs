@@ -11,24 +11,26 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
     {
-        Protocol pt = new Protocol();
-        CheckFields controllo = new CheckFields();
-        SocketTCP sckt = new SocketTCP();
+        Protocol pt;
+        CheckFields controllo;
+        SocketTCP sckt ;
         public FormLogin_Register()
         {
             InitializeComponent();
+            pt = new Protocol();
+            controllo = new CheckFields();
+            sckt = new SocketTCP();
         }
         protected override void OnClosed(EventArgs e)
         {
             pt.Token = String.Empty;
             pt.SetProtocolID("close");
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            sckt.sendClose(pt);
             sckt.CloseConnection();
             sckt.GetMutex().ReleaseMutex();
             base.OnClosed(e);
@@ -97,12 +99,12 @@ namespace APL.Forms
                     pt.Token = responseData;
                     if (responseData.Contains("errore: "))
                     {
-                        Console.WriteLine("Login fallito," + responseData);
+                        Debug.WriteLine("Login fallito," + responseData);
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        Console.WriteLine("Login effettuato");
+                        Debug.WriteLine("Login effettuato");
                         FormHome home = new FormHome(this, pt.Token, sckt); // Instantiate a Form2 object.
                         home.Show(); // Show Form2 and
                         this.Visible = false; //invisible form1
