@@ -24,6 +24,7 @@ namespace APL.Forms
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
 
+            
 
 
         }
@@ -66,17 +67,71 @@ namespace APL.Forms
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (listViewCarrello.FindItemWithText("Build Guidata") != null) {
-                contaComponentiBuild("Build Guidata");
+            
+            //Controlla che ci sia almeno un elemento nel carrello
+            if (contaComponentiBuild("Build Guidata") > 0 || contaComponentiBuild("Build Solo") > 0 ||
+                contaComponentiBuild("preassemblato") > 0) 
+            {
+                //caso in cui l'utente vuole prendere una Build Solo e una Build Guidata
+                if(contaComponentiBuild("Build Guidata") > 0 && contaComponentiBuild("Build Guidata") ==8 &&
+                   contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
+                {
+                    
+                    creaCheckOut();
+
+                //caso in cui l'utente vuole prendere solo una Build Guidata
+                }else if(contaComponentiBuild("Build Guidata") > 0 && contaComponentiBuild("Build Guidata") == 8)
+                {
+                    //la listView piene passata al CheckOut solo se non ci sono componenti di BuildSolo
+                    if (contaComponentiBuild("Build Solo") == 0){ creaCheckOut(); }
+                    else
+                    {
+                        MessageBox.Show("Bisogna finire di scegliere gli 8 componenti di Build Solo," +
+                        " prima di procedere al CheckOut",
+                       "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    
+                } //caso in cui l'utente vuole prendere solo una Build Solo
+                else if(contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
+                {
+                    //la listView piene passata al CheckOut solo se non ci sono componenti di BuildGuidata
+                    if (contaComponentiBuild("Build Guidata") == 0) { creaCheckOut(); }
+                    else
+                    {
+                        MessageBox.Show("Bisogna finire di scegliere gli 8 componenti di Build Guidata," +
+                       " prima di procedere al CheckOut",
+                      "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+                } //caso in cui l'utente vuole prendere solo preassemblati 
+                else if (contaComponentiBuild("Build Guidata") == 0 && contaComponentiBuild("Build Solo") == 0 )
+                {
+                    creaCheckOut();
+                }
+                else
+                {
+                    MessageBox.Show("Bisogna finire di scegliere gli 8 componenti di Build Guidata o Build Solo,"+
+                        " prima di procedere al CheckOut",
+                       "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+
+
             }
 
-            if (listViewCarrello.FindItemWithText("Build Solo") != null)
+
+
+            else
             {
-                contaComponentiBuild("Build Solo");
+                MessageBox.Show("il carrello è vuoto " ,
+                "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            
+            
         }
 
-        private void contaComponentiBuild(string tipo)
+        private int contaComponentiBuild(string tipo)
         {
             
             int i = 0;
@@ -94,11 +149,33 @@ namespace APL.Forms
             if (i == 8)
             {
                 Debug.WriteLine("Conferma carrello ok");
+                return i;
             }
             else{
-                MessageBox.Show("Selezionare 8 elementi appartenenti a "+tipo,
-                         "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+                return i;
             }
         }
+
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e)
+        {
+            listViewCarrello.Items.Clear();
+        }
+
+        private void creaCheckOut()
+        {
+            FormCheckOut checkout = new FormCheckOut();
+            checkout.Show();
+
+            foreach (ListViewItem item in listViewCarrello.Items)
+            {
+                checkout.getListView().Items.Add((ListViewItem)item.Clone());
+            }
+
+            checkout.calcolaTotale();
+            
+        }
+
+       
     }
 }

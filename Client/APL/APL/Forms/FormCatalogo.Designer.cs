@@ -39,25 +39,25 @@ namespace APL.Forms
             this.dissipatoreButton = new System.Windows.Forms.Button();
             this.buttonAggiungi = new System.Windows.Forms.Button();
             this.listView_record = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.listViewCatalogo = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.buttonRimuovi = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cpuButton
             // 
-            this.cpuButton.Location = new System.Drawing.Point(964, 373);
-            this.cpuButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cpuButton.Location = new System.Drawing.Point(964, 466);
+            this.cpuButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cpuButton.Name = "cpuButton";
-            this.cpuButton.Size = new System.Drawing.Size(151, 39);
+            this.cpuButton.Size = new System.Drawing.Size(151, 49);
             this.cpuButton.TabIndex = 0;
             this.cpuButton.Text = "cpu";
             this.cpuButton.UseVisualStyleBackColor = true;
@@ -65,10 +65,10 @@ namespace APL.Forms
             // 
             // schedaMadreButton
             // 
-            this.schedaMadreButton.Location = new System.Drawing.Point(964, 135);
-            this.schedaMadreButton.Margin = new System.Windows.Forms.Padding(4);
+            this.schedaMadreButton.Location = new System.Drawing.Point(964, 169);
+            this.schedaMadreButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.schedaMadreButton.Name = "schedaMadreButton";
-            this.schedaMadreButton.Size = new System.Drawing.Size(151, 39);
+            this.schedaMadreButton.Size = new System.Drawing.Size(151, 49);
             this.schedaMadreButton.TabIndex = 1;
             this.schedaMadreButton.Text = "schedaMadre";
             this.schedaMadreButton.UseVisualStyleBackColor = true;
@@ -76,10 +76,10 @@ namespace APL.Forms
             // 
             // ramButton
             // 
-            this.ramButton.Location = new System.Drawing.Point(964, 193);
-            this.ramButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ramButton.Location = new System.Drawing.Point(964, 241);
+            this.ramButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ramButton.Name = "ramButton";
-            this.ramButton.Size = new System.Drawing.Size(151, 39);
+            this.ramButton.Size = new System.Drawing.Size(151, 49);
             this.ramButton.TabIndex = 2;
             this.ramButton.Text = "ram";
             this.ramButton.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@ namespace APL.Forms
             // 
             // memoriaButton
             // 
-            this.memoriaButton.Location = new System.Drawing.Point(964, 74);
-            this.memoriaButton.Margin = new System.Windows.Forms.Padding(4);
+            this.memoriaButton.Location = new System.Drawing.Point(964, 92);
+            this.memoriaButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.memoriaButton.Name = "memoriaButton";
-            this.memoriaButton.Size = new System.Drawing.Size(151, 39);
+            this.memoriaButton.Size = new System.Drawing.Size(151, 49);
             this.memoriaButton.TabIndex = 3;
             this.memoriaButton.Text = "memoria";
             this.memoriaButton.UseVisualStyleBackColor = true;
@@ -98,10 +98,10 @@ namespace APL.Forms
             // 
             // alimentatoreButton
             // 
-            this.alimentatoreButton.Location = new System.Drawing.Point(964, 440);
-            this.alimentatoreButton.Margin = new System.Windows.Forms.Padding(4);
+            this.alimentatoreButton.Location = new System.Drawing.Point(964, 550);
+            this.alimentatoreButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.alimentatoreButton.Name = "alimentatoreButton";
-            this.alimentatoreButton.Size = new System.Drawing.Size(151, 39);
+            this.alimentatoreButton.Size = new System.Drawing.Size(151, 49);
             this.alimentatoreButton.TabIndex = 4;
             this.alimentatoreButton.Text = "alimentatore";
             this.alimentatoreButton.UseVisualStyleBackColor = true;
@@ -109,10 +109,10 @@ namespace APL.Forms
             // 
             // schedaVideoButton
             // 
-            this.schedaVideoButton.Location = new System.Drawing.Point(964, 252);
-            this.schedaVideoButton.Margin = new System.Windows.Forms.Padding(4);
+            this.schedaVideoButton.Location = new System.Drawing.Point(964, 315);
+            this.schedaVideoButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.schedaVideoButton.Name = "schedaVideoButton";
-            this.schedaVideoButton.Size = new System.Drawing.Size(151, 39);
+            this.schedaVideoButton.Size = new System.Drawing.Size(151, 49);
             this.schedaVideoButton.TabIndex = 5;
             this.schedaVideoButton.Text = "schedaVideo";
             this.schedaVideoButton.UseVisualStyleBackColor = true;
@@ -120,10 +120,10 @@ namespace APL.Forms
             // 
             // casepcButton
             // 
-            this.casepcButton.Location = new System.Drawing.Point(964, 312);
-            this.casepcButton.Margin = new System.Windows.Forms.Padding(4);
+            this.casepcButton.Location = new System.Drawing.Point(964, 390);
+            this.casepcButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casepcButton.Name = "casepcButton";
-            this.casepcButton.Size = new System.Drawing.Size(151, 39);
+            this.casepcButton.Size = new System.Drawing.Size(151, 49);
             this.casepcButton.TabIndex = 6;
             this.casepcButton.Text = "casepc";
             this.casepcButton.UseVisualStyleBackColor = true;
@@ -131,10 +131,10 @@ namespace APL.Forms
             // 
             // dissipatoreButton
             // 
-            this.dissipatoreButton.Location = new System.Drawing.Point(964, 13);
-            this.dissipatoreButton.Margin = new System.Windows.Forms.Padding(4);
+            this.dissipatoreButton.Location = new System.Drawing.Point(964, 16);
+            this.dissipatoreButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dissipatoreButton.Name = "dissipatoreButton";
-            this.dissipatoreButton.Size = new System.Drawing.Size(151, 39);
+            this.dissipatoreButton.Size = new System.Drawing.Size(151, 49);
             this.dissipatoreButton.TabIndex = 7;
             this.dissipatoreButton.Text = "dissipatore";
             this.dissipatoreButton.UseVisualStyleBackColor = true;
@@ -142,9 +142,10 @@ namespace APL.Forms
             // 
             // buttonAggiungi
             // 
-            this.buttonAggiungi.Location = new System.Drawing.Point(642, 697);
+            this.buttonAggiungi.Location = new System.Drawing.Point(642, 701);
+            this.buttonAggiungi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAggiungi.Name = "buttonAggiungi";
-            this.buttonAggiungi.Size = new System.Drawing.Size(151, 45);
+            this.buttonAggiungi.Size = new System.Drawing.Size(151, 56);
             this.buttonAggiungi.TabIndex = 10;
             this.buttonAggiungi.Text = "Aggiungi";
             this.buttonAggiungi.UseVisualStyleBackColor = true;
@@ -158,12 +159,13 @@ namespace APL.Forms
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listView_record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView_record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listView_record.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.listView_record.HideSelection = false;
             this.listView_record.Location = new System.Drawing.Point(12, 13);
+            this.listView_record.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView_record.Name = "listView_record";
-            this.listView_record.Size = new System.Drawing.Size(945, 653);
+            this.listView_record.Size = new System.Drawing.Size(945, 586);
             this.listView_record.TabIndex = 12;
             this.listView_record.UseCompatibleStateImageBehavior = false;
             this.listView_record.View = System.Windows.Forms.View.Details;
@@ -171,22 +173,22 @@ namespace APL.Forms
             // columnHeader1
             // 
             this.columnHeader1.Text = "Modello";
-            this.columnHeader1.Width = 175;
+            this.columnHeader1.Width = 230;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Categoria";
-            this.columnHeader2.Width = 175;
+            this.columnHeader2.Width = 230;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Marca";
-            this.columnHeader3.Width = 175;
+            this.columnHeader3.Width = 230;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Prezzo";
-            this.columnHeader4.Width = 175;
+            this.columnHeader4.Width = 230;
             // 
             // listViewCatalogo
             // 
@@ -195,11 +197,12 @@ namespace APL.Forms
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
-            this.listViewCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listViewCatalogo.HideSelection = false;
-            this.listViewCatalogo.Location = new System.Drawing.Point(12, 697);
+            this.listViewCatalogo.Location = new System.Drawing.Point(12, 642);
+            this.listViewCatalogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewCatalogo.Name = "listViewCatalogo";
-            this.listViewCatalogo.Size = new System.Drawing.Size(608, 207);
+            this.listViewCatalogo.Size = new System.Drawing.Size(608, 258);
             this.listViewCatalogo.TabIndex = 13;
             this.listViewCatalogo.UseCompatibleStateImageBehavior = false;
             this.listViewCatalogo.View = System.Windows.Forms.View.Details;
@@ -226,9 +229,10 @@ namespace APL.Forms
             // 
             // buttonRimuovi
             // 
-            this.buttonRimuovi.Location = new System.Drawing.Point(806, 697);
+            this.buttonRimuovi.Location = new System.Drawing.Point(806, 701);
+            this.buttonRimuovi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRimuovi.Name = "buttonRimuovi";
-            this.buttonRimuovi.Size = new System.Drawing.Size(151, 45);
+            this.buttonRimuovi.Size = new System.Drawing.Size(151, 56);
             this.buttonRimuovi.TabIndex = 14;
             this.buttonRimuovi.Text = "Rimuovi";
             this.buttonRimuovi.UseVisualStyleBackColor = true;
@@ -236,20 +240,21 @@ namespace APL.Forms
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(642, 783);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(642, 780);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(315, 96);
+            this.button1.Size = new System.Drawing.Size(315, 120);
             this.button1.TabIndex = 15;
             this.button1.Text = "Confronta";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonConfronta_Click);
             // 
-            // FormCatalog
+            // FormCatalogo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 967);
+            this.ClientSize = new System.Drawing.Size(1140, 905);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonRimuovi);
             this.Controls.Add(this.listViewCatalogo);
@@ -263,8 +268,8 @@ namespace APL.Forms
             this.Controls.Add(this.ramButton);
             this.Controls.Add(this.schedaMadreButton);
             this.Controls.Add(this.cpuButton);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormCatalog";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "FormCatalogo";
             this.Text = "FormCatalog";
             this.ResumeLayout(false);
 
