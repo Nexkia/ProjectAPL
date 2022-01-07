@@ -14,20 +14,15 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func getUtente(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+func getUtenteRoutine(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
 	token := <-inputChannel
-	coll := mongodb.Collection("utenti")
-	filter := bson.D{{"password", "" + token + ""}}
-	u := Utente{}
-	err := coll.FindOne(context.TODO(), filter).Decode(&u)
-	if err != nil {
-		fmt.Println("error not found")
-	}
+	u, err := getUtente(token, mongodb)
 	user, err := json.Marshal(u)
 	if err != nil {
 		fmt.Println("error parsing")
 	}
 	conn.Write(user)
+
 	wait.Done()
 }
 
@@ -61,4 +56,14 @@ func updateUtente(inputChannel chan string, token string, conn net.Conn, mongodb
 	coll.UpdateOne(context.TODO(), filter, updateMongo)
 	conn.Write([]byte(u.Password))
 	wait.Done()
+}
+func getUtente(token string, mongodb *mongo.Database) (Utente, error) {
+	coll := mongodb.Collection("utenti")
+	filter := bson.D{{"password", "" + token + ""}}
+	u := Utente{}
+	err := coll.FindOne(context.TODO(), filter).Decode(&u)
+	if err != nil {
+		fmt.Println("error not found")
+	}
+	return u, err
 }

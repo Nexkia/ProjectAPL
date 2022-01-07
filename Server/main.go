@@ -92,7 +92,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- ID
 		case 3:
 			fmt.Println("caso 3: ", MP)
-			go getUtente(inputChannel, conn, mongodb, &waitGroup)
+			go getUtenteRoutine(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- ID
 		case 4:
@@ -127,6 +127,9 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			return
 		case 10:
 			fmt.Println("case 10", MP)
+			go getInfoPayment(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- ID
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}

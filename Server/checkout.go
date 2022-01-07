@@ -12,31 +12,36 @@ import (
 )
 
 type CreditCard struct {
-	number int
-	month  int
-	year   int
-	cvv    int
+	number int `bson:"number" json:"number"`
+	month  int `bson:"month" json:"month"`
+	year   int `bson:"year" json:"year"`
+	cvv    int `bson:"cvv" json:"cvv"`
 }
 type InfoPayment struct {
-	email                 string
-	indirizzoFatturazione string
-	CreditCard
+	email                 string `bson:"email" json:"email"`
+	indirizzoFatturazione string `bson:"indirizzofatturazione" json:"indirizzofatturazione"`
+	CreditCard            `bson:"creditcard" json:"creditcard"`
 }
 
 func getInfoPayment(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
-	email := <-inputChannel
+	token := <-inputChannel
 	coll := mongodb.Collection("InfoPayment")
-	filter := bson.D{{"email", "" + email + ""}}
-	Info := InfoPayment{}
-	err := coll.FindOne(context.TODO(), filter).Decode(&Info)
-	if err != nil {
+	u, err := getUtente(token, mongodb)
+	if err == nil {
+		filter := bson.D{{"email", "" + u.Email + ""}}
+		Info := InfoPayment{}
+		err := coll.FindOne(context.TODO(), filter).Decode(&Info)
+		if err != nil {
+			conn.Write([]byte("notFound"))
+		}
+		InfoJson, err := json.Marshal(Info)
+		if err != nil {
+			fmt.Println("error parsing")
+		}
+		conn.Write(InfoJson)
+	} else {
 		conn.Write([]byte("notFound"))
 	}
-	InfoJson, err := json.Marshal(Info)
-	if err != nil {
-		fmt.Println("error parsing")
-	}
-	conn.Write(InfoJson)
 	wait.Done()
 }
 func getPayment(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
