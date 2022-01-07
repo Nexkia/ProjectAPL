@@ -10,6 +10,8 @@ using ListView = System.Windows.Forms.ListView;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 using System.Diagnostics;
+using APL.Connections;
+
 namespace APL.Forms
 {
     public partial class FormCarrello : Form
@@ -17,14 +19,17 @@ namespace APL.Forms
         
 
         bool disableCloseEvent;
-        public FormCarrello()
+        string Token;
+        SocketTCP sckt;
+        public FormCarrello(string Token,SocketTCP sckt)
          {
              InitializeComponent();
             
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
 
-            
+            this.Token = Token;
+            this.sckt = sckt;
 
 
         }
@@ -164,7 +169,7 @@ namespace APL.Forms
 
         private void creaCheckOut()
         {
-            FormCheckOut checkout = new FormCheckOut();
+            FormCheckOut checkout = new FormCheckOut(Token,sckt);
             checkout.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)
@@ -173,9 +178,13 @@ namespace APL.Forms
             }
 
             checkout.calcolaTotale();
+           
             
         }
 
-       
+        private void panelSfondo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
