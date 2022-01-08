@@ -69,10 +69,10 @@ namespace APL.UserControls
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             Componente[,] showElements = new Componente[8, 3];
-            for (int i = 0; i < componentsTab.Length; i++) { 
+            for (int i = 0; i < componentsTab.Length; i++) {
                 sckt.sendSingleMsg("ok");
                 componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello,pt.Token,sckt);
-                string response = "";
+                string response = String.Empty;
                 do
                 {
                     response += await sckt.receive();
