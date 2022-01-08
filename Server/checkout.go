@@ -97,7 +97,13 @@ func getPayment(inputChannel chan string, token string, conn net.Conn, mongodb *
 	if err != nil {
 		coll.InsertOne(context.TODO(), infoPayment)
 	} else {
-		coll.UpdateOne(context.TODO(), filter, infoPayment)
+		updateMongo := bson.D{
+			{"$set", bson.D{
+				{"indirizzoFatturazione", infoPayment.IndirizzoFatturazione},
+				{"creditCard", infoPayment.CreditCard},
+			}},
+		}
+		coll.UpdateOne(context.TODO(), filter, updateMongo)
 	}
 	conn.Write([]byte("payment done"))
 	wait.Done()
