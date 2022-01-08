@@ -44,13 +44,13 @@ func updateUtente(inputChannel chan string, token string, conn net.Conn, mongodb
 	json.Unmarshal([]byte(update), &u)
 	u.Password = Encoding(u.Email, u.Password)
 	coll := mongodb.Collection("utenti")
-	filter := bson.D{{"password", "" + token + ""}}
+	filter := bson.D{{"password", token}}
 	updateMongo := bson.D{
 		{"$set", bson.D{
-			{"email", "" + u.Email + ""},
-			{"indirizzo", "" + u.Indirizzo + ""},
-			{"nome", "" + u.NomeUtente + ""},
-			{"password", "" + u.Password + ""},
+			{"email", u.Email},
+			{"indirizzo", u.Indirizzo},
+			{"nome", u.NomeUtente},
+			{"password", u.Password},
 		}},
 	}
 	coll.UpdateOne(context.TODO(), filter, updateMongo)
@@ -59,7 +59,7 @@ func updateUtente(inputChannel chan string, token string, conn net.Conn, mongodb
 }
 func getUtente(token string, mongodb *mongo.Database) (Utente, error) {
 	coll := mongodb.Collection("utenti")
-	filter := bson.D{{"password", "" + token + ""}}
+	filter := bson.D{{"password", token}}
 	u := Utente{}
 	err := coll.FindOne(context.TODO(), filter).Decode(&u)
 	if err != nil {

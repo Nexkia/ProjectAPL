@@ -18,7 +18,7 @@ func listCatalogo(inputChannel chan string, conn net.Conn, mongodb *mongo.Databa
 	msg := <-inputChannel
 	categoria := strings.Trim(msg, "\n")
 	coll := mongodb.Collection("componenti")
-	filter := bson.D{{"categoria", "" + categoria + ""}}
+	filter := bson.D{{"categoria", categoria}}
 	cursor, err := coll.Find(context.TODO(), filter)
 	defer cursor.Close(context.TODO())
 	fmt.Println(filter)
