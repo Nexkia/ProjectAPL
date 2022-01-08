@@ -42,7 +42,7 @@ namespace APL.Forms
             this.pt.Token = token;
             this.sckt = sckt;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello();
+            carrelloForm = new FormCarrello(pt.Token,sckt);
             System.Diagnostics.Debug.WriteLine("ciao");
         }
 
