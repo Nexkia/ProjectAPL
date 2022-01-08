@@ -222,6 +222,7 @@ namespace APL.UserControls
             ListViewItem lvitem = new ListViewItem("" + modello + "");
             lvitem.SubItems.Add("" + marca + "");
             lvitem.SubItems.Add("" + prezzo + "");
+            if (categoria != "memoria" && categoria != "ram") { capienza = ""; }
             lvitem.SubItems.Add("" + capienza + "");
             lvitem.SubItems.Add("" + categoria + "");
             lvitem.SubItems.Add("Build Guidata");

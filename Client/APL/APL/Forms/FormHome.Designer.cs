@@ -50,6 +50,7 @@ namespace APL.Forms
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.cronologiaOrdiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +117,7 @@ namespace APL.Forms
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(65, 972);
+            this.menuStrip1.Size = new System.Drawing.Size(155, 972);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -125,23 +126,24 @@ namespace APL.Forms
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
-            this.logoutToolStripMenuItem});
+            this.logoutToolStripMenuItem,
+            this.cronologiaOrdiniToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(54, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(144, 24);
             this.toolStripMenuItem1.Text = "Menu";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.editToolStripMenuItem.Text = "Modifica Profilo";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -213,6 +215,13 @@ namespace APL.Forms
             this.columnHeader2.Text = "Categoria";
             this.columnHeader2.Width = 150;
             // 
+            // cronologiaOrdiniToolStripMenuItem
+            // 
+            this.cronologiaOrdiniToolStripMenuItem.Name = "cronologiaOrdiniToolStripMenuItem";
+            this.cronologiaOrdiniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cronologiaOrdiniToolStripMenuItem.Text = "Cronologia Ordini";
+            this.cronologiaOrdiniToolStripMenuItem.Click += new System.EventHandler(this.cronologiaOrdiniToolStripMenuItem_Click);
+            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -256,5 +265,6 @@ namespace APL.Forms
         private ListView listView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
+        private ToolStripMenuItem cronologiaOrdiniToolStripMenuItem;
     }
 }
