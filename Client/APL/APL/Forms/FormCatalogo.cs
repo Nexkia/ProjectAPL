@@ -171,6 +171,7 @@ namespace APL.Forms
 
         private async void GetElements(Protocol pt) {
             string response = String.Empty;
+            sckt.GetMutex().WaitOne();
             sckt.send(pt);
             // n elem
             string nelem = await sckt.receive();
@@ -180,6 +181,7 @@ namespace APL.Forms
             {
                 response += await sckt.receive();
             } while (!response.Contains("\n"));
+            sckt.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Debug.WriteLine(response);
