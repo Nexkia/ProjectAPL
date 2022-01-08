@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"strconv"
 	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -33,7 +34,7 @@ func getInfoPayment(inputChannel chan string, conn net.Conn, mongodb *mongo.Data
 		wait.Done()
 		return
 	}
-	filter := bson.D{{"email", "" + u.Email + ""}}
+	filter := bson.D{{"email", u.Email}}
 	Info := InfoPayment{}
 	err = coll.FindOne(context.TODO(), filter).Decode(&Info)
 	if err != nil {
@@ -60,10 +61,29 @@ func getPayment(inputChannel chan string, token string, conn net.Conn, mongodb *
 	}
 	coll := mongodb.Collection("Venduti")
 	conn.Write([]byte("received"))
-	// La inser richiede un interface
+	filter := bson.D{{"id_token", token}}
+	var result map[string]interface{}
+	err = coll.FindOne(context.TODO(), filter).Decode(&result)
+	// La insert richiede un interface
 	var dat map[string]interface{}
 	json.Unmarshal([]byte(elementiVenduti), &dat)
-	coll.InsertOne(context.TODO(), dat)
+	if err != nil {
+		coll.InsertOne(context.TODO(), dat)
+	} else {
+		keys := make([]string, 0, len(result))
+		fmt.Println(len(result))
+		for k := range result {
+			keys = append(keys, k)
+		}
+		fmt.Println(keys)
+		new_buy := len(keys) - 1
+		updateMongo := bson.D{
+			{"$set", bson.D{
+				{"acquisto_" + strconv.Itoa(new_buy), dat["acquisto"]},
+			}},
+		}
+		coll.UpdateOne(context.Background(), filter, updateMongo)
+	}
 	// Inserimento o aggiornamento del metodo di pagamento
 	coll = mongodb.Collection("InfoPayment")
 	infoPayment := InfoPayment{}
@@ -71,13 +91,20 @@ func getPayment(inputChannel chan string, token string, conn net.Conn, mongodb *
 	json.Unmarshal([]byte(infoP), &infoPayment)
 	// Ricerca prima di inserire
 	infoPayment.Email = u.Email
-	filter := bson.D{{"email", "" + u.Email + ""}}
+	filter = bson.D{{"email", u.Email}}
 	search := InfoPayment{}
 	err = coll.FindOne(context.TODO(), filter).Decode(&search)
 	if err != nil {
 		coll.InsertOne(context.TODO(), infoPayment)
+	} else {
+		updateMongo := bson.D{
+			{"$set", bson.D{
+				{"indirizzoFatturazione", infoPayment.IndirizzoFatturazione},
+				{"creditCard", infoPayment.CreditCard},
+			}},
+		}
+		coll.UpdateOne(context.TODO(), filter, updateMongo)
 	}
-	coll.UpdateOne(context.TODO(), filter, infoPayment)
 	conn.Write([]byte("payment done"))
 	wait.Done()
 }

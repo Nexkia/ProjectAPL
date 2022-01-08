@@ -25,7 +25,7 @@ func register(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, 
 	l1 := Utente{}
 	//conversione della stringa in byte
 	json.Unmarshal([]byte(Mjson), &l1)
-	filter := bson.D{{"email", "" + l1.Email + ""}}
+	filter := bson.D{{"email", l1.Email}}
 	var result bson.D
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 
@@ -75,7 +75,7 @@ func verificaUtente(Mjson string, mongodb *mongo.Database) error {
 	json.Unmarshal([]byte(Mjson), &l1)
 	fmt.Println("Mjson:", Mjson, " l1: ", l1)
 	l1.Password = Encoding(l1.Email, l1.Password)
-	filter := bson.D{{"email", "" + l1.Email + ""}, {"password", "" + l1.Password + ""}}
+	filter := bson.D{{"email", l1.Email}, {"password", l1.Password}}
 
 	var result bson.D
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)

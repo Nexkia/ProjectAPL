@@ -414,7 +414,7 @@ func invio() {
 }
 
 func controlloModello(modello string, coll *mongo.Collection) bool {
-	filter := bson.D{{"modello", "" + modello + ""}}
+	filter := bson.D{{"modello", modello}}
 	var result bson.D
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 	return err != nil

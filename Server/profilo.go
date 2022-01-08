@@ -21,7 +21,7 @@ func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb 
 	for i := 0; i < 8; i++ {
 		ok := make([]byte, 256)
 		conn.Read(ok)
-		filter := bson.D{{"categoria", "" + categoria[i] + ""}}
+		filter := bson.D{{"categoria", categoria[i]}}
 		cursor, err := coll.Find(context.TODO(), filter)
 		defer cursor.Close(context.TODO())
 		//limit rappresenta il numero di risultati trovati
