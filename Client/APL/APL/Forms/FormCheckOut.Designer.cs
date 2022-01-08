@@ -46,13 +46,11 @@ namespace APL.Forms
             this.labelTitolo = new System.Windows.Forms.Label();
             this.listViewCheckOut = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.button1 = new System.Windows.Forms.Button();
             this.panelSfondo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSfondo
             // 
-            this.panelSfondo.Controls.Add(this.button1);
             this.panelSfondo.Controls.Add(this.textBoxAnno);
             this.panelSfondo.Controls.Add(this.labelSplit);
             this.panelSfondo.Controls.Add(this.buttonConfermaCheckout);
@@ -70,32 +68,35 @@ namespace APL.Forms
             this.panelSfondo.Controls.Add(this.listViewCheckOut);
             this.panelSfondo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSfondo.Location = new System.Drawing.Point(0, 0);
+            this.panelSfondo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSfondo.Name = "panelSfondo";
-            this.panelSfondo.Size = new System.Drawing.Size(1077, 592);
+            this.panelSfondo.Size = new System.Drawing.Size(942, 444);
             this.panelSfondo.TabIndex = 0;
             // 
             // textBoxAnno
             // 
-            this.textBoxAnno.Location = new System.Drawing.Point(777, 220);
+            this.textBoxAnno.Location = new System.Drawing.Point(680, 165);
+            this.textBoxAnno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxAnno.MaxLength = 2;
             this.textBoxAnno.Name = "textBoxAnno";
-            this.textBoxAnno.Size = new System.Drawing.Size(49, 27);
-            this.textBoxAnno.TabIndex = 15;
+            this.textBoxAnno.Size = new System.Drawing.Size(43, 23);
+            this.textBoxAnno.TabIndex = 8;
             // 
             // labelSplit
             // 
             this.labelSplit.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelSplit.Location = new System.Drawing.Point(746, 209);
+            this.labelSplit.Location = new System.Drawing.Point(653, 157);
             this.labelSplit.Name = "labelSplit";
-            this.labelSplit.Size = new System.Drawing.Size(25, 43);
+            this.labelSplit.Size = new System.Drawing.Size(22, 32);
             this.labelSplit.TabIndex = 14;
             this.labelSplit.Text = "/";
             // 
             // buttonConfermaCheckout
             // 
-            this.buttonConfermaCheckout.Location = new System.Drawing.Point(691, 512);
+            this.buttonConfermaCheckout.Location = new System.Drawing.Point(605, 384);
+            this.buttonConfermaCheckout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonConfermaCheckout.Name = "buttonConfermaCheckout";
-            this.buttonConfermaCheckout.Size = new System.Drawing.Size(312, 68);
+            this.buttonConfermaCheckout.Size = new System.Drawing.Size(273, 51);
             this.buttonConfermaCheckout.TabIndex = 13;
             this.buttonConfermaCheckout.Text = "Conferma Acquisto";
             this.buttonConfermaCheckout.UseVisualStyleBackColor = true;
@@ -103,68 +104,72 @@ namespace APL.Forms
             // 
             // textBoxNumeroCarta
             // 
-            this.textBoxNumeroCarta.Location = new System.Drawing.Point(691, 306);
+            this.textBoxNumeroCarta.Location = new System.Drawing.Point(605, 230);
+            this.textBoxNumeroCarta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNumeroCarta.MaxLength = 16;
             this.textBoxNumeroCarta.Name = "textBoxNumeroCarta";
-            this.textBoxNumeroCarta.Size = new System.Drawing.Size(178, 27);
-            this.textBoxNumeroCarta.TabIndex = 12;
+            this.textBoxNumeroCarta.Size = new System.Drawing.Size(156, 23);
+            this.textBoxNumeroCarta.TabIndex = 10;
             // 
             // labelNumeroCarta
             // 
             this.labelNumeroCarta.AutoSize = true;
-            this.labelNumeroCarta.Location = new System.Drawing.Point(691, 283);
+            this.labelNumeroCarta.Location = new System.Drawing.Point(605, 212);
             this.labelNumeroCarta.Name = "labelNumeroCarta";
-            this.labelNumeroCarta.Size = new System.Drawing.Size(106, 20);
+            this.labelNumeroCarta.Size = new System.Drawing.Size(85, 15);
             this.labelNumeroCarta.TabIndex = 11;
             this.labelNumeroCarta.Text = "Numero  Carta";
             // 
             // textBoxCVV
             // 
-            this.textBoxCVV.Location = new System.Drawing.Point(896, 220);
+            this.textBoxCVV.Location = new System.Drawing.Point(784, 165);
+            this.textBoxCVV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxCVV.MaxLength = 3;
             this.textBoxCVV.Name = "textBoxCVV";
-            this.textBoxCVV.Size = new System.Drawing.Size(107, 27);
-            this.textBoxCVV.TabIndex = 10;
+            this.textBoxCVV.Size = new System.Drawing.Size(94, 23);
+            this.textBoxCVV.TabIndex = 9;
             // 
             // labelCVV
             // 
             this.labelCVV.AutoSize = true;
-            this.labelCVV.Location = new System.Drawing.Point(906, 197);
+            this.labelCVV.Location = new System.Drawing.Point(793, 148);
             this.labelCVV.Name = "labelCVV";
-            this.labelCVV.Size = new System.Drawing.Size(36, 20);
+            this.labelCVV.Size = new System.Drawing.Size(29, 15);
             this.labelCVV.TabIndex = 9;
             this.labelCVV.Text = "CVV";
             // 
             // textBoxMese
             // 
-            this.textBoxMese.Location = new System.Drawing.Point(691, 220);
+            this.textBoxMese.Location = new System.Drawing.Point(605, 165);
+            this.textBoxMese.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxMese.MaxLength = 2;
             this.textBoxMese.Name = "textBoxMese";
-            this.textBoxMese.Size = new System.Drawing.Size(49, 27);
-            this.textBoxMese.TabIndex = 2;
+            this.textBoxMese.Size = new System.Drawing.Size(43, 23);
+            this.textBoxMese.TabIndex = 7;
             // 
             // labelDataScadenzaCarta
             // 
             this.labelDataScadenzaCarta.AutoSize = true;
-            this.labelDataScadenzaCarta.Location = new System.Drawing.Point(691, 189);
+            this.labelDataScadenzaCarta.Location = new System.Drawing.Point(605, 142);
             this.labelDataScadenzaCarta.Name = "labelDataScadenzaCarta";
-            this.labelDataScadenzaCarta.Size = new System.Drawing.Size(147, 20);
+            this.labelDataScadenzaCarta.Size = new System.Drawing.Size(114, 15);
             this.labelDataScadenzaCarta.TabIndex = 7;
             this.labelDataScadenzaCarta.Text = "Data Scadenza Carta";
             // 
             // textBoxIndirizzoFatturazione
             // 
-            this.textBoxIndirizzoFatturazione.Location = new System.Drawing.Point(691, 134);
+            this.textBoxIndirizzoFatturazione.Location = new System.Drawing.Point(605, 100);
+            this.textBoxIndirizzoFatturazione.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxIndirizzoFatturazione.Name = "textBoxIndirizzoFatturazione";
-            this.textBoxIndirizzoFatturazione.Size = new System.Drawing.Size(312, 27);
+            this.textBoxIndirizzoFatturazione.Size = new System.Drawing.Size(274, 23);
             this.textBoxIndirizzoFatturazione.TabIndex = 6;
             // 
             // labelIndirizzoFatturazione
             // 
             this.labelIndirizzoFatturazione.AutoSize = true;
-            this.labelIndirizzoFatturazione.Location = new System.Drawing.Point(691, 111);
+            this.labelIndirizzoFatturazione.Location = new System.Drawing.Point(605, 83);
             this.labelIndirizzoFatturazione.Name = "labelIndirizzoFatturazione";
-            this.labelIndirizzoFatturazione.Size = new System.Drawing.Size(151, 20);
+            this.labelIndirizzoFatturazione.Size = new System.Drawing.Size(119, 15);
             this.labelIndirizzoFatturazione.TabIndex = 5;
             this.labelIndirizzoFatturazione.Text = "Indirizzo Fatturazione";
             // 
@@ -172,9 +177,9 @@ namespace APL.Forms
             // 
             this.labelTitoloInfoCarta.AutoSize = true;
             this.labelTitoloInfoCarta.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTitoloInfoCarta.Location = new System.Drawing.Point(714, 48);
+            this.labelTitoloInfoCarta.Location = new System.Drawing.Point(625, 36);
             this.labelTitoloInfoCarta.Name = "labelTitoloInfoCarta";
-            this.labelTitoloInfoCarta.Size = new System.Drawing.Size(273, 28);
+            this.labelTitoloInfoCarta.Size = new System.Drawing.Size(219, 21);
             this.labelTitoloInfoCarta.TabIndex = 4;
             this.labelTitoloInfoCarta.Text = "Inserisci Informazioni Carta";
             // 
@@ -182,9 +187,9 @@ namespace APL.Forms
             // 
             this.labelTotale.AutoSize = true;
             this.labelTotale.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTotale.Location = new System.Drawing.Point(29, 424);
+            this.labelTotale.Location = new System.Drawing.Point(25, 318);
             this.labelTotale.Name = "labelTotale";
-            this.labelTotale.Size = new System.Drawing.Size(64, 25);
+            this.labelTotale.Size = new System.Drawing.Size(52, 20);
             this.labelTotale.TabIndex = 3;
             this.labelTotale.Text = "Totale";
             // 
@@ -192,9 +197,9 @@ namespace APL.Forms
             // 
             this.labelTitolo.AutoEllipsis = true;
             this.labelTitolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTitolo.Location = new System.Drawing.Point(29, 10);
+            this.labelTitolo.Location = new System.Drawing.Point(25, 8);
             this.labelTitolo.Name = "labelTitolo";
-            this.labelTitolo.Size = new System.Drawing.Size(297, 66);
+            this.labelTitolo.Size = new System.Drawing.Size(260, 50);
             this.labelTitolo.TabIndex = 2;
             this.labelTitolo.Text = "CheckOut";
             // 
@@ -204,9 +209,10 @@ namespace APL.Forms
             this.columnHeader1});
             this.listViewCheckOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.listViewCheckOut.HideSelection = false;
-            this.listViewCheckOut.Location = new System.Drawing.Point(29, 88);
+            this.listViewCheckOut.Location = new System.Drawing.Point(25, 66);
+            this.listViewCheckOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewCheckOut.Name = "listViewCheckOut";
-            this.listViewCheckOut.Size = new System.Drawing.Size(609, 303);
+            this.listViewCheckOut.Size = new System.Drawing.Size(533, 228);
             this.listViewCheckOut.TabIndex = 0;
             this.listViewCheckOut.UseCompatibleStateImageBehavior = false;
             this.listViewCheckOut.View = System.Windows.Forms.View.Details;
@@ -216,22 +222,13 @@ namespace APL.Forms
             this.columnHeader1.Text = "Modello";
             this.columnHeader1.Width = 600;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(695, 396);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 28);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormCheckOut
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 592);
+            this.ClientSize = new System.Drawing.Size(942, 444);
             this.Controls.Add(this.panelSfondo);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormCheckOut";
             this.Load += new System.EventHandler(this.FormCheckOut_Load);
             this.panelSfondo.ResumeLayout(false);
@@ -259,6 +256,5 @@ namespace APL.Forms
         private System.Windows.Forms.Button buttonConfermaCheckout;
         private System.Windows.Forms.Label labelSplit;
         private System.Windows.Forms.TextBox textBoxAnno;
-        private System.Windows.Forms.Button button1;
     }
 }

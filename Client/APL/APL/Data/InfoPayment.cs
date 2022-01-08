@@ -12,10 +12,10 @@ namespace APL.Data
         [JsonProperty("email")]
         public string Email { get;  set; }
 
-        [JsonProperty("indirizzofatturazione")]
+        [JsonProperty("indirizzoFatturazione")]
         public string IndirizzoFatturazione { get;  set; }
 
-        [JsonProperty("creditcard")]
+        [JsonProperty("creditCard")]
         public CreditCard CreditCard { get;  set; }
       
 }

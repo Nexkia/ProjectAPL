@@ -112,47 +112,47 @@ namespace APL.Forms
 
         private async void buttonConfermaCheckout_Click(object sender, EventArgs e)
         {
-           
-
             meseScadenza = textBoxMese.Text;
             annoScadenza = textBoxAnno.Text;
-
             cvv = textBoxCVV.Text;
-
+            indirizzoFatturazione = textBoxIndirizzoFatturazione.Text;
             numeroCarta = textBoxNumeroCarta.Text;
-
-            
 
             if (indirizzoFatturazione != string.Empty && meseScadenza != string.Empty && annoScadenza != string.Empty
                 && cvv != string.Empty && numeroCarta != string.Empty )
             {
-                InfoPayment inpa = new InfoPayment();
-                inpa.CreditCard.CVV =int.Parse(cvv);
-                inpa.CreditCard.Month = int.Parse(meseScadenza);
-                inpa.CreditCard.Year = int.Parse(annoScadenza);
-                inpa.CreditCard.Number = int.Parse(numeroCarta);
-                inpa.IndirizzoFatturazione = indirizzoFatturazione;
-                inpa.Email = String.Empty;
-                //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
 
-                string JsonInfop = JsonConvert.SerializeObject(inpa);
-     
+                //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
+                InfoPayment info = new InfoPayment();
+                info.CreditCard = new CreditCard();
+                info.CreditCard.CVV = int.Parse(cvv);
+                info.CreditCard.Month = int.Parse(meseScadenza);
+                info.CreditCard.Year = int.Parse(annoScadenza);
+                info.CreditCard.Number = int.Parse(numeroCarta);
+                info.IndirizzoFatturazione = indirizzoFatturazione;
+                info.Email = String.Empty;
+                string JsonInfop = JsonConvert.SerializeObject(info);
                 string Json = System.Text.Json.JsonSerializer.Serialize(
                     new
                     {
-                        Lista=CheckOut,
-                        Prezzo=totale
-                       
+                        id_token = pt.Token,
+                        acquisto = new
+                        {
+                            Lista = CheckOut,
+                            Prezzo = totale
+                        }
                     }
                     );
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
                 sckt.GetMutex().WaitOne();
                 sckt.send(pt);
                 string okmsg = await sckt.receive();
-                sckt.sendSingleMsg(JsonInfop);
-
+                sckt.sendSingleMsg(JsonInfop+"\n");
                 string response = await sckt.receive();
                 sckt.GetMutex().ReleaseMutex();
+                if (response.Contains("done")) {
+                    Debug.WriteLine(response);
+                }
                 
             }
             else
@@ -172,30 +172,16 @@ namespace APL.Forms
             sckt.GetMutex().WaitOne();
             sckt.send(pt);
             string infop = await sckt.receive();
-
             sckt.GetMutex().ReleaseMutex();
 
             if (!infop.Contains("notFound"))
             {
                 infoPayment = JsonConvert.DeserializeObject<InfoPayment>(infop);
-
                 textBoxIndirizzoFatturazione.Text = infoPayment.IndirizzoFatturazione;
-
-                textBoxMese.Text = Convert.ToString(meseScadenza);
-                textBoxAnno.Text = Convert.ToString(annoScadenza);
+                textBoxMese.Text = Convert.ToString(infoPayment.CreditCard.Month);
+                textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
                 textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
                 textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
-            }
-           
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            foreach (var elem in CheckOut)
-            {
-                string Json1 = JsonConvert.SerializeObject(elem);
-                Debug.WriteLine("Json1: " + Json1);
             }
         }
     } 
