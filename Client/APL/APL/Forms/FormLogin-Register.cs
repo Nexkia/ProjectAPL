@@ -154,6 +154,12 @@ namespace APL.Forms
                 TextBoxLoginPassword.PasswordChar = default;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormAmministratore amm = new FormAmministratore();
+            amm.Show();
+        }
     }
 
 }

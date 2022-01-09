@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace APL.UserControls
 
         public void setPrezzo(string value) { labelPrezzo.Text ="Prezzo totale: "+ value; }
 
+      
         public void addElementListView(string modello)
         {
             //---prendere dal server-------
@@ -39,5 +41,7 @@ namespace APL.UserControls
             listViewElementoC.Items.Add(lvitem);
             
         }
+
+
     }
 }
