@@ -13,11 +13,12 @@ namespace APL.Connections
         public string? Data {get;set;}
         public string Limit = " ";
         public string End = "\n";
-        private Dictionary<string, string> FuncDict = new Dictionary<string, string> 
+        private Dictionary<string, string> FuncDict = new Dictionary<string, string>
         {
             { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},
             {"modificaUtente","4"},{"profilo","5"},{"catalogo","6"},{"confronto","7"},
-            {"buildSolo","8" },{"close","9"},{"getInfoPayment","10"},{"CheckOut","11"}
+            {"buildSolo","8" },{"close","9"},{"getInfoPayment","10"},{"CheckOut","11"},
+            {"storico","12"}
         };
         public void SetProtocolID(string NameFunction)
         {

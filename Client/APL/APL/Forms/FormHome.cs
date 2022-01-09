@@ -447,7 +447,7 @@ namespace APL.Forms
             }
             //--------da cancellare---------------------------------
 
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
 
             ElementoCronologia e1 = creaElementoCronologia(lista1, prezzo1);
             ElementoCronologia e2 = creaElementoCronologia(lista2, prezzo2);

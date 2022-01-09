@@ -37,30 +37,33 @@ namespace APL.Forms
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(43, 87);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(38, 65);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1112, 563);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(973, 422);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // labelTitolo
             // 
             this.labelTitolo.AutoEllipsis = true;
             this.labelTitolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTitolo.Location = new System.Drawing.Point(43, 9);
+            this.labelTitolo.Location = new System.Drawing.Point(38, 7);
             this.labelTitolo.Name = "labelTitolo";
-            this.labelTitolo.Size = new System.Drawing.Size(780, 66);
+            this.labelTitolo.Size = new System.Drawing.Size(682, 50);
             this.labelTitolo.TabIndex = 2;
             this.labelTitolo.Text = "Cronologia Acquisti Passati";
             // 
             // FormAcquistiPassati
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 673);
+            this.ClientSize = new System.Drawing.Size(1048, 505);
             this.Controls.Add(this.labelTitolo);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormAcquistiPassati";
             this.Text = "FormOrdiniPassati";
+            this.Load += new System.EventHandler(this.FormAcquistiPassati_Load);
             this.ResumeLayout(false);
 
         }
