@@ -396,5 +396,90 @@ namespace APL.Forms
         {
 
         }
+
+        private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //--------da cancellare---------------------------------
+            string[][] lista1 = new string[3][];
+            string[][] lista2 = new string[3][];
+            string[][] lista3 = new string[3][];
+            string prezzo1 = "100";
+            string prezzo2 = "200";
+            string prezzo3 = "300";
+            int i ;
+            int j;
+            for (i=0; i < 3; i++)
+            {
+                if (i < 2)
+                {
+                    lista1[i] = new string[8];
+                    lista2[i] = new string[8];
+                    lista3[i] = new string[8];
+                }
+                else
+                {
+                    lista1[i] = new string[3];
+                    lista2[i] = new string[3];
+                    lista3[i] = new string[3];
+                }
+                
+                for (j = 0; j < 8; j++)
+                {
+                    if (i < 2)
+                    {
+                        
+                        lista1[i][j] = "lista1comp" + j;
+                        lista2[i][j] = "lista2comp" + j;
+                        Debug.WriteLine("lista1: " + lista1[i][j] + "lista3: " + lista2[i][j]);
+                       
+                    }
+                    else
+                    {
+                        lista1[i][j] = "lista1prea" + j;
+                        lista3[i][j] = "lista3prea" + j;
+                       
+                        Debug.WriteLine("lista1: "+lista1[i][j]+ "lista3: "+lista3[i][j]);
+
+                        if (j == 2) { break; }
+                    }
+                }
+
+            }
+            //--------da cancellare---------------------------------
+
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
+
+            ElementoCronologia e1 = creaElementoCronologia(lista1, prezzo1);
+            ElementoCronologia e2 = creaElementoCronologia(lista2, prezzo2);
+            ElementoCronologia e3 = creaElementoCronologia(lista3, prezzo3);
+
+            acquistiPassati.aggiungiElementoCronologia(e1);
+            acquistiPassati.aggiungiElementoCronologia(e2);
+            acquistiPassati.aggiungiElementoCronologia(e3);
+
+            acquistiPassati.Show();
+
+        }
+
+        private ElementoCronologia creaElementoCronologia(string[][] vet,string tot)
+        {
+            ElementoCronologia elem = new ElementoCronologia();
+           
+            elem.setPrezzo(tot);
+            int i, j;
+
+            for (i=0;i<vet.Length;i++)
+            {
+                
+                for (j=0;j<vet[i].Length;j++)
+                {
+                    
+                     elem.addElementListView(vet[i][j]); 
+                   
+                }
+            }
+
+            return elem;
+        }
     }
 }
