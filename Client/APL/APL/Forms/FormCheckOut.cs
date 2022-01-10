@@ -145,6 +145,8 @@ namespace APL.Forms
                 SocketTCP.GetMutex().ReleaseMutex();
                 if (response.Contains("done")) {
                     Debug.WriteLine(response);
+                    MessageBox.Show("CheckOut confermato",
+                    "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
             }

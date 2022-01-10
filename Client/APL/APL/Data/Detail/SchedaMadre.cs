@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class SchedaMadre : Details
+    public class SchedaMadre : Details
     {
+        public SchedaMadre(string modello, int valutazione, string cpuSocket, string ram,string chipset)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.CpuSocket = cpuSocket;
+            this.Ram = ram;
+            this.Chipset = chipset;
+        }
+
+        public SchedaMadre() { }
         [JsonProperty("modello_schedaMadre")]
         public string? Modello { get; private set; }
         [JsonProperty("valutazione")]

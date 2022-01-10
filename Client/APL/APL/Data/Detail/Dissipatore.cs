@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class Dissipatore:Details
+    public class Dissipatore:Details
     {
+        public Dissipatore(string modello, int valutazione, string[] cpusocket)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.CpuSocket = cpusocket;
+        }
+
+        public Dissipatore() { }
         [JsonProperty("modello_dissipatore")]
         public string? Modello { get; private set; }
         [JsonProperty("Valutazione")]

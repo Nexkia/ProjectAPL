@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APL.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,13 +22,14 @@ namespace APL.UserControls
         public void setPrezzo(string value) { labelPrezzo.Text ="Prezzo totale: "+ value; }
 
       
-        public void addElementListView(string modello)
+        public void addComponenteListView(Componente comp)
         {
-            //---prendere dal server-------
-            string marca = "marca";
-            string prezzo = "prezzo";
-            string capienza = "capienza";
-            string categoria = "categoria";
+            //---prensi dal server-------
+            string modello = comp.Modello.ToString();
+            string marca = comp.Marca.ToString();
+            string prezzo = comp.Prezzo.ToString();
+            string capienza = comp.Capienza.ToString();
+            string categoria = comp.Categoria.ToString();
 
 
             ListViewItem lvitem = new ListViewItem("" + modello + "");
@@ -40,6 +42,14 @@ namespace APL.UserControls
 
             listViewElementoC.Items.Add(lvitem);
             
+        }
+
+        public void addPreassemblatoListView(string nome)
+        {
+            ListViewItem lvitem = new ListViewItem("" + nome + "");
+
+            listViewElementoC.Items.Add(lvitem);
+
         }
 
 

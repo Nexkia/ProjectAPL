@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class Ram : Details
+    public class Ram : Details
     {
+        public Ram(string modello, int valutazione, float frequenza,string standard)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.Frequenza = frequenza;
+            this.Standard = standard;
+        }
+
+        public Ram() { }
         [JsonProperty("modello_ram")]
         public string? Modello { get; private set; }
         [JsonProperty("Valutazione")]

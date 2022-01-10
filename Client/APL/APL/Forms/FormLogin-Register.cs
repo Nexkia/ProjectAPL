@@ -103,6 +103,10 @@ namespace APL.Forms
                     {
                         Debug.WriteLine("Login fallito," + responseData);
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }else if (admin == true)
+                    {
+                        FormAmministratore amm = new FormAmministratore();
+                        amm.Show();
                     }
                     else
                     {
@@ -159,8 +163,7 @@ namespace APL.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormAmministratore amm = new FormAmministratore();
-            amm.Show();
+           
         }
     }
 

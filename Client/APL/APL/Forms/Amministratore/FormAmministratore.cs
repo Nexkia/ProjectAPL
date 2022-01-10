@@ -1,4 +1,5 @@
-﻿using APL.Forms.Amministratore;
+﻿using APL.Connections;
+using APL.Forms.Amministratore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,11 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
+        
         public FormAmministratore()
         {
             InitializeComponent();
+           
         }
 
         private void buttonInserisciComponente_Click(object sender, EventArgs e)
