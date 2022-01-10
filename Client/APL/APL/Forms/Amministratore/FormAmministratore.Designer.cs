@@ -30,24 +30,17 @@ namespace APL.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAmministratore));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonInserisciComponente = new System.Windows.Forms.Button();
             this.buttonEliminaComponente = new System.Windows.Forms.Button();
+            this.TextBoxModello = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(333, 168);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(225, 28);
-            this.comboBox1.TabIndex = 0;
             // 
             // buttonInserisciComponente
             // 
-            this.buttonInserisciComponente.Location = new System.Drawing.Point(39, 69);
+            this.buttonInserisciComponente.Location = new System.Drawing.Point(34, 52);
+            this.buttonInserisciComponente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInserisciComponente.Name = "buttonInserisciComponente";
-            this.buttonInserisciComponente.Size = new System.Drawing.Size(225, 66);
+            this.buttonInserisciComponente.Size = new System.Drawing.Size(197, 50);
             this.buttonInserisciComponente.TabIndex = 1;
             this.buttonInserisciComponente.Text = "Inserisci Componente";
             this.buttonInserisciComponente.UseVisualStyleBackColor = true;
@@ -55,32 +48,42 @@ namespace APL.Forms
             // 
             // buttonEliminaComponente
             // 
-            this.buttonEliminaComponente.Location = new System.Drawing.Point(333, 69);
+            this.buttonEliminaComponente.Location = new System.Drawing.Point(291, 52);
+            this.buttonEliminaComponente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonEliminaComponente.Name = "buttonEliminaComponente";
-            this.buttonEliminaComponente.Size = new System.Drawing.Size(225, 66);
+            this.buttonEliminaComponente.Size = new System.Drawing.Size(197, 50);
             this.buttonEliminaComponente.TabIndex = 2;
             this.buttonEliminaComponente.Text = "Elimina Componente";
             this.buttonEliminaComponente.UseVisualStyleBackColor = true;
+            this.buttonEliminaComponente.Click += new System.EventHandler(this.buttonEliminaComponente_Click);
+            // 
+            // textBox1
+            // 
+            this.TextBoxModello.Location = new System.Drawing.Point(291, 155);
+            this.TextBoxModello.Name = "textBox1";
+            this.TextBoxModello.Size = new System.Drawing.Size(197, 23);
+            this.TextBoxModello.TabIndex = 3;
             // 
             // FormAmministratore
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 545);
+            this.ClientSize = new System.Drawing.Size(521, 409);
+            this.Controls.Add(this.TextBoxModello);
             this.Controls.Add(this.buttonEliminaComponente);
             this.Controls.Add(this.buttonInserisciComponente);
-            this.Controls.Add(this.comboBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormAmministratore";
             this.Text = "FormAmministratore";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonInserisciComponente;
         private System.Windows.Forms.Button buttonEliminaComponente;
+        private System.Windows.Forms.TextBox TextBoxModello;
     }
 }
