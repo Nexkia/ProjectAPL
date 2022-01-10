@@ -105,7 +105,7 @@ namespace APL.Forms
                Debug.Write("pre:" +pre[i]);
                 listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListView());
                 listItems[i].pre = pre[i];
-                listItems[i].Icon = Resources.ImageNotFound2;
+                listItems[i].Icon = Resources.preassemblato;
                 listItems[i].IconBackground = Color.SteelBlue;
                 listItems[i].NomeModello = pre[i].Nome;
                 listItems[i].Prezzo = pre[i].Prezzo;
