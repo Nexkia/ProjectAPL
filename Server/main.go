@@ -139,6 +139,16 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			fmt.Println("case 12", MP)
 			go getCronologia(ID, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
+		case 13:
+			fmt.Println("case 13", MP)
+			go Inserimento(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 14:
+			fmt.Println("case 14", MP)
+			go Cancellazione(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}
