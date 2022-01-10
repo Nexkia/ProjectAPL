@@ -88,5 +88,5 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 			conn.Read(okmsg)
 		}
 	}
-
+	wait.Done()
 }
