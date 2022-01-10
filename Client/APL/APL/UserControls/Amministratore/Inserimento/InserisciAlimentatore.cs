@@ -17,12 +17,12 @@ namespace APL.UserControls.Amministratore.Inserimento
     public partial class InserisciAlimentatore : UserControl
     {
         FormInserisciComponente inserisciComponente;
-        SocketTCP sckt;
-        public InserisciAlimentatore(FormInserisciComponente inserisciComponente,SocketTCP sckt)
+        
+        public InserisciAlimentatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
             this.inserisciComponente = inserisciComponente;
-            this.sckt = sckt;
+           
         }
 
         
@@ -46,7 +46,7 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (this.getInputDetail() != null  && inserisciComponente.areFullAllTextBox()!=null)
             {
                 
-                InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox(),sckt);
+                InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox());
                 MessageBox.Show("Inserimento avvenuto",
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

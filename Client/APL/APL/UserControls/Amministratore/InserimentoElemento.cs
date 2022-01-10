@@ -14,7 +14,7 @@ namespace APL.UserControls.Amministratore
     class InserimentoElemento
     {
 
-        public async static Task<string> InserisciElemento(Details detail,Componente comp,SocketTCP sckt)
+        public async static Task<string> InserisciElemento(Details detail,Componente comp)
         {
             string JsonDetail = JsonConvert.SerializeObject(detail);
             string JsonComponente = JsonConvert.SerializeObject(comp);
@@ -22,16 +22,16 @@ namespace APL.UserControls.Amministratore
             Protocol pt=new Protocol();pt.Token = "inserimento";pt.Data = JsonDetail;
             
 
-            sckt.GetMutex().WaitOne();
+            SocketTCP.GetMutex().WaitOne();
 
             //invio il detail
-            sckt.send(pt);
-            string okmsg = await sckt.receive();
+            SocketTCP.send(pt);
+            string okmsg = await SocketTCP.receive();
             //invio il componente
-            sckt.sendSingleMsg(JsonComponente);
-            okmsg = await sckt.receive();
+            SocketTCP.sendSingleMsg(JsonComponente);
+            okmsg = await SocketTCP.receive();
 
-            sckt.GetMutex().ReleaseMutex();
+            SocketTCP.GetMutex().ReleaseMutex();
 
             return okmsg;
         }

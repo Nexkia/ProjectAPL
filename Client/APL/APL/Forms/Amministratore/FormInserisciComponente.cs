@@ -16,11 +16,11 @@ namespace APL.Forms.Amministratore
 {
     public partial class FormInserisciComponente : Form
     {
-        SocketTCP sckt;
-        public FormInserisciComponente(SocketTCP sckt)
+        
+        public FormInserisciComponente()
         {
             InitializeComponent();
-            this.sckt = sckt;
+            
         }
 
         private string categoria;
@@ -58,7 +58,7 @@ namespace APL.Forms.Amministratore
                 case "alimentatore":
                     categoria = "alimentatore";
                     setReadOnly(false);
-                    InserisciAlimentatore detAli = new InserisciAlimentatore(this, sckt);
+                    InserisciAlimentatore detAli = new InserisciAlimentatore(this);
                     setFlowLayoutPanel(detAli);
                         break;
                 case "casepc":

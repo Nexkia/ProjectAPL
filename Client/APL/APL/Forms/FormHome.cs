@@ -398,10 +398,7 @@ namespace APL.Forms
         {
             
 
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
-
-            acquistiPassati.recuperaAcquisti();
-
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token);
             acquistiPassati.Show();
 
         }

@@ -14,16 +14,16 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
-        SocketTCP sckt;
-        public FormAmministratore(SocketTCP sckt)
+        
+        public FormAmministratore()
         {
             InitializeComponent();
-            this.sckt = sckt;
+           
         }
 
         private void buttonInserisciComponente_Click(object sender, EventArgs e)
         {
-            FormInserisciComponente insert = new FormInserisciComponente(sckt);
+            FormInserisciComponente insert = new FormInserisciComponente();
             insert.Show();
         }
     }

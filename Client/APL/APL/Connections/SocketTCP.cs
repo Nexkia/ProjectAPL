@@ -75,7 +75,7 @@ namespace APL.Connections
             return result;
         }
 
-        public async Task<Byte[]> receiveBytes()
+        public static async Task<Byte[]> receiveBytes()
         {
             var result = await Task.Run(() =>
             {

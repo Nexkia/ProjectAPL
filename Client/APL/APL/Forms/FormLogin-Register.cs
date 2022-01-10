@@ -105,7 +105,7 @@ namespace APL.Forms
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }else if (admin == true)
                     {
-                        FormAmministratore amm = new FormAmministratore(sckt);
+                        FormAmministratore amm = new FormAmministratore();
                         amm.Show();
                     }
                     else

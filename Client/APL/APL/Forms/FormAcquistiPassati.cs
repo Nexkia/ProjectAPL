@@ -34,7 +34,7 @@ namespace APL.Forms
         {
             pt.SetProtocolID("storico"); pt.Data = String.Empty;
             PcAssemblato[] PcAssemblati;
-            float Prezzo;
+            string PrezzoTot;
             string[] PcPreAssemblati;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
@@ -56,14 +56,53 @@ namespace APL.Forms
                 SocketTCP.sendSingleMsg("ok");
                 response = await SocketTCP.receive();
                 SocketTCP.sendSingleMsg("ok");
-                Prezzo = float.Parse(response);
+                PrezzoTot = response;
                 response = String.Empty;
                 // se pc assemblati ha lunghezza 1 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
+
+                aggiungiPcAllaListView(PcAssemblati, PcPreAssemblati, PrezzoTot);
             }
             SocketTCP.GetMutex().ReleaseMutex();
         }
-    }
+
+        private void aggiungiPcAllaListView(PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string PrezzoTot)
+        {
+            ElementoCronologia elem = new ElementoCronologia();
+
+            elem.setPrezzo(PrezzoTot);
+            
+
+            if (PcAssemblati.Length > 0)
+            {
+                foreach (PcAssemblato item in PcAssemblati)
+                {
+                    foreach (Componente comp in item.Componenti)
+                    {
+                        if (item.Componenti.Length > 0)
+                        {  elem.addComponenteListView(comp);}
+
+                    }
+                }
+            }
+
+            if (PcPreAssemblati.Length > 0)
+            {
+                for (int i = 0; i < PcPreAssemblati.Length; i++)
+                {elem.addPreassemblatoListView(PcPreAssemblati[i].ToString());}
+            }
+
+            if (flowLayoutPanel1.Controls.Count < 0)
+            {
+                flowLayoutPanel1.Controls.Clear();
+            }
+            else
+                flowLayoutPanel1.Controls.Add(elem);
+
+
+        
+        }
+        }
 }
