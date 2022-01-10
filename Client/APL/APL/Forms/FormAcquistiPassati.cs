@@ -17,11 +17,9 @@ namespace APL.Forms
     public partial class FormAcquistiPassati : Form
     {
         Protocol pt = new Protocol();
-        SocketTCP sckt;
-        public FormAcquistiPassati(string Token,SocketTCP sckt)
+        public FormAcquistiPassati(string Token)
         {
             InitializeComponent();
-            this.sckt = sckt;
             pt.Token = Token;
         }
 
@@ -44,26 +42,26 @@ namespace APL.Forms
             PcAssemblato[] PcAssemblati;
             float Prezzo;
             string[] PcPreAssemblati;
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
             string response = String.Empty;
-            response = await sckt.receive();
+            response = await SocketTCP.receive();
             int numeroDiAcquisti = int.Parse(response);
-            sckt.sendSingleMsg("ok");
+            SocketTCP.sendSingleMsg("ok");
             response = String.Empty;
             for (int i = 0; i < numeroDiAcquisti; i++){
                 do
                 {
                     // pcassemblati
-                    response += await sckt.receive();
+                    response += await SocketTCP.receive();
                 } while (!response.Contains("\n"));
                 PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
-                sckt.sendSingleMsg("ok");
-                response = await sckt.receive();
+                SocketTCP.sendSingleMsg("ok");
+                response = await SocketTCP.receive();
                 PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                sckt.sendSingleMsg("ok");
-                response = await sckt.receive();
-                sckt.sendSingleMsg("ok");
+                SocketTCP.sendSingleMsg("ok");
+                response = await SocketTCP.receive();
+                SocketTCP.sendSingleMsg("ok");
                 Prezzo = float.Parse(response);
                 response = String.Empty;
                 // se pc assemblati ha lunghezza 1 vuol dire che è vuoto
@@ -71,7 +69,7 @@ namespace APL.Forms
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
             }
-            sckt.GetMutex().ReleaseMutex();
+            SocketTCP.GetMutex().ReleaseMutex();
         }
     }
 }

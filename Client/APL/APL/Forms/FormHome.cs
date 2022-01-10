@@ -32,17 +32,15 @@ namespace APL.Forms
         FormLogin_Register parent;
         PcPreassemblato[] ricevuto;
         int dimRicevuto;
-        SocketTCP sckt;
         FormCarrello carrelloForm;
 
-        public FormHome(FormLogin_Register f_start, string token,SocketTCP sckt)
+        public FormHome(FormLogin_Register f_start, string token)
         {
             InitializeComponent();
             parent = f_start;
             this.pt.Token = token;
-            this.sckt = sckt;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello(pt.Token,sckt);
+            carrelloForm = new FormCarrello(pt.Token);
             System.Diagnostics.Debug.WriteLine("ciao");
         }
 
@@ -50,14 +48,14 @@ namespace APL.Forms
         {
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
             string responseData = String.Empty;
             do
             {
-                responseData += await sckt.receive();
+                responseData += await SocketTCP.receive();
             } while (!responseData.Contains("\n"));
-            sckt.GetMutex().ReleaseMutex();
+            SocketTCP.GetMutex().ReleaseMutex();
             int dim = 3;
             PcPreassemblato[] a = new PcPreassemblato[dim];
             a = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
@@ -166,7 +164,7 @@ namespace APL.Forms
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormModificaProfilo mdp = new FormModificaProfilo(pt,sckt);
+            FormModificaProfilo mdp = new FormModificaProfilo(pt);
             mdp.Show();
         }
 
@@ -192,7 +190,7 @@ namespace APL.Forms
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView(),pt.Token,sckt);
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView(),pt.Token);
 
                 switch (i)
                 {
@@ -273,19 +271,19 @@ namespace APL.Forms
                 { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
             List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                sckt.sendSingleMsg("ok");
-                string nElements = await sckt.receive();
+                SocketTCP.sendSingleMsg("ok");
+                string nElements = await SocketTCP.receive();
                 int n = int.Parse(nElements);
-                sckt.sendSingleMsg("ok");
+                SocketTCP.sendSingleMsg("ok");
                 string response = String.Empty;
                 do
                 {
-                    response += await sckt.receive();
+                    response += await SocketTCP.receive();
                 } while (!response.Contains("\n"));
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
@@ -328,7 +326,7 @@ namespace APL.Forms
                 }
                 
             }
-            sckt.GetMutex().ReleaseMutex();
+            SocketTCP.GetMutex().ReleaseMutex();
 
         }
 
@@ -364,7 +362,7 @@ namespace APL.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormCatalogo fcg = new FormCatalogo(pt.Token,sckt);
+            FormCatalogo fcg = new FormCatalogo(pt.Token);
             fcg.Show();
         }
 
@@ -447,7 +445,7 @@ namespace APL.Forms
             }
             //--------da cancellare---------------------------------
 
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token);
 
             ElementoCronologia e1 = creaElementoCronologia(lista1, prezzo1);
             ElementoCronologia e2 = creaElementoCronologia(lista2, prezzo2);
