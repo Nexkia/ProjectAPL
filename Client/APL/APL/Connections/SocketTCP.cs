@@ -85,5 +85,19 @@ namespace APL.Connections
             });
             return result;
         }
+
+        public async Task<Byte[]> receiveBytes()
+        {
+            var result = await Task.Run(() =>
+            {
+                var data = new Byte[256];
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
+                // Read the first batch of the TcpServer response bytes.
+                Int32 bytes = stream.Read(data, 0, data.Length);
+                return data;
+            });
+            return result;
+        }
     }
 }

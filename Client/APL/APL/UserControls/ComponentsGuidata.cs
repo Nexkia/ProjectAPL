@@ -215,7 +215,7 @@ namespace APL.UserControls
             string modello = _componente[i].Modello;
             string marca = _componente[i].Marca;
             string prezzo = Convert.ToString(_componente[i].Prezzo);
-            string capienza = _componente[i].Capienza;
+            string capienza = Convert.ToString(_componente[i].Capienza);
             string categoria = _componente[i].Categoria;
 
 

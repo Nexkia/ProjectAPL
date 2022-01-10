@@ -35,7 +35,6 @@ namespace APL.Forms.Amministratore
             this.labelMarca = new System.Windows.Forms.Label();
             this.labelCapienza = new System.Windows.Forms.Label();
             this.labelPrezzo = new System.Windows.Forms.Label();
-            this.labelImmagine = new System.Windows.Forms.Label();
             this.textBoxModello = new System.Windows.Forms.TextBox();
             this.textBoxMarca = new System.Windows.Forms.TextBox();
             this.textBoxPrezzo = new System.Windows.Forms.TextBox();
@@ -43,7 +42,6 @@ namespace APL.Forms.Amministratore
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonConfermaTipoComponente = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonConferma = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelModello
@@ -81,15 +79,6 @@ namespace APL.Forms.Amministratore
             this.labelPrezzo.Size = new System.Drawing.Size(53, 20);
             this.labelPrezzo.TabIndex = 4;
             this.labelPrezzo.Text = "Prezzo";
-            // 
-            // labelImmagine
-            // 
-            this.labelImmagine.AutoSize = true;
-            this.labelImmagine.Location = new System.Drawing.Point(12, 420);
-            this.labelImmagine.Name = "labelImmagine";
-            this.labelImmagine.Size = new System.Drawing.Size(76, 20);
-            this.labelImmagine.TabIndex = 6;
-            this.labelImmagine.Text = "Immagine";
             // 
             // textBoxModello
             // 
@@ -136,16 +125,16 @@ namespace APL.Forms.Amministratore
             "ram",
             "schedaMadre",
             "schedaVideo"});
-            this.comboBox1.Location = new System.Drawing.Point(366, 26);
+            this.comboBox1.Location = new System.Drawing.Point(14, 26);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 28);
             this.comboBox1.TabIndex = 12;
             // 
             // buttonConfermaTipoComponente
             // 
-            this.buttonConfermaTipoComponente.Location = new System.Drawing.Point(586, 26);
+            this.buttonConfermaTipoComponente.Location = new System.Drawing.Point(235, 26);
             this.buttonConfermaTipoComponente.Name = "buttonConfermaTipoComponente";
-            this.buttonConfermaTipoComponente.Size = new System.Drawing.Size(189, 51);
+            this.buttonConfermaTipoComponente.Size = new System.Drawing.Size(130, 51);
             this.buttonConfermaTipoComponente.TabIndex = 13;
             this.buttonConfermaTipoComponente.Text = "Conferma Tipo Componente";
             this.buttonConfermaTipoComponente.UseVisualStyleBackColor = true;
@@ -158,22 +147,11 @@ namespace APL.Forms.Amministratore
             this.flowLayoutPanel1.Size = new System.Drawing.Size(526, 420);
             this.flowLayoutPanel1.TabIndex = 14;
             // 
-            // buttonConferma
-            // 
-            this.buttonConferma.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonConferma.Location = new System.Drawing.Point(373, 602);
-            this.buttonConferma.Name = "buttonConferma";
-            this.buttonConferma.Size = new System.Drawing.Size(274, 77);
-            this.buttonConferma.TabIndex = 15;
-            this.buttonConferma.Text = "Conferma";
-            this.buttonConferma.UseVisualStyleBackColor = true;
-            // 
             // FormInserisciComponente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 681);
-            this.Controls.Add(this.buttonConferma);
+            this.ClientSize = new System.Drawing.Size(903, 584);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.buttonConfermaTipoComponente);
             this.Controls.Add(this.comboBox1);
@@ -181,7 +159,6 @@ namespace APL.Forms.Amministratore
             this.Controls.Add(this.textBoxPrezzo);
             this.Controls.Add(this.textBoxMarca);
             this.Controls.Add(this.textBoxModello);
-            this.Controls.Add(this.labelImmagine);
             this.Controls.Add(this.labelPrezzo);
             this.Controls.Add(this.labelCapienza);
             this.Controls.Add(this.labelMarca);
@@ -198,7 +175,6 @@ namespace APL.Forms.Amministratore
         private System.Windows.Forms.Label labelMarca;
         private System.Windows.Forms.Label labelCapienza;
         private System.Windows.Forms.Label labelPrezzo;
-        private System.Windows.Forms.Label labelImmagine;
         private System.Windows.Forms.TextBox textBoxModello;
         private System.Windows.Forms.TextBox textBoxMarca;
         private System.Windows.Forms.TextBox textBoxPrezzo;
@@ -206,6 +182,5 @@ namespace APL.Forms.Amministratore
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonConfermaTipoComponente;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button buttonConferma;
     }
 }

@@ -1,11 +1,9 @@
-﻿using APL.Connections;
-using APL.Data.Detail;
+﻿using APL.Data.Detail;
 using APL.Forms.Amministratore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,45 +12,39 @@ using System.Windows.Forms;
 
 namespace APL.UserControls.Amministratore.Inserimento
 {
-    public partial class InserisciAlimentatore : UserControl
+    public partial class InserisciCpu : UserControl
     {
         FormInserisciComponente inserisciComponente;
-        SocketTCP sckt;
-        public InserisciAlimentatore(FormInserisciComponente inserisciComponente,SocketTCP sckt)
+        public InserisciCpu(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
             this.inserisciComponente = inserisciComponente;
-            this.sckt = sckt;
         }
 
-        
-        public Alimentatore getInputDetail()
+        public Cpu getInputDetail()
         {
-            
-            if (inserisciComponente.getModello()!= string.Empty && textBoxValutazione.Text != string.Empty && textBoxWatt.Text != string.Empty)
+
+            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxFrequenza.Text != string.Empty
+                 &&  textBoxSocket.Text != string.Empty && textBoxCore.Text != string.Empty && textBoxThread.Text != string.Empty)
             {
-                Alimentatore elem = new Alimentatore(inserisciComponente.getModello(),
-                    int.Parse( textBoxValutazione.Text), int.Parse(textBoxWatt.Text));
+                Cpu elem = new Cpu(inserisciComponente.getModello(),int.Parse(textBoxValutazione.Text), float.Parse(textBoxFrequenza.Text),
+                    textBoxSocket.Text,int.Parse(textBoxCore.Text),int.Parse(textBoxThread.Text));
                 return elem;
             }
             else { return null; }
 
-            
-        }
 
+        }
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            
-            if (this.getInputDetail() != null  && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
             {
-                
-                InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox(),sckt);
                 MessageBox.Show("Inserimento avvenuto",
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                
+
                 MessageBox.Show("Riempire i campi detail",
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

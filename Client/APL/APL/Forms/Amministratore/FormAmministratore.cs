@@ -1,4 +1,5 @@
-﻿using APL.Forms.Amministratore;
+﻿using APL.Connections;
+using APL.Forms.Amministratore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +14,16 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
-        public FormAmministratore()
+        SocketTCP sckt;
+        public FormAmministratore(SocketTCP sckt)
         {
             InitializeComponent();
+            this.sckt = sckt;
         }
 
         private void buttonInserisciComponente_Click(object sender, EventArgs e)
         {
-            FormInserisciComponente insert = new FormInserisciComponente();
+            FormInserisciComponente insert = new FormInserisciComponente(sckt);
             insert.Show();
         }
     }

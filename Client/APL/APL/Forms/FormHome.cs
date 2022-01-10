@@ -121,7 +121,7 @@ namespace APL.Forms
                     {
                         message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello;
 
-                        if (int.Parse(pre[i].Componenti[j].Capienza) > 0) {
+                        if (pre[i].Componenti[j].Capienza > 0) {
                             message += " " + pre[i].Componenti[j].Capienza + " GB";
                         }
 
@@ -402,9 +402,6 @@ namespace APL.Forms
             
 
             FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
-
-            acquistiPassati.recuperaAcquisti();
-
             acquistiPassati.Show();
 
         }

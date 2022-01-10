@@ -31,7 +31,28 @@
     <Compile Update="Forms\FormAcquistiPassati.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciCpu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\Amministratore\Inserimento\InserisciAlimentatore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciCasePc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciDissipatore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciMemoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciRam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciSchedaMadre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciSchedaVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\ComponentsSolo.cs">

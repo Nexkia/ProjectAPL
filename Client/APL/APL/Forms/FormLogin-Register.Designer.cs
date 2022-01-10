@@ -47,7 +47,6 @@
             this.ButtonMostraCP = new System.Windows.Forms.Button();
             this.ButtonMostraIP = new System.Windows.Forms.Button();
             this.ButtonMostraLP = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login
@@ -246,22 +245,11 @@
             this.ButtonMostraLP.UseVisualStyleBackColor = true;
             this.ButtonMostraLP.Click += new System.EventHandler(this.ButtonMostraLP_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(384, 238);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 124);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormLogin_Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 877);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.ButtonMostraLP);
             this.Controls.Add(this.ButtonMostraCP);
             this.Controls.Add(this.ButtonMostraIP);
@@ -310,6 +298,5 @@
         private System.Windows.Forms.TextBox TextBoxConfermaPassword;
         private System.Windows.Forms.TextBox TextBoxLoginEmail;
         private System.Windows.Forms.TextBox TextBoxLoginPassword;
-        private System.Windows.Forms.Button button1;
     }
 }
