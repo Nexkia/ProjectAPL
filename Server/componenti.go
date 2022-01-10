@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 //func verificaCompatibilita(cp Cpu, sm SchedaMadre) bool {
 //	compatibilita := false
 //	for _, processore := range sm.CpuSocket {
@@ -17,10 +19,16 @@ type preAssemblato struct {
 	Componenti [8]Componente `bson:"componenti" json:"componenti"`
 }
 
+func round(num float64) int {
+	return int(num + math.Copysign(0.5, num))
+}
+
 func (pc *PcAssemblato) prezzoTot() {
 	for _, comp := range (*pc).Componenti {
 		(*pc).Prezzo += comp.Prezzo
 	}
+	output := math.Pow(10, float64(2))
+	(*pc).Prezzo = float64(round((*pc).Prezzo*output)) / output
 }
 
 type PcAssemblato struct {

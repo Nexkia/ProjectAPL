@@ -23,13 +23,11 @@ namespace APL.Forms
         string[] modelli;
         string[] prezzi;
         string[] capienze;
-        SocketTCP sckt;
-        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria, string Token,SocketTCP sckt)
+        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria, string Token)
         {
             InitializeComponent();
             pt.SetProtocolID("confronto");
             pt.Token = Token;
-            this.sckt = sckt;
             this.modelli = modelli;
             this.prezzi = prezzi;
             this.capienze = capienze;
@@ -46,7 +44,7 @@ namespace APL.Forms
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"!";
             }
-            sckt.send(pt);
+            SocketTCP.send(pt);
             ConstructorDetail factory = new ConstructorDetail();
             Details componenteF = factory.GetDetails(categoriaOriginale);
             Type categoria = componenteF.GetType();
@@ -55,8 +53,8 @@ namespace APL.Forms
 
             for (int i = 0; i < modelli.Length; i++)
             {
-                sckt.sendSingleMsg("ok");
-                string response = await sckt.receive();
+                SocketTCP.sendSingleMsg("ok");
+                string response = await SocketTCP.receive();
                 Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
                 Debug.WriteLine("getmodello: " + a.getModello());

@@ -49,7 +49,9 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 			lista_acquisti := acquisto_internal["Lista"].(primitive.A)
 			for _, elem := range lista_acquisti {
 				pc1 := elem.(primitive.A)
+				Pc = PcAssemblato{}
 				for i, comp := range pc1 {
+
 					if len(pc1) == 8 {
 						coll = mongodb.Collection("componenti")
 						filter = bson.D{{"modello", comp}}
@@ -63,6 +65,7 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 					}
 				}
 				Pc.prezzoTot()
+
 				if Pc.Prezzo != 0 {
 					PcAssemblati = append(PcAssemblati, Pc)
 				}
@@ -88,5 +91,5 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 			conn.Read(okmsg)
 		}
 	}
-
+	wait.Done()
 }
