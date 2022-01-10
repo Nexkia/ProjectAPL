@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class CasePC : Details
+    public class CasePC : Details
     {
+        public CasePC(string modello, int valutazione, string taglia)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.Taglia = taglia;
+        }
+
+        public CasePC(){}
+
         [JsonProperty("modello_casepc")]
         public string? Modello { get; private set; }
         [JsonProperty("valutazione")]

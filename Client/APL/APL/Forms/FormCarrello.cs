@@ -20,18 +20,13 @@ namespace APL.Forms
 
         bool disableCloseEvent;
         string Token;
-        SocketTCP sckt;
-        public FormCarrello(string Token,SocketTCP sckt)
+        public FormCarrello(string Token)
          {
              InitializeComponent();
             
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
-
             this.Token = Token;
-            this.sckt = sckt;
-
-
         }
 
         public ListView getListView() { return listViewCarrello; }
@@ -169,7 +164,7 @@ namespace APL.Forms
 
         private void creaCheckOut()
         {
-            FormCheckOut checkout = new FormCheckOut(Token,sckt);
+            FormCheckOut checkout = new FormCheckOut(Token);
             checkout.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)

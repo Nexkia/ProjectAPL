@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace APL.Forms
 {
     partial class FormAcquistiPassati
@@ -67,6 +69,8 @@ namespace APL.Forms
             this.ResumeLayout(false);
 
         }
+
+       
 
         #endregion
 

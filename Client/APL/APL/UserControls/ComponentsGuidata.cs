@@ -17,15 +17,13 @@ namespace APL.UserControls
     {
         ListView vecchialistView;
         ListView vecchioCarrello;
-        SocketTCP sckt;
         string Token;
         private Componente[] _componente;
-        public ComponentsGuidata(ListView vlw,ListView carrello,string Token,SocketTCP sckt)
+        public ComponentsGuidata(ListView vlw,ListView carrello,string Token)
         {
             InitializeComponent();
            vecchialistView = vlw;
             vecchioCarrello = carrello;
-            this.sckt = sckt;
             this.Token = Token;    
             _componente = new Componente[3];
         }
@@ -156,7 +154,7 @@ namespace APL.UserControls
             }
             if (modelli.Length > 0)
             {
-                FormConfronto cf = new FormConfronto(modelli, prezzi,capienze, categoria,Token,sckt);
+                FormConfronto cf = new FormConfronto(modelli, prezzi,capienze, categoria,Token);
                 cf.Show();
             }
             else
@@ -215,7 +213,7 @@ namespace APL.UserControls
             string modello = _componente[i].Modello;
             string marca = _componente[i].Marca;
             string prezzo = Convert.ToString(_componente[i].Prezzo);
-            string capienza = _componente[i].Capienza;
+            string capienza = Convert.ToString(_componente[i].Capienza);
             string categoria = _componente[i].Categoria;
 
 

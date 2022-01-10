@@ -18,20 +18,18 @@ namespace APL.Forms
     {
         Protocol pt;
         CheckFields controllo;
-        SocketTCP sckt ;
         public FormLogin_Register()
         {
             InitializeComponent();
             pt = new Protocol();
             controllo = new CheckFields();
-            sckt = new SocketTCP();
         }
         protected override void OnClosed(EventArgs e)
         {
             pt.Token = String.Empty;
             pt.SetProtocolID("close");
-            sckt.sendClose(pt);
-            sckt.CloseConnection();
+            SocketTCP.sendClose(pt);
+            SocketTCP.CloseConnection();
            
             base.OnClosed(e);
         }
@@ -54,10 +52,10 @@ namespace APL.Forms
                         );
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Token = ""; pt.Data = Json;
-                    sckt.GetMutex().WaitOne();
-                    sckt.send(pt);
-                    string response = await sckt.receive();
-                    sckt.GetMutex().ReleaseMutex();
+                    SocketTCP.GetMutex().WaitOne();
+                    SocketTCP.send(pt);
+                    string response = await SocketTCP.receive();
+                    SocketTCP.GetMutex().ReleaseMutex();
                     if (result.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
@@ -92,24 +90,28 @@ namespace APL.Forms
                     }
                     );
                     pt.SetProtocolID("login"); pt.Token = ""; pt.Data = Json;
-                    sckt.GetMutex().WaitOne();
-                    sckt.send(pt);
-                    string responseData = await sckt.receive();
-                    sckt.sendSingleMsg("ok");
-                    string checkadmin = await sckt.receive();
+                    SocketTCP.GetMutex().WaitOne();
+                    SocketTCP.send(pt);
+                    string responseData = await SocketTCP.receive();
+                    SocketTCP.sendSingleMsg("ok");
+                    string checkadmin = await SocketTCP.receive();
                     bool admin = bool.Parse(checkadmin);
-                    sckt.GetMutex().ReleaseMutex();
+                    SocketTCP.GetMutex().ReleaseMutex();
                     pt.Token = responseData;
                     Debug.WriteLine(admin);
                     if (responseData.Contains("errore: "))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }else if (admin == true)
+                    {
+                        FormAmministratore amm = new FormAmministratore();
+                        amm.Show();
                     }
                     else
                     {
                         Debug.WriteLine("Login effettuato");
-                        FormHome home = new FormHome(this, pt.Token, sckt); // Instantiate a Form2 object.
+                        FormHome home = new FormHome(this, pt.Token); // Instantiate a Form2 object.
                         home.Show(); // Show Form2 and
                         this.Visible = false; //invisible form1
                     }
@@ -157,6 +159,11 @@ namespace APL.Forms
             {
                 TextBoxLoginPassword.PasswordChar = default;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 

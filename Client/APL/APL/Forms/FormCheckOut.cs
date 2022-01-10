@@ -12,17 +12,10 @@ namespace APL.Forms
     public partial class FormCheckOut : Form
     {
         Protocol pt = new Protocol();
-        SocketTCP sckt;
-        public FormCheckOut(string Token,SocketTCP sckt)
+        public FormCheckOut(string Token)
         {
             InitializeComponent();
             pt.Token = Token;
-            this.sckt = sckt;
-
-            
-            
-
-
         }
 
         private float totale;
@@ -102,7 +95,7 @@ namespace APL.Forms
                 CheckOut.Add(listaBuildGuidata);
             }
 
-            if (listaBuildGuidata.Count > 0)
+            if (listaBuildSolo.Count > 0)
             {
                 CheckOut.Add(listaBuildSolo);
             }
@@ -128,7 +121,7 @@ namespace APL.Forms
                 info.CreditCard.CVV = int.Parse(cvv);
                 info.CreditCard.Month = int.Parse(meseScadenza);
                 info.CreditCard.Year = int.Parse(annoScadenza);
-                info.CreditCard.Number = int.Parse(numeroCarta);
+                info.CreditCard.Number = long.Parse(numeroCarta);
                 info.IndirizzoFatturazione = indirizzoFatturazione;
                 info.Email = String.Empty;
                 string JsonInfop = JsonConvert.SerializeObject(info);
@@ -144,14 +137,16 @@ namespace APL.Forms
                     }
                     );
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
-                sckt.GetMutex().WaitOne();
-                sckt.send(pt);
-                string okmsg = await sckt.receive();
-                sckt.sendSingleMsg(JsonInfop+"\n");
-                string response = await sckt.receive();
-                sckt.GetMutex().ReleaseMutex();
+                SocketTCP.GetMutex().WaitOne();
+                SocketTCP.send(pt);
+                string okmsg = await SocketTCP.receive();
+                SocketTCP.sendSingleMsg(JsonInfop+"\n");
+                string response = await SocketTCP.receive();
+                SocketTCP.GetMutex().ReleaseMutex();
                 if (response.Contains("done")) {
                     Debug.WriteLine(response);
+                    MessageBox.Show("CheckOut confermato",
+                    "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
             }
@@ -169,10 +164,10 @@ namespace APL.Forms
             InfoPayment infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
             Debug.WriteLine("token: " + pt.Token);
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
-            string infop = await sckt.receive();
-            sckt.GetMutex().ReleaseMutex();
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
+            string infop = await SocketTCP.receive();
+            SocketTCP.GetMutex().ReleaseMutex();
 
             if (!infop.Contains("notFound"))
             {

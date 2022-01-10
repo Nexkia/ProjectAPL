@@ -78,7 +78,7 @@ namespace APL.UserControls
                     message += "• "+pre.Componenti[j].Categoria + "\n"
                               + pre.Componenti[j].Marca + " " + pre.Componenti[j].Modello+" "+ pre.Componenti[j].Prezzo+" €";
                 
-                if (int.Parse(pre.Componenti[j].Capienza) > 0)
+                if (pre.Componenti[j].Capienza > 0)
                     {
                         message += " " + pre.Componenti[j].Capienza + " GB";
                     
