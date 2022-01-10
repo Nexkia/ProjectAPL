@@ -14,7 +14,7 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
-        
+        Protocol pt = new Protocol();
         public FormAmministratore()
         {
             InitializeComponent();
@@ -25,6 +25,15 @@ namespace APL.Forms
         {
             FormInserisciComponente insert = new FormInserisciComponente();
             insert.Show();
+        }
+
+        private async void buttonEliminaComponente_Click(object sender, EventArgs e)
+        {
+            pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
+            string okmsg = await SocketTCP.receive();
+            SocketTCP.GetMutex().ReleaseMutex();
         }
     }
 }

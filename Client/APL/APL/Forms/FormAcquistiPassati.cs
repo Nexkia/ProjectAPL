@@ -71,9 +71,7 @@ namespace APL.Forms
         private void aggiungiPcAllaListView(PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string PrezzoTot)
         {
             ElementoCronologia elem = new ElementoCronologia();
-
             elem.setPrezzo(PrezzoTot);
-            
 
             if (PcAssemblati.Length > 0)
             {
@@ -83,7 +81,6 @@ namespace APL.Forms
                     {
                         if (item.Componenti.Length > 0)
                         {  elem.addComponenteListView(comp);}
-
                     }
                 }
             }
@@ -100,9 +97,6 @@ namespace APL.Forms
             }
             else
                 flowLayoutPanel1.Controls.Add(elem);
-
-
-        
         }
-        }
+    }
 }
