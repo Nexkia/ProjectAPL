@@ -401,7 +401,7 @@ namespace APL.Forms
         {
             
 
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token,sckt);
 
             acquistiPassati.recuperaAcquisti();
 

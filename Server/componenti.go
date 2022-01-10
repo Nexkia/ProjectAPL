@@ -21,7 +21,6 @@ func (pc *PcAssemblato) prezzoTot() {
 	for _, comp := range (*pc).Componenti {
 		(*pc).Prezzo += comp.Prezzo
 	}
-
 }
 
 type PcAssemblato struct {

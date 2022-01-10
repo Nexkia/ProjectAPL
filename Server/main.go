@@ -135,6 +135,10 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			go getPayment(inputChannel, ID, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
+		case 12:
+			fmt.Println("case 12", MP)
+			go getCronologia(ID, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}

@@ -70,13 +70,7 @@ func getPayment(inputChannel chan string, token string, conn net.Conn, mongodb *
 	if err != nil {
 		coll.InsertOne(context.TODO(), dat)
 	} else {
-		keys := make([]string, 0, len(result))
-		fmt.Println(len(result))
-		for k := range result {
-			keys = append(keys, k)
-		}
-		fmt.Println(keys)
-		new_buy := len(keys) - 1
+		new_buy := len(result) - 1
 		updateMongo := bson.D{
 			{"$set", bson.D{
 				{"acquisto_" + strconv.Itoa(new_buy), dat["acquisto"]},

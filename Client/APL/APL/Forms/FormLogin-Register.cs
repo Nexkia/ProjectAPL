@@ -95,8 +95,12 @@ namespace APL.Forms
                     sckt.GetMutex().WaitOne();
                     sckt.send(pt);
                     string responseData = await sckt.receive();
+                    sckt.sendSingleMsg("ok");
+                    string checkadmin = await sckt.receive();
+                    bool admin = bool.Parse(checkadmin);
                     sckt.GetMutex().ReleaseMutex();
                     pt.Token = responseData;
+                    Debug.WriteLine(admin);
                     if (responseData.Contains("errore: "))
                     {
                         Debug.WriteLine("Login fallito," + responseData);

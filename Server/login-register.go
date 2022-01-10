@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"strconv"
 	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -51,6 +52,7 @@ func register(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, 
 func login(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
 	Mjson := <-inputChannel
 	err := verificaUtente(Mjson, mongodb)
+	oksmg := make([]byte, 256)
 	if err != nil {
 		conn.Write([]byte("errore: " + err.Error() + "\n"))
 	} else {
@@ -60,6 +62,10 @@ func login(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wai
 		json.Unmarshal([]byte(Mjson), &l1)
 		token := Encoding(l1.Email, l1.Password)
 		conn.Write([]byte(token))
+		conn.Read(oksmg)
+		checkAdmin := (token == "VlPUwbiQVA6j2OBXnVyL0GGbdR2EeMk9OUulJHi0YjE=")
+		admin := strconv.FormatBool((checkAdmin))
+		conn.Write([]byte(admin))
 	}
 
 	fmt.Println("ho finito")

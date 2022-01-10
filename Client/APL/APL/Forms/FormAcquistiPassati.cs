@@ -1,4 +1,7 @@
-﻿using APL.UserControls;
+﻿using APL.Connections;
+using APL.Data;
+using APL.UserControls;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +12,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormAcquistiPassati : Form
     {
-        public FormAcquistiPassati()
+        Protocol pt = new Protocol();
+        SocketTCP sckt;
+        public FormAcquistiPassati(string Token,SocketTCP sckt)
         {
             InitializeComponent();
+            this.sckt = sckt;
+            pt.Token = Token;
         }
 
        
@@ -33,85 +40,40 @@ namespace APL.Forms
 
 
         }
-
-        private ElementoCronologia creaElementoCronologia(string[][] vet, string tot)
+        private async void FormAcquistiPassati_Load(object sender, EventArgs e)
         {
-            ElementoCronologia elem = new ElementoCronologia();
-
-            elem.setPrezzo(tot);
-            int i, j;
-
-            for (i = 0; i < vet.Length; i++)
-            {
-
-                for (j = 0; j < vet[i].Length; j++)
+            pt.SetProtocolID("storico"); pt.Data = String.Empty;
+            PcAssemblato[] PcAssemblati;
+            float Prezzo;
+            string[] PcPreAssemblati;
+            sckt.GetMutex().WaitOne();
+            sckt.send(pt);
+            string response = String.Empty;
+            response = await sckt.receive();
+            int numeroDiAcquisti = int.Parse(response);
+            sckt.sendSingleMsg("ok");
+            response = String.Empty;
+            for (int i = 0; i < numeroDiAcquisti; i++){
+                do
                 {
-
-                    elem.addElementListView(vet[i][j]);
-
-                }
+                    // pcassemblati
+                    response += await sckt.receive();
+                } while (!response.Contains("\n"));
+                PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
+                sckt.sendSingleMsg("ok");
+                response = await sckt.receive();
+                PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
+                sckt.sendSingleMsg("ok");
+                response = await sckt.receive();
+                sckt.sendSingleMsg("ok");
+                Prezzo = float.Parse(response);
+                response = String.Empty;
+                // se pc assemblati ha lunghezza 1 vuol dire che è vuoto
+                Debug.WriteLine(PcAssemblati.Length);
+                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
+                Debug.WriteLine(PcPreAssemblati.Length);
             }
-
-            return elem;
-        }
-
-        public void recuperaAcquisti()
-        {
-            //--------da cancellare---------------------------------
-            string[][] lista1 = new string[3][];
-            string[][] lista2 = new string[3][];
-            string[][] lista3 = new string[3][];
-            string prezzo1 = "100";
-            string prezzo2 = "200";
-            string prezzo3 = "300";
-            int i;
-            int j;
-            for (i = 0; i < 3; i++)
-            {
-                if (i < 2)
-                {
-                    lista1[i] = new string[8];
-                    lista2[i] = new string[8];
-                    lista3[i] = new string[8];
-                }
-                else
-                {
-                    lista1[i] = new string[3];
-                    lista2[i] = new string[3];
-                    lista3[i] = new string[3];
-                }
-
-                for (j = 0; j < 8; j++)
-                {
-                    if (i < 2)
-                    {
-
-                        lista1[i][j] = "lista1comp" + j;
-                        lista2[i][j] = "lista2comp" + j;
-                        Debug.WriteLine("lista1: " + lista1[i][j] + "lista3: " + lista2[i][j]);
-
-                    }
-                    else
-                    {
-                        lista1[i][j] = "lista1prea" + j;
-                        lista3[i][j] = "lista3prea" + j;
-
-                        Debug.WriteLine("lista1: " + lista1[i][j] + "lista3: " + lista3[i][j]);
-
-                        if (j == 2) { break; }
-                    }
-                }
-
-            }
-            //--------da cancellare---------------------------------
-
-            ElementoCronologia e1 = creaElementoCronologia(lista1, prezzo1);
-            ElementoCronologia e2 = creaElementoCronologia(lista2, prezzo2);
-            ElementoCronologia e3 = creaElementoCronologia(lista3, prezzo3);
-
-            this.aggiungiElementoCronologia(e1);
-            this.aggiungiElementoCronologia(e2);
-            this.aggiungiElementoCronologia(e3);
+            sckt.GetMutex().ReleaseMutex();
         }
     }
 }
