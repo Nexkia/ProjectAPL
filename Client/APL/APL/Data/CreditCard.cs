@@ -11,7 +11,7 @@ namespace APL.Data
     {
 
         [JsonProperty("number")]
-        public int Number { get;  set; }
+        public long  Number { get;  set; }
         [JsonProperty("month")]
         public int Month { get;  set; }
         [JsonProperty("year")]

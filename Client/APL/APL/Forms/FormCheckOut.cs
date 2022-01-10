@@ -95,7 +95,7 @@ namespace APL.Forms
                 CheckOut.Add(listaBuildGuidata);
             }
 
-            if (listaBuildGuidata.Count > 0)
+            if (listaBuildSolo.Count > 0)
             {
                 CheckOut.Add(listaBuildSolo);
             }
@@ -121,7 +121,7 @@ namespace APL.Forms
                 info.CreditCard.CVV = int.Parse(cvv);
                 info.CreditCard.Month = int.Parse(meseScadenza);
                 info.CreditCard.Year = int.Parse(annoScadenza);
-                info.CreditCard.Number = int.Parse(numeroCarta);
+                info.CreditCard.Number = long.Parse(numeroCarta);
                 info.IndirizzoFatturazione = indirizzoFatturazione;
                 info.Email = String.Empty;
                 string JsonInfop = JsonConvert.SerializeObject(info);

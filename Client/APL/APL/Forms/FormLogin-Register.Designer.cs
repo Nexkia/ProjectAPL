@@ -47,14 +47,16 @@
             this.ButtonMostraCP = new System.Windows.Forms.Button();
             this.ButtonMostraIP = new System.Windows.Forms.Button();
             this.ButtonMostraLP = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login
             // 
             this.Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Login.Location = new System.Drawing.Point(559, 208);
+            this.Login.Location = new System.Drawing.Point(639, 277);
+            this.Login.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(184, 52);
+            this.Login.Size = new System.Drawing.Size(210, 69);
             this.Login.TabIndex = 0;
             this.Login.Text = "Login";
             this.Login.UseVisualStyleBackColor = true;
@@ -63,10 +65,10 @@
             // Register
             // 
             this.Register.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Register.Location = new System.Drawing.Point(49, 502);
-            this.Register.Margin = new System.Windows.Forms.Padding(2);
+            this.Register.Location = new System.Drawing.Point(56, 669);
+            this.Register.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Register.Name = "Register";
-            this.Register.Size = new System.Drawing.Size(182, 52);
+            this.Register.Size = new System.Drawing.Size(208, 69);
             this.Register.TabIndex = 1;
             this.Register.Text = "Register";
             this.Register.UseVisualStyleBackColor = true;
@@ -76,10 +78,10 @@
             // 
             this.LabelNomeUtente.AutoSize = true;
             this.LabelNomeUtente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelNomeUtente.Location = new System.Drawing.Point(79, 20);
+            this.LabelNomeUtente.Location = new System.Drawing.Point(90, 27);
             this.LabelNomeUtente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelNomeUtente.Name = "LabelNomeUtente";
-            this.LabelNomeUtente.Size = new System.Drawing.Size(132, 24);
+            this.LabelNomeUtente.Size = new System.Drawing.Size(166, 29);
             this.LabelNomeUtente.TabIndex = 2;
             this.LabelNomeUtente.Text = "Nome Utente";
             // 
@@ -87,10 +89,10 @@
             // 
             this.LabelEmail.AutoSize = true;
             this.LabelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelEmail.Location = new System.Drawing.Point(102, 94);
+            this.LabelEmail.Location = new System.Drawing.Point(117, 125);
             this.LabelEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelEmail.Name = "LabelEmail";
-            this.LabelEmail.Size = new System.Drawing.Size(62, 24);
+            this.LabelEmail.Size = new System.Drawing.Size(79, 29);
             this.LabelEmail.TabIndex = 3;
             this.LabelEmail.Text = "Email";
             // 
@@ -98,10 +100,10 @@
             // 
             this.LabelIndirizzo.AutoSize = true;
             this.LabelIndirizzo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelIndirizzo.Location = new System.Drawing.Point(94, 193);
+            this.LabelIndirizzo.Location = new System.Drawing.Point(107, 257);
             this.LabelIndirizzo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelIndirizzo.Name = "LabelIndirizzo";
-            this.LabelIndirizzo.Size = new System.Drawing.Size(88, 24);
+            this.LabelIndirizzo.Size = new System.Drawing.Size(111, 29);
             this.LabelIndirizzo.TabIndex = 4;
             this.LabelIndirizzo.Text = "Indirizzo";
             // 
@@ -109,10 +111,10 @@
             // 
             this.LabelInserisciPassword.AutoSize = true;
             this.LabelInserisciPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelInserisciPassword.Location = new System.Drawing.Point(53, 308);
+            this.LabelInserisciPassword.Location = new System.Drawing.Point(61, 411);
             this.LabelInserisciPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelInserisciPassword.Name = "LabelInserisciPassword";
-            this.LabelInserisciPassword.Size = new System.Drawing.Size(183, 24);
+            this.LabelInserisciPassword.Size = new System.Drawing.Size(233, 29);
             this.LabelInserisciPassword.TabIndex = 5;
             this.LabelInserisciPassword.Text = "Inserisci Password";
             // 
@@ -120,10 +122,10 @@
             // 
             this.LabelConfermaPassword.AutoSize = true;
             this.LabelConfermaPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelConfermaPassword.Location = new System.Drawing.Point(45, 403);
+            this.LabelConfermaPassword.Location = new System.Drawing.Point(51, 537);
             this.LabelConfermaPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelConfermaPassword.Name = "LabelConfermaPassword";
-            this.LabelConfermaPassword.Size = new System.Drawing.Size(196, 24);
+            this.LabelConfermaPassword.Size = new System.Drawing.Size(248, 29);
             this.LabelConfermaPassword.TabIndex = 6;
             this.LabelConfermaPassword.Text = "Conferma Password";
             // 
@@ -131,10 +133,10 @@
             // 
             this.LabelLoginEmail.AutoSize = true;
             this.LabelLoginEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelLoginEmail.Location = new System.Drawing.Point(619, 29);
+            this.LabelLoginEmail.Location = new System.Drawing.Point(707, 39);
             this.LabelLoginEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelLoginEmail.Name = "LabelLoginEmail";
-            this.LabelLoginEmail.Size = new System.Drawing.Size(62, 24);
+            this.LabelLoginEmail.Size = new System.Drawing.Size(79, 29);
             this.LabelLoginEmail.TabIndex = 7;
             this.LabelLoginEmail.Text = "Email";
             // 
@@ -142,79 +144,79 @@
             // 
             this.LabelLoginPassword.AutoSize = true;
             this.LabelLoginPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelLoginPassword.Location = new System.Drawing.Point(555, 113);
+            this.LabelLoginPassword.Location = new System.Drawing.Point(634, 151);
             this.LabelLoginPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelLoginPassword.Name = "LabelLoginPassword";
-            this.LabelLoginPassword.Size = new System.Drawing.Size(100, 24);
+            this.LabelLoginPassword.Size = new System.Drawing.Size(128, 29);
             this.LabelLoginPassword.TabIndex = 8;
             this.LabelLoginPassword.Text = "Password";
             // 
             // TextBoxNomeUtente
             // 
-            this.TextBoxNomeUtente.Location = new System.Drawing.Point(36, 55);
-            this.TextBoxNomeUtente.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxNomeUtente.Location = new System.Drawing.Point(41, 73);
+            this.TextBoxNomeUtente.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxNomeUtente.Name = "TextBoxNomeUtente";
-            this.TextBoxNomeUtente.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxNomeUtente.Size = new System.Drawing.Size(231, 27);
             this.TextBoxNomeUtente.TabIndex = 9;
             // 
             // TextBoxEmail
             // 
-            this.TextBoxEmail.Location = new System.Drawing.Point(36, 147);
-            this.TextBoxEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxEmail.Location = new System.Drawing.Point(41, 196);
+            this.TextBoxEmail.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxEmail.Name = "TextBoxEmail";
-            this.TextBoxEmail.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxEmail.Size = new System.Drawing.Size(231, 27);
             this.TextBoxEmail.TabIndex = 10;
             // 
             // TextBoxIndirizzo
             // 
-            this.TextBoxIndirizzo.Location = new System.Drawing.Point(36, 242);
-            this.TextBoxIndirizzo.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxIndirizzo.Location = new System.Drawing.Point(41, 323);
+            this.TextBoxIndirizzo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxIndirizzo.Name = "TextBoxIndirizzo";
-            this.TextBoxIndirizzo.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxIndirizzo.Size = new System.Drawing.Size(231, 27);
             this.TextBoxIndirizzo.TabIndex = 11;
             // 
             // TextBoxInserisciPassword
             // 
-            this.TextBoxInserisciPassword.Location = new System.Drawing.Point(36, 347);
-            this.TextBoxInserisciPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxInserisciPassword.Location = new System.Drawing.Point(41, 463);
+            this.TextBoxInserisciPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxInserisciPassword.Name = "TextBoxInserisciPassword";
             this.TextBoxInserisciPassword.PasswordChar = '*';
-            this.TextBoxInserisciPassword.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxInserisciPassword.Size = new System.Drawing.Size(231, 27);
             this.TextBoxInserisciPassword.TabIndex = 12;
             // 
             // TextBoxConfermaPassword
             // 
-            this.TextBoxConfermaPassword.Location = new System.Drawing.Point(38, 448);
-            this.TextBoxConfermaPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxConfermaPassword.Location = new System.Drawing.Point(43, 597);
+            this.TextBoxConfermaPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxConfermaPassword.Name = "TextBoxConfermaPassword";
             this.TextBoxConfermaPassword.PasswordChar = '*';
-            this.TextBoxConfermaPassword.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxConfermaPassword.Size = new System.Drawing.Size(231, 27);
             this.TextBoxConfermaPassword.TabIndex = 13;
             // 
             // TextBoxLoginEmail
             // 
-            this.TextBoxLoginEmail.Location = new System.Drawing.Point(550, 55);
-            this.TextBoxLoginEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxLoginEmail.Location = new System.Drawing.Point(629, 73);
+            this.TextBoxLoginEmail.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxLoginEmail.Name = "TextBoxLoginEmail";
-            this.TextBoxLoginEmail.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxLoginEmail.Size = new System.Drawing.Size(231, 27);
             this.TextBoxLoginEmail.TabIndex = 14;
             // 
             // TextBoxLoginPassword
             // 
-            this.TextBoxLoginPassword.Location = new System.Drawing.Point(550, 147);
-            this.TextBoxLoginPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxLoginPassword.Location = new System.Drawing.Point(629, 196);
+            this.TextBoxLoginPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextBoxLoginPassword.Name = "TextBoxLoginPassword";
             this.TextBoxLoginPassword.PasswordChar = '*';
-            this.TextBoxLoginPassword.Size = new System.Drawing.Size(203, 23);
+            this.TextBoxLoginPassword.Size = new System.Drawing.Size(231, 27);
             this.TextBoxLoginPassword.TabIndex = 15;
             // 
             // ButtonMostraCP
             // 
             this.ButtonMostraCP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ButtonMostraCP.Location = new System.Drawing.Point(260, 448);
-            this.ButtonMostraCP.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonMostraCP.Location = new System.Drawing.Point(297, 597);
+            this.ButtonMostraCP.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonMostraCP.Name = "ButtonMostraCP";
-            this.ButtonMostraCP.Size = new System.Drawing.Size(82, 21);
+            this.ButtonMostraCP.Size = new System.Drawing.Size(94, 28);
             this.ButtonMostraCP.TabIndex = 17;
             this.ButtonMostraCP.Text = "Mostra";
             this.ButtonMostraCP.UseVisualStyleBackColor = true;
@@ -223,10 +225,10 @@
             // ButtonMostraIP
             // 
             this.ButtonMostraIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ButtonMostraIP.Location = new System.Drawing.Point(260, 347);
-            this.ButtonMostraIP.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonMostraIP.Location = new System.Drawing.Point(297, 463);
+            this.ButtonMostraIP.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonMostraIP.Name = "ButtonMostraIP";
-            this.ButtonMostraIP.Size = new System.Drawing.Size(82, 21);
+            this.ButtonMostraIP.Size = new System.Drawing.Size(94, 28);
             this.ButtonMostraIP.TabIndex = 16;
             this.ButtonMostraIP.Text = "Mostra";
             this.ButtonMostraIP.UseVisualStyleBackColor = true;
@@ -235,20 +237,31 @@
             // ButtonMostraLP
             // 
             this.ButtonMostraLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ButtonMostraLP.Location = new System.Drawing.Point(669, 115);
-            this.ButtonMostraLP.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonMostraLP.Location = new System.Drawing.Point(765, 153);
+            this.ButtonMostraLP.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonMostraLP.Name = "ButtonMostraLP";
-            this.ButtonMostraLP.Size = new System.Drawing.Size(82, 21);
+            this.ButtonMostraLP.Size = new System.Drawing.Size(94, 28);
             this.ButtonMostraLP.TabIndex = 18;
             this.ButtonMostraLP.Text = "Mostra";
             this.ButtonMostraLP.UseVisualStyleBackColor = true;
             this.ButtonMostraLP.Click += new System.EventHandler(this.ButtonMostraLP_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(384, 238);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 124);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormLogin_Register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 658);
+            this.ClientSize = new System.Drawing.Size(935, 877);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ButtonMostraLP);
             this.Controls.Add(this.ButtonMostraCP);
             this.Controls.Add(this.ButtonMostraIP);
@@ -268,6 +281,7 @@
             this.Controls.Add(this.LabelNomeUtente);
             this.Controls.Add(this.Register);
             this.Controls.Add(this.Login);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormLogin_Register";
             this.Text = "FormLogin_Register";
             this.ResumeLayout(false);
@@ -296,5 +310,6 @@
         private System.Windows.Forms.TextBox TextBoxConfermaPassword;
         private System.Windows.Forms.TextBox TextBoxLoginEmail;
         private System.Windows.Forms.TextBox TextBoxLoginPassword;
+        private System.Windows.Forms.Button button1;
     }
 }

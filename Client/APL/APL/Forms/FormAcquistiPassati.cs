@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace APL.Forms
             pt.Token = Token;
         }
 
+       
         public void aggiungiElementoCronologia(ElementoCronologia elem)
         {
             //aggiunge al flow label
