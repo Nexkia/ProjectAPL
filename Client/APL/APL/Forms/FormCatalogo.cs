@@ -16,14 +16,11 @@ namespace APL.Forms
     public partial class FormCatalogo : Form
     {
         Protocol pt = new Protocol();
-        SocketTCP sckt;
-        public FormCatalogo(String token,SocketTCP sckt)
+        public FormCatalogo(String token)
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
             pt.Token = token;
-            this.sckt = sckt;
-
         }
 
         private  void cpu_Click(object sender, EventArgs e)
@@ -158,7 +155,7 @@ namespace APL.Forms
                     capienze[i] = item.SubItems[4].Text.ToString();
                     Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
-                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token,sckt);
+                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token);
                 cf.Show();
             }
             else
@@ -171,17 +168,17 @@ namespace APL.Forms
 
         private async void GetElements(Protocol pt) {
             string response = String.Empty;
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
             // n elem
-            string nelem = await sckt.receive();
+            string nelem = await SocketTCP.receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            sckt.sendSingleMsg("ok");
+            SocketTCP.sendSingleMsg("ok");
             do
             {
-                response += await sckt.receive();
+                response += await SocketTCP.receive();
             } while (!response.Contains("\n"));
-            sckt.GetMutex().ReleaseMutex() ;
+            SocketTCP.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Debug.WriteLine(response);
