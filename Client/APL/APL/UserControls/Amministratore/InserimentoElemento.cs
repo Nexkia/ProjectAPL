@@ -16,23 +16,18 @@ namespace APL.UserControls.Amministratore
 
         public async static Task<string> InserisciElemento(Details detail,Componente comp)
         {
+            Protocol pt = new Protocol();
             string JsonDetail = JsonConvert.SerializeObject(detail);
             string JsonComponente = JsonConvert.SerializeObject(comp);
-
-            Protocol pt=new Protocol();pt.Token = "inserimento";pt.Data = JsonDetail;
-            
-
+            pt.SetProtocolID("inserimento");pt.Data = JsonComponente;
             SocketTCP.GetMutex().WaitOne();
-
-            //invio il detail
+            //invio il componente
             SocketTCP.send(pt);
             string okmsg = await SocketTCP.receive();
-            //invio il componente
-            SocketTCP.sendSingleMsg(JsonComponente);
+            //invio il detail
+            SocketTCP.sendSingleMsg(JsonDetail+"\n");
             okmsg = await SocketTCP.receive();
-
             SocketTCP.GetMutex().ReleaseMutex();
-
             return okmsg;
         }
     }
