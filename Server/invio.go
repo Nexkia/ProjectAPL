@@ -256,8 +256,8 @@ func invio() {
 					ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 				}
 				ram_detail.Modello = modello
-				ram_detail.Standard = elem[5]
-				ram_detail.Frequenza, _ = strconv.Atoi(elem[6])
+				ram_detail.Standard = elem[4]
+				ram_detail.Frequenza, _ = strconv.Atoi(elem[5])
 				ram_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
 				coll_comp.InsertOne(context.TODO(), ram)
 				coll_detail.InsertOne(context.TODO(), ram_detail)

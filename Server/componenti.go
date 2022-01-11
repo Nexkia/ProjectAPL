@@ -40,7 +40,6 @@ type Componente struct {
 	Prezzo    float64 `bson:"prezzo" json:"prezzo"`
 	Marca     string  `bson:"marca" json:"marca"`
 	Capienza  int     `bson:"capienza" json:"capienza"`
-	Img       string  `bson:"img" json:"img"`
 	Modello   string  `bson:"modello" json:"modello"`
 	Categoria string  `bson:"categoria" json:"categoria"`
 }
