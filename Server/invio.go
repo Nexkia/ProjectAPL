@@ -171,7 +171,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(GeForce |Radeon).{1,}(\d{1,})(\sGB).(\d{1,})W.(USD.(\d{1,}.\d{1,}))?)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(GeForce |Radeon).{1,}\s(\d{1,})(\sGB).(\d{1,})W.(USD.(\d{1,}.\d{1,}))?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	gpu := Componente{}
 	gpu_detail := SchedaVideoDetail{}
