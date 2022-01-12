@@ -93,6 +93,7 @@ namespace APL.Forms.Amministratore
             this.Conferma.TabIndex = 5;
             this.Conferma.Text = "Conferma";
             this.Conferma.UseVisualStyleBackColor = true;
+            this.Conferma.Click += new System.EventHandler(this.Conferma_Click);
             // 
             // listViewPreassemblato
             // 

@@ -40,14 +40,15 @@ namespace APL.Forms
             this.buttonAggiungi = new System.Windows.Forms.Button();
             this.listView_record = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.listViewCatalogo = new System.Windows.Forms.ListView();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
             this.buttonRimuovi = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -156,9 +157,9 @@ namespace APL.Forms
             this.listView_record.BackColor = System.Drawing.SystemColors.HighlightText;
             this.listView_record.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader2});
             this.listView_record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listView_record.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.listView_record.HideSelection = false;
@@ -175,11 +176,6 @@ namespace APL.Forms
             this.columnHeader1.Text = "Modello";
             this.columnHeader1.Width = 230;
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Categoria";
-            this.columnHeader2.Width = 230;
-            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Marca";
@@ -190,13 +186,19 @@ namespace APL.Forms
             this.columnHeader4.Text = "Prezzo";
             this.columnHeader4.Width = 230;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Capienza";
+            this.columnHeader2.Width = 230;
+            // 
             // listViewCatalogo
             // 
             this.listViewCatalogo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
             this.listViewCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listViewCatalogo.HideSelection = false;
             this.listViewCatalogo.Location = new System.Drawing.Point(12, 642);
@@ -212,11 +214,6 @@ namespace APL.Forms
             this.columnHeader5.Text = "Modello";
             this.columnHeader5.Width = 150;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Categoria";
-            this.columnHeader6.Width = 150;
-            // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "Marca";
@@ -226,6 +223,16 @@ namespace APL.Forms
             // 
             this.columnHeader8.Text = "Prezzo";
             this.columnHeader8.Width = 150;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Capienza";
+            this.columnHeader9.Width = 150;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Categoria";
+            this.columnHeader10.Width = 200;
             // 
             // buttonRimuovi
             // 
@@ -288,15 +295,16 @@ namespace APL.Forms
         private System.Windows.Forms.Button buttonAggiungi;
         private System.Windows.Forms.ListView listView_record;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ListView listViewCatalogo;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button buttonRimuovi;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

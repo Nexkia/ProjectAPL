@@ -31,7 +31,7 @@ namespace APL.UserControls.Amministratore
 
         }
 
-        private void buttonCarrello_Click_1(object sender, EventArgs e)
+        private void buttonAggiungi_Click_1(object sender, EventArgs e)
         {
             if (listViewComponentsPreassemblato.SelectedItems.Count > 0)
             {

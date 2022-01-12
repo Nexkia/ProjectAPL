@@ -36,7 +36,7 @@ namespace APL.UserControls.Amministratore
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonCarrello = new System.Windows.Forms.Button();
+            this.buttonAggiungi = new System.Windows.Forms.Button();
             this.labelCategoria = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,7 +94,7 @@ namespace APL.UserControls.Amministratore
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Maroon;
-            this.panel2.Controls.Add(this.buttonCarrello);
+            this.panel2.Controls.Add(this.buttonAggiungi);
             this.panel2.Controls.Add(this.labelCategoria);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -102,16 +102,16 @@ namespace APL.UserControls.Amministratore
             this.panel2.Size = new System.Drawing.Size(749, 80);
             this.panel2.TabIndex = 0;
             // 
-            // buttonCarrello
+            // buttonAggiungi
             // 
-            this.buttonCarrello.Location = new System.Drawing.Point(494, 9);
-            this.buttonCarrello.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonCarrello.Name = "buttonCarrello";
-            this.buttonCarrello.Size = new System.Drawing.Size(245, 59);
-            this.buttonCarrello.TabIndex = 1;
-            this.buttonCarrello.Text = "Aggiungi al Carrello";
-            this.buttonCarrello.UseVisualStyleBackColor = true;
-            this.buttonCarrello.Click += new System.EventHandler(this.buttonCarrello_Click_1);
+            this.buttonAggiungi.Location = new System.Drawing.Point(494, 9);
+            this.buttonAggiungi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAggiungi.Name = "buttonAggiungi";
+            this.buttonAggiungi.Size = new System.Drawing.Size(245, 59);
+            this.buttonAggiungi.TabIndex = 1;
+            this.buttonAggiungi.Text = "Aggiungi";
+            this.buttonAggiungi.UseVisualStyleBackColor = true;
+            this.buttonAggiungi.Click += new System.EventHandler(this.buttonAggiungi_Click_1);
             // 
             // labelCategoria
             // 
@@ -147,7 +147,7 @@ namespace APL.UserControls.Amministratore
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button buttonCarrello;
+        private System.Windows.Forms.Button buttonAggiungi;
         private System.Windows.Forms.Label labelCategoria;
     }
 }

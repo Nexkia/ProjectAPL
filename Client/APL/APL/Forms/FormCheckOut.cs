@@ -132,7 +132,8 @@ namespace APL.Forms
                         acquisto = new
                         {
                             Lista = CheckOut,
-                            Prezzo = totale
+                            Prezzo = totale,
+                            Data=DateTime.Now
                         }
                     }
                     );
@@ -147,6 +148,7 @@ namespace APL.Forms
                     Debug.WriteLine(response);
                     MessageBox.Show("CheckOut confermato",
                     "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                 
             }
