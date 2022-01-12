@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net"
 	"strconv"
 	"strings"
@@ -23,16 +22,12 @@ func listCatalogo(inputChannel chan string, conn net.Conn, mongodb *mongo.Databa
 	defer cursor.Close(context.TODO())
 	fmt.Println(filter)
 	//limit rappresenta il numero di risultati trovati
-	comp := make([]Componente, cursor.RemainingBatchLength())
-	index := 0
-	for cursor.Next(context.TODO()) {
-		err = cursor.Decode(&comp[index])
-		index++
-		if err != nil {
-			log.Fatal(err)
-		}
+	comp := []Componente{}
+	cursor.All(context.TODO(), &comp)
+	nelem := len(comp)
+	if err != nil {
+		panic(err)
 	}
-	nelem := index
 	fmt.Println(nelem, ".....", comp)
 	conn.Write([]byte(strconv.Itoa(nelem)))
 	ok := make([]byte, 256)
