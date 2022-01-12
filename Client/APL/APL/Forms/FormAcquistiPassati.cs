@@ -40,6 +40,11 @@ namespace APL.Forms
             SocketTCP.send(pt);
             string response = String.Empty;
             response = await SocketTCP.receive();
+            if (response.Contains("notFound"))
+            {
+                SocketTCP.GetMutex().ReleaseMutex();
+                return;
+            }
             int numeroDiAcquisti = int.Parse(response);
             SocketTCP.sendSingleMsg("ok");
             response = String.Empty;

@@ -42,7 +42,7 @@ func main() {
 	}()
 	mongodb := client.Database("apl_database")
 	//------------------------------------------------------------------
-	//go invio()
+	go invio()
 
 	for {
 
@@ -147,6 +147,16 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 		case 14:
 			fmt.Println("case 14", MP)
 			go Cancellazione(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 15:
+			fmt.Println("case 14", MP)
+			go Inserimento_pre(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 16:
+			fmt.Println("case 14", MP)
+			go Cancellazione_pre(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		default:

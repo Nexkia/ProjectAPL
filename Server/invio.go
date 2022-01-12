@@ -94,10 +94,10 @@ func invio() {
 	min_price := 50
 	max_price := 300
 	min_val := 1
-	max_val := 10
+	max_val := 11
 	min_ram := 3
-	max_ram := 4
-	limit := 80
+	max_ram := 5
+	limit := 9999
 	n_send := 0
 	content, err := ioutil.ReadFile("db/case.txt")
 	if err != nil {
@@ -171,7 +171,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(GeForce |Radeon).{1,}(\d{1,})(\sGB).(\d{1,})W.(USD.(\d{1,}.\d{1,}))?)`)
+	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,})\s(GeForce |Radeon).{1,}\s(\d{1,})(\sGB).(\d{1,})W.(USD.(\d{1,}.\d{1,}))?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	gpu := Componente{}
 	gpu_detail := SchedaVideoDetail{}
@@ -236,7 +236,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).\s(\d{1,2})\sGB.(DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
+	reg = regexp.MustCompile(`(?m:(^\w*).(.*)\s(\d{1,2})\sGB.(DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ram := Componente{}
 	ram_detail := RamDetail{}
@@ -256,8 +256,8 @@ func invio() {
 					ram.Prezzo = float64(rand.Intn((max_price - min_price)) + min_price)
 				}
 				ram_detail.Modello = modello
-				ram_detail.Standard = elem[5]
-				ram_detail.Frequenza, _ = strconv.Atoi(elem[6])
+				ram_detail.Standard = elem[4]
+				ram_detail.Frequenza, _ = strconv.Atoi(elem[5])
 				ram_detail.Valutazione = rand.Intn((max_val - min_val)) + min_val
 				coll_comp.InsertOne(context.TODO(), ram)
 				coll_detail.InsertOne(context.TODO(), ram_detail)

@@ -158,14 +158,17 @@ namespace APL.Forms.Amministratore
 
             }
         }
-        private void Conferma_Click(object sender, EventArgs e)
+        private async void Conferma_Click(object sender, EventArgs e)
         {
             if(contaComponentiPreassemblati() && textBoxNome.Text!=string.Empty && textBoxPrezzo.Text != string.Empty )
             {
-
-               
-               PcPreassemblato pre = new PcPreassemblato(textBoxNome.Text,float.Parse( textBoxPrezzo.Text),comp);
-               Debug.WriteLine("pre: "+pre.Nome);
+                PcPreassemblato pre = new PcPreassemblato(textBoxNome.Text,float.Parse( textBoxPrezzo.Text),comp);
+                string jsonPreassemblato = JsonConvert.SerializeObject(pre);
+                pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
+                SocketTCP.GetMutex().WaitOne();
+                SocketTCP.send(pt);
+                string okmsg = await SocketTCP.receive();
+                SocketTCP.GetMutex().ReleaseMutex();
             }
         }
     }

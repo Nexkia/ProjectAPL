@@ -41,5 +41,14 @@ namespace APL.Forms
             FormInserisciPreassemblato pre = new FormInserisciPreassemblato();
             pre.Show();
         }
+
+        private  async void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
+        {
+            pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
+            string okmsg = await SocketTCP.receive();
+            SocketTCP.GetMutex().ReleaseMutex();
+        }
     }
 }

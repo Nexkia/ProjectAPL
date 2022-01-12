@@ -27,6 +27,8 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
 		conn.Write([]byte("notFound"))
+		wait.Done()
+		return
 	}
 
 	Pc := PcAssemblato{}
@@ -70,6 +72,7 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 					PcAssemblati = append(PcAssemblati, Pc)
 				}
 			}
+			data := acquisto_internal["Data"].(string)
 			prezzo := acquisto_internal["Prezzo"].(float64)
 			prezzo_bytes := []byte(strconv.FormatFloat(prezzo, 'f', -1, 64))
 			pcassemblati_bytes, _ := json.Marshal(PcAssemblati)
@@ -88,6 +91,8 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 			conn.Write(pcpreassemblati_bytes)
 			conn.Read(okmsg)
 			conn.Write(prezzo_bytes)
+			conn.Read(okmsg)
+			conn.Write([]byte(data))
 			conn.Read(okmsg)
 		}
 	}
