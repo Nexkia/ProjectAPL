@@ -149,6 +149,16 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			go Cancellazione(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
+		case 15:
+			fmt.Println("case 14", MP)
+			go Inserimento_pre(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
+		case 16:
+			fmt.Println("case 14", MP)
+			go Cancellazione_pre(inputChannel, conn, mongodb, &waitGroup)
+			waitGroup.Add(1)
+			inputChannel <- Mjson
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}
