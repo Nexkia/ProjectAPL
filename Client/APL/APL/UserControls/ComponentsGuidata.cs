@@ -30,12 +30,13 @@ namespace APL.UserControls
 
         #region Properties
 
-     
+        private string _title;
 
 
         [Category("Custom Props")]
         public string Title
-        { set {  label1ComponentsTab.Text = value; }}
+        { get { return _title; } 
+         set {_title=value; label1ComponentsTab.Text = value; }}
        
 
         [Category("Custom Props")]
