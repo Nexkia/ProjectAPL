@@ -236,7 +236,7 @@ func invio() {
 	if err != nil {
 		fmt.Println("err")
 	}
-	reg = regexp.MustCompile(`(?m:(^\w{1,}).(.{1,}).\s(\d{1,2})\sGB.(DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
+	reg = regexp.MustCompile(`(?m:(^\w*).(.*)\s(\d{1,2})\sGB.(DDR\d)-(\d{1,}).{1,}Kit.of.(1|2|4)(USD.)?(\d{1,}.\d{1,})?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
 	ram := Componente{}
 	ram_detail := RamDetail{}
