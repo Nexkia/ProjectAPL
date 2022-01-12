@@ -97,7 +97,7 @@ func invio() {
 	max_val := 11
 	min_ram := 3
 	max_ram := 5
-	limit := 80
+	limit := 160
 	n_send := 0
 	content, err := ioutil.ReadFile("db/case.txt")
 	if err != nil {
