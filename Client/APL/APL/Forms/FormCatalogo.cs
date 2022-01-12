@@ -82,18 +82,18 @@ namespace APL.Forms
                     ListViewItem item = listView_record.SelectedItems[0];
                    
                     string modello = item.SubItems[0].Text.ToString();
-                    string categoria = item.SubItems[1].Text.ToString();
-                    string marca = item.SubItems[2].Text.ToString();
-                    string prezzo = item.SubItems[3].Text.ToString();
-                    string capienza = item.SubItems[4].Text.ToString();
+                    string marca = item.SubItems[1].Text.ToString();
+                    string prezzo = item.SubItems[2].Text.ToString();
+                    string capienza = item.SubItems[3].Text.ToString();
+                    string categoria = item.SubItems[4].Text.ToString();
 
                     //rimuoviamo l'elemento selezionato dalla listView_record
                     listView_record.Items.Remove(listView_record.SelectedItems[0]);
                     ListViewItem lvitem = new ListViewItem("" + modello + "");
-                    lvitem.SubItems.Add("" + categoria + "");
                     lvitem.SubItems.Add("" + marca + "");
                     lvitem.SubItems.Add("" + prezzo + "");
                     lvitem.SubItems.Add("" + capienza + "");
+                    lvitem.SubItems.Add("" + categoria + "");
                     listViewCatalogo.Items.Add(lvitem);
                 }
                 else
@@ -116,18 +116,18 @@ namespace APL.Forms
             {
                 ListViewItem item = listViewCatalogo.SelectedItems[0];
                 string modello = item.SubItems[0].Text.ToString();
-                string categoria = item.SubItems[1].Text.ToString();
-                string marca = item.SubItems[2].Text.ToString();
-                string prezzo = item.SubItems[3].Text.ToString();
-                string capienza = item.SubItems[4].Text.ToString();
+                string marca = item.SubItems[1].Text.ToString();
+                string prezzo = item.SubItems[2].Text.ToString();
+                string capienza = item.SubItems[3].Text.ToString();
+                string categoria = item.SubItems[4].Text.ToString();
 
                 //rimuoviamo l'elemento selezionato dalla listViewCatalogo
                 listViewCatalogo.Items.Remove(listViewCatalogo.SelectedItems[0]);
                 ListViewItem lvitem = new ListViewItem("" + modello + "");
-                lvitem.SubItems.Add("" + categoria + "");
                 lvitem.SubItems.Add("" + marca + "");
                 lvitem.SubItems.Add("" + prezzo + "");
                 lvitem.SubItems.Add("" + capienza + "");
+                lvitem.SubItems.Add("" + categoria + "");
                 listView_record.Items.Add(lvitem);
             }
             else
@@ -150,9 +150,9 @@ namespace APL.Forms
                 {
                     ListViewItem item = listViewCatalogo.Items[i];
                     modelli[i] = item.SubItems[0].Text.ToString();
-                    categoria = item.SubItems[1].Text.ToString();
-                    prezzi[i] = item.SubItems[3].Text.ToString();
-                    capienze[i] = item.SubItems[4].Text.ToString();
+                    prezzi[i] = item.SubItems[2].Text.ToString();
+                    capienze[i] = item.SubItems[3].Text.ToString();
+                    categoria = item.SubItems[4].Text.ToString();
                     Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
                 FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token);
@@ -189,10 +189,14 @@ namespace APL.Forms
             for (int i = 0; i < cp.Length; i++)
             {
                 ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 lvitem.SubItems.Add("" + cp[i].Marca + "");
                 lvitem.SubItems.Add("" + cp[i].Prezzo + "");
-                lvitem.SubItems.Add("" + cp[i].Capienza+ "");
+
+                if(cp[i].Categoria!="ram" && cp[i].Categoria != "memoria")
+                {lvitem.SubItems.Add("");}
+                else{lvitem.SubItems.Add("" + cp[i].Capienza + "");}
+                
+                lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
             }
             Debug.WriteLine("fine del for");

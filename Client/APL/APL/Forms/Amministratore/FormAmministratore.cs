@@ -35,5 +35,11 @@ namespace APL.Forms
             string okmsg = await SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
         }
+
+        private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
+        {
+            FormInserisciPreassemblato pre = new FormInserisciPreassemblato();
+            pre.Show();
+        }
     }
 }

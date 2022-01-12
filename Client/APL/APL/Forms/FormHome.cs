@@ -261,9 +261,6 @@ namespace APL.Forms
 
         private async void populateItemsBuilSolo()
         {
-
-            ComponentsSolo[] componentsSolo;
-
             pt.SetProtocolID("buildSolo");
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -287,48 +284,55 @@ namespace APL.Forms
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
-                myList.Add(singleComponent);
-
-                int index = 0;
-
-                componentsSolo = new ComponentsSolo[myList.Count];
-
-                foreach (List<Componente> subList in myList)
-                {
-                    componentsSolo[index] = new ComponentsSolo(carrelloForm.getListView());
-
-                   
-
-                    componentsSolo[index].impostaCategoria(subList[0].Categoria);
-                    foreach (Componente item in subList)
-                    {
-                        ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
-                        lvitem.SubItems.Add("" + item.Marca + "");
-                        lvitem.SubItems.Add("" + item.Prezzo + "");
-                        lvitem.SubItems.Add("" + item.Capienza + "");
-                        lvitem.SubItems.Add("" + item.Categoria + "");
-
-                        componentsSolo[index].addListView(lvitem);
-                        
-                    }
-                    index++;
-
-                    //aggiunge al flow label
-                    if (flowLayoutPanel1.Controls.Count < 0)
-                    {
-
-                        flowLayoutPanel1.Controls.Clear();
-                    }
-                    else
-                        flowLayoutPanel1.Controls.Add(componentsSolo[i]);
-
-                }
-                
+                myList.Add(singleComponent);  
             }
             SocketTCP.GetMutex().ReleaseMutex();
+            Debug.WriteLine(myList.Count());
 
+            stampaComponentsSolo(myList);
         }
 
+
+        private void stampaComponentsSolo(List<List<Componente>> myList)
+        {
+            ComponentsSolo[] componentsSolo;
+            //---------------------------------------------------------------
+            int index = 0;
+            
+            componentsSolo = new ComponentsSolo[myList.Count];
+
+            foreach (List<Componente> subList in myList)
+            {
+                componentsSolo[index] = new ComponentsSolo(carrelloForm.getListView());
+
+                int i = 0;
+
+                componentsSolo[index].impostaCategoria(subList[0].Categoria);
+                foreach (Componente item in subList)
+                {
+                    ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
+                    lvitem.SubItems.Add("" + item.Marca + "");
+                    lvitem.SubItems.Add("" + item.Prezzo + "");
+                    lvitem.SubItems.Add("" + item.Capienza + "");
+                    lvitem.SubItems.Add("" + item.Categoria + "");
+
+                    componentsSolo[index].addListView(lvitem);
+                    i++;
+                }
+                Debug.WriteLine("" + subList[0].Categoria + " numero: " + i);
+                index++;
+
+                //aggiunge al flow label
+                if (flowLayoutPanel1.Controls.Count < 0)
+                {
+
+                    flowLayoutPanel1.Controls.Clear();
+                }
+                else
+                    flowLayoutPanel1.Controls.Add(componentsSolo[index-1]);
+
+            }
+        }
         private void buttonMyBuild_Click(object sender, EventArgs e)
         {
             //pulisco le tendine

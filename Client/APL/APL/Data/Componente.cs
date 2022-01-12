@@ -25,8 +25,7 @@ namespace APL.Data
         public string? Marca { get; private set; }
         [JsonProperty("capienza")]
         public int Capienza { get; private set; }
-        [JsonProperty("img")]
-        public string? Img { get; private set; }
+       
         [JsonProperty("modello")]
         public string? Modello { get; private set; }
         [JsonProperty("categoria")]
