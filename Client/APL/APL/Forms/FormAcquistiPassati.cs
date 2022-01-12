@@ -57,21 +57,24 @@ namespace APL.Forms
                 response = await SocketTCP.receive();
                 SocketTCP.sendSingleMsg("ok");
                 PrezzoTot = response;
+                response = await SocketTCP.receive();
+                SocketTCP.sendSingleMsg("ok");
+                DateTime data = DateTime.Parse(response);
                 response = String.Empty;
                 // se pc assemblati ha lunghezza 1 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
 
-                aggiungiPcAllaListView(PcAssemblati, PcPreAssemblati, PrezzoTot);
+                aggiungiPcAllaListView(PcAssemblati, PcPreAssemblati, PrezzoTot,data);
             }
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
-        private void aggiungiPcAllaListView(PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string PrezzoTot)
+        private void aggiungiPcAllaListView(PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string PrezzoTot, DateTime data)
         {
             ElementoCronologia elem = new ElementoCronologia();
-            elem.setPrezzo(PrezzoTot);
+            elem.setPrezzoData(PrezzoTot,data);
 
             if (PcAssemblati.Length > 0)
             {

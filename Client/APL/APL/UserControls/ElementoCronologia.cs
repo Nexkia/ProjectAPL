@@ -19,7 +19,7 @@ namespace APL.UserControls
             InitializeComponent();
         }
 
-        public void setPrezzo(string value) { labelPrezzo.Text ="Prezzo totale: "+ value; }
+        public void setPrezzoData(string val1,DateTime val2) { labelPrezzo.Text ="Prezzo totale: "+ val1+"     Data: "+val2; }
 
       
         public void addComponenteListView(Componente comp)
