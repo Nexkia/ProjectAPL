@@ -94,9 +94,9 @@ func invio() {
 	min_price := 50
 	max_price := 300
 	min_val := 1
-	max_val := 10
+	max_val := 11
 	min_ram := 3
-	max_ram := 4
+	max_ram := 5
 	limit := 80
 	n_send := 0
 	content, err := ioutil.ReadFile("db/case.txt")
