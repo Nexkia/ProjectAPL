@@ -27,6 +27,8 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
 		conn.Write([]byte("notFound"))
+		wait.Done()
+		return
 	}
 
 	Pc := PcAssemblato{}

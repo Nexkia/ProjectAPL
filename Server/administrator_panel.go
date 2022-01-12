@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"context"
 	"encoding/json"
-	"fmt"
 	"net"
 	"sync"
 
@@ -46,8 +45,6 @@ func Inserimento(inputChannel chan string, conn net.Conn, mongodb *mongo.Databas
 		updateMongo = bson.D{
 			{"$set", bsonD},
 		}
-		fmt.Println(filter)
-		fmt.Println(updateMongo)
 		colldt.UpdateOne(context.Background(), filter, updateMongo)
 	}
 	conn.Write([]byte("ok"))
@@ -69,6 +66,48 @@ func Cancellazione(inputChannel chan string, conn net.Conn, mongodb *mongo.Datab
 	coll.DeleteOne(context.TODO(), filter)
 	filter = bson.D{{"modello_" + comp.Categoria, comp.Modello}}
 	colldt.DeleteOne(context.TODO(), filter)
+	conn.Write([]byte("ok"))
+	wait.Done()
+}
+
+func Inserimento_pre(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	jsonPre := <-inputChannel
+	pre := preAssemblato{}
+	json.Unmarshal([]byte(jsonPre), &pre)
+	coll := mongodb.Collection("preAssemblati")
+	filter := bson.D{{"nome", pre.Nome}}
+	var result bson.D
+	err := coll.FindOne(context.TODO(), filter).Decode(&result)
+	if err != nil {
+		coll.InsertOne(context.TODO(), pre)
+		conn.Write([]byte("ok"))
+		wait.Done()
+		return
+	}
+	updateMongo := bson.D{
+		{"$set", bson.D{
+			{"nome", pre.Nome},
+			{"prezzo", pre.Prezzo},
+			{"componenti", pre.Componenti},
+		}},
+	}
+	coll.UpdateOne(context.TODO(), filter, updateMongo)
+	conn.Write([]byte("ok"))
+	wait.Done()
+}
+
+func Cancellazione_pre(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+	nome := <-inputChannel
+	coll := mongodb.Collection("preAssemblati")
+	filter := bson.D{{"nome", nome}}
+	pre := preAssemblato{}
+	err := coll.FindOne(context.TODO(), filter).Decode(&pre)
+	if err != nil {
+		conn.Write([]byte("NotFound"))
+		wait.Done()
+		return
+	}
+	coll.DeleteOne(context.TODO(), filter)
 	conn.Write([]byte("ok"))
 	wait.Done()
 }
