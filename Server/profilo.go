@@ -49,13 +49,13 @@ func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb 
 			json_comp, _ = json.Marshal(comp)
 		}
 		size := len(json_comp)
-		rest := size % 256
-		div := size / 256
-		for i := 0; i < div*256; i = i + 256 {
-			conn.Write(json_comp[i : i+256])
+		rest := size % 1024
+		div := size / 1024
+		for i := 0; i < div*1024; i = i + 1024 {
+			conn.Write(json_comp[i : i+1024])
 		}
 		if rest > 0 {
-			conn.Write(json_comp[div*256 : size])
+			conn.Write(json_comp[div*1024 : size])
 		}
 		conn.Write([]byte("\n"))
 	}

@@ -34,13 +34,13 @@ func listCatalogo(inputChannel chan string, conn net.Conn, mongodb *mongo.Databa
 	conn.Read(ok)
 	byte_tosend, _ := json.Marshal(comp)
 	size := len(byte_tosend)
-	rest := size % 256
-	div := size / 256
-	for i := 0; i < div*256; i = i + 256 {
-		conn.Write(byte_tosend[i : i+256])
+	rest := size % 1024
+	div := size / 1024
+	for i := 0; i < div*1024; i = i + 1024 {
+		conn.Write(byte_tosend[i : i+1024])
 	}
 	if rest > 0 {
-		conn.Write(byte_tosend[div*256 : size])
+		conn.Write(byte_tosend[div*1024 : size])
 	}
 	conn.Write([]byte("\n"))
 	wait.Done()
