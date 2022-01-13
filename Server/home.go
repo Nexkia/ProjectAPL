@@ -45,14 +45,14 @@ func homepage(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, 
 	pcjson, err := json.Marshal(pc)
 
 	size := len(pcjson)
-	rest := size % 256
-	div := size / 256
-	for i := 0; i < div*256; i = i + 256 {
-		fmt.Println(i, i+256)
-		conn.Write(pcjson[i : i+256])
+	rest := size % 1024
+	div := size / 1024
+	for i := 0; i < div*1024; i = i + 1024 {
+		fmt.Println(i, i+1024)
+		conn.Write(pcjson[i : i+1024])
 	}
 	if rest > 0 {
-		conn.Write(pcjson[div*256 : size])
+		conn.Write(pcjson[div*1024 : size])
 	}
 	conn.Write([]byte("\n"))
 	wait.Done()

@@ -78,13 +78,13 @@ func getCronologia(token string, conn net.Conn, mongodb *mongo.Database, wait *s
 			pcassemblati_bytes, _ := json.Marshal(PcAssemblati)
 			pcpreassemblati_bytes, _ := json.Marshal(PreAssemblati)
 			size := len(pcassemblati_bytes)
-			rest := size % 256
-			div := size / 256
-			for i := 0; i < div*256; i = i + 256 {
-				conn.Write(pcassemblati_bytes[i : i+256])
+			rest := size % 1024
+			div := size / 1024
+			for i := 0; i < div*1024; i = i + 1024 {
+				conn.Write(pcassemblati_bytes[i : i+1024])
 			}
 			if rest > 0 {
-				conn.Write(pcassemblati_bytes[div*256 : size])
+				conn.Write(pcassemblati_bytes[div*1024 : size])
 			}
 			conn.Write([]byte("\n"))
 			conn.Read(okmsg)

@@ -693,7 +693,6 @@ Gigabyte GeForce RTX 2060 Mini ITX OC 6G GeForce RTX 2060 (6GB) 6 GB 160W USD 34
 Gigabyte GeForce RTX 2070 Windforce 2X 8G 3. GeForce RTX 2070 8 GB 175W USD 359.99 
 Gigabyte GeForce RTX 2080 Gaming OC GeForce RTX 2080 8 GB 225W USD 514.99 
 Gigabyte GeForce RTX 2080 Super Gaming OC Waterforce WB GeForce RTX 2080 Super 8 GB 250W USD 607.99 
-Gigabyte GeForce RTX 2080 Super Turbo GeForce RTX 2080 Super 8 GB 250W USD 1.18 
 Gigabyte GeForce RTX 2080 Ti Turbo 11G (rev. 2.0) GeForce RTX 2080 Ti 11 GB 250W 
 Gigabyte GeForce RTX 2080 Ti Turbo OC 11G (Rev. 2.0) GeForce RTX 2080 Ti 11 GB 250W USD 1069.99 
 Gigabyte GeForce RTX 2080 WindForce OC 8G GeForce RTX 2080 8 GB 225W USD 789.99 
