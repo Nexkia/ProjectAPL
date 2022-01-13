@@ -63,7 +63,7 @@ namespace APL.Connections
         {
             string result = await Task.Run(() =>
             {
-                var data = new Byte[256];
+                var data = new Byte[1024];
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
                 // Read the first batch of the TcpServer response bytes.
