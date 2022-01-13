@@ -40,7 +40,6 @@ Seagate Enterprise Capacity ST1000NX0313 1 TB 7200 RPMUSD 82.00
 Seagate Enterprise Capacity ST2000NM0033 2 TB 7200 RPMUSD 151.99 
 Seagate Enterprise Capacity ST2000NM0055 2 TB 7200 RPMUSD 126.93 
 Seagate Enterprise Capacity ST2000NX0253 2 TB 7200 RPMUSD 196.10 
-Seagate Enterprise Capacity ST4000NM0115 4 TB 7200 RPMUSD 1.18 
 Seagate Enterprise Capacity ST8000NM0055 8 TB 7200 RPMUSD 172.88 
 Seagate Enterprise Hard Drive 3 TB 7200 RPMUSD 144.99 
 Seagate Enterprise Hard Drive 4 TB 7200 RPMUSD 160.99 

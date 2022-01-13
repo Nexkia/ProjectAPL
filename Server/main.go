@@ -150,12 +150,12 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 15:
-			fmt.Println("case 14", MP)
+			fmt.Println("case 15", MP)
 			go Inserimento_pre(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 16:
-			fmt.Println("case 14", MP)
+			fmt.Println("case 16", MP)
 			go Cancellazione_pre(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
