@@ -51,7 +51,6 @@ func main() {
 		if err != nil {
 			fmt.Println("Error accepting request:", err)
 		}
-
 		go handleRequest(conn, mongodb)
 	}
 }
@@ -159,6 +158,10 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			go Cancellazione_pre(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
+		case 17:
+			fmt.Println("case 17", MP)
+			go getProfiles(conn, &waitGroup)
+			waitGroup.Add(1)
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}
