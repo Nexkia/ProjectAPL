@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using APL.Controlli;
+
 namespace APL.Forms
 {
     public partial class FormCatalogo : Form
@@ -21,7 +23,11 @@ namespace APL.Forms
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
             pt.Token = token;
+
+            comboBoxPrezzo.Text = "Ascendente";
         }
+
+        private List<Componente> listaComponenti;
 
         private  void cpu_Click(object sender, EventArgs e)
         {
@@ -167,6 +173,8 @@ namespace APL.Forms
 
 
         private async void GetElements(Protocol pt) {
+            listaComponenti = new List<Componente>();
+
             string response = String.Empty;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
@@ -198,8 +206,105 @@ namespace APL.Forms
                 
                 lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
+
+                //salvo tutti i componenti appena ricevuti in una lista
+                listaComponenti.Add(new Componente(cp[i].Modello, cp[i].Marca, cp[i].Prezzo, cp[i].Capienza, cp[i].Categoria));
             }
             Debug.WriteLine("fine del for");
         }
+
+        private void buttonOrdinaPerPrezzo_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Prezzo);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Prezzo);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+            
+        }
+
+
+        private void buttonOrdinaPerMarca_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Marca);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Marca);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void buttonOrdinaPerCapienza_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria=="ram" || listaComponenti[0].Categoria == "memoria"))
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Capienza);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else if (listaComponenti[0].Categoria == "ram" || listaComponenti[0].Categoria == "memoria")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Capienza);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void buttonOrdinaPerModello_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Modello);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Modello);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void cambiaOrdineListView(IOrderedEnumerable<Componente> listaComponentiOrdinata)
+        {
+            listView_record.Items.Clear();
+
+            foreach (Componente item in listaComponentiOrdinata)
+            {
+                ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
+                lvitem.SubItems.Add("" + item.Marca + "");
+                lvitem.SubItems.Add("" + item.Prezzo + "");
+
+                if (item.Categoria != "ram" && item.Categoria != "memoria")
+                { lvitem.SubItems.Add(""); }
+                else { lvitem.SubItems.Add("" + item.Capienza + ""); }
+
+                lvitem.SubItems.Add("" + item.Categoria + "");
+                listView_record.Items.Add(lvitem);
+
+            }
+
+
+        }
+
+   
     }
 }
