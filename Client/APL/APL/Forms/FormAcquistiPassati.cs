@@ -36,6 +36,7 @@ namespace APL.Forms
             PcAssemblato[] PcAssemblati;
             string PrezzoTot;
             string[] PcPreAssemblati;
+            List<Acquisto> Acquisti=new List<Acquisto>();
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             string response = String.Empty;
@@ -66,17 +67,28 @@ namespace APL.Forms
                 SocketTCP.sendSingleMsg("ok");
                 DateTime data = DateTime.Parse(response);
                 response = String.Empty;
-                // se pc assemblati ha lunghezza 1 vuol dire che è vuoto
+                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
 
-                aggiungiPcAllaListView(PcAssemblati, PcPreAssemblati, PrezzoTot,data);
+               // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
+                Acquisti.Add(new Acquisto(PrezzoTot, data, PcAssemblati, PcPreAssemblati));
+                
+                  
             }
             SocketTCP.GetMutex().ReleaseMutex();
+
+            IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
+            foreach(Acquisto acq in AcquistiOrdinati)
+            {
+             aggiungiPcAllaListView(acq.PrezzoTot, acq.Data, acq.PcAssemblati, acq.PcPreAssemblati);
+            }
+           
         }
 
-        private void aggiungiPcAllaListView(PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string PrezzoTot, DateTime data)
+       
+        private void aggiungiPcAllaListView( string PrezzoTot, DateTime data, PcAssemblato[] PcAssemblati, string[] PcPreAssemblati)
         {
             ElementoCronologia elem = new ElementoCronologia();
             elem.setPrezzoData(PrezzoTot,data);
