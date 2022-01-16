@@ -171,5 +171,7 @@ namespace APL.Forms.Amministratore
                 SocketTCP.GetMutex().ReleaseMutex();
             }
         }
+
+        
     }
 }
