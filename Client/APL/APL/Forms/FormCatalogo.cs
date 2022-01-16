@@ -11,20 +11,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using APL.Controlli;
+
 namespace APL.Forms
 {
     public partial class FormCatalogo : Form
     {
         Protocol pt = new Protocol();
-        SocketTCP sckt;
-        public FormCatalogo(String token,SocketTCP sckt)
+        public FormCatalogo(String token)
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
             pt.Token = token;
-            this.sckt = sckt;
 
+            comboBoxPrezzo.Text = "Ascendente";
         }
+
+        private List<Componente> listaComponenti;
 
         private  void cpu_Click(object sender, EventArgs e)
         {
@@ -85,18 +88,18 @@ namespace APL.Forms
                     ListViewItem item = listView_record.SelectedItems[0];
                    
                     string modello = item.SubItems[0].Text.ToString();
-                    string categoria = item.SubItems[1].Text.ToString();
-                    string marca = item.SubItems[2].Text.ToString();
-                    string prezzo = item.SubItems[3].Text.ToString();
-                    string capienza = item.SubItems[4].Text.ToString();
+                    string marca = item.SubItems[1].Text.ToString();
+                    string prezzo = item.SubItems[2].Text.ToString();
+                    string capienza = item.SubItems[3].Text.ToString();
+                    string categoria = item.SubItems[4].Text.ToString();
 
                     //rimuoviamo l'elemento selezionato dalla listView_record
                     listView_record.Items.Remove(listView_record.SelectedItems[0]);
                     ListViewItem lvitem = new ListViewItem("" + modello + "");
-                    lvitem.SubItems.Add("" + categoria + "");
                     lvitem.SubItems.Add("" + marca + "");
                     lvitem.SubItems.Add("" + prezzo + "");
                     lvitem.SubItems.Add("" + capienza + "");
+                    lvitem.SubItems.Add("" + categoria + "");
                     listViewCatalogo.Items.Add(lvitem);
                 }
                 else
@@ -119,18 +122,18 @@ namespace APL.Forms
             {
                 ListViewItem item = listViewCatalogo.SelectedItems[0];
                 string modello = item.SubItems[0].Text.ToString();
-                string categoria = item.SubItems[1].Text.ToString();
-                string marca = item.SubItems[2].Text.ToString();
-                string prezzo = item.SubItems[3].Text.ToString();
-                string capienza = item.SubItems[4].Text.ToString();
+                string marca = item.SubItems[1].Text.ToString();
+                string prezzo = item.SubItems[2].Text.ToString();
+                string capienza = item.SubItems[3].Text.ToString();
+                string categoria = item.SubItems[4].Text.ToString();
 
                 //rimuoviamo l'elemento selezionato dalla listViewCatalogo
                 listViewCatalogo.Items.Remove(listViewCatalogo.SelectedItems[0]);
                 ListViewItem lvitem = new ListViewItem("" + modello + "");
-                lvitem.SubItems.Add("" + categoria + "");
                 lvitem.SubItems.Add("" + marca + "");
                 lvitem.SubItems.Add("" + prezzo + "");
                 lvitem.SubItems.Add("" + capienza + "");
+                lvitem.SubItems.Add("" + categoria + "");
                 listView_record.Items.Add(lvitem);
             }
             else
@@ -153,12 +156,12 @@ namespace APL.Forms
                 {
                     ListViewItem item = listViewCatalogo.Items[i];
                     modelli[i] = item.SubItems[0].Text.ToString();
-                    categoria = item.SubItems[1].Text.ToString();
-                    prezzi[i] = item.SubItems[3].Text.ToString();
-                    capienze[i] = item.SubItems[4].Text.ToString();
+                    prezzi[i] = item.SubItems[2].Text.ToString();
+                    capienze[i] = item.SubItems[3].Text.ToString();
+                    categoria = item.SubItems[4].Text.ToString();
                     Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
-                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token,sckt);
+                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token);
                 cf.Show();
             }
             else
@@ -170,18 +173,20 @@ namespace APL.Forms
 
 
         private async void GetElements(Protocol pt) {
+            listaComponenti = new List<Componente>();
+
             string response = String.Empty;
-            sckt.GetMutex().WaitOne();
-            sckt.send(pt);
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
             // n elem
-            string nelem = await sckt.receive();
+            string nelem = await SocketTCP.receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            sckt.sendSingleMsg("ok");
+            SocketTCP.sendSingleMsg("ok");
             do
             {
-                response += await sckt.receive();
+                response += await SocketTCP.receive();
             } while (!response.Contains("\n"));
-            sckt.GetMutex().ReleaseMutex() ;
+            SocketTCP.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Debug.WriteLine(response);
@@ -192,13 +197,114 @@ namespace APL.Forms
             for (int i = 0; i < cp.Length; i++)
             {
                 ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 lvitem.SubItems.Add("" + cp[i].Marca + "");
                 lvitem.SubItems.Add("" + cp[i].Prezzo + "");
-                lvitem.SubItems.Add("" + cp[i].Capienza+ "");
+
+                if(cp[i].Categoria!="ram" && cp[i].Categoria != "memoria")
+                {lvitem.SubItems.Add("");}
+                else{lvitem.SubItems.Add("" + cp[i].Capienza + "");}
+                
+                lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
+
+                //salvo tutti i componenti appena ricevuti in una lista
+                listaComponenti.Add(new Componente(cp[i].Modello, cp[i].Marca, cp[i].Prezzo, cp[i].Capienza, cp[i].Categoria));
             }
             Debug.WriteLine("fine del for");
         }
+
+        private void buttonOrdinaPerPrezzo_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Prezzo);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Prezzo);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+            
+        }
+
+
+        private void buttonOrdinaPerMarca_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Marca);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Marca);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void buttonOrdinaPerCapienza_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria=="ram" || listaComponenti[0].Categoria == "memoria"))
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Capienza);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else if (listaComponenti[0].Categoria == "ram" || listaComponenti[0].Categoria == "memoria")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Capienza);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void buttonOrdinaPerModello_Click(object sender, EventArgs e)
+        {
+            if (listaComponenti != null)
+            {
+                if (comboBoxPrezzo.Text == "Ascendente")
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Modello);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+                else
+                {
+                    IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderByDescending(x => x.Modello);
+                    cambiaOrdineListView(listaComponentiOrdinata);
+                }
+            }
+        }
+
+        private void cambiaOrdineListView(IOrderedEnumerable<Componente> listaComponentiOrdinata)
+        {
+            listView_record.Items.Clear();
+
+            foreach (Componente item in listaComponentiOrdinata)
+            {
+                ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
+                lvitem.SubItems.Add("" + item.Marca + "");
+                lvitem.SubItems.Add("" + item.Prezzo + "");
+
+                if (item.Categoria != "ram" && item.Categoria != "memoria")
+                { lvitem.SubItems.Add(""); }
+                else { lvitem.SubItems.Add("" + item.Capienza + ""); }
+
+                lvitem.SubItems.Add("" + item.Categoria + "");
+                listView_record.Items.Add(lvitem);
+
+            }
+
+
+        }
+
+   
     }
 }

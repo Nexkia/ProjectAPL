@@ -20,7 +20,7 @@ Aerocool Core PlusFor socket 1200, 1150, 1151, 1155, 1156, 775, AM4, AM3+, AM3, 
 Aerocool Cylon 3For socket 1150, 1151, 1155, 1156, 775, AM4, AM3+, AM3, AM2, FM2, FM1 
 Aerocool Cylon 4For socket 1150, 1151, 1155, 1156, 2011-V3, 2011, 2066, 775, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
 Aerocool Cylon 4FFor socket 1150, 1151, 1155, 1156, 2011-V3, 2011, 2066, 775, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
-Aerocool Mirage 5 Processor KühlerFor socket 1200, 1150, 1151, 1155, 1156, 2011, 2066, 775, AM4, AM3+, AM3, AM2, FM2, FM1 
+Aerocool Mirage 5 Processor KuhlerFor socket 1200, 1150, 1151, 1155, 1156, 2011, 2066, 775, AM4, AM3+, AM3, AM2, FM2, FM1 
 Aerocool P7-L240For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2 USD 96.99 
 Akasa AK-955A-BV2For socket 1200, 1150, 1151, 1155, 1156, 775 
 Akasa AK-959CU- 92mmFor socket 1150, 1151, 1155, 1156, 775 
@@ -37,11 +37,11 @@ Akasa AK-CC7118HP01 K25- 74mmFor socket 1150, 1151, 1155, 1156, 775
 Akasa AK-CC7122BP01 Low Profile- 74mmFor socket 1150, 1151, 1155, 1156, 775 
 Akasa AK-CC7124EP01 Low Profile- 74mmFor socket 1150, 1151, 1155, 1156 
 Akasa AK-CC7129BP01 Low Profile- 74mmFor socket 1150, 1151, 1155, 1156, 775 
-Akasa AK-CCE-7101CPmit Kugellager für 775/115X - 92mmFor socket 1150, 1151, 1155, 1156, 775 
+Akasa AK-CCE-7101CPmit Kugellager fur 775/115X - 92mmFor socket 1150, 1151, 1155, 1156, 775 
 Akasa AK-CCE-7106HP Low ProfileIntel - 74mmFor socket 1150, 1151, 1155, 1156, 775 
-Akasa Dual Socket Low Noise PWMfür 775/115X - 80mmFor socket 1150, 1151, 1155, 1156, 775 
+Akasa Dual Socket Low Noise PWMfur 775/115X - 80mmFor socket 1150, 1151, 1155, 1156, 775 
 Akasa Nero LX 2- 120 mmFor socket 1150, 1151, 1155, 1156, 1366, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
-Akasa Soho H4 Processor KühlerFor socket 1200, 1150, 1151, 1155, 1156, 2011, 2066, AM4 
+Akasa Soho H4 Processor KuhlerFor socket 1200, 1150, 1151, 1155, 1156, 2011, 2066, AM4 
 Akasa Sunflower Mini-Top-Flow- - 120mmFor socket AM4, AM3+ 
 Akasa Vegas Chroma AMFor socket AM4, AM3+ 
 Akasa Vegas Chroma LGFor socket 1150, 1151, 1155, 1156 
@@ -79,7 +79,7 @@ Alphacool Eisbaer Pro Aurora 360 Processor , D-RGBFor socket 2011-V3, 2011, 3647
 AntecK240For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 74.72 
 Antec A30- 92mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 18.99 
 Antec A40 PRO- 92mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 27.99 
-Antec A400 RGB Processor KühlerFor socket AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 36.99 
+Antec A400 RGB Processor KuhlerFor socket AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 36.99 
 Antec C40- 92mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Antec C400- 120mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 35.99 
 Antec Mercury 120For socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+, TR4 
@@ -92,15 +92,10 @@ Arctic Alpine 12 passiver- blackFor socket 1150, 1151, 1155, 1156 USD 9.99
 Arctic Alpine 64 GT- 80mmFor socket 754, 939, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 9.99 
 Arctic Alpine 64 plus- 92mmFor socket 939, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 16.65 
 Arctic Alpine 64 Pro Rev.2- 92mmFor socket 939, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 13.97 
-ARCTIC COOLING ACALP11-PRO-R2 92mm Fluid Dynamic Alpine 11 Pro Rev. 2for IntelFor socket 775 , 1155 , 1156 , 1150 USD 16.33 
 ARCTIC COOLING ACALP64 Pro 92mmFor socket AM3, AM2+, AM2, 939, 754 USD 17.99 
 ARCTIC COOLING Freezer 7 Pro Rev.2 92mm Fluid DynamicFor socket 1150 ,1366 ,1156 ,1155 ,775, AM3 , AM2+ , AM2 , 939 , 754 USD 22.44 
-ARCTIC COOLING Freezer A32 120mm Fluid Dynamicwith 120 mm Fan for AMD with New Fan Controller Made in Germany and PWM PSTFor socket FM2, FM1, AM3, AM2 USD 29.15 
-ARCTIC COOLING Freezer i32 120mm Fluid Dynamicwith 120 mm Fan for Intel with New Fan Controller Made in Germany and PWM PSTFor socket 2011, 1150, 1151, 1155, 1156 USD 29.44 
-ARCTIC COOLING Freezer i32 CO 120mm Dual Ball Bearingwith 120 mm PWM PST, Dual Ball Bearing for Continuous OperationFor socket 2011, 1150, 1151, 1155, 1156 USD 34.93 
 ARCTIC COOLING UCACO-FA11001-CSA01 92mmFor socket AM2, AM2+, AM3, AM3+, FM1, FM2 USD 25.87 
-ARCTIC COOLING UCACO-FI11001-CSA01 92mmFor socket 2011 ,1150 , 1155 , 1156 USD 24.93 
-ARCTIC COOLING UCACO-P0900-CSB01 120mm Fluid Dynamic BearingFor socket 1366 , 1156 , 1155 , 775, FM1 , AM3+ , AM3 , AM2+ , AM2 , 939 , 754 USD 1.18 
+ARCTIC COOLING UCACO-FI11001-CSA01 92mmFor socket 2011 , 1150 , 1155 , 1156 USD 24.93 
 Arctic Freezer 11 LP- 92mmFor socket 1150, 1151, 1155, 1156, 775 USD 19.75 
 Arctic Freezer 12- 92mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM4 USD 26.99 
 Arctic Freezer 12 CO- 92mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM4 USD 24.99 
@@ -167,12 +162,10 @@ Cooler Master Hyper 212X- 120mm PWMFor socket 1150, 1151, 1155, 1156, 1366, 2011
 Cooler Master Hyper 212X -with Dual 120mm PWM FanFor socket 2011-V3 , 2011 , 1366 , 1156 , 1155 , 1151 , 1150 , 775, FM2+ , FM2 , FM1 , AM3+ , AM3 , AM2+ , AM2 USD 44.99 
 Cooler Master Hyper H411R , weiße LED - 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 48.99 
 Cooler Master Hyper H412R- 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775 USD 29.99 
-Cooler Master Hyper T2 - Compactwith Dual Looped Direct Contact HeatpipesFor socket 1150 , 1156 , 1155 , 775, FM2+ , FM2 , FM1 , AM4 , AM3+ , AM3 , AM2 USD 26.26 
 Cooler Master Hyper TX3 Evo- 92mmFor socket 1150, 1151, 1155, 1156, 1366, 754, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Cooler Master Hyper TX3i- 92mm PWMFor socket 1150, 1151, 1155, 1156, 775 
 Cooler Master MasterAir G100M, RGB- 100mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 39.94 
 Cooler Master MasterAir MA410M RGB- 2x120mm PWMFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 57.79 
-Cooler Master MasterAir MA410P , RGB - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 1.18 
 Cooler Master MasterAir MA610P , RGB - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 61.99 
 Cooler Master Masterliquid 240- 240 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ Radiator 240mm USD 89.89 
 COOLER MASTER MAZ-T8PN-418PR-R1 140mm DynaLoopFor socket 2011-V3 , 2011 , 1366 , 1151 , 1150 , 1156 , 1155 , 775, FM2+ , FM2 , FM1 , AM3+ , AM3 , AM2+ USD 114.99 
@@ -207,19 +200,18 @@ Cryorig C1 Low-Profile- - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 20
 Cryorig C7 G Mini-Top-Flow- - 92mm, Kupfer mit Graphen-BeschichtungFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Cryorig C7 Mini-Top-Flow- - 92mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Cryorig C7 RGB Mini-Top-Flow- - 92mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig H5 Ultimate Processor-Tower-Kühler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig H5 Universal Processor-Tower-Kühler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
-Cryorig H7 Processor-Tower-Kühler - 120mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig H7 Plus Processor-Tower-Kühler - 2x120mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig H7 Quad Lumi Processor-Tower-Kühler - 120mm, RGBFor socket 1150, 1151, 1155, 1156, 2011-V3, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig H7 Ultra Processor-Tower-Kühler - 120mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig M9 Plus Processor-Tower-Kühler - 2x92mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig M9a Processor-Tower-Kühler - AMD, 92mmFor socket AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig M9i Processor-Tower-Kühler - Intel, 92mmFor socket 1150, 1151, 1155, 1156 
-Cryorig R1 Ultimate Processor-Tower-Kühler -2x140 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig R1 Universal Processor-Tower-Kühler - 2x140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Cryorig R5 Processor Kühler 140mm - black/whiteFor socket 1200, 1150, 1151, 1155, 1156, 2011-V3, 2011, AM4, AM3+, AM3, AM2, FM2, FM1 
-DEEPCOOL GamerStorm ASSASSIN II8 Heatpipes Dual PWM Fans&FDB Bearing 300RPM Min. Nickel-plated finsFor socket 2011-V3 , 2011 , 1366 , 1156 , 1155 , 1151 , 1150 , 775, FM2+ , FM2 , FM1 , AM3+ , AM3 , AM2+ , AM2 USD 149.99 
+Cryorig H5 Ultimate Processor-Tower-Kuhler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig H5 Universal Processor-Tower-Kuhler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
+Cryorig H7 Processor-Tower-Kuhler - 120mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig H7 Plus Processor-Tower-Kuhler - 2x120mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig H7 Quad Lumi Processor-Tower-Kuhler - 120mm, RGBFor socket 1150, 1151, 1155, 1156, 2011-V3, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig H7 Ultra Processor-Tower-Kuhler - 120mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig M9 Plus Processor-Tower-Kuhler - 2x92mmFor socket 1150, 1151, 1155, 1156, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig M9a Processor-Tower-Kuhler - AMD, 92mmFor socket AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig M9i Processor-Tower-Kuhler - Intel, 92mmFor socket 1150, 1151, 1155, 1156 
+Cryorig R1 Ultimate Processor-Tower-Kuhler -2x140 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig R1 Universal Processor-Tower-Kuhler - 2x140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Cryorig R5 Processor Kuhler 140mm - black/whiteFor socket 1200, 1150, 1151, 1155, 1156, 2011-V3, 2011, AM4, AM3+, AM3, AM2, FM2, FM1 
 DEEPCOOL GAMMAXX 200T2 Heat pipes 120mm PWM FanFor socket 1150 , 1151 , 1155 , 1156, 775, FM2, FM1, AM4, AM3+ , AM3, AM2+, AM2, K8 USD 14.99 
 Deepcool GAMMAXX 300 120mm HydroFor socket 1366 , 1156 , 1155 , 1151 , 1150 , 775, FM2+ , FM2 , FM1 , AM4 , AM3+ , AM3 , AM2+ , AM2 USD 16.93 
 DEEPCOOL GAMMAXX 4004 Heatpipes 120mm PWM Fan with Blue LEDFor socket 2011-V3 , 2011 , 1366 , 1156 , 1155 , 1151 , 1150 , 775, AM4 , FM2+ , FM2 , FM1 , AM3+ , AM3 , AM2+ , AM2 USD 21.99 
@@ -236,14 +228,8 @@ Dynatron K985 92mm BallFor socket 1151 ,1150 , 1155 , 1156 USD 37.99
 Dynatron T450 80mm 2 BallFor socket 1151 ,1150 , 1155 , 1156 USD 19.58 
 Enermax AquafusionFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 79.99 
 Enermax AquafusionFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 99.99 
-ENERMAX ETD-T60-TB 120mm TwisterFor socket AM2,AM2+,AM3,AM3+, 775 USD 45.99 
+ENERMAX ETD-T60-TB 120mm TwisterFor socket AM2 , AM2+ , AM3 , AM3+, 775 USD 45.99 
 ENERMAX ETS-N30R-HE 92mmFor socket 775 , 1150 , 1151 , 1155 , 1156 , 1366 , 2011 , 2011-V3, AM2 , AM2+ , AM3 , AM3+ , FM1 , FM2 , FM2+ USD 24.99 
-ENERMAX ETS-T40F-BK 120mm Twister Aluminum 120mm Blackwith blue LED PWM FanFor socket 775 , 1150 , 1151 , 1155 , 1156 , 1366 , 2011 , 2011-V3, AM2 , AM2+ , AM3 , AM3+ , FM1 , FM2 , FM2+ USD 41.98 
-ENERMAX ETS-T40F-RF 140mm Twister Aluminum 120mm Blackwith 140mm PWM FanFor socket 775,1150,1151,1155,1156,1366,2011,2011-V3, AM2,USD 32.99 
-ENERMAX ETS-T40F-TB 120mm Twister Aluminum 120mmwith PWM Fan Low 8 dBA nosie w/ fan adaptorFor socket 775,1150,1151,1155,1156,1366,2011,2011-V3, AM2 USD 30.99 
-ENERMAX ETS-T40F-W 120mm Twister Aluminum 120mm Whitewith Dual White LED PWM FansFor socket 775 , 1150 , 1151 , 1155 , 1156 , 1366 , 2011 , 2011-V3, AM2 , AM2+ , AM3 , AM3+ , FM1 , FM2 , FM2+ USD 49.99 
-ENERMAX ETS-T50A-BVT Twister Aluminum 120mmwith DFR (Dust Free Rotation) Vegas Fan with 3 color LEDFor socket 775 , 1150, 1151, 1155, 1156, 1366 , 2011 , 2011-V3, AM2 , AM2+ , AM3 , AM3+ , FM1 , FM2 , FM2+ USD 54.03 
-ENERMAX ETS-T50A-WVS Twister Aluminum 120mm Whitewith DFR (Dust Free Rotation) White LED FanFor socket 775 , 1150, 1151, 1155, 1156, 1366 , 2011 , 2011-V3, AM2 , AM2+ , AM3 , AM3+ , FM1 , FM2 , FM2+ USD 52.99 
 Enermax LiqFusion 240 RGB- 240 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 104.99 
 Enermax Liqmax III ARGB 360For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 99.99 
 Enermax LiqTech II RGB 240For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 109.99 
@@ -262,7 +248,6 @@ Fractal Design Celsius S36- 360 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011,
 GELID Solutions CC-Shero-01-A 120mm HydroFor socket 775, 1155, 1156, 1366, 1150,AM2, AM2+, AM3, FM1, FM2 
 Gigabyte Aorus ATC700- 2x 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 84.57 
 Gigabyte Aorus ATC800 , RGB - 2x 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Hyper 212 LED with PWM Fan, Four Direct Contact Heatpipes, Unique Fan Blade Design, Red LEDs, Optimized Bracket Design by Cooler MasterFor socket 2011-V3 , 2011 , 1151 , 1150 , 1155 , 1156 , 775, AM3+ , AM3 , AM2+ , FM2+ , FM2 , FM1 USD 34.99 
 IceGiant ProSiphon Elite- 240mmFor socket 1200, 1150, 1151, 1155, 1156, 1366, 2011-V3, 2011, 2066, AM4, sTRX4, TR4 
 Intel Thermal Solution HTS1155LP - socket 1155For socket 1150, 1151, 1155 USD 36.99 
 Intel Thermal Solution TS13XFor socket 1150, 1155, 1156, 1366, 2011,USD 79.99 
@@ -278,9 +263,6 @@ Jonsbo CR-701For socket 1150, 1151, 1155, 1156, 775, AM4, AM3+, AM3, AM2, FM2+, 
 Jonsbo HP-400- 90mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Jonsbo HP-400- 90mmFor socket 1150, 1151, 1155, 1156, 775, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
 Jonsbo MX400For socket 1200, 1150, 1151, 1155, 1156, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
-MASSCOOL 8W2002B1M4 90mm Ball Bearingfor INTEL Socket LGA 1155/1156 Cooper baseFor socket 1150 , 1155 , 1156 USD 18.99 
-MasterAir Pro 3 Processor Air Cooler with Continuous Direct Contact Technology 2.0 by Cooler MasterFor socket 2011-V3 , 2011 , 1151 , 1150 , 1155 , 1156 , 1366 , 775, AM3+ , AM2+ , AM2 , FM2+ , FM2 , FM1 USD 39.67 
-MasterAir Pro 4 Processor Air Cooler with Continuous Direct Contact Technology 2.0 by Cooler MasterFor socket 2011-V3 , 2011 , 1151 , 1150 , 1155 , 1156 , 1366 , 775, AM3+ , AM2+ , AM2 , FM2+ , FM2 , FM1 USD 40.84 
 MSI Core Frozr L- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2 
 MSI Core Frozr XL- 2x 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2 
 Noctua NH-C14S- 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 78.23 
@@ -297,7 +279,6 @@ Noctua NH-L9i- 92mmFor socket 1150, 1151, 1155, 1156 USD 44.95
 Noctua NH-L9i 95mm SSO2For socket 1150, 1155, 1156 USD 39.99 
 Noctua NH-L9i chromax.black- 92mmFor socket 1150, 1151, 1155, 1156 USD 89.83 
 Noctua NH-L9x65- 92mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 51.99 
-Noctua NH-L9x65 92 x 92 x 14mm, 92 x 92 x 25mm SSO2 Low-profile Quiet , NF-A9x14 PWM fanFor socket 1150,1155,1156,AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ USD 51.99 
 Noctua NH-P1 passiverFor socket 1200, 1150, 1151, 1155, 1156, 2011-V3, 2011, 2066, AM4, AM3+, AM3, AM2+, AM2, FM2+, FM2, FM1 
 Noctua NH-U12A- 120mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 104.95 
 Noctua NH-U12DO A3 120mm SSOFor socket G34, C32 
@@ -305,7 +286,6 @@ Noctua NH-U12DXi4- 120mmFor socket 1366, 2011, 2011-V3, 2066 USD 63.58
 Noctua NH-U12S chromax.black- 120mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Noctua NH-U12S redux- 120mmFor socket 1200, 1150, 1151, 1155, 1156, 2011-V3, 2011, 2066, AM4, AM3+, AM3, AM2+, AM2, FM2+, FM2, FM1 
 Noctua NH-U12S TR4-SP3- 120mmFor socket TR4, sTRX4 USD 96.07 
-Noctua NH-U14S 140mm SSO2-Bearing (Self-stabilising oil-presure bearing)For socket 2011,1156, 1155, 1150, AM2 , AM2+ , AM3, AM3+, FM1, FM2 USD 73.99 
 Noctua NH-U14S TR4-SP3- 140mmFor socket TR4, sTRX4 USD 103.16 
 Noctua NH-U9 TR4-SP3- 92mmFor socket TR4, sTRX4 
 Noctua NH-U9B SE2- 2x92mmFor socket 1150, 1151, 1155, 1156, 1366, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 69.99 
@@ -339,7 +319,7 @@ Prolimatech Blue Series MegahalemsFor socket 1150, 1151, 1155, 1156, 1366, 2011,
 Prolimatech GenesisFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
 Prolimatech Genesis "Dual Viper Edition"For socket 1150, 1151, 1155, 1156, 1366, 2011, 775, AM2, AM3, AM3+, FM1, FM2 
 Prolimatech MegahalemsRev.CFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 55.99 
-Prolimatech Samuel 17 Processor KühlerFor socket 1150, 1151, 1155, 1156, 1366, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
+Prolimatech Samuel 17 Processor KuhlerFor socket 1150, 1151, 1155, 1156, 1366, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
 Raijintek Aidos Black, Heatpipe , PWM - 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 15.74 
 Raijintek Aidos Heatpipe , PWM - 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 15.81 
 Raijintek Delos RBW Rainbow RGB LED- 3x 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
@@ -349,7 +329,7 @@ Raijintek EreBoss Heatpipe , PWM - 140mmFor socket 1150, 1151, 1155, 1156, 1366,
 Raijintek Juno Pro ADD- adressable RGB LEDFor socket 1150, 1151, 1155, 1156, 1366, 754, 775, 939, 940, AM2, AM3, AM3+, AM4 
 Raijintek Juno Pro RBW- RGB LEDFor socket 1150, 1151, 1155, 1156, 1366, 754, 775, 939, 940, AM2, AM3, AM3+, AM4 USD 32.68 
 Raijintek Juno-X- blaue LEDFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-Raijintek Juno-X- grüne LEDFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Raijintek Juno-X- grune LEDFor socket 1150, 1151, 1155, 1156, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Raijintek Juno-X- RGB LEDFor socket 1150, 1151, 1155, 1156, 754, 775, 939, 940, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Raijintek Juno-X- rote LEDFor socket 1150, 1151, 1155, 1156, 754, 775, 939, 940, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Raijintek Juno-X- blackFor socket 1150, 1151, 1155, 1156, 754, 775, 939, 940, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
@@ -397,7 +377,7 @@ Scythe SCKTN-4000 Katana 4For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3
 Scythe SCKTN-5000 Katana 5For socket 1150, 1151, 1155, 1156, 1366, 754, 775, 939, 940, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Scythe SCKZT-1000 KozutiFor socket 1150, 1151, 1155, 1156, 1366, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 42.54 
 Scythe SCMG-4000 Mugen 4For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
-Scythe SCMG-4PCGH Mugen 4 ´´PCGH Edition´´For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
+Scythe SCMG-4PCGH Mugen 4  PCGH Edition For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
 Scythe SCMG-5000 Mugen 5For socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
 Scythe SCMG-5100 Mugen 5 Rev.B- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 45.95 
 Scythe SCMG-5100TUF Mugen 5 TUF , RGB, PWM - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
@@ -407,7 +387,7 @@ Scythe SCNJ-4000 Ninja 4 - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2
 Scythe SCNJ-5000 Ninja 5- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Scythe SCSK-1100 Shuriken Rev.2For socket 1150, 1151, 1155, 1156, 1366, 478, 754, 775, 939, 940, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 34.99 
 Scythe Shuriken 2- 92mmFor socket 1200, 1150, 1151, 1155, 1156, 1366, 775, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
-Scythe Tatsumi für IntelFor socket AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+, AM4 
+Scythe Tatsumi fur IntelFor socket AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+, AM4 
 Silverstone Argon SST-AR01- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM3, FM1, FM2, FM2+ 
 Silverstone Argon SST-AR01-V2- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Silverstone Argon SST-AR01-V3- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2 USD 47.66 
@@ -426,7 +406,7 @@ Silverstone Nitrogon NT09-115X , PWM - 92 mmFor socket 1150, 1151, 1155, 1156
 Silverstone Nitrogon SST-NT07-115X Low ProfileFor socket 1150, 1151, 1155, 1156 
 SILVERSTONE NT07-115X 80mmFor socket 1150 , 1155 , 1156 USD 19.99 
 Silverstone PF360W-ARGB , 360mm - whiteFor socket 1200, 1150, 1151, 1155, 1156, 1366, 2011, 2066, 775, AM4, AM3, AM2, FM2, FM1 
-Silverstone SST-AR01-V2.1 - Argon Processor Kühler - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
+Silverstone SST-AR01-V2.1 - Argon Processor Kuhler - 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Silverstone SST-AR07- 140 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
 Silverstone SST-AR07-V2- 140 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Silverstone SST-AR08- 92 mmFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
@@ -436,12 +416,12 @@ SILVERSTONE SST-AR09-115XS 60mm 2 BallFor socket 1151 ,1150 , 1155 , 1156 USD 31
 SILVERSTONE SST-AR10-115XP 70mm 2 BallFor socket 1151 ,1150 , 1155 , 1156 USD 39.99 
 SILVERSTONE SST-AR10-115XS 70mm 2 BallFor socket 1151 ,1150 , 1155 , 1156 USD 43.99 
 Silverstone SST-HE01 HeligonFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 79.99 
-Silverstone SST-HE01-V2 - Heligon Processor Kühler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM4, FM1, FM2 USD 101.99 
+Silverstone SST-HE01-V2 - Heligon Processor Kuhler - 140mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM4, FM1, FM2 USD 101.99 
 Silverstone SST-HE02-V2 HeligonFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 63.99 
 Silverstone SST-IG240P-ARGBFor socket 1200, SP3, 1150, 1151, 1155, 1156, 1366, 2011, 2066, AM2, AM3, AM4, FM1, FM2, TR4, sTRX4 
 Silverstone SST-IG360-ARGBFor socket 1200, 1150, 1151, 1155, 1156, 1366, 2011, 2066, AM2, AM3, AM4, FM1, FM2, TR4, sTRX4 
-Silverstone SST-KR01 - Kryton Processor Kühler, Low Profile - 80mmFor socket AM2, AM3, AM3+, AM4, FM1, FM2 
-Silverstone SST-KR02 - Kryton Processor Kühler - 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066 USD 29.99 
+Silverstone SST-KR01 - Kryton Processor Kuhler, Low Profile - 80mmFor socket AM2, AM3, AM3+, AM4, FM1, FM2 
+Silverstone SST-KR02 - Kryton Processor Kuhler - 92mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066 USD 29.99 
 Silverstone SST-NT06-PRO NitrogonFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ 
 Silverstone SST-NT06-PRO-V2 Nitrogon- 120 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011-V3, 2011, 2066, 775, AM4, AM3+, AM3, AM2, FM2+, FM2, FM1 
 Silverstone SST-NT07-AM2For socket AM2, AM3, AM3+, FM1, FM2, FM2+ 
@@ -450,8 +430,6 @@ Silverstone SST-PF120-ARGB- 120 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011,
 Silverstone SST-PF240-ARGB- 240 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 98.99 
 Silverstone SST-PF360-ARGB- 360 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 129.99 
 Silverstone SST-TD02-Slim TundraFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 775, AM2, AM3, AM3+, AM4, FM1, FM2 
-Silverstone SST-XE01-2011 - Xenon Processor Passiv Kühler - Intel LGA2011/2066For socket 2011, 2011-V3, 2066 USD 53.38 
-Silverstone SST-XE02-2011 - Xenon Processor Kühler für 2U Server - Intel LGA2011/2066For socket 2011, 2011-V3, 2066 
 Silverstone Tundra TD02-RGBFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, 775, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 SUPERMICRO SNK-P0047PFor socket X9, X10 USD 16.38 
 Thermalright AXP-200R ROG Processor CoolerFor socket 775, 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+, AM4 
@@ -471,7 +449,6 @@ Thermaltake Riing Silent 12 Pro Blue- 120mmFor socket 1150, 1151, 1155, 1156, 13
 Thermaltake Riing Silent 12 Pro Red- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 66.94 
 Thermaltake Riing Silent 12 Red- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM1, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 39.99 
 Thermaltake Riing Silent 12 RGB Sync Edition- 120mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, 775, AM2, AM3, AM3+, AM4, FM1, FM2 
-Thermaltake Water 3.0 ARGB SyncFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 1.18 
 Thermaltake Water 3.0 ARGB SyncFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 139.99 
 Thermaltake Water 3.0 ARGB SyncFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ USD 164.99 
 Thermaltake Water 3.0 Riing , red - 140 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ 
@@ -480,12 +457,10 @@ Thermaltake Water 3.0 Riing RGB- 240 mmFor socket 1150, 1151, 1155, 1156, 1366, 
 Thermaltake Water 3.0 Riing RGB- 280 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+ Radiator 280mm USD 134.09 
 Thermaltake Water 3.0 Riing RGB- 360 mmFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2011-V3, 2066, AM2, AM3, AM3+, AM4, FM1, FM2, FM2+, TR4, sTRX4 USD 119.98 
 Titan DC-155A915Z/RPW 95mm Z-AXISFor socket 1155 , 1156 , 1150 
-Titan TTC-NA02TZ/RPW/CU30 95mm Z-AXIS Copper Cooler for socket 1150,1155 & 1156For socket 1150 , 1155 , 1156 
 Xigmatek Loki II Heatpipe- 92mmFor socket 1150, 1155, 1156, 1366, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
 Xigmatek Praeton LD963- 90mmFor socket 1150, 1151, 1155, 1156, 775, AM2, AM2+, AM3, AM3+, FM1, FM2, FM2+ 
 Xilence A402 AMD- 92mm PWMFor socket AM2, AM2+, AM3, AM3+, AM4, FM1, FM2, FM2+ 
 Xilence M403 Multisockel- 92mm PWMFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, AM2, AM2+, AM3, AM3+, AM4, FM1, FM2, FM2+ 
-ZALMAN CNPS10X OPTIMA 120mm FSB (Fluid Shield Bearing) Shark's Fin Blade(LGA 2011 version)For socket 2011 , 1150 , 1155 , 1156 , 1366 , 775, FM1 , AM3+ , AM3 , AM2+ , AM2 USD 26.15 
 Zalman CNPS10X OPTIMA II- blackFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, AM2, AM3, AM3+, AM4, FM2, FM2+ 
 Zalman CNPS10X OPTIMA II- whiteFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, AM2, AM3, AM3+, AM4, FM2, FM2+ 
 Zalman CNPS10X OPTIMA II RGB- blackFor socket 1150, 1151, 1155, 1156, 1366, 2011, 2066, AM4, AM3+, FM2+ 
@@ -497,7 +472,7 @@ Zalman CNPS16X- blackFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM3
 Zalman CNPS16X- whiteFor socket 1150, 1151, 1155, 1156, 2011-V3, 2011, 2066, AM4, AM3+, AM3, AM2 
 Zalman CNPS17X- blackFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM3, AM4 
 Zalman CNPS20X- blackFor socket 1150, 1151, 1155, 1156, 2011, 2011-V3, 2066, AM3, AM4 
-ZALMAN CNPS2X 80mm Long Life BearingFor socket 1155 , 1156 , 1150 , 775, FM1 , FM2 , AM3+ , AM3 , AM2+ , AM2USD 23.98 
+ZALMAN CNPS2X 80mm Long Life BearingFor socket 1155 , 1156 , 1150 , 775, FM1 , FM2 , AM3+ , AM3 , AM2+ , AM2 USD 23.98 
 Zalman CNPS4XFor socket 1150, 1151, 1155, 1156, 775, AM3, AM3+, AM4, FM2, FM2+ 
 Zalman CNPS4X RGB- 92mmFor socket 1200, 1150, 1151, 1155, 1156, 775, AM4, AM3+, AM3, FM2+, FM2 
 Zalman CNPS5X PerformaFor socket 1150, 1151, 1155, 1156, 754, 775, 939, 940, AM2, AM3, AM3+, FM1, FM2, FM2+ USD 27.65 

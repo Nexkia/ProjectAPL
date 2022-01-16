@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Forms\Amministratore\FormAmministratore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Amministratore\FormInserisciComponente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Amministratore\FormInserisciPreassemblato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Amministratore\FormStatistiche.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormCarrello.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -24,6 +36,36 @@
     </Compile>
     <Compile Update="Forms\FormAcquistiPassati.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\ComponentsPreassemblato.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\ImgStatistiche.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciCpu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciAlimentatore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciCasePc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciDissipatore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciMemoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciRam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciSchedaMadre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\Amministratore\Inserimento\InserisciSchedaVideo.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\ComponentsSolo.cs">
       <SubType>UserControl</SubType>

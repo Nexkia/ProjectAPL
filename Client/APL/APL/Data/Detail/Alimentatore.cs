@@ -7,8 +7,22 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class Alimentatore : Details
+    public class Alimentatore : Details
     {
+
+
+        public Alimentatore(string modello, int valutazione,int watt)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.Watt = watt;
+        }
+
+        public Alimentatore()
+        {
+           
+        }
+
         [JsonProperty("modello_alimentatore")]
         public string? Modello { get; private set; }
         [JsonProperty("Valutazione")]

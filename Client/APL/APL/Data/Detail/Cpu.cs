@@ -7,9 +7,22 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class Cpu : Details
+    public class Cpu : Details
     {
-        [JsonProperty("modello_cpu")]
+       
+            public Cpu(string modello, int valutazione, float frequenza,string socket,int core,int thread)
+            {
+                this.Modello = modello;
+                this.Valutazione = valutazione;
+                this.Frequenza = frequenza;
+                this.Socket = socket;
+                this.Core = core;
+                this.Thread = thread;
+            }
+
+            public Cpu() { }
+
+            [JsonProperty("modello_cpu")]
         public string? Modello { get; private set; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; private set; }

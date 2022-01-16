@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace APL.Forms
 {
     partial class FormCatalogo
@@ -40,16 +42,22 @@ namespace APL.Forms
             this.buttonAggiungi = new System.Windows.Forms.Button();
             this.listView_record = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.listViewCatalogo = new System.Windows.Forms.ListView();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
             this.buttonRimuovi = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonOrdinaPerPrezzo = new System.Windows.Forms.Button();
+            this.comboBoxPrezzo = new System.Windows.Forms.ComboBox();
+            this.buttonOrdinaPerMarca = new System.Windows.Forms.Button();
+            this.buttonOrdinaPerCapienza = new System.Windows.Forms.Button();
+            this.buttonOrdinaPerModello = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cpuButton
@@ -142,7 +150,7 @@ namespace APL.Forms
             // 
             // buttonAggiungi
             // 
-            this.buttonAggiungi.Location = new System.Drawing.Point(642, 701);
+            this.buttonAggiungi.Location = new System.Drawing.Point(626, 668);
             this.buttonAggiungi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAggiungi.Name = "buttonAggiungi";
             this.buttonAggiungi.Size = new System.Drawing.Size(151, 56);
@@ -156,9 +164,9 @@ namespace APL.Forms
             this.listView_record.BackColor = System.Drawing.SystemColors.HighlightText;
             this.listView_record.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader2});
             this.listView_record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listView_record.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.listView_record.HideSelection = false;
@@ -175,11 +183,6 @@ namespace APL.Forms
             this.columnHeader1.Text = "Modello";
             this.columnHeader1.Width = 230;
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Categoria";
-            this.columnHeader2.Width = 230;
-            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Marca";
@@ -190,13 +193,19 @@ namespace APL.Forms
             this.columnHeader4.Text = "Prezzo";
             this.columnHeader4.Width = 230;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Capienza";
+            this.columnHeader2.Width = 230;
+            // 
             // listViewCatalogo
             // 
             this.listViewCatalogo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
             this.listViewCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listViewCatalogo.HideSelection = false;
             this.listViewCatalogo.Location = new System.Drawing.Point(12, 642);
@@ -212,11 +221,6 @@ namespace APL.Forms
             this.columnHeader5.Text = "Modello";
             this.columnHeader5.Width = 150;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Categoria";
-            this.columnHeader6.Width = 150;
-            // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "Marca";
@@ -227,9 +231,19 @@ namespace APL.Forms
             this.columnHeader8.Text = "Prezzo";
             this.columnHeader8.Width = 150;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Capienza";
+            this.columnHeader9.Width = 150;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Categoria";
+            this.columnHeader10.Width = 200;
+            // 
             // buttonRimuovi
             // 
-            this.buttonRimuovi.Location = new System.Drawing.Point(806, 701);
+            this.buttonRimuovi.Location = new System.Drawing.Point(783, 668);
             this.buttonRimuovi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRimuovi.Name = "buttonRimuovi";
             this.buttonRimuovi.Size = new System.Drawing.Size(151, 56);
@@ -241,20 +255,86 @@ namespace APL.Forms
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(642, 780);
+            this.button1.Location = new System.Drawing.Point(626, 756);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(315, 120);
+            this.button1.Size = new System.Drawing.Size(308, 120);
             this.button1.TabIndex = 15;
             this.button1.Text = "Confronta";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonConfronta_Click);
+            // 
+            // buttonOrdinaPerPrezzo
+            // 
+            this.buttonOrdinaPerPrezzo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonOrdinaPerPrezzo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonOrdinaPerPrezzo.Location = new System.Drawing.Point(964, 700);
+            this.buttonOrdinaPerPrezzo.Name = "buttonOrdinaPerPrezzo";
+            this.buttonOrdinaPerPrezzo.Size = new System.Drawing.Size(151, 50);
+            this.buttonOrdinaPerPrezzo.TabIndex = 16;
+            this.buttonOrdinaPerPrezzo.Text = "Ordina per Prezzo";
+            this.buttonOrdinaPerPrezzo.UseVisualStyleBackColor = false;
+            this.buttonOrdinaPerPrezzo.Click += new System.EventHandler(this.buttonOrdinaPerPrezzo_Click);
+            // 
+            // comboBoxPrezzo
+            // 
+            this.comboBoxPrezzo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPrezzo.FormattingEnabled = true;
+            this.comboBoxPrezzo.Items.AddRange(new object[] {
+            "Ascendente",
+            "Discendente"});
+            this.comboBoxPrezzo.Location = new System.Drawing.Point(964, 865);
+            this.comboBoxPrezzo.Name = "comboBoxPrezzo";
+            this.comboBoxPrezzo.Size = new System.Drawing.Size(151, 28);
+            this.comboBoxPrezzo.TabIndex = 17;
+            // 
+            // buttonOrdinaPerMarca
+            // 
+            this.buttonOrdinaPerMarca.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonOrdinaPerMarca.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonOrdinaPerMarca.Location = new System.Drawing.Point(964, 756);
+            this.buttonOrdinaPerMarca.Name = "buttonOrdinaPerMarca";
+            this.buttonOrdinaPerMarca.Size = new System.Drawing.Size(151, 50);
+            this.buttonOrdinaPerMarca.TabIndex = 18;
+            this.buttonOrdinaPerMarca.Text = "Ordina per Marca";
+            this.buttonOrdinaPerMarca.UseVisualStyleBackColor = false;
+            this.buttonOrdinaPerMarca.Click += new System.EventHandler(this.buttonOrdinaPerMarca_Click);
+            // 
+            // buttonOrdinaPerCapienza
+            // 
+            this.buttonOrdinaPerCapienza.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonOrdinaPerCapienza.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOrdinaPerCapienza.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonOrdinaPerCapienza.Location = new System.Drawing.Point(964, 809);
+            this.buttonOrdinaPerCapienza.Name = "buttonOrdinaPerCapienza";
+            this.buttonOrdinaPerCapienza.Size = new System.Drawing.Size(151, 50);
+            this.buttonOrdinaPerCapienza.TabIndex = 19;
+            this.buttonOrdinaPerCapienza.Text = "Ordina per Capienza";
+            this.buttonOrdinaPerCapienza.UseVisualStyleBackColor = false;
+            this.buttonOrdinaPerCapienza.Click += new System.EventHandler(this.buttonOrdinaPerCapienza_Click);
+            // 
+            // buttonOrdinaPerModello
+            // 
+            this.buttonOrdinaPerModello.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonOrdinaPerModello.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonOrdinaPerModello.Location = new System.Drawing.Point(964, 642);
+            this.buttonOrdinaPerModello.Name = "buttonOrdinaPerModello";
+            this.buttonOrdinaPerModello.Size = new System.Drawing.Size(151, 50);
+            this.buttonOrdinaPerModello.TabIndex = 20;
+            this.buttonOrdinaPerModello.Text = "Ordina per Modello";
+            this.buttonOrdinaPerModello.UseVisualStyleBackColor = false;
+            this.buttonOrdinaPerModello.Click += new System.EventHandler(this.buttonOrdinaPerModello_Click);
             // 
             // FormCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 905);
+            this.Controls.Add(this.buttonOrdinaPerModello);
+            this.Controls.Add(this.buttonOrdinaPerCapienza);
+            this.Controls.Add(this.buttonOrdinaPerMarca);
+            this.Controls.Add(this.comboBoxPrezzo);
+            this.Controls.Add(this.buttonOrdinaPerPrezzo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonRimuovi);
             this.Controls.Add(this.listViewCatalogo);
@@ -288,15 +368,21 @@ namespace APL.Forms
         private System.Windows.Forms.Button buttonAggiungi;
         private System.Windows.Forms.ListView listView_record;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ListView listViewCatalogo;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button buttonRimuovi;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Button buttonOrdinaPerPrezzo;
+        private System.Windows.Forms.ComboBox comboBoxPrezzo;
+        private Button buttonOrdinaPerMarca;
+        private Button buttonOrdinaPerCapienza;
+        private Button buttonOrdinaPerModello;
     }
 }

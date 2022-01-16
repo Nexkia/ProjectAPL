@@ -8,16 +8,12 @@ ADATA XPG Spectrix RGB D41 red 16 GB DDR4-3600 Kit of 2
 ADATA XPG Spectrix RGB D41 red 16 GB DDR4-3200 Kit of 2USD 170.58
 ADATA XPG Spectrix RGB D60G grey 16 GB DDR4-3200 Kit of 2
 ADATA XPG Spectrix RGB D60G grey 16 GB DDR4-3600 Kit of 2USD 139.18
-Avexir Blitz Series, weiße LED, DDR4-3600, CL17 - 16 GB Kit 16 GB DDR4-3600 Kit of 2
 Avexir Core Series, blaue LED, DDR4-2400, CL16 - 16 GB Kit 16 GB DDR4-2400 Kit of 2
 Avexir Core Series, blaue LED, DDR4-2400, CL16 - 8 GB 8 GB DDR4-2400 Kit of 1
 Avexir Core Series, blaue LED, DDR4-2400, CL16 - 8 GB Kit 8 GB DDR4-2400 Kit of 2
-Avexir Core Series, grüne LED, DDR4-2400, CL16 - 8 GB 8 GB DDR4-2400 Kit of 1
 Avexir Core Series, rote LED, DDR4-2400, CL16 - 32 GB Kit 32 GB DDR4-2400 Kit of 4
 Avexir Core Series, rote LED, DDR4-2400, CL16 - 8 GB 8 GB DDR4-2400 Kit of 1
 Avexir Core Series, rote LED, DDR4-2400, CL16 - 8 GB Kit 8 GB DDR4-2400 Kit of 2
-Avexir Core Series, weiße LED, DDR4-2400, CL16 - 8 GB 8 GB DDR4-2400 Kit of 1
-Avexir Core Series, weiße LED, DDR4-2400, CL16 - 8 GB Kit 8 GB DDR4-2400 Kit of 2
 Ballistix Sport DDR3-1600 CL9 8 GB DDR3-1600 Kit of 1
 Ballistix Sport DDR3-1600 CL9 16 GB DDR3-1600 Kit of 2
 Ballistix Sport DDR4-2400 CL16 8 GB DDR4-2400 Kit of 1
@@ -247,8 +243,8 @@ Team Group T-Force Nighthawk, blaue LED, DDR4-3200, CL16 - 32 GB Kit 32 GB DDR4-
 Team Group T-Force Nighthawk, rote LED, DDR4-3000, CL16 - 16 GB Kit 16 GB DDR4-3000 Kit of 2
 Team Group T-Force Nighthawk, rote LED, DDR4-3200, CL16 - 16 GB Kit 16 GB DDR4-3200 Kit of 2
 Team Group T-Force Nighthawk, rote LED, DDR4-3200, CL16 - 32 GB Kit 32 GB DDR4-3200 Kit of 2
-Team Group T-Force Nighthawk, weiße LED, DDR4-3000, CL16 - 16 GB Kit 16 GB DDR4-3000 Kit of 2
-Team Group T-Force Nighthawk, weiße LED, DDR4-3200, CL16 - 32 GB Kit 32 GB DDR4-3200 Kit of 2
+Team Group T-Force Nighthawk, weibe LED, DDR4-3000, CL16 - 16 GB Kit 16 GB DDR4-3000 Kit of 2
+Team Group T-Force Nighthawk, weibe LED, DDR4-3200, CL16 - 32 GB Kit 32 GB DDR4-3200 Kit of 2
 Team Group Vulcan Series Gold, DDR4-3000, CL16 - 32 GB Kit 32 GB DDR4-3000 Kit of 4
 Team Group Vulcan Series white, DDR4-3000, CL16 - 16 GB Kit 16 GB DDR4-3000 Kit of 4
 Thermaltake Toughram RGB DDR4-3200 CL16 - 16 GB Dual-Kit 16 GB DDR4-3200 Kit of 2USD 99.99
@@ -279,27 +275,14 @@ ADATA XPG Spectrix RGB D41 red 16 GB DDR4-3000 Kit of 2
 ADATA XPG Spectrix RGB D60G grey 16 GB DDR4-3000 Kit of 2
 Avexir Blitz Series, rote LED, DDR4-3200, CL16 - 16 GB Kit 16 GB DDR4-3200 Kit of 4
 Avexir Core Series, blaue LED, DDR4-2400, CL16 - 4 GB 4 GB DDR4-2400 Kit of 1
-Avexir Core Series, grüne LED, DDR4-2400, CL16 - 4 GB 4 GB DDR4-2400 Kit of 1
+Avexir Core Series, grune LED, DDR4-2400, CL16 - 4 GB 4 GB DDR4-2400 Kit of 1
 Avexir Core Series, rote LED, DDR4-2400, CL16 - 16 GB Kit 16 GB DDR4-2400 Kit of 2
 Avexir Core Series, rote LED, DDR4-2400, CL16 - 16 GB Kit 16 GB DDR4-2400 Kit of 4
-Avexir Core Series, weiße LED, DDR4-2400, CL16 - 16 GB Kit 16 GB DDR4-2400 Kit of 2
-Avexir Core Series, weiße LED, DDR4-2400, CL16 - 4 GB 4 GB DDR4-2400 Kit of 1
+Avexir Core Series, weibe LED, DDR4-2400, CL16 - 16 GB Kit 16 GB DDR4-2400 Kit of 2
+Avexir Core Series, weibe LED, DDR4-2400, CL16 - 4 GB 4 GB DDR4-2400 Kit of 1
 Ballistix Elite DDR4-2666 CL16 4 GB DDR4-2666 Kit of 1USD 39.95
 Ballistix Sport DDR3-1600 CL9 8 GB DDR3-1600 Kit of 2
 Ballistix Tactical DDR4-3000 CL15 8 GB DDR4-3000 Kit of 1USD 62.99
-Corsair 16GB 16 GB DDR4-2133 Kit of 1USD 59.99
-Corsair 16GB 16 GB DDR4-2400 Kit of 1USD 63.95
-Corsair 1GB DDR Memory 1 GB DDR1-333 Kit of 1USD 18.75
-Corsair 1GB DDR Memory 1 GB DDR1-400 Kit of 1USD 24.19
-Corsair 1GB DDR2 Memory 1 GB DDR2-667 Kit of 1USD 6.72
-Corsair 1GB DDR2 Memory 1 GB DDR2-533 Kit of 1USD 118.88
-Corsair 1GB Dual Channel DDR Memory Kit 1 GB DDR1-400 Kit of 2
-Corsair 2GB DDR2 Memory 2 GB DDR2-800 Kit of 1USD 30.82
-Corsair 2GB Dual Channel DDR Memory Kit 2 GB DDR1-400 Kit of 2USD 40.00
-Corsair 2GB Dual Channel DDR2 Memory Kit 2 GB DDR2-533 Kit of 2USD 28.99
-Corsair 8GB 8 GB DDR4-2400 Kit of 1USD 38.99
-Corsair 8GB 8 GB DDR3-1600 Kit of 2USD 43.52
-Corsair 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1333 Kit of 2USD 51.99
 Corsair Dominator DDR3-1600 CL9 8 GB DDR3-1600 Kit of 2
 Corsair Dominator Limited Orange DDR4-3400, CL16 - 16 GB Quad Kit 16 GB DDR4-3400 Kit of 4
 Corsair Dominator Platinum + AF 8 GB DDR4-3600 Kit of 2USD 114.96
@@ -363,31 +346,31 @@ Corsair Dominator Platinum Series DDR4-2666 32 GB DDR4-2666 Kit of 4USD 179.99
 Corsair Dominator Platinum Series DDR4-3000, CL15 - 16 GB Quad Kit 16 GB DDR4-3000 Kit of 4USD 252.56
 Corsair Dominator Platinum Series DDR4-3200, CL15 - 16 GB Quad Kit 16 GB DDR4-3200 Kit of 4
 Corsair Dominator Platinum Series DDR4-3200, CL16 - 16 GB Quad Kit 16 GB DDR4-3200 Kit of 4USD 213.98
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2133 Kit of 4USD 124.28
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2400 Kit of 4USD 124.28
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2400 Kit of 4USD 124.28
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2400 Kit of 2USD 165.35
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-1866 Kit of 4USD 532.00
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-1866 Kit of 2USD 621.60
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2133 Kit of 4USD 772.69
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2800 Kit of 4USD 1004.97
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2666 Kit of 4USD 1032.60
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-1600 Kit of 2USD 1153.75
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-2933 Kit of 4USD 1469.10
-Corsair Dominator Platinum Series — 16GB 16 GB DDR3-3000 Kit of 4USD 1860.60
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2133 Kit of 4USD 124.28
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2400 Kit of 4USD 124.28
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2400 Kit of 4USD 124.28
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2400 Kit of 2USD 165.35
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-1866 Kit of 4USD 532.00
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-1866 Kit of 2USD 621.60
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2133 Kit of 4USD 772.69
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2800 Kit of 4USD 1004.97
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2666 Kit of 4USD 1032.60
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-1600 Kit of 2USD 1153.75
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-2933 Kit of 4USD 1469.10
+Corsair Dominator Platinum Series - 16GB 16 GB DDR3-3000 Kit of 4USD 1860.60
 Corsair LED 32GB 32 GB DDR4-3200 Kit of 4USD 471.99
 Corsair LED 32GB 64 GB DDR4-2666 Kit of 4USD 692.55
-Corsair Low Profile Blue — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4USD 311.57
-Corsair Low Profile Blue — 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-1600 Kit of 2USD 116.09
-Corsair Low Profile Blue — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-2133 Kit of 2
-Corsair Low Profile — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 2USD 83.60
-Corsair Low Profile — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4
-Corsair Low Profile — 32GB Dual/Quad Channel DDR3 Memory Kit 32 GB DDR3-1600 Kit of 4USD 169.99
-Corsair Low Profile — 32GB Dual/Quad Channel DDR3 Memory Kit 32 GB DDR3-1600 Kit of 4USD 245.66
-Corsair Low Profile — 4GB DDR3 Memory Kit 4 GB DDR3-1600 Kit of 1
-Corsair Low Profile — 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-1600 Kit of 2USD 39.81
-Corsair Low Profile — 8GB DDR3 Memory Kit 8 GB DDR3-1600 Kit of 1USD 64.89
-Corsair Low Profile — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2
+Corsair Low Profile Blue - 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4USD 311.57
+Corsair Low Profile Blue - 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-1600 Kit of 2USD 116.09
+Corsair Low Profile Blue - 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-2133 Kit of 2
+Corsair Low Profile - 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 2USD 83.60
+Corsair Low Profile - 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4
+Corsair Low Profile - 32GB Dual/Quad Channel DDR3 Memory Kit 32 GB DDR3-1600 Kit of 4USD 169.99
+Corsair Low Profile - 32GB Dual/Quad Channel DDR3 Memory Kit 32 GB DDR3-1600 Kit of 4USD 245.66
+Corsair Low Profile - 4GB DDR3 Memory Kit 4 GB DDR3-1600 Kit of 1
+Corsair Low Profile - 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-1600 Kit of 2USD 39.81
+Corsair Low Profile - 8GB DDR3 Memory Kit 8 GB DDR3-1600 Kit of 1USD 64.89
+Corsair Low Profile - 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2
 Corsair LP Memory 16GB 1866MHz CL10 DDR3 16 GB DDR3-1866 Kit of 2USD 613.51
 Corsair LP Memory 32GB 1866MHz CL10 DDR3 Dual/Quad Kit 32 GB DDR3-1866 Kit of 4USD 1013.33
 Corsair LPX 16GB 16 GB DDR4-2133 Kit of 4
@@ -416,36 +399,36 @@ Corsair LPX 32GB 32 GB DDR4-2400 Kit of 2USD 164.99
 Corsair LPX 32GB 32 GB DDR4-3866 Kit of 4USD 524.99
 Corsair LPX 32GB 32 GB DDR4-4000 Kit of 4USD 541.99
 Corsair LPX 32GB 32 GB DDR4-3200 Kit of 4USD 1001.99
-Corsair Memory — 32GB 1866MHz CL9 DDR3 32 GB DDR3-1866 Kit of 4USD 124.28
-Corsair Pro Series — 16GB 16 GB DDR3-1866 Kit of 2
-Corsair Pro Series — 16GB 16 GB DDR3-2133 Kit of 4
-Corsair Pro Series — 16GB 16 GB DDR3-2666 Kit of 2
-Corsair Pro Series — 16GB 16 GB DDR3-2933 Kit of 4
-Corsair Pro Series — 16GB 16 GB DDR3-2133 Kit of 4
-Corsair Pro Series — 16GB 16 GB DDR3-1600 Kit of 2USD 106.14
-Corsair Pro Series — 16GB 16 GB DDR3-1866 Kit of 2USD 125.34
-Corsair Pro Series — 16GB 16 GB DDR3-2400 Kit of 2USD 146.35
-Corsair Pro Series — 16GB 16 GB DDR3-2133 Kit of 2USD 168.99
-Corsair Pro Series — 32GB 32 GB DDR3-1600 Kit of 4
-Corsair Pro Series — 32GB 32 GB DDR3-1600 Kit of 4USD 155.71
-Corsair Pro Series — 32GB 32 GB DDR3-1600 Kit of 4USD 182.99
-Corsair Pro Series — 32GB 32 GB DDR3-2800 Kit of 4USD 187.67
-Corsair Pro Series — 32GB 32 GB DDR3-1866 Kit of 4USD 189.04
-Corsair Pro Series — 32GB 32 GB DDR3-2133 Kit of 4USD 268.02
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2
-Corsair Pro Series — 8GB 8 GB DDR3-2800 Kit of 2
-Corsair Pro Series — 8GB 8 GB DDR3-2933 Kit of 2
-Corsair Pro Series — 8GB 8 GB DDR3-1600 Kit of 2USD 39.99
-Corsair Pro Series — 8GB 8 GB DDR3-1600 Kit of 2USD 42.99
-Corsair Pro Series — 8GB 8 GB DDR3-1600 Kit of 2USD 50.23
-Corsair Pro Series — 8GB 8 GB DDR3-1600 Kit of 2USD 63.10
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2USD 91.74
-Corsair Pro Series — 8GB 8 GB DDR3-1866 Kit of 2USD 124.28
-Corsair Pro Series — 8GB 8 GB DDR3-1866 Kit of 2USD 124.28
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2USD 258.60
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2USD 297.96
-Corsair Pro Series — 8GB 8 GB DDR3-2133 Kit of 2USD 314.00
+Corsair Memory - 32GB 1866MHz CL9 DDR3 32 GB DDR3-1866 Kit of 4USD 124.28
+Corsair Pro Series - 16GB 16 GB DDR3-1866 Kit of 2
+Corsair Pro Series - 16GB 16 GB DDR3-2133 Kit of 4
+Corsair Pro Series - 16GB 16 GB DDR3-2666 Kit of 2
+Corsair Pro Series - 16GB 16 GB DDR3-2933 Kit of 4
+Corsair Pro Series - 16GB 16 GB DDR3-2133 Kit of 4
+Corsair Pro Series - 16GB 16 GB DDR3-1600 Kit of 2USD 106.14
+Corsair Pro Series - 16GB 16 GB DDR3-1866 Kit of 2USD 125.34
+Corsair Pro Series - 16GB 16 GB DDR3-2400 Kit of 2USD 146.35
+Corsair Pro Series - 16GB 16 GB DDR3-2133 Kit of 2USD 168.99
+Corsair Pro Series - 32GB 32 GB DDR3-1600 Kit of 4
+Corsair Pro Series - 32GB 32 GB DDR3-1600 Kit of 4USD 155.71
+Corsair Pro Series - 32GB 32 GB DDR3-1600 Kit of 4USD 182.99
+Corsair Pro Series - 32GB 32 GB DDR3-2800 Kit of 4USD 187.67
+Corsair Pro Series - 32GB 32 GB DDR3-1866 Kit of 4USD 189.04
+Corsair Pro Series - 32GB 32 GB DDR3-2133 Kit of 4USD 268.02
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2
+Corsair Pro Series - 8GB 8 GB DDR3-2800 Kit of 2
+Corsair Pro Series - 8GB 8 GB DDR3-2933 Kit of 2
+Corsair Pro Series - 8GB 8 GB DDR3-1600 Kit of 2USD 39.99
+Corsair Pro Series - 8GB 8 GB DDR3-1600 Kit of 2USD 42.99
+Corsair Pro Series - 8GB 8 GB DDR3-1600 Kit of 2USD 50.23
+Corsair Pro Series - 8GB 8 GB DDR3-1600 Kit of 2USD 63.10
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2USD 91.74
+Corsair Pro Series - 8GB 8 GB DDR3-1866 Kit of 2USD 124.28
+Corsair Pro Series - 8GB 8 GB DDR3-1866 Kit of 2USD 124.28
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2USD 258.60
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2USD 297.96
+Corsair Pro Series - 8GB 8 GB DDR3-2133 Kit of 2USD 314.00
 Corsair RGB 16GB 16 GB DDR4-2666 Kit of 2USD 86.46
 Corsair RGB 16GB 16 GB DDR4-3000 Kit of 2USD 109.99
 Corsair RGB 32GB 32 GB DDR4-2666 Kit of 4USD 159.99
@@ -636,10 +619,10 @@ Corsair Vengeance RGB Pro SL 32 GB DDR4-3200 Kit of 4USD 199.99
 Corsair Vengeance RGB Pro SL 32 GB DDR4-3600 Kit of 4USD 209.99
 Corsair Vengeance RGB Pro SL 128 GB DDR4-3200 Kit of 4USD 849.99
 Corsair Vengeance RGB Pro SL DDR4-3200 32 GB DDR4-3200 Kit of 4USD 217.99
-Corsair Vengeance RGB Pro SL für AMD Ryzen 16 GB DDR4-3200 Kit of 2USD 107.99
-Corsair Vengeance RGB Pro SL für AMD Ryzen 16 GB DDR4-3600 Kit of 2USD 109.99
-Corsair Vengeance RGB Pro SL für AMD Ryzen 32 GB DDR4-3600 Kit of 2USD 195.99
-Corsair Vengeance RGB Pro SL für AMD Ryzen 32 GB DDR4-3200 Kit of 2USD 199.99
+Corsair Vengeance RGB Pro SL fur AMD Ryzen 16 GB DDR4-3200 Kit of 2USD 107.99
+Corsair Vengeance RGB Pro SL fur AMD Ryzen 16 GB DDR4-3600 Kit of 2USD 109.99
+Corsair Vengeance RGB Pro SL fur AMD Ryzen 32 GB DDR4-3600 Kit of 2USD 195.99
+Corsair Vengeance RGB Pro SL fur AMD Ryzen 32 GB DDR4-3200 Kit of 2USD 199.99
 Corsair Vengeance RGB RS 16 GB DDR4-3200 Kit of 2
 Corsair Vengeance RGB RS 16 GB DDR4-3600 Kit of 2
 Corsair Vengeance RGB RS 32 GB DDR4-3600 Kit of 2
@@ -677,37 +660,12 @@ Corsair Vengeance RGB RT 32 GB DDR4-3600 Kit of 2
 Corsair Vengeance RGB RT 32 GB DDR4-3200 Kit of 2
 Corsair Vengeance RGB Series black 64 GB DDR4-3333 Kit of 4
 Corsair Vengeance RGB Series white 32 GB DDR4-3200 Kit of 4
-Corsair XMS DDR3-1600 CL9   für Core i5/i7 4 GB DDR3-1600 Kit of 2USD 33.99
+Corsair XMS DDR3-1600 CL9   fur Core i5/i7 4 GB DDR3-1600 Kit of 2USD 33.99
 Corsair XMS3 DDR3-1333 CL9 8 GB DDR3-1333 Kit of 1USD 35.95
 Corsair XMS3 DDR3-1333 CL9 4 GB DDR3-1333 Kit of 2USD 42.99
 Corsair XMS3 DDR3-1333 CL9 8 GB DDR3-1333 Kit of 2USD 54.99
-Corsair XMS3 DDR3-1333 CL9   für AMD/Core i3/i5/i7 4 GB DDR3-1333 Kit of 1USD 26.99
+Corsair XMS3 DDR3-1333 CL9   fur AMD/Core i3/i5/i7 4 GB DDR3-1333 Kit of 1USD 26.99
 Corsair XMS3 DDR3-1600 CL9 8 GB DDR3-1600 Kit of 2USD 45.95
-Corsair — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 2USD 69.99
-Corsair — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 2USD 70.65
-Corsair — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1866 Kit of 2USD 149.97
-Corsair — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-2133 Kit of 2USD 156.30
-Corsair — 16GB Dual Channel DDR3 Memory Kit 16 GB DDR3-1866 Kit of 2USD 5854.62
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-2133 Kit of 4
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4USD 90.21
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-2133 Kit of 4USD 116.09
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1866 Kit of 4USD 117.71
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1866 Kit of 4USD 329.80
-Corsair — 16GB Dual/Quad Channel DDR3 Memory Kit 16 GB DDR3-1600 Kit of 4USD 373.14
-Corsair — 32GB Dual/Quad Channel DDR3 Memory Kit 32 GB DDR3-1600 Kit of 4USD 86.99
-Corsair — 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-1600 Kit of 2USD 32.30
-Corsair — 4GB Dual Channel DDR3 Memory Kit 4 GB DDR3-2000 Kit of 2USD 115.55
-Corsair — 4GB Single Module DDR3 Memory Kit 4 GB DDR3-1600 Kit of 1USD 27.99
-Corsair — 64GB Quad Channel DDR3 Memory Kit 64 GB DDR3-1866 Kit of 8
-Corsair — 64GB Quad Channel DDR3 Memory Kit 64 GB DDR3-1600 Kit of 8USD 279.99
-Corsair — 8GB 1.5V Dual Channel DDR3 Memory Kit 8 GB DDR3-2133 Kit of 2USD 89.61
-Corsair — 8GB DDR3 Memory Kit 8 GB DDR3-1866 Kit of 1
-Corsair — 8GB DDR3 Memory Kit 8 GB DDR3-1600 Kit of 1USD 67.27
-Corsair — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2USD 44.66
-Corsair — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2USD 51.45
-Corsair — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1866 Kit of 2USD 80.26
-Corsair — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2USD 117.71
-Corsair — 8GB Dual Channel DDR3 Memory Kit 8 GB DDR3-1600 Kit of 2USD 260.00
 Crucial Ballistix Elite DDR3-1600 CL8 8 GB DDR3-1600 Kit of 2
 Crucial Ballistix Elite DDR4-3000 CL15 8 GB DDR4-3000 Kit of 1USD 68.99
 Crucial Ballistix Elite DDR4-3200 CL16 4 GB DDR4-3200 Kit of 1USD 54.50
@@ -889,39 +847,7 @@ Kingston Branded DDR3-1600 CL11, 1,5 V Systemspeicher reg. ECC 8 GB DDR3-1600 Ki
 Kingston Branded DDR3-1600 CL11, 1,5 V Systemspeicher reg. ECC 16 GB DDR3-1600 Kit of 1
 Kingston Branded DDR4-2133 CL15, 1,2 V Systemspeicher 8 GB DDR4-2133 Kit of 1
 Kingston Branded DDR4-2133 CL15, 1,2 V Systemspeicher 4 GB DDR4-2133 Kit of 1
-Kingston DDR3-1333  CL9 ECC 16 GB DDR3-1333 Kit of 2
-Kingston DDR3-1333  ECC  - Lenovo branded 8 GB DDR3-1333 Kit of 1
-Kingston DDR3-1333  ECC LV  - IBM branded 16 GB DDR3-1333 Kit of 1
-Kingston DDR3-1333  ECC Registriert - Lenovo branded 16 GB DDR3-1333 Kit of 1
-Kingston DDR3-1333 ECC  für ProLiant - HP branded 8 GB DDR3-1333 Kit of 1
-Kingston DDR3-1333 reg ECC  - Dell branded 8 GB DDR3-1333 Kit of 1
-Kingston DDR3-1333 Value CL9 8 GB DDR3-1333 Kit of 1USD 40.99
-Kingston DDR3-1333 Value CL9 16 GB DDR3-1333 Kit of 2USD 82.90
-Kingston DDR3-1600  ECC  - Fujitsu branded 8 GB DDR3-1600 Kit of 1
-Kingston DDR3-1600  ECC  - HP branded 8 GB DDR3-1600 Kit of 1
-Kingston DDR3-1600 ECC  - Dell branded 8 GB DDR3-1600 Kit of 1
-Kingston DDR3-1600 reg ECC  für ProLiant - HP branded 32 GB DDR3-1600 Kit of 4
-Kingston DDR4-2133 CL15 reg ECC  - Lenovo branded 8 GB DDR4-2133 Kit of 1
-Kingston DDR4-2133 ECC  - Dell branded PowerEdge R230, R330, T130, T330 8 GB DDR4-2133 Kit of 1
-Kingston DDR4-2133 reg ECC  - Dell branded 16 GB DDR4-2133 Kit of 1
-Kingston DDR4-2133 reg ECC  - Dell branded 8 GB DDR4-2133 Kit of 1USD 19.90
-Kingston DDR4-2133 reg ECC  - Dell branded 32 GB DDR4-2133 Kit of 1USD 225.17
-Kingston DDR4-2400 CL17 reg ECC   - HP branded 32 GB DDR4-2400 Kit of 1USD 81.99
-Kingston DDR4-2400 reg ECC  - Dell branded 32 GB DDR4-2400 Kit of 1USD 185.29
 Kingston HyperX Predator 64 GB DDR4-3000 Kit of 4USD 299.99
-Kingston Server DIMM 16 GB DDR4-2666 Kit of 1
-Kingston Server DIMM, ECC REG, DDR4-2133, CL15 - 32 GB Kit 32 GB DDR4-2133 Kit of 4
-Kingston Value  DDR3-1333  CL9 4 GB DDR3-1333 Kit of 1USD 23.99
-Kingston Value  DDR3-1333 CL9  Memory 2 GB DDR3-1333 Kit of 1USD 12.99
-Kingston Value  DDR4-2133  CL15 reg. ECC 4 GB DDR4-2133 Kit of 1
-Kingston Value  DDR4-2133  CL15 reg. ECC 8 GB DDR4-2133 Kit of 1
-Kingston Value  DDR4-2133  CL15 reg. ECC 16 GB DDR4-2133 Kit of 1USD 106.65
-Kingston Value  DDR4-2133 CL15 ECC, registriert 8 GB DDR4-2133 Kit of 1
-Kingston Value  DDR4-2400  CL17 4 GB DDR4-2400 Kit of 1
-Kingston Value DDR4-2133  CL15 8 GB DDR4-2133 Kit of 2
-Samsung DDR4-2666 32 GB DDR4-2666 Kit of 1USD 176.99
-Samsung RDIMM 64 GB DDR4-3200 Kit of 1
-Samsung Server DIMM 32 GB DDR4-2666 Kit of 1
 Team Group Dark Pro "8Pack Edition" 16 GB DDR4-3866 Kit of 2
 Team Group Dark Pro "8Pack Edition" 16 GB DDR4-3200 Kit of 2
 Team Group Dark Pro Series grey, DDR4-3000, CL15 - 8 GB Kit 8 GB DDR4-3000 Kit of 2
@@ -944,7 +870,7 @@ Team Group T-Force Nighthawk 16 GB DDR4-2666 Kit of 2
 Team Group T-Force Nighthawk 16 GB DDR4-3200 Kit of 2
 Team Group T-Force Nighthawk, blaue LED, DDR4-3000, CL16 - 32 GB Kit 32 GB DDR4-3000 Kit of 2
 Team Group T-Force Nighthawk, rote LED, DDR4-3000, CL16 - 32 GB Kit 32 GB DDR4-3000 Kit of 2
-Team Group T-Force Nighthawk, weiße LED, DDR4-3000, CL16 - 32 GB Kit 32 GB DDR4-3000 Kit of 2
+Team Group T-Force Nighthawk, weibe LED, DDR4-3000, CL16 - 32 GB Kit 32 GB DDR4-3000 Kit of 2
 Team Group T-Force Vulcan Series grey 16 GB DDR4-2400 Kit of 1
 Team Group T-Force Vulcan Series red 16 GB DDR4-3000 Kit of 2
 Team Group T-Force Vulcan Series red 16 GB DDR4-2400 Kit of 1

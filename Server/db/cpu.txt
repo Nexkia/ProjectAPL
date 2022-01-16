@@ -42,7 +42,6 @@ Intel Core i9-10900K Socket 1200 Clock 3.7 GHz Turbo 5.3 GHz 10 Cores 20 Threads
 Intel Core i9-10900KF Socket 1200 Clock 3.7 GHz Turbo 5.3 GHz 10 Cores 20 Threads USD 429.99
 Intel Core i9-12900K Socket 1700 Clock 3.2 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 619.99
 Intel Core i9-12900KF Socket 1700 Clock 3.2 GHz Turbo 3.0 GHz 8 Cores 16 Threads USD 589.99
-AMD A10-6790K Socket FM2 Clock 4.0 GHz Turbo 4.3 GHz 4 Cores 4 Threads USD 163.99
 AMD A10-7800 Socket FM2+ Clock 3.5 GHz Turbo 3.9 GHz 2 Cores 2 Threads USD 110.99
 AMD A10-7850K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 170.99  
 AMD A10-7860K Socket FM2+ Clock 3.6 GHz Turbo 4.0 GHz 2 Cores 2 Threads USD 175.99
@@ -52,14 +51,10 @@ AMD A10-9700 Socket AM4 Clock 3.5 GHz 4 Cores 4 Threads USD 68.94
 AMD A10-9700E Socket AM4 Clock  GHz 4 Cores 4 Threads USD 130.00
 AMD A12-9800 Socket AM4 Clock 3.8 GHz 4 Cores 4 Threads USD 200.99 
 AMD A12-9800E Socket AM4 Clock 3.1 GHz 4 Cores 4 Threads USD 205.99
-AMD A4-5300 Socket FM2 Clock 3.4 GHz Turbo 3.6 GHz 2 Cores 2 Threads USD 131.90  
-AMD A4-7300 Socket FM2 Clock 3.8 GHz Turbo 4.0 GHz 1 Cores 1 Threads USD 141.90  
-AMD A6-6400K Socket FM2 Clock 3.9 GHz Turbo 4.1 GHz 2 Cores 2 Threads USD 151.90  
 AMD A6-7400K Socket FM2+ Clock 3.5 GHz Turbo 3.9 GHz 1 Cores 1 Threads USD 171.90
 AMD A6-7470K Socket FM2+ Clock 3.7 GHz Turbo 4.0 GHz 1 Cores 1 Threads USD 181.60
 AMD A6-9500 Socket AM4 Clock 3.5 GHz 2 Cores 2 Threads USD 60.81
 AMD A6-9500E Socket AM4 Clock 3.0 GHz 2 Cores 2 Threads USD 100.90  
-AMD A8-6600K Socket FM2 Clock 3.9 GHz Turbo 4.2 GHz 4 Cores 4 Threads USD 80.90  
 AMD A8-7600 Socket FM2+ Clock 3.1 GHz Turbo 3.8 GHz 2 Cores 2 Threads USD 73.32
 AMD A8-7650K Socket FM2+ Clock 3.3 GHz Turbo 3.7 GHz 2 Cores 2 Threads USD 85.90  
 AMD A8-7650K Socket FM2+ Clock 3.3 GHz Turbo 3.7 GHz 2 Cores 2 Threads USD 76.00

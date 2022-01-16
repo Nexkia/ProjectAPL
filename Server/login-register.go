@@ -64,7 +64,7 @@ func login(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wai
 		conn.Write([]byte(token))
 		conn.Read(oksmg)
 		checkAdmin := (token == "VlPUwbiQVA6j2OBXnVyL0GGbdR2EeMk9OUulJHi0YjE=")
-		admin := strconv.FormatBool((checkAdmin))
+		admin := strconv.FormatBool(checkAdmin)
 		conn.Write([]byte(admin))
 	}
 

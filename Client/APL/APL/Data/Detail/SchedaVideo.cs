@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    internal class SchedaVideo :Details
+    public class SchedaVideo :Details
     {
+        public SchedaVideo(string modello, int valutazione, int tdp,int Vram)
+        {
+            this.Modello = modello;
+            this.Valutazione = valutazione;
+            this.Tdp = tdp;
+            this.Vram = Vram;
+        }
+
+        public SchedaVideo() { }
         [JsonProperty("modello_schedaVideo")]
         public string? Modello { get; private set; }
         [JsonProperty("valutazione")]

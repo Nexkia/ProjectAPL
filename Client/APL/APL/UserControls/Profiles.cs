@@ -20,16 +20,14 @@ namespace APL.UserControls
         FlowLayoutPanel vecchioFlowLayoutPanel1;
         Protocol pt = new Protocol();
         ListView vecchialistView;
-        SocketTCP sckt;
         ListView vecchioCarrello;
 
-        public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello, string Token,SocketTCP sckt)
+        public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello, string Token)
         {
             InitializeComponent();
             vecchioFlowLayoutPanel1 = vfp1;
             vecchialistView = vlw;
             pt.Token = Token;  
-            this.sckt = sckt;
             vecchioCarrello = carrello;
         }
 
@@ -62,7 +60,7 @@ namespace APL.UserControls
         {
             ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
             pt.SetProtocolID("profilo");pt.Data = nameProfile;
-            sckt.send(pt);
+            SocketTCP.send(pt);
 
             Dictionary<string, int> order = new Dictionary<string, int>{
                 { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
@@ -70,12 +68,12 @@ namespace APL.UserControls
             };
             Componente[,] showElements = new Componente[8, 3];
             for (int i = 0; i < componentsTab.Length; i++) {
-                sckt.sendSingleMsg("ok");
-                componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello,pt.Token,sckt);
+                SocketTCP.sendSingleMsg("ok");
+                componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello,pt.Token);
                 string response = String.Empty;
                 do
                 {
-                    response += await sckt.receive();
+                    response += await SocketTCP.receive();
                 } while (!response.Contains("\n"));
 
                 Componente[] pezzo = new Componente[3];
@@ -91,17 +89,19 @@ namespace APL.UserControls
                 for (int i = 0; i < componentsTab.Length; i++){
                     componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
 
-                    componentsTab[i].Icon1 = Resources.ImageNotFound2;
+                    //componentsTab[i].Icon1 = Resources.preassemblato;
                     componentsTab[i].MostraModello1 = showElements[i, 0].Modello ;
                     componentsTab[i].Componente1= showElements[i, 0];
 
-                    componentsTab[i].Icon2 = Resources.ImageNotFound2;
+                    //componentsTab[i].Icon2 = Resources.preassemblato;
                     componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
                     componentsTab[i].Componente2 = showElements[i, 1];
 
-                    componentsTab[i].Icon3 = Resources.ImageNotFound2;
+                    //componentsTab[i].Icon3 = Resources.preassemblato;
                     componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
                     componentsTab[i].Componente3 = showElements[i, 2];
+
+                    addImg(componentsTab[i]);
 
                 //aggiunge al flow label
                 if (vecchioFlowLayoutPanel1.Controls.Count < 0)
@@ -114,6 +114,57 @@ namespace APL.UserControls
 
 
                 }
+        }
+
+        private void addImg(ComponentsGuidata componentsTab)
+        {
+            string categoria = componentsTab.Title;
+
+            switch (categoria)
+            {
+                case "schedaMadre":
+                    componentsTab.Icon1 = Resources.schedaMadre;
+                    componentsTab.Icon2 = Resources.schedaMadre;
+                    componentsTab.Icon3 = Resources.schedaMadre;
+                    break;
+                case "schedaVideo":
+                    componentsTab.Icon1 = Resources.schedaVideo;
+                    componentsTab.Icon2 = Resources.schedaVideo;
+                    componentsTab.Icon3 = Resources.schedaVideo;
+                    break;
+                case "cpu":
+                    componentsTab.Icon1 = Resources.cpu;
+                    componentsTab.Icon2 = Resources.cpu;
+                    componentsTab.Icon3 = Resources.cpu;
+                    break;
+                case "ram":
+                    componentsTab.Icon1 = Resources.ram;
+                    componentsTab.Icon2 = Resources.ram;
+                    componentsTab.Icon3 = Resources.ram;
+                    break;
+                case "alimentatore":
+                    componentsTab.Icon1 = Resources.alimentatore;
+                    componentsTab.Icon2 = Resources.alimentatore;
+                    componentsTab.Icon3 = Resources.alimentatore;
+                    break;
+                case "dissipatore":
+                    componentsTab.Icon1 = Resources.dissipatore;
+                    componentsTab.Icon2 = Resources.dissipatore;
+                    componentsTab.Icon3 = Resources.dissipatore;
+                    break;
+                case "casepc":
+                    componentsTab.Icon1 = Resources.casepc;
+                    componentsTab.Icon2 = Resources.casepc;
+                    componentsTab.Icon3 = Resources.casepc;
+                    break;
+                case "memoria":
+                    componentsTab.Icon1 = Resources.memoria;
+                    componentsTab.Icon2 = Resources.memoria;
+                    componentsTab.Icon3 = Resources.memoria;
+                    break;
+
+            }
+            
         }
 
     }

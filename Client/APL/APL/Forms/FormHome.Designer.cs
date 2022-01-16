@@ -38,28 +38,27 @@ namespace APL.Forms
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCarrello = new System.Windows.Forms.Button();
-            this.Checkout = new System.Windows.Forms.Button();
             this.buttonMyBuild = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cronologiaOrdiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.cronologiaOrdiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(468, 98);
+            this.button1.Location = new System.Drawing.Point(358, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 71);
+            this.button1.Size = new System.Drawing.Size(102, 69);
             this.button1.TabIndex = 0;
             this.button1.Text = "Home";
             this.button1.UseVisualStyleBackColor = true;
@@ -78,28 +77,18 @@ namespace APL.Forms
             // 
             // buttonCarrello
             // 
-            this.buttonCarrello.Location = new System.Drawing.Point(575, 98);
+            this.buttonCarrello.Location = new System.Drawing.Point(576, 12);
             this.buttonCarrello.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCarrello.Name = "buttonCarrello";
-            this.buttonCarrello.Size = new System.Drawing.Size(100, 71);
+            this.buttonCarrello.Size = new System.Drawing.Size(100, 69);
             this.buttonCarrello.TabIndex = 2;
             this.buttonCarrello.Text = "Carrello";
             this.buttonCarrello.UseVisualStyleBackColor = true;
             this.buttonCarrello.Click += new System.EventHandler(this.buttonCarrello_Click);
             // 
-            // Checkout
-            // 
-            this.Checkout.Location = new System.Drawing.Point(575, 14);
-            this.Checkout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Checkout.Name = "Checkout";
-            this.Checkout.Size = new System.Drawing.Size(100, 69);
-            this.Checkout.TabIndex = 3;
-            this.Checkout.Text = "Checkout";
-            this.Checkout.UseVisualStyleBackColor = true;
-            // 
             // buttonMyBuild
             // 
-            this.buttonMyBuild.Location = new System.Drawing.Point(681, 14);
+            this.buttonMyBuild.Location = new System.Drawing.Point(681, 12);
             this.buttonMyBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMyBuild.Name = "buttonMyBuild";
             this.buttonMyBuild.Size = new System.Drawing.Size(126, 69);
@@ -117,7 +106,7 @@ namespace APL.Forms
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(155, 972);
+            this.menuStrip1.Size = new System.Drawing.Size(65, 972);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -129,41 +118,50 @@ namespace APL.Forms
             this.logoutToolStripMenuItem,
             this.cronologiaOrdiniToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(144, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(54, 24);
             this.toolStripMenuItem1.Text = "Menu";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.editToolStripMenuItem.Text = "Modifica Profilo";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
+            // cronologiaOrdiniToolStripMenuItem
+            // 
+            this.cronologiaOrdiniToolStripMenuItem.Name = "cronologiaOrdiniToolStripMenuItem";
+            this.cronologiaOrdiniToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.cronologiaOrdiniToolStripMenuItem.Text = "Cronologia Ordini";
+            this.cronologiaOrdiniToolStripMenuItem.Click += new System.EventHandler(this.cronologiaOrdiniToolStripMenuItem_Click);
+            // 
             // comboBox1
             // 
-            this.comboBox1.DisplayMember = "Solo";
+            this.comboBox1.AllowDrop = true;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Build Solo",
             "Build Guidata"});
-            this.comboBox1.Location = new System.Drawing.Point(686, 98);
+            this.comboBox1.Location = new System.Drawing.Point(683, 88);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(123, 28);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBox1.Text = "Build Guidata";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(468, 14);
+            this.button3.Location = new System.Drawing.Point(468, 12);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 69);
@@ -194,7 +192,7 @@ namespace APL.Forms
             listViewItem1,
             listViewItem2,
             listViewItem3});
-            this.listView.Location = new System.Drawing.Point(22, 84);
+            this.listView.Location = new System.Drawing.Point(22, 86);
             this.listView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView.Name = "listView";
             this.listView.Scrollable = false;
@@ -215,13 +213,6 @@ namespace APL.Forms
             this.columnHeader2.Text = "Categoria";
             this.columnHeader2.Width = 150;
             // 
-            // cronologiaOrdiniToolStripMenuItem
-            // 
-            this.cronologiaOrdiniToolStripMenuItem.Name = "cronologiaOrdiniToolStripMenuItem";
-            this.cronologiaOrdiniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.cronologiaOrdiniToolStripMenuItem.Text = "Cronologia Ordini";
-            this.cronologiaOrdiniToolStripMenuItem.Click += new System.EventHandler(this.cronologiaOrdiniToolStripMenuItem_Click);
-            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -233,7 +224,6 @@ namespace APL.Forms
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonMyBuild);
-            this.Controls.Add(this.Checkout);
             this.Controls.Add(this.buttonCarrello);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -253,7 +243,6 @@ namespace APL.Forms
         private System.Windows.Forms.Button button1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button buttonCarrello;
-        private Button Checkout;
         private Button buttonMyBuild;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
