@@ -53,27 +53,26 @@ namespace APL.Forms
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
-        private void buttonStatistiche_Click(object sender, EventArgs e)
+        private  void buttonStatistiche_Click(object sender, EventArgs e)
         {
-           
             FormStatistiche statistiche = new FormStatistiche();
-            statistiche.setVenditeComponenti(recuperaImmagine());
+
+            pt.SetProtocolID("recupera_statistiche");
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
+            for (int i = 0; i < 3; i++)
+            {
+
+                byte[] vet =  SocketTCP.receiveBytesBlock();
+                SocketTCP.sendSingleMsg("ok");
+                statistiche.setVenditeComponenti(vet, i);
+            }
+
+            SocketTCP.GetMutex().ReleaseMutex();
             statistiche.Show();
         }
 
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
-        {
-            using (var ms = new MemoryStream())
-            {
-                Debug.WriteLine(ms);
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }
-        private byte[] recuperaImmagine()
-        { 
-            Image prova = Image.FromFile("c:\\Users\\dario\\Source\\Repos\\ProjectAPL\\Client\\APL\\APL\\Img\\statistiche\\hist.png");
-            return ImageToByteArray(prova);
-        }
+       
+        
     }
 }
