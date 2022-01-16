@@ -22,6 +22,7 @@ using System.Diagnostics;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 
 using MessageBox = System.Windows.Forms.MessageBox;
+using APL.Cache;
 
 namespace APL.Forms
 {
@@ -33,7 +34,7 @@ namespace APL.Forms
         PcPreassemblato[] ricevuto;
         int dimRicevuto;
         FormCarrello carrelloForm;
-
+        FormPleaseWait pleaseWait;
         public FormHome(FormLogin_Register f_start, string token)
         {
             InitializeComponent();
@@ -41,6 +42,8 @@ namespace APL.Forms
             this.pt.Token = token;
             comboBox1.Text = "Build Guidata";
             carrelloForm = new FormCarrello(pt.Token);
+
+            pleaseWait = new FormPleaseWait();
         }
 
         private async void FormHome_Load(object sender, EventArgs e)
@@ -259,7 +262,58 @@ namespace APL.Forms
             }
         }
 
-        private async void populateItemsBuilSolo()
+        #region Cache
+        private void aggiungiListaInCache(List<Componente> lista)
+        {
+            CachingProviderBase.Instance.AddItem(lista[0].Categoria+"BuildSolo", lista);
+            Debug.WriteLine("lista "+lista[0].Categoria+" inserita in cache: " + DateTime.Now + " ///////////////");
+        }
+
+        private bool recuperaListaDallaCache()
+        {
+            List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
+            List<Componente> cpuMessage = CachingProviderBase.Instance.GetItem("cpuBuildSolo");
+            List<Componente> ramMessage = CachingProviderBase.Instance.GetItem("ramBuildSolo");
+            List<Componente> schedaVideoMessage = CachingProviderBase.Instance.GetItem("schedaVideoBuildSolo");
+            List<Componente> alimentatoreMessage = CachingProviderBase.Instance.GetItem("alimentatoreBuildSolo");
+            List<Componente> casepcMessage = CachingProviderBase.Instance.GetItem("casepcBuildSolo");
+            List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
+            List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
+
+            if (schedaMadreMessage == null || cpuMessage==null || ramMessage==null ||
+                schedaVideoMessage==null || alimentatoreMessage==null || casepcMessage==null ||
+                memoriaMessage==null || dissipatoreMessage==null) 
+            { return false; }
+
+
+            List<List<Componente>> lista = new List<List<Componente>>();
+            lista.Add(schedaMadreMessage); lista.Add(cpuMessage); lista.Add(ramMessage);
+            lista.Add(schedaVideoMessage); lista.Add(alimentatoreMessage); lista.Add(casepcMessage);
+            lista.Add(memoriaMessage); lista.Add(dissipatoreMessage);
+
+            stampaComponentsSolo(lista);
+            return true;
+        }
+        #endregion
+        private void populateItemsBuilSolo()
+        {
+            
+            
+            if (recuperaListaDallaCache() == false)
+            {
+                
+                getItemsBuildSolo();
+                
+            }
+            else
+            {
+                
+                Debug.WriteLine("lista di liste componenti recuperate dalla cache///////////////////////");
+            }
+            
+        }
+
+        private async void getItemsBuildSolo()
         {
             pt.SetProtocolID("buildSolo");
 
@@ -284,14 +338,15 @@ namespace APL.Forms
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
-                myList.Add(singleComponent);  
+                myList.Add(singleComponent);
+
+                aggiungiListaInCache(singleComponent);
             }
             SocketTCP.GetMutex().ReleaseMutex();
             Debug.WriteLine(myList.Count());
 
             stampaComponentsSolo(myList);
         }
-
 
         private void stampaComponentsSolo(List<List<Componente>> myList)
         {
@@ -329,7 +384,11 @@ namespace APL.Forms
                     flowLayoutPanel1.Controls.Clear();
                 }
                 else
-                    flowLayoutPanel1.Controls.Add(componentsSolo[index-1]);
+                {
+                    flowLayoutPanel1.Controls.Add(componentsSolo[index - 1]);
+                    
+                }
+                    
 
             }
         }
@@ -352,6 +411,7 @@ namespace APL.Forms
             }
             else
             {
+                pleaseWait.Visible = true;
                 populateItemsBuilSolo();
                 Debug.WriteLine("valore combobox: " + comboBox1.Text);
             }
@@ -398,6 +458,9 @@ namespace APL.Forms
 
         }
 
+
+
+
         private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -406,7 +469,18 @@ namespace APL.Forms
             acquistiPassati.Show();
 
         }
+        
+        private void flowLayoutPanel1_BackColorChanged(object sender, EventArgs e)
+        {
+            
+        }
 
-       
+        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count>=8)
+            {
+                pleaseWait.Visible = false;
+            }
+        }
     }
 }

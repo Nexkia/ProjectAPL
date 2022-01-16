@@ -37,6 +37,9 @@
     <Compile Update="Forms\FormAcquistiPassati.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormPleaseWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UserControls\Amministratore\ComponentsPreassemblato.cs">
       <SubType>UserControl</SubType>
     </Compile>
