@@ -19,8 +19,14 @@ const uri = "mongodb://127.0.0.1:27017"
 
 // only needed below for sample processing
 
-func main() {
+type Img struct {
+	Img []byte
+}
 
+var rWlock = sync.RWMutex{}
+var img = [3]Img{}
+
+func main() {
 	fmt.Println("Launching server...")
 
 	// listen on all interfaces
@@ -161,6 +167,10 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 		case 17:
 			fmt.Println("case 17", MP)
 			go getProfiles(conn, &waitGroup)
+			waitGroup.Add(1)
+		case 18:
+			fmt.Println("case 18", MP)
+			go getImages(conn, &waitGroup, img)
 			waitGroup.Add(1)
 		default:
 			fmt.Println("CASO DI DEFAULT")
