@@ -83,7 +83,7 @@ namespace APL.Forms.Amministratore
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(794, 430);
             this.flowLayoutPanel1.TabIndex = 4;
-            
+            this.flowLayoutPanel1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowLayoutPanel1_ControlAdded);
             // 
             // Conferma
             // 
@@ -150,6 +150,7 @@ namespace APL.Forms.Amministratore
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.labelNome);
             this.Name = "FormInserisciPreassemblato";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormInserisciPreassemblato_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -17,16 +17,41 @@ namespace APL.Forms
     public partial class FormAmministratore : Form
     {
         Protocol pt = new Protocol();
-        public FormAmministratore()
+        bool disableCloseEvent;
+        FormLogin_Register parent;
+        FormInserisciPreassemblato formInserisciPreassemblato;
+        FormInserisciComponente formInserisciComponente; 
+        public FormAmministratore(FormLogin_Register f_start)
         {
             InitializeComponent();
-           
+            this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
+            disableCloseEvent = true;
+            parent = f_start;
+            formInserisciPreassemblato = new FormInserisciPreassemblato(this);
+            formInserisciComponente = new FormInserisciComponente(this);
         }
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         private void buttonInserisciComponente_Click(object sender, EventArgs e)
         {
-            FormInserisciComponente insert = new FormInserisciComponente();
-            insert.Show();
+            
+            formInserisciComponente.Show();
+            this.Visible = false;
         }
 
         private async void buttonEliminaComponente_Click(object sender, EventArgs e)
@@ -40,8 +65,9 @@ namespace APL.Forms
 
         private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
         {
-            FormInserisciPreassemblato pre = new FormInserisciPreassemblato();
-            pre.Show();
+            
+            formInserisciPreassemblato.Show();
+            this.Visible = false; //invisible amministratore
         }
 
         private  async void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
@@ -72,7 +98,13 @@ namespace APL.Forms
             statistiche.Show();
         }
 
-       
-        
+        protected override void OnClosed(EventArgs e)
+        {
+            parent.Visible = true;
+            formInserisciPreassemblato.EnableCloseEvent();
+            formInserisciPreassemblato.Close();
+            base.OnClosed(e);
+        }
+
     }
 }
