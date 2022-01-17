@@ -47,6 +47,10 @@ def loop(sckt):
                     comp = comp+"\n"
                     sckt.send(comp.encode())
                     print(sckt.recv(256).decode())
+            for name in raccomandazionePre:
+                name = name + "\n"
+                sckt.send(name.encode())
+                print(sckt.recv(256).decode())
         time.sleep(120)
 
 def checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast):
