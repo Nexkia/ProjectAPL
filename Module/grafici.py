@@ -5,6 +5,7 @@ from collections import Counter
 import operator
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
+from PIL import Image
 
 def ConvertiInUnaLista(lista):
     listaFinale=[]
@@ -14,7 +15,7 @@ def ConvertiInUnaLista(lista):
             listaFinale.append(''.join(a))
     return listaFinale
 
-def histDataVendite():
+def histDataVendite(listaAcquisti,numeroAcquistiUtente):
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["apl_database"]
     listaAcquisti = []
@@ -89,12 +90,16 @@ def histDataVendite():
     plt.xlabel('Date')
     plt.savefig('histDataVendite.png')
     #plt.show()
-    plt.close(figure)
-    im = mpimg.imread('histDataVendite.png')
+    plt.close()
+    #im = Image.open('histDataVendite.png',mode='r')
+    with open('histDataVendite.png', mode='rb') as file:  # b is important -> binary
+        im = file.read()
+
 
     return im
 
-def histNumeroComponentiEPreassemblati():
+def histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente):
+
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["apl_database"]
     listaAcquisti = []
@@ -182,7 +187,7 @@ def histNumeroComponentiEPreassemblati():
     plt.xlabel('Modelli Componenti')
     plt.savefig('histNumeroComponenti.png')
     #plt.show()
-    plt.close(figure)
+    plt.close()
 
     Pkey15 = list(sorted_Preassemblati.keys())[:15]  # i primi n keys del dizionario, dentro una lista
     Pvalue15 = list(sorted_Preassemblati.values())[:15]
@@ -202,9 +207,13 @@ def histNumeroComponentiEPreassemblati():
     plt.xlabel('Preassemblati')
     plt.savefig('histNumeroPreassemblati.png')
     #plt.show()
-    plt.close(figure)
-    im1 = mpimg.imread('histNumeroComponenti.png')
-    im2 = mpimg.imread('histNumeroPreassemblati.png')
+    plt.close()
+    #im1 = Image.open('histNumeroComponenti.png',mode='r')
+    #im2 = Image.open('histNumeroPreassemblati.png',mode='r')
+    with open('histNumeroComponenti.png', mode='rb') as file:  # b is important -> binary
+        im1 = file.read()
+    with open('histNumeroPreassemblati.png', mode='rb') as file:  # b is important -> binary
+        im2 = file.read()
 
     listIMG=[]
     listIMG.append(im1)
@@ -212,8 +221,8 @@ def histNumeroComponentiEPreassemblati():
 
     return listIMG
 
-def listaImmagini():
-    listIMG = histNumeroComponentiEPreassemblati()
-    listIMG.append(histDataVendite())
+def listaImmagini(listaAcquisti,numeroAcquistiUtente):
+    listIMG = histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente)
+    listIMG.append(histDataVendite(listaAcquisti,numeroAcquistiUtente))
     return listIMG
 
