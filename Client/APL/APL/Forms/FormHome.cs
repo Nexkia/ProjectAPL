@@ -187,7 +187,7 @@ namespace APL.Forms
         private void populateItemsBuildG()
         {
             //  Console.WriteLine(pre.Stampa());
-            Profiles[] profiles = new Profiles[4];
+            Profiles[] profiles = new Profiles[5];
 
             for (int i = 0; i < profiles.Length; i++)
 
@@ -200,47 +200,58 @@ namespace APL.Forms
 
 
                         profiles[i].Title = "Basic";
-                        profiles[i].Price = "a partire da 300€";
-                        profiles[i].Message = "\n" + "► Socket AM4 with B450 chipset" + "\n" +
-                                             "► Scheda grafica integrata" + "\n" +
-                                             "► RAM 8GB DDR4 2133 MHz" + "\n" +
-                                             "► SSD 250GB SATA" + "\n" +
-                                             "► Bassi consumi " + "\n" +
+                        profiles[i].Price = "entro i 560€";
+                        profiles[i].Message = "\n" + "► Socket AM4 " + "\n" +
+                                             "► Scheda grafica dedicata fascia bassa" + "\n" +
+                                             "► RAM massimo 8GB DDR3 " + "\n" +
+                                             "► HDD fino ad 1000GB SATA" + "\n" +
+                                             "► Bassi consumi, alimentatore da massimo 600W " + "\n" +
                                              "► Ideale per navigare in Internet, guardare film e ascoltare musica";
                         break;
 
                     case 1:
 
                         profiles[i].Title = "Advanced";
-                        profiles[i].Price = "a partire da 600€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i3 Quad Core" + "\n" +
+                        profiles[i].Price = "entro i 1200€";
+                        profiles[i].Message = "\n" + "► Socket AM4" + "\n" +
                                              "► Scheda grafica di fascia media" + "\n" +
-                                             "► RAM 8GB DDR4 2400 MHz" + "\n" +
-                                             "► SSD 500GB SATA" + "\n" +
-                                             "► Consumi medi " + "\n" +
+                                             "► RAM massimo 16GB DDR4 " + "\n" +
+                                             "► SSD massimo 1000GB SATA" + "\n" +
+                                             "► Consumi medi, massimo 750W " + "\n" +
                                              "► Consigliato per il lavoro d'ufficio e per giocare ai videogiochi casualmente";
                         break;
 
                     case 2:
 
                         profiles[i].Title = "Gamer";
-                        profiles[i].Price = "a partire da 1100€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i5 11th gen 6 - Core" + "\n" +
-                                             "► GPU NVidia RTX 3060 Ti or AMD RX 6700 XT" + "\n" +
-                                             "► RAM 16GB DDR4 3000 MHz" + "\n" +
-                                             "► SSD 1TB M.2 NVME" + "\n" +
-                                             "► Consumi Alti " + "\n" +
+                        profiles[i].Price = "entro i 1600€";
+                        profiles[i].Message = "\n" + "► Processore Intel" + "\n" +
+                                             "► Scheda grafica di fascia medio-alta" + "\n" +
+                                             "► RAM massimo 16GB DDR4" + "\n" +
+                                             "► SSD massimo 1250GB " + "\n" +
+                                             "► Consumi Alti, massimo 750W " + "\n" +
                                              "► Consigliato per appassionati di videogiochi";
                         break;
 
                     case 3:
                         profiles[i].Title = "Pro";
-                        profiles[i].Price = "a partire da 1800€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i7/ i9 11th gen" + "\n" +
-                                             "► GPU NVidia RTX 3070 / RTX 3080 Ti" + "\n" +
-                                             "► RAM 16GB DDR4 3200 MHz" + "\n" +
-                                             "► SSD 1TB M.2 NVME" + "\n" +
-                                             "► Consumi Alti " + "\n" +
+                        profiles[i].Price = "entro i 3200€";
+                        profiles[i].Message = "\n" + "► Socket TR4" + "\n" +
+                                             "► Scheda video di fascia alta" + "\n" +
+                                             "► RAM massimo 32GB DDR4 " + "\n" +
+                                             "► SSD massimo 2000GB" + "\n" +
+                                             "► Consumi Alti, massimo 1000W " + "\n" +
+                                             "► Consigliato per lavori di modellazione 3d";
+                        break;
+
+                    case 4:
+                        profiles[i].Title = "Ultra";
+                        profiles[i].Price = "entro i 4800€";
+                        profiles[i].Message = "\n" + "►  Intel " + "\n" +
+                                             "► Scheda video di fascia alta" + "\n" +
+                                             "► RAM massimo 64GB " + "\n" +
+                                             "► SSD massimo 2000GB" + "\n" +
+                                             "► Consumi Alti,massimo 1250W " + "\n" +
                                              "► Consigliato per lavori di modellazione 3d";
                         break;
 

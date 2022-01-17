@@ -42,7 +42,7 @@ namespace APL.Forms
         private async void Confronto_Load(object sender, EventArgs e1)
         {
             for (int i = 0; i < modelli.Length; i++) {
-                pt.Data += modelli[i]+"!";
+                pt.Data += modelli[i]+"#";
             }
             SocketTCP.send(pt);
             ConstructorDetail factory = new ConstructorDetail();
