@@ -111,3 +111,12 @@ func Cancellazione_pre(inputChannel chan string, conn net.Conn, mongodb *mongo.D
 	conn.Write([]byte("ok"))
 	wait.Done()
 }
+
+func admin_images(conn net.Conn, wait *sync.WaitGroup) {
+	rWlock.RLock()
+	for i := 0; i < 3; i++ {
+		conn.Write(img[i].Img)
+	}
+	rWlock.RUnlock()
+	wait.Done()
+}
