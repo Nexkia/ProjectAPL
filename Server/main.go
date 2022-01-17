@@ -25,6 +25,7 @@ type Img struct {
 
 var rWlock = sync.RWMutex{}
 var img = [3]Img{}
+var profiles = [5][8][3]Componente{}
 
 func main() {
 	fmt.Println("Launching server...")
@@ -107,7 +108,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 5:
 			fmt.Println("caso 5: ", MP)
-			go sendComponents(inputChannel, 3, conn, mongodb, &waitGroup)
+			go sendRecommendation(inputChannel, conn, &waitGroup, &profiles)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 6:
@@ -122,7 +123,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 8:
 			fmt.Println("caso 8:", MP)
-			go sendComponents(inputChannel, 0, conn, mongodb, &waitGroup)
+			go sendComponents(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 9:
@@ -166,7 +167,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 17:
 			fmt.Println("case 17", MP)
-			go getProfiles(conn, &waitGroup)
+			go getProfiles(conn, &waitGroup, mongodb, &profiles)
 			waitGroup.Add(1)
 		case 18:
 			fmt.Println("case 18", MP)
