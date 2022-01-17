@@ -38,12 +38,19 @@ def loop(sckt):
         check, listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLast, listaDetLast, listaCompLast =  \
             checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast)
         if check:
-            raccomandazione = calcolaModelli(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast)
+            raccomandazione,raccomandazionePre = calcolaModelli(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast)
             sckt.send(b"17 \n")
             print(sckt.recv(256).decode())
             print(raccomandazione)
-            jsonStr = json.dumps(raccomandazione)
-            sckt.send(jsonStr.encode())
+            for listComp in raccomandazione:
+                for comp in listComp:
+                    comp = comp+"\n"
+                    sckt.send(comp.encode())
+                    print(sckt.recv(256).decode())
+            for name in raccomandazionePre:
+                name = name + "\n"
+                sckt.send(name.encode())
+                print(sckt.recv(256).decode())
         time.sleep(120)
 
 def checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast):
@@ -74,13 +81,9 @@ def checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,
     for x in coll.find():
         listaComp.append([list(elm) for elm in x.items()])
     listaComp = getFixedList(listaComp)
-    check = True
-    if listaPreAssemblati == listaPreAssemblatiLast:
-        check = False
-    if listaDet == listaDetLast:
-        check = False
-    if listaComp == listaCompLast:
-        check = False
+    check = False
+    if listaPreAssemblati != listaPreAssemblatiLast or listaDet != listaDetLast or listaComp == listaCompLast:
+        check = True
     return check,listaAcquisti,numeroAcquistiUtente,listaPreAssemblati,listaDet,listaComp
 
 
@@ -229,41 +232,29 @@ def calcolaModelli(listaAcquisti,numeroAcquistiUtente,listaPreAssemblati,listaDe
     filterDT = DataFrameFilter(listdf)
 
 
-
-    listaRaccomndazione =[]
+    raccomandazione = []
     listdf2 = filterDT.fiter(listdf, 70, "AM4", "DDR3", 80, 6, 600, 1000, "hdd", "Midi-Tower", 8)
-    raccomandazione = []
     for i in range(len(listdf2)):
         raccomandazione.append(list(listdf2[i][list1[i]][:3].values))
-    listaRaccomndazione.append(raccomandazione)
     listdf2 = filterDT.fiter(listdf, 150, "AM4", "DDR4", 120, 8, 750, 1000, "ssd", "Midi-Tower", 16)
-    raccomandazione = []
     for i in range(len(listdf2)):
         raccomandazione.append(list(listdf2[i][list1[i]][:3].values))
-    listaRaccomndazione.append(raccomandazione)
 
     listdf2 = filterDT.fiter(listdf, 200, "1200", "DDR4", 160, 8, 750, 1250, "ssd", "Midi-Tower", 16)
-    raccomandazione = []
     for i in range(len(listdf2)):
         raccomandazione.append(list(listdf2[i][list1[i]][:3].values))
-
-    listaRaccomndazione.append(raccomandazione)
 
     listdf2 = filterDT.fiter(listdf, 400, "TR4", "DDR4", 300, 12, 1000, 2000, "ssd", "Big-Tower", 32)
 
-    raccomandazione = []
     for i in range(len(listdf2)):
         raccomandazione.append(list(listdf2[i][list1[i]][:3].values))
 
-    listaRaccomndazione.append(raccomandazione)
     listdf2 = filterDT.fiter(listdf, prezzo=600, socket="2066", tipo_ram="DDR4", tdp_gpu=300, vram=16,
                              watt=1250, mem_capienza=2000, tipo_mem="ssd", size_case="Big-Tower", ram_capienza=64)
 
-    raccomandazione = []
     for i in range(len(listdf2)):
         raccomandazione.append(list(listdf2[i][list1[i]][:3].values))
 
-    listaRaccomndazione.append(raccomandazione)
 
 
     DFpre = pd.DataFrame(data=listaNomiPre,columns=["nome"])
@@ -276,7 +267,7 @@ def calcolaModelli(listaAcquisti,numeroAcquistiUtente,listaPreAssemblati,listaDe
     raccomandazionePre = list(DFpre["nome"][:2].values)
     random_pre = list(DFpre["nome"][2:].sample().values)
     raccomandazionePre.append(random_pre[0])
-    listaRaccomndazione.append(raccomandazionePre)
+    #listaRaccomndazione.append(raccomandazionePre)
     # print(listdf)
     # print(listdf2)
     # print(dfmotherboard.filter(items=['prezzo','ram','modello_schedaMadre','cpusocket']))
@@ -285,4 +276,4 @@ def calcolaModelli(listaAcquisti,numeroAcquistiUtente,listaPreAssemblati,listaDe
     end_time = time.time()
     print(end_time - start_time)
 
-    return  listaRaccomndazione
+    return raccomandazione,raccomandazionePre
