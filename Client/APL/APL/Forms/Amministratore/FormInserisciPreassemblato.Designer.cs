@@ -41,6 +41,7 @@ namespace APL.Forms.Amministratore
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.buttonControllaCompatibilita = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelNome
@@ -88,7 +89,7 @@ namespace APL.Forms.Amministratore
             // Conferma
             // 
             this.Conferma.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Conferma.Location = new System.Drawing.Point(133, 9);
+            this.Conferma.Location = new System.Drawing.Point(17, 5);
             this.Conferma.Name = "Conferma";
             this.Conferma.Size = new System.Drawing.Size(214, 61);
             this.Conferma.TabIndex = 5;
@@ -137,11 +138,22 @@ namespace APL.Forms.Amministratore
             this.columnHeader5.Text = "Categoria";
             this.columnHeader5.Width = 100;
             // 
+            // buttonControllaCompatibilita
+            // 
+            this.buttonControllaCompatibilita.Location = new System.Drawing.Point(288, 38);
+            this.buttonControllaCompatibilita.Name = "buttonControllaCompatibilita";
+            this.buttonControllaCompatibilita.Size = new System.Drawing.Size(190, 40);
+            this.buttonControllaCompatibilita.TabIndex = 7;
+            this.buttonControllaCompatibilita.Text = "Controlla Compatibilità";
+            this.buttonControllaCompatibilita.UseVisualStyleBackColor = true;
+            this.buttonControllaCompatibilita.Click += new System.EventHandler(this.buttonControllaCompatibilita_Click);
+            // 
             // FormInserisciPreassemblato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1316, 511);
+            this.Controls.Add(this.buttonControllaCompatibilita);
             this.Controls.Add(this.listViewPreassemblato);
             this.Controls.Add(this.Conferma);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -171,5 +183,6 @@ namespace APL.Forms.Amministratore
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Button buttonControllaCompatibilita;
     }
 }

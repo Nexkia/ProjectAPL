@@ -19,7 +19,8 @@ namespace APL.Connections
             {"modificaUtente","4"},{"profilo","5"},{"catalogo","6"},{"confronto","7"},
             {"buildSolo","8" },{"close","9"},{"getInfoPayment","10"},{"CheckOut","11"},
             {"storico","12"},{"inserimento","13"},{"cancellazione","14"},
-            {"inserimento_pre","15"},{"cancellazione_pre","16"},{"recupera_statistiche","19"}
+            {"inserimento_pre","15"},{"cancellazione_pre","16"},{"recupera_statistiche","19"},
+            {"compatibilita","20" }
         };
         public void SetProtocolID(string NameFunction)
         {

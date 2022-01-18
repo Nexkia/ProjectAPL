@@ -1,8 +1,10 @@
 ﻿using APL.Connections;
 using APL.Data;
+using APL.Data.Detail;
 using APL.UserControls.Amministratore;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +35,7 @@ namespace APL.Forms.Amministratore
         }
 
         private Componente[] comp;
+        private string modelloCpu, modelloSchedaMadre, modelloRam, modelloDissipatore;
 
         public void EnableCloseEvent() { this.disableCloseEvent = false;  }
         void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
@@ -204,6 +207,84 @@ namespace APL.Forms.Amministratore
             {
                 pleaseWait.Close();
             }
+        }
+
+        private void buttonControllaCompatibilita_Click(object sender, EventArgs e)
+        {
+            
+            if (listViewPreassemblato.Items.Count == 8)
+            {
+                recuperaDetailCpuSchedaMadreRamDissipatore();
+            }
+            else
+            {
+                MessageBox.Show("Selezionare 8 componenti prima di controllare la compatibilità", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private string[] recuperaModelloCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli=new string[4];
+            foreach (ListViewItem item in listViewPreassemblato.Items)
+            {
+                switch (item.SubItems[4].Text.ToString())
+                {
+                    case "cpu":
+                        modelli[0] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "schedaMadre":
+                        modelli[1] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "ram":
+                        modelli[2] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "dissipatore":
+                        modelli[3] = item.SubItems[0].Text.ToString();
+                        break;
+                }
+            }
+
+            return modelli;
+        }
+
+        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli=recuperaModelloCpuSchedaMadreRamDissipatore();
+            string[] categorie = { "cpu", "schedaMadre", "ram", "dissipatore" };
+
+            Details[] MyDetails = new Details[4];
+            pt.Data = "";pt.SetProtocolID("compatibilita");
+            for (int i = 0; i < modelli.Length; i++)
+            {
+                pt.Data += modelli[i] + "#";
+            }
+
+            string cat="";
+            for (int i = 0; i < categorie.Length; i++)
+            {
+                cat += categorie[i] + "#";
+            }
+
+            SocketTCP.GetMutex().WaitOne();
+
+            SocketTCP.send(pt);
+            string okmsg=await SocketTCP.receive();
+            SocketTCP.sendSingleMsg(cat);
+
+            ConstructorDetail factory = new ConstructorDetail();
+           
+            for (int i = 0; i < 4; i++)
+            {
+                SocketTCP.sendSingleMsg("ok");
+                string detailMsg=await SocketTCP.receive();
+                Details componenteF = factory.GetDetails(categorie[i]);
+                Type categoria = componenteF.GetType();
+                MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
+                Debug.WriteLine(MyDetails[i].getModello());
+            }
+            SocketTCP.GetMutex().ReleaseMutex();
+
+
         }
     }
 }

@@ -61,7 +61,7 @@ namespace APL.Forms
             // 
             // buttonSvuotaCarrello
             // 
-            this.buttonSvuotaCarrello.Location = new System.Drawing.Point(676, 166);
+            this.buttonSvuotaCarrello.Location = new System.Drawing.Point(676, 159);
             this.buttonSvuotaCarrello.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSvuotaCarrello.Name = "buttonSvuotaCarrello";
             this.buttonSvuotaCarrello.Size = new System.Drawing.Size(197, 55);
@@ -83,10 +83,10 @@ namespace APL.Forms
             // 
             // buttonRimuovi
             // 
-            this.buttonRimuovi.Location = new System.Drawing.Point(674, 86);
+            this.buttonRimuovi.Location = new System.Drawing.Point(676, 82);
             this.buttonRimuovi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRimuovi.Name = "buttonRimuovi";
-            this.buttonRimuovi.Size = new System.Drawing.Size(199, 58);
+            this.buttonRimuovi.Size = new System.Drawing.Size(197, 58);
             this.buttonRimuovi.TabIndex = 11;
             this.buttonRimuovi.Text = "Rimuovi Elemento";
             this.buttonRimuovi.UseVisualStyleBackColor = true;

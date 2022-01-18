@@ -92,8 +92,8 @@ namespace APL.Connections
 
         public static Byte[] receiveBytesBlock()
         {
-            
-                var data = new Byte[7840000];
+
+            var data = new Byte[1470000];// 7840000];
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
                 // Read the first batch of the TcpServer response bytes.

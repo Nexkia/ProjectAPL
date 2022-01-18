@@ -58,13 +58,17 @@ namespace APL.Forms
                     SocketTCP.send(pt);
                     string response = await SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
-                    if (result.Contains("Registrazione"))
+                    
+                    if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
                         TextBoxEmail.Text = string.Empty;
                         TextBoxIndirizzo.Text = string.Empty;
                         TextBoxInserisciPassword.Text = string.Empty;
                         TextBoxConfermaPassword.Text = string.Empty;
+
+                        MessageBox.Show("Registrazione avvenuta correttamente",
+                           "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
