@@ -18,11 +18,13 @@ namespace APL.Forms
     {
         Protocol pt;
         CheckFields controllo;
+        FormAmministratore amministratoreForm;
         public FormLogin_Register()
         {
             InitializeComponent();
             pt = new Protocol();
             controllo = new CheckFields();
+            amministratoreForm = new FormAmministratore(this);
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -105,8 +107,9 @@ namespace APL.Forms
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }else if (admin == true)
                     {
-                        FormAmministratore amm = new FormAmministratore();
-                        amm.Show();
+                        amministratoreForm.Show();
+                        this.Visible = false; //invisible form1
+
                     }
                     else
                     {
@@ -161,10 +164,8 @@ namespace APL.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
+      
+        
     }
 
 }

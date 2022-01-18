@@ -58,9 +58,16 @@ namespace APL.UserControls
 
         private async void populateItemsComponenti(string nameProfile)
         {
+            Dictionary<string, string> nomeProfili = new Dictionary<string, string>{
+                { "Basic","0" },{ "Advanced","1" },{"Gamer","2"},{"Pro","3"},
+                {"Ultra","4"}
+            };
+
+
             ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
-            pt.SetProtocolID("profilo");pt.Data = nameProfile;
+            pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
             SocketTCP.send(pt);
+
 
             Dictionary<string, int> order = new Dictionary<string, int>{
                 { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},

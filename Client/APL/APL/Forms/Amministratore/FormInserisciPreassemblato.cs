@@ -18,15 +18,42 @@ namespace APL.Forms.Amministratore
     public partial class FormInserisciPreassemblato : Form
     {
         Protocol pt = new Protocol();
-        public FormInserisciPreassemblato()
+        bool disableCloseEvent;
+        FormAmministratore parent;
+        FormPleaseWait pleaseWait;
+        public FormInserisciPreassemblato(FormAmministratore parent)
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
+            disableCloseEvent = true;
+            this.parent = parent;
+
+            pleaseWait = new FormPleaseWait();
+            
         }
 
         private Componente[] comp;
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false;  }
+        void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         private async void FormInserisciPreassemblato_Load(object sender, EventArgs e)
         {
+            
+
             pt.SetProtocolID("buildSolo");
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -36,6 +63,7 @@ namespace APL.Forms.Amministratore
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             List<List<Componente>> myList = new List<List<Componente>>();
+            
             for (int i = 0; i < 8; i++)
             {
                 SocketTCP.sendSingleMsg("ok");
@@ -50,11 +78,14 @@ namespace APL.Forms.Amministratore
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
+                pleaseWait.Show();
                 myList.Add(singleComponent);
+                
             }
             SocketTCP.GetMutex().ReleaseMutex();
             Debug.WriteLine(myList.Count());
 
+            
             stampaComponentsPreassemblato(myList);
         }
 
@@ -131,12 +162,7 @@ namespace APL.Forms.Amministratore
         
         private void creaVettoreOrdinato()
         {
-            
-            string modello;
-            string marca;
-            string prezzo;
-            string capienza;
-            string categoria;
+            string modello,marca,prezzo,capienza,categoria;
             comp = new Componente[8];
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -172,6 +198,12 @@ namespace APL.Forms.Amministratore
             }
         }
 
-        
+        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count >= 8)
+            {
+                pleaseWait.Close();
+            }
+        }
     }
 }

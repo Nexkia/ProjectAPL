@@ -15,12 +15,15 @@ namespace APL.UserControls
     public partial class ComponentsSolo : UserControl
     {
         ListView vecchioCarrello;
-      
+        
         public ComponentsSolo(ListView vc)
         {
             InitializeComponent();
             vecchioCarrello=vc;
+
             
+
+
         }
 
 
@@ -91,6 +94,7 @@ namespace APL.UserControls
                 if (componentePresente == false)
                 {
                     vecchioCarrello.Items.Add(lvitem);
+                   
                     
                 }
                 else

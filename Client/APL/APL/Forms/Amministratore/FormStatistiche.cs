@@ -22,12 +22,25 @@ namespace APL.Forms.Amministratore
 
         private byte[] venditePerData;
         private byte[] venditeComponenti;
+        private byte[] venditePreassemblati;
 
-        public void setVenditeComponenti(byte[] value){ venditeComponenti = value; }
+        public void setVenditeComponenti(byte[] value,int i){ 
+            
+            if(i==0)         
+                venditePreassemblati = value;
+
+            if (i == 1)
+                venditePerData = value;
+
+            if (i == 2)
+                venditeComponenti = value;
+        }
         private void FormStatistiche_Load(object sender, EventArgs e)
         {
-            ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
-            ImgStatistiche img2 = new ImgStatistiche(Image.FromFile("C:\\Users\\dario\\Source\\Repos\\ProjectAPL\\Client\\APL\\APL\\Img\\statistiche\\histDataVendite.png"));
+            ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
+            ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
+            ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
+            //ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
             if (flowLayoutPanel1.Controls.Count < 0)
             {
 
@@ -37,14 +50,19 @@ namespace APL.Forms.Amministratore
             { 
                 flowLayoutPanel1.Controls.Add(img1);
                 flowLayoutPanel1.Controls.Add(img2);
+                flowLayoutPanel1.Controls.Add(img3);
             }
         }
 
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
+            //MemoryStream ms = new MemoryStream(byteArrayIn);
+            // Image returnImage = Image.FromStream(ms);
+
+            System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+            Image Image = (Image)converter.ConvertFrom(byteArrayIn);
+
+            return Image;
         }
     }
 }
