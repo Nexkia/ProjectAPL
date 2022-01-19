@@ -73,7 +73,6 @@ namespace APL.Forms
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 688);
             this.flowLayoutPanel1.TabIndex = 1;
-            this.flowLayoutPanel1.BackColorChanged += new System.EventHandler(this.flowLayoutPanel1_BackColorChanged);
             this.flowLayoutPanel1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowLayoutPanel1_ControlAdded);
             // 
             // buttonCarrello
@@ -121,7 +120,7 @@ namespace APL.Forms
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(54, 24);
             this.toolStripMenuItem1.Text = "Menu";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            
             // 
             // editToolStripMenuItem
             // 
@@ -157,7 +156,7 @@ namespace APL.Forms
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(123, 28);
             this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+           
             // 
             // button3
             // 
@@ -179,7 +178,7 @@ namespace APL.Forms
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(407, 688);
             this.flowLayoutPanel2.TabIndex = 7;
-            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+           
             // 
             // listView
             // 
@@ -201,7 +200,7 @@ namespace APL.Forms
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.Visible = false;
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            
             // 
             // columnHeader1
             // 

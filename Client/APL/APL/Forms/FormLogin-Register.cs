@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using System.IO;
+
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
@@ -25,6 +27,8 @@ namespace APL.Forms
             pt = new Protocol();
             controllo = new CheckFields();
             amministratoreForm = new FormAmministratore(this);
+            
+            
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -57,13 +61,17 @@ namespace APL.Forms
                     SocketTCP.send(pt);
                     string response = SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
-                    if (result.Contains("Registrazione"))
+                    
+                    if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
                         TextBoxEmail.Text = string.Empty;
                         TextBoxIndirizzo.Text = string.Empty;
                         TextBoxInserisciPassword.Text = string.Empty;
                         TextBoxConfermaPassword.Text = string.Empty;
+
+                        MessageBox.Show("Registrazione avvenuta correttamente",
+                           "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -157,8 +165,10 @@ namespace APL.Forms
             }
         }
 
-      
-        
+
+
+
+
     }
 
 }

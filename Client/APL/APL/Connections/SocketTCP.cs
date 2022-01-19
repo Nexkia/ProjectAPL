@@ -117,7 +117,6 @@ namespace APL.Connections
 
         public static Byte[] receiveBytesBlock()
         {
-
             Byte[] data = new Byte[16];
             // String to store the response ASCII representation.
             String lenData = String.Empty;

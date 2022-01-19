@@ -11,12 +11,14 @@ using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 using System.Diagnostics;
 using APL.Connections;
+using APL.Data.Detail;
+using Newtonsoft.Json;
+using APL.Data;
 
 namespace APL.Forms
 {
     public partial class FormCarrello : Form
     {
-        
         bool disableCloseEvent;
         public FormCarrello()
          {
@@ -49,11 +51,13 @@ namespace APL.Forms
             if (listViewCarrello.SelectedItems.Count > 0)
             {
                 ListViewItem item = listViewCarrello.SelectedItems[0];
-                string modello = item.SubItems[0].Text.ToString();
+                
 
                 //rimuoviamo l'elemento selezionato dalla listViewNuovoCarrello
                 listViewCarrello.Items.Remove(item);
 
+               
+                    
             }
             else
             {
@@ -157,6 +161,9 @@ namespace APL.Forms
         private void buttonSvuotaCarrello_Click(object sender, EventArgs e)
         {
             listViewCarrello.Items.Clear();
+            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
+            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
+            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
         }
 
         private void creaCheckOut()
@@ -177,6 +184,130 @@ namespace APL.Forms
         private void panelSfondo_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void buttonCompatibilita_Click(object sender, EventArgs e)
+
+        {   int BuildSolo = 0;
+            foreach (ListViewItem item in listViewCarrello.Items)
+            {
+                //in base al tipo passato contiamo gli elementi di Build  Solo
+                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                {
+                    if (subItem.Text == "Build Solo") { BuildSolo++; }
+                }
+
+            }
+
+      
+
+            if (BuildSolo == 8)
+            {
+                recuperaDetailCpuSchedaMadreRamDissipatore();
+            
+            }
+            else
+            {
+                MessageBox.Show("Selezionare 8 componenti prima di controllare la compatibilità", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli = recuperaModelloCpuSchedaMadreRamDissipatore();
+            string[] categorie = { "cpu", "schedaMadre", "ram", "dissipatore" };
+
+            Details[] MyDetails = new Details[4];
+            pt.Data = ""; pt.SetProtocolID("compatibilita");
+            for (int i = 0; i < modelli.Length; i++)
+            {
+                pt.Data += modelli[i] + "#";
+            }
+
+            string cat = "";
+            for (int i = 0; i < categorie.Length; i++)
+            {
+                cat += categorie[i] + "#";
+            }
+
+            SocketTCP.GetMutex().WaitOne();
+
+            SocketTCP.send(pt);
+            string okmsg = await SocketTCP.receive();
+            SocketTCP.sendSingleMsg(cat);
+
+            ConstructorDetail factory = new ConstructorDetail();
+
+            for (int i = 0; i < 4; i++)
+            {
+                SocketTCP.sendSingleMsg("ok");
+                string detailMsg = await SocketTCP.receive();
+                Details componenteF = factory.GetDetails(categorie[i]);
+                Type categoria = componenteF.GetType();
+                MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
+                Debug.WriteLine(MyDetails[i].getModello());
+            }
+            SocketTCP.GetMutex().ReleaseMutex();
+
+            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Assente";
+            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Assente";
+            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Assente";
+            string[] vet = MyDetails[0].getDetail();
+            string cpuSocket = vet[1];
+
+            vet = MyDetails[1].getDetail();
+            string cpuSocketSchedaMadre = vet[0];
+            string ramSchedaMadre = vet[1];
+
+            vet = MyDetails[2].getDetail();
+            string standardRam = vet[1];
+
+            string[] cpuSocketDissipatore = MyDetails[3].getDetail();
+
+            foreach (string tipoSocket in cpuSocketDissipatore)
+            {
+                if (tipoSocket == cpuSocket)
+                {
+                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Presente";
+                }
+            }
+
+            if (cpuSocketSchedaMadre == cpuSocket)
+            {
+                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Presente";
+            }
+
+            if (standardRam == ramSchedaMadre)
+            {
+                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Presente";
+            }
+
+
+        }
+
+        private string[] recuperaModelloCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli = new string[4];
+            foreach (ListViewItem item in listViewCarrello.Items)
+            {
+                switch (item.SubItems[4].Text.ToString())
+                {
+                    case "cpu":
+                        modelli[0] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "schedaMadre":
+                        modelli[1] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "ram":
+                        modelli[2] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "dissipatore":
+                        modelli[3] = item.SubItems[0].Text.ToString();
+                        break;
+                }
+            }
+
+            return modelli;
         }
     }
 }

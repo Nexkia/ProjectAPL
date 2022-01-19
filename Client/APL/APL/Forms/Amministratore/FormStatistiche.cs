@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,9 +39,9 @@ namespace APL.Forms.Amministratore
         private void FormStatistiche_Load(object sender, EventArgs e)
         {
             ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
-            ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
-            ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
-            //ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
+            //ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
+            //ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
+           
             if (flowLayoutPanel1.Controls.Count < 0)
             {
 
@@ -49,13 +50,16 @@ namespace APL.Forms.Amministratore
             else 
             { 
                 flowLayoutPanel1.Controls.Add(img1);
-                flowLayoutPanel1.Controls.Add(img2);
-                flowLayoutPanel1.Controls.Add(img3);
+               // flowLayoutPanel1.Controls.Add(img2);
+              //  flowLayoutPanel1.Controls.Add(img3);
             }
         }
 
+
+       
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
+
             MemoryStream ms = new MemoryStream(byteArrayIn);
             Image returnImage = Image.FromStream(ms);
 
@@ -64,5 +68,6 @@ namespace APL.Forms.Amministratore
 
             return returnImage;
         }
+
     }
 }
