@@ -59,11 +59,9 @@ namespace APL.Forms.Amministratore
        
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
-            File.WriteAllBytes("c#.txt", byteArrayIn);
-          
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-             Image returnImage = Image.FromStream(ms);
 
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
 
             //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
             //Image Image = (Image)converter.ConvertFrom(byteArrayIn);

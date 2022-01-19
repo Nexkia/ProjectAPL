@@ -28,79 +28,117 @@ namespace APL.Connections
         static public Mutex GetMutex() { 
             return mut;
         }
-        static public async void send(Protocol p)
+        static public void send(Protocol p)
         {
-            await Task.Run(() =>
+            string message = p.GetProtocolID() + p.Limit + p.Data+"\n";
+            Debug.WriteLine("Sended: {0}", message);
+            byte[] outJson = Encoding.ASCII.GetBytes(message);
+            var lenbytes = new byte[16];
+            string lenmsg = Convert.ToString(outJson.Length);
+            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
+            var difference = lenbytes.Length - len_.Length;
+
+            for (int i = 0; i < len_.Length; i++)
             {
-                string message = p.GetProtocolID() + p.Limit + p.Token + p.Limit + p.Data + p.End;
-                Debug.WriteLine("Sended: {0}", message);
-                byte[] outJson = Encoding.ASCII.GetBytes(message);
-                stream.Write(outJson, 0, outJson.Length);
-            });
-            return;
+                lenbytes[difference + i -1] = len_[i];
+            }
+            lenbytes[lenbytes.Length - 1] = 10;
+            stream.Write(lenbytes, 0, lenbytes.Length);
+            Debug.WriteLine(outJson.Length);
+            stream.Write(outJson, 0, outJson.Length);
         }
         static public void sendClose(Protocol p)
         {
-            string message = p.GetProtocolID() + p.Limit + p.Token + p.Limit + p.Data + p.End;
+            string message = p.GetProtocolID() + p.Limit + p.Data;
             Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
+            var lenbytes = new byte[16];
+            string lenmsg = Convert.ToString(outJson.Length);
+            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
+            var difference = lenbytes.Length - len_.Length;
+
+            for (int i = 0; i < len_.Length; i++)
+            {
+                lenbytes[difference + i - 1] = len_[i];
+            }
+            lenbytes[lenbytes.Length - 1] = 10;
+            stream.Write(lenbytes, 0, lenbytes.Length);
+            Debug.WriteLine(outJson.Length);
             stream.Write(outJson, 0, outJson.Length);
             return;
         }
-        static public async void sendSingleMsg(string single)
+        static public void sendSingleMsg(string message)
         {
-            await Task.Run(() =>
+            Debug.WriteLine("Sended: {0}", message);
+            byte[] outJson = Encoding.ASCII.GetBytes(message);
+            var lenbytes = new byte[16];
+            string lenmsg = Convert.ToString(outJson.Length);
+            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
+            var difference = lenbytes.Length - len_.Length;
+
+            for (int i = 0; i < len_.Length; i++)
             {
-                string message = single;
-                Debug.WriteLine("Sended: {0}", message);
-                byte[] outJson = Encoding.ASCII.GetBytes(message);
-                stream.Write(outJson, 0, outJson.Length);
-            });
-            return;
+                lenbytes[difference + i - 1] = len_[i];
+            }
+            lenbytes[lenbytes.Length - 1] = 10;
+            stream.Write(lenbytes, 0, lenbytes.Length);
+            Debug.WriteLine(outJson.Length);
+            stream.Write(outJson, 0, outJson.Length);
         }
 
-        static public async Task<string> receive()
+        static public string receive()
         {
-            string result = await Task.Run(() =>
-            {
-                var data = new Byte[1024];
-                // String to store the response ASCII representation.
-                String responseData = String.Empty;
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = stream.Read(data, 0, data.Length);
-                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                Debug.WriteLine("Received: {0}", responseData);
-                return responseData;
-            });
-            return result;
+            var data = new Byte[16];
+            // String to store the response ASCII representation.
+            String lenData = String.Empty;
+            // Read the first batch of the TcpServer response bytes.
+            Int32 bytes = stream.Read(data, 0, data.Length);
+            int inizio = 0;
+            for (int i = 0; i < 16; i++) {
+                if (data[i] > 47 && data[i] < 58)
+                {
+                    inizio = i;
+                    break;
+                }
+            }
+            int fine = data.Length - 1;
+            data = data[inizio..fine];
+            lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
+            Debug.WriteLine(data.Length);
+            int lenmsg = int.Parse(lenData);
+            var msg = new Byte[lenmsg];
+            String responseData = String.Empty;
+            Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
+            responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
+            Debug.WriteLine("Received: {0}", responseData);
+            return responseData;
         }
 
-        public static async Task<Byte[]> receiveBytes()
-        {
-            var result = await Task.Run(() =>
-            {
-                var data = new Byte[7840000];
-                // String to store the response ASCII representation.
-                String responseData = String.Empty;
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = stream.Read(data, 0, data.Length);
-                
-                return data;
-            });
-            return result;
-        }
 
         public static Byte[] receiveBytesBlock()
         {
-
-            var data = new Byte[50604];//7840000];
-                // String to store the response ASCII representation.
-                String responseData = String.Empty;
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = stream.Read(data, 0, data.Length);
-
-                return data;
-            
+            Byte[] data = new Byte[16];
+            // String to store the response ASCII representation.
+            String lenData = String.Empty;
+            // Read the first batch of the TcpServer response bytes.
+            Int32 bytes = stream.Read(data, 0, data.Length);
+            int inizio = 0;
+            for (int i = 0; i < 16; i++)
+            {
+                if (data[i] > 47 && data[i] < 58)
+                {
+                    inizio = i;
+                    break;
+                }
+            }
+            int fine = data.Length - 1;
+            data = data[inizio..fine];
+            lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
+            Debug.WriteLine(data.Length);
+            int lenmsg = int.Parse(lenData);
+            Byte[] msg = new Byte[lenmsg];
+            Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
+            return msg;
         }
     }
 }

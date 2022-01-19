@@ -53,7 +53,7 @@ namespace APL.Forms.Amministratore
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
         }
-        private async void FormInserisciPreassemblato_Load(object sender, EventArgs e)
+        private void FormInserisciPreassemblato_Load(object sender, EventArgs e)
         {
             
 
@@ -69,15 +69,10 @@ namespace APL.Forms.Amministratore
             
             for (int i = 0; i < 8; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string nElements = await SocketTCP.receive();
+                string nElements =  SocketTCP.receive();
                 int n = int.Parse(nElements);
-                SocketTCP.sendSingleMsg("ok");
                 string response = String.Empty;
-                do
-                {
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
+                response = SocketTCP.receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
@@ -187,7 +182,7 @@ namespace APL.Forms.Amministratore
 
             }
         }
-        private async void Conferma_Click(object sender, EventArgs e)
+        private void Conferma_Click(object sender, EventArgs e)
         {
             if(contaComponentiPreassemblati() && textBoxNome.Text!=string.Empty && textBoxPrezzo.Text != string.Empty )
             {
@@ -196,7 +191,6 @@ namespace APL.Forms.Amministratore
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 SocketTCP.GetMutex().WaitOne();
                 SocketTCP.send(pt);
-                string okmsg = await SocketTCP.receive();
                 SocketTCP.GetMutex().ReleaseMutex();
             }
         }

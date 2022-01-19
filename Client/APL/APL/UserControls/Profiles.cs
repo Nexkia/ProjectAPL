@@ -22,12 +22,11 @@ namespace APL.UserControls
         ListView vecchialistView;
         ListView vecchioCarrello;
 
-        public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello, string Token)
+        public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello)
         {
             InitializeComponent();
             vecchioFlowLayoutPanel1 = vfp1;
             vecchialistView = vlw;
-            pt.Token = Token;  
             vecchioCarrello = carrello;
         }
 
@@ -56,7 +55,7 @@ namespace APL.UserControls
             populateItemsComponenti(this.Title);
         }
 
-        private async void populateItemsComponenti(string nameProfile)
+        private void populateItemsComponenti(string nameProfile)
         {
             Dictionary<string, string> nomeProfili = new Dictionary<string, string>{
                 { "Basic","0" },{ "Advanced","1" },{"Gamer","2"},{"Pro","3"},
@@ -75,14 +74,9 @@ namespace APL.UserControls
             };
             Componente[,] showElements = new Componente[8, 3];
             for (int i = 0; i < componentsTab.Length; i++) {
-                SocketTCP.sendSingleMsg("ok");
-                componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello,pt.Token);
+                componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
                 string response = String.Empty;
-                do
-                {
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
-
+                response = SocketTCP.receive();
                 Componente[] pezzo = new Componente[3];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 int idx = order[pezzo[0].Categoria]; 

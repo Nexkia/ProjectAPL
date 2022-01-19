@@ -21,12 +21,10 @@ namespace APL.Forms
     public partial class FormCatalogo : Form
     {
         Protocol pt = new Protocol();
-        public FormCatalogo(String token)
+        public FormCatalogo()
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
-            pt.Token = token;
-
             comboBoxPrezzo.Text = "Ascendente";
         }
 
@@ -219,7 +217,7 @@ namespace APL.Forms
                     categoria = item.SubItems[4].Text.ToString();
                     Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
-                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token);
+                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria);
                 cf.Show();
             }
             else
@@ -229,20 +227,16 @@ namespace APL.Forms
             }
         }
 
-        private async void GetElements(Protocol pt) {
+        private  void GetElements(Protocol pt) {
             List<Componente> listaC = new List<Componente>();
 
             string response = String.Empty;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             // n elem
-            string nelem = await SocketTCP.receive();
+            string nelem = SocketTCP.receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            SocketTCP.sendSingleMsg("ok");
-            do
-            {
-                response += await SocketTCP.receive();
-            } while (!response.Contains("\n"));
+            response =  SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);

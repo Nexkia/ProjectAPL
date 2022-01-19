@@ -19,17 +19,13 @@ namespace APL.Forms
 {
     public partial class FormCarrello : Form
     {
-
-        Protocol pt = new Protocol();
         bool disableCloseEvent;
-        string Token;
-        public FormCarrello(string Token)
+        public FormCarrello()
          {
              InitializeComponent();
             
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
-            this.Token = Token;
         }
 
         public ListView getListView() { return listViewCarrello; }
@@ -172,7 +168,7 @@ namespace APL.Forms
 
         private void creaCheckOut()
         {
-            FormCheckOut checkout = new FormCheckOut(Token);
+            FormCheckOut checkout = new FormCheckOut();
             checkout.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)

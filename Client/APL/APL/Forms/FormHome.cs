@@ -35,29 +35,25 @@ namespace APL.Forms
         int dimRicevuto;
         FormCarrello carrelloForm;
         FormPleaseWait pleaseWait;
-        public FormHome(FormLogin_Register f_start, string token)
+        public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
-            this.pt.Token = token;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello(pt.Token);
+            carrelloForm = new FormCarrello();
 
             pleaseWait = new FormPleaseWait();
             
         }
 
-        private async void FormHome_Load(object sender, EventArgs e)
+        private  void FormHome_Load(object sender, EventArgs e)
         {
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             string responseData = String.Empty;
-            do
-            {
-                responseData += await SocketTCP.receive();
-            } while (!responseData.Contains("\n"));
+            responseData = SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
             int dim = 3;
             PcPreassemblato[] a = new PcPreassemblato[dim];
@@ -161,7 +157,6 @@ namespace APL.Forms
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pt.Token = String.Empty;
             parent.Visible = true;
             this.Close();
 
@@ -181,7 +176,7 @@ namespace APL.Forms
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView(),pt.Token);
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView());
 
                 switch (i)
                 {
@@ -313,7 +308,7 @@ namespace APL.Forms
             
         }
 
-        private async void getItemsBuildSolo()
+        private void getItemsBuildSolo()
         {
             pt.SetProtocolID("buildSolo");
 
@@ -326,15 +321,10 @@ namespace APL.Forms
             List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string nElements = await SocketTCP.receive();
+                string nElements = SocketTCP.receive();
                 int n = int.Parse(nElements);
-                SocketTCP.sendSingleMsg("ok");
                 string response = String.Empty;
-                do
-                {
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
+                response = SocketTCP.receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
@@ -419,7 +409,12 @@ namespace APL.Forms
 
        
 
-        private void button3_Click(object sender, EventArgs e){FormCatalogo fcg = new FormCatalogo(pt.Token);fcg.Show();}
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormCatalogo fcg = new FormCatalogo();
+            fcg.Show();
+        }
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
@@ -445,7 +440,9 @@ namespace APL.Forms
 
         private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token);
+        
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
+
             acquistiPassati.Show();
         }
         

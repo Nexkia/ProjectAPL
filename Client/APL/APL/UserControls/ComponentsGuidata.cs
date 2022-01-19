@@ -17,14 +17,12 @@ namespace APL.UserControls
     {
         ListView vecchialistView;
         ListView vecchioCarrello;
-        string Token;
         private Componente[] _componente;
-        public ComponentsGuidata(ListView vlw,ListView carrello,string Token)
+        public ComponentsGuidata(ListView vlw,ListView carrello)
         {
             InitializeComponent();
            vecchialistView = vlw;
             vecchioCarrello = carrello;
-            this.Token = Token;    
             _componente = new Componente[3];
         }
 
@@ -155,7 +153,7 @@ namespace APL.UserControls
             }
             if (modelli.Length > 0)
             {
-                FormConfronto cf = new FormConfronto(modelli, prezzi,capienze, categoria,Token);
+                FormConfronto cf = new FormConfronto(modelli, prezzi,capienze, categoria);
                 cf.Show();
             }
             else
