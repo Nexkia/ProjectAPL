@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"encoding/json"
+	"fmt"
 	"net"
 	"sync"
 
@@ -112,11 +113,19 @@ func Cancellazione_pre(inputChannel chan string, conn net.Conn, mongodb *mongo.D
 	wait.Done()
 }
 
-func admin_images(conn net.Conn, wait *sync.WaitGroup) {
+func admin_images(conn net.Conn, wait *sync.WaitGroup, img *[3]Img) {
+	okmsg := make([]byte, 256)
 	rWlock.RLock()
 	for i := 0; i < 3; i++ {
+		fmt.Println("image: ", len(img[i].Img))
 		conn.Write(img[i].Img)
+		conn.Read(okmsg)
 	}
 	rWlock.RUnlock()
+	for i := 0; i < 10; i++ {
+		for j := 0; j < 3; j++ {
+			fmt.Println(img[j].Img[i])
+		}
+	}
 	wait.Done()
 }

@@ -172,7 +172,15 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			waitGroup.Add(1)
 		case 18:
 			fmt.Println("case 18", MP)
-			go getImages(conn, &waitGroup, img)
+			go getImages(conn, &waitGroup, &img)
+			waitGroup.Add(1)
+		case 19:
+			fmt.Println("case 19", MP)
+			go admin_images(conn, &waitGroup, &img)
+			waitGroup.Add(1)
+		case 20:
+			fmt.Println("case 20", MP)
+			go Compatibilita(conn, mongodb, &waitGroup, Mjson)
 			waitGroup.Add(1)
 		default:
 			fmt.Println("CASO DI DEFAULT")

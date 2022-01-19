@@ -39,16 +39,21 @@ func getProfiles(conn net.Conn, wait *sync.WaitGroup, mongodb *mongo.Database, p
 	wait.Done()
 }
 
-func getImages(conn net.Conn, wait *sync.WaitGroup, img [3]Img) {
+func getImages(conn net.Conn, wait *sync.WaitGroup, img *[3]Img) {
 	conn.Write([]byte("ok"))
 	rWlock.Lock()
 	for i := 0; i < 3; i++ {
-		byte_img := make([]byte, 7840000)
+		byte_img := make([]byte, 1470000) // 7840000)
 		conn.Read(byte_img)
 		img[i].Img = byte_img
 		conn.Write([]byte("ok"))
 		print(i)
 	}
 	rWlock.Unlock()
+	for i := 0; i < 10; i++ {
+		for j := 0; j < 3; j++ {
+			fmt.Println(img[j].Img[i])
+		}
+	}
 	wait.Done()
 }
