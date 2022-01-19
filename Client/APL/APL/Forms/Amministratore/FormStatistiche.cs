@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,15 +55,21 @@ namespace APL.Forms.Amministratore
             }
         }
 
+
+       
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
+            File.WriteAllBytes("c#.txt", byteArrayIn);
+          
             MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
+             Image returnImage = Image.FromStream(ms);
+
 
             //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
             //Image Image = (Image)converter.ConvertFrom(byteArrayIn);
 
             return returnImage;
         }
+
     }
 }

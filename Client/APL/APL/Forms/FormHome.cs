@@ -44,6 +44,7 @@ namespace APL.Forms
             carrelloForm = new FormCarrello(pt.Token);
 
             pleaseWait = new FormPleaseWait();
+            
         }
 
         private async void FormHome_Load(object sender, EventArgs e)
@@ -112,6 +113,7 @@ namespace APL.Forms
                 listItems[i].IconBackground = Color.SteelBlue;
                 listItems[i].NomeModello = pre[i].Nome;
                 listItems[i].Prezzo = pre[i].Prezzo;
+                listItems[i].setTitle();
 
                 string message = "";
                 //8 come il numero dei componenti
@@ -146,23 +148,10 @@ namespace APL.Forms
             
         }
 
-        private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
-        {
+      
 
-        }
+        private void buttonCarrello_Click(object sender, EventArgs e){carrelloForm.Show();}
 
-        private void buttonCarrello_Click(object sender, EventArgs e)
-        {
-            carrelloForm.Show();
-
-           
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -428,17 +417,9 @@ namespace APL.Forms
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+       
 
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            FormCatalogo fcg = new FormCatalogo(pt.Token);
-            fcg.Show();
-        }
+        private void button3_Click(object sender, EventArgs e){FormCatalogo fcg = new FormCatalogo(pt.Token);fcg.Show();}
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
@@ -459,32 +440,15 @@ namespace APL.Forms
             }
         }
 
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
 
 
         private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-
             FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token);
             acquistiPassati.Show();
-
         }
         
-        private void flowLayoutPanel1_BackColorChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
         {
@@ -493,5 +457,7 @@ namespace APL.Forms
                 pleaseWait.Visible = false;
             }
         }
+
+       
     }
 }

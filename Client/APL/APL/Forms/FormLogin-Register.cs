@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using System.IO;
+
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
@@ -25,6 +27,8 @@ namespace APL.Forms
             pt = new Protocol();
             controllo = new CheckFields();
             amministratoreForm = new FormAmministratore(this);
+            
+            
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -168,8 +172,10 @@ namespace APL.Forms
             }
         }
 
-      
-        
+
+
+
+
     }
 
 }

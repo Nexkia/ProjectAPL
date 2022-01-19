@@ -209,12 +209,39 @@ namespace APL.Forms.Amministratore
             }
         }
 
+        private void buttonSvuotaLista_Click(object sender, EventArgs e)
+        {
+            listViewPreassemblato.Items.Clear();
+        }
+
+        private void buttonRimuoviElemento_Click(object sender, EventArgs e)
+        {
+                if (listViewPreassemblato.SelectedItems.Count > 0)
+                {
+                    ListViewItem item = listViewPreassemblato.SelectedItems[0];
+                   
+
+                    //rimuoviamo l'elemento selezionato dalla listViewPreassemblato
+                    listViewPreassemblato.Items.Remove(item);
+
+                }
+                else
+                {
+                    MessageBox.Show("Nessun componente è stato selezionato",
+                              "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            
+        }
+
         private void buttonControllaCompatibilita_Click(object sender, EventArgs e)
         {
             
             if (listViewPreassemblato.Items.Count == 8)
             {
                 recuperaDetailCpuSchedaMadreRamDissipatore();
+                labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Assente";
+                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Assente";
+                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Assente";
             }
             else
             {
@@ -284,6 +311,36 @@ namespace APL.Forms.Amministratore
             }
             SocketTCP.GetMutex().ReleaseMutex();
 
+            string[] vet = MyDetails[0].getDetail();
+            string cpuSocket = vet[1];
+
+            vet = MyDetails[1].getDetail();
+            string cpuSocketSchedaMadre = vet[0];
+            string ramSchedaMadre = vet[1];
+
+            vet = MyDetails[2].getDetail();
+            string standardRam = vet[1];
+
+            string[] cpuSocketDissipatore = MyDetails[3].getDetail();
+
+            foreach (string tipoSocket in cpuSocketDissipatore)
+            {
+                if(tipoSocket== cpuSocket)
+                {
+                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Presente";
+                }
+            }
+
+            if(cpuSocketSchedaMadre== cpuSocket)
+            {
+                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Presente";
+            }
+
+            if(standardRam== ramSchedaMadre)
+            {
+                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Presente";
+            }
+            
 
         }
     }

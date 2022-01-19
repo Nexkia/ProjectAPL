@@ -42,12 +42,17 @@ namespace APL.Forms.Amministratore
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.buttonControllaCompatibilita = new System.Windows.Forms.Button();
+            this.labelCpuDissipatore = new System.Windows.Forms.Label();
+            this.labelRamSchedaMadre = new System.Windows.Forms.Label();
+            this.labelCpuSchedaMadre = new System.Windows.Forms.Label();
+            this.buttonSvuotaLista = new System.Windows.Forms.Button();
+            this.buttonRimuoviElemento = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelNome
             // 
             this.labelNome.AutoSize = true;
-            this.labelNome.Location = new System.Drawing.Point(521, 32);
+            this.labelNome.Location = new System.Drawing.Point(1, 104);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(50, 20);
             this.labelNome.TabIndex = 0;
@@ -55,7 +60,7 @@ namespace APL.Forms.Amministratore
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(577, 29);
+            this.textBoxNome.Location = new System.Drawing.Point(57, 104);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(171, 27);
             this.textBoxNome.TabIndex = 1;
@@ -63,7 +68,7 @@ namespace APL.Forms.Amministratore
             // labelPrezzo
             // 
             this.labelPrezzo.AutoSize = true;
-            this.labelPrezzo.Location = new System.Drawing.Point(786, 32);
+            this.labelPrezzo.Location = new System.Drawing.Point(234, 104);
             this.labelPrezzo.Name = "labelPrezzo";
             this.labelPrezzo.Size = new System.Drawing.Size(53, 20);
             this.labelPrezzo.TabIndex = 2;
@@ -71,7 +76,7 @@ namespace APL.Forms.Amministratore
             // 
             // textBoxPrezzo
             // 
-            this.textBoxPrezzo.Location = new System.Drawing.Point(845, 29);
+            this.textBoxPrezzo.Location = new System.Drawing.Point(292, 104);
             this.textBoxPrezzo.Name = "textBoxPrezzo";
             this.textBoxPrezzo.Size = new System.Drawing.Size(186, 27);
             this.textBoxPrezzo.TabIndex = 3;
@@ -80,7 +85,7 @@ namespace APL.Forms.Amministratore
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.CadetBlue;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(510, 67);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(510, 118);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(794, 430);
             this.flowLayoutPanel1.TabIndex = 4;
@@ -89,9 +94,9 @@ namespace APL.Forms.Amministratore
             // Conferma
             // 
             this.Conferma.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Conferma.Location = new System.Drawing.Point(17, 5);
+            this.Conferma.Location = new System.Drawing.Point(14, 12);
             this.Conferma.Name = "Conferma";
-            this.Conferma.Size = new System.Drawing.Size(214, 61);
+            this.Conferma.Size = new System.Drawing.Size(214, 74);
             this.Conferma.TabIndex = 5;
             this.Conferma.Text = "Conferma";
             this.Conferma.UseVisualStyleBackColor = true;
@@ -106,7 +111,7 @@ namespace APL.Forms.Amministratore
             this.columnHeader4,
             this.columnHeader5});
             this.listViewPreassemblato.HideSelection = false;
-            this.listViewPreassemblato.Location = new System.Drawing.Point(17, 96);
+            this.listViewPreassemblato.Location = new System.Drawing.Point(12, 148);
             this.listViewPreassemblato.Name = "listViewPreassemblato";
             this.listViewPreassemblato.Size = new System.Drawing.Size(462, 400);
             this.listViewPreassemblato.TabIndex = 6;
@@ -140,19 +145,71 @@ namespace APL.Forms.Amministratore
             // 
             // buttonControllaCompatibilita
             // 
-            this.buttonControllaCompatibilita.Location = new System.Drawing.Point(288, 38);
+            this.buttonControllaCompatibilita.Location = new System.Drawing.Point(292, 3);
             this.buttonControllaCompatibilita.Name = "buttonControllaCompatibilita";
-            this.buttonControllaCompatibilita.Size = new System.Drawing.Size(190, 40);
+            this.buttonControllaCompatibilita.Size = new System.Drawing.Size(186, 28);
             this.buttonControllaCompatibilita.TabIndex = 7;
             this.buttonControllaCompatibilita.Text = "Controlla Compatibilità";
             this.buttonControllaCompatibilita.UseVisualStyleBackColor = true;
             this.buttonControllaCompatibilita.Click += new System.EventHandler(this.buttonControllaCompatibilita_Click);
             // 
+            // labelCpuDissipatore
+            // 
+            this.labelCpuDissipatore.AutoSize = true;
+            this.labelCpuDissipatore.Location = new System.Drawing.Point(510, 20);
+            this.labelCpuDissipatore.Name = "labelCpuDissipatore";
+            this.labelCpuDissipatore.Size = new System.Drawing.Size(214, 20);
+            this.labelCpuDissipatore.TabIndex = 8;
+            this.labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore:";
+            // 
+            // labelRamSchedaMadre
+            // 
+            this.labelRamSchedaMadre.AutoSize = true;
+            this.labelRamSchedaMadre.Location = new System.Drawing.Point(510, 66);
+            this.labelRamSchedaMadre.Name = "labelRamSchedaMadre";
+            this.labelRamSchedaMadre.Size = new System.Drawing.Size(238, 20);
+            this.labelRamSchedaMadre.TabIndex = 9;
+            this.labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre:";
+            // 
+            // labelCpuSchedaMadre
+            // 
+            this.labelCpuSchedaMadre.AutoSize = true;
+            this.labelCpuSchedaMadre.Location = new System.Drawing.Point(938, 20);
+            this.labelCpuSchedaMadre.Name = "labelCpuSchedaMadre";
+            this.labelCpuSchedaMadre.Size = new System.Drawing.Size(234, 20);
+            this.labelCpuSchedaMadre.TabIndex = 10;
+            this.labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre:";
+            // 
+            // buttonSvuotaLista
+            // 
+            this.buttonSvuotaLista.Location = new System.Drawing.Point(292, 37);
+            this.buttonSvuotaLista.Name = "buttonSvuotaLista";
+            this.buttonSvuotaLista.Size = new System.Drawing.Size(186, 26);
+            this.buttonSvuotaLista.TabIndex = 11;
+            this.buttonSvuotaLista.Text = "Svuota lista";
+            this.buttonSvuotaLista.UseVisualStyleBackColor = true;
+            this.buttonSvuotaLista.Click += new System.EventHandler(this.buttonSvuotaLista_Click);
+            // 
+            // buttonRimuoviElemento
+            // 
+            this.buttonRimuoviElemento.Location = new System.Drawing.Point(292, 69);
+            this.buttonRimuoviElemento.Name = "buttonRimuoviElemento";
+            this.buttonRimuoviElemento.Size = new System.Drawing.Size(188, 29);
+            this.buttonRimuoviElemento.TabIndex = 12;
+            this.buttonRimuoviElemento.Text = "Rimuovi Elemento";
+            this.buttonRimuoviElemento.UseVisualStyleBackColor = true;
+            this.buttonRimuoviElemento.Click += new System.EventHandler(this.buttonRimuoviElemento_Click);
+            // 
             // FormInserisciPreassemblato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 511);
+            this.ClientSize = new System.Drawing.Size(1316, 560);
+            this.Controls.Add(this.buttonRimuoviElemento);
+            this.Controls.Add(this.buttonSvuotaLista);
+            this.Controls.Add(this.labelCpuSchedaMadre);
+            this.Controls.Add(this.labelRamSchedaMadre);
+            this.Controls.Add(this.labelCpuDissipatore);
             this.Controls.Add(this.buttonControllaCompatibilita);
             this.Controls.Add(this.listViewPreassemblato);
             this.Controls.Add(this.Conferma);
@@ -184,5 +241,10 @@ namespace APL.Forms.Amministratore
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button buttonControllaCompatibilita;
+        private System.Windows.Forms.Label labelCpuDissipatore;
+        private System.Windows.Forms.Label labelRamSchedaMadre;
+        private System.Windows.Forms.Label labelCpuSchedaMadre;
+        private System.Windows.Forms.Button buttonSvuotaLista;
+        private System.Windows.Forms.Button buttonRimuoviElemento;
     }
 }
