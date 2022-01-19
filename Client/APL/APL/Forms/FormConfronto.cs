@@ -23,11 +23,10 @@ namespace APL.Forms
         string[] modelli;
         string[] prezzi;
         string[] capienze;
-        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria, string Token)
+        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria)
         {
             InitializeComponent();
             pt.SetProtocolID("confronto");
-            pt.Token = Token;
             this.modelli = modelli;
             this.prezzi = prezzi;
             this.capienze = capienze;
@@ -39,7 +38,7 @@ namespace APL.Forms
 
         }
 
-        private async void Confronto_Load(object sender, EventArgs e1)
+        private  void Confronto_Load(object sender, EventArgs e1)
         {
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"#";
@@ -53,8 +52,7 @@ namespace APL.Forms
 
             for (int i = 0; i < modelli.Length; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string response = await SocketTCP.receive();
+                string response = SocketTCP.receive();
                 Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
                 Debug.WriteLine("getmodello: " + a.getModello());
