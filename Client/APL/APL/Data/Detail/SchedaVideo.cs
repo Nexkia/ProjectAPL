@@ -9,24 +9,16 @@ namespace APL.Data.Detail
 {
     public class SchedaVideo :Details
     {
-        public SchedaVideo(string modello, int valutazione, int tdp,int Vram)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.Tdp = tdp;
-            this.Vram = Vram;
-        }
 
-        public SchedaVideo() { }
         [JsonProperty("modello_schedaVideo")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("tdp")]
-        public int Tdp { get; private set; }
+        public int Tdp { get; init; }
 
         [JsonProperty("vram")]
-        public int Vram { get; private set; }
+        public int Vram { get; init; }
 
 
         public string[] getDetail()
@@ -36,18 +28,6 @@ namespace APL.Data.Detail
                 Convert.ToString(Vram),
             };
             return detail;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)   
-                return String.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }

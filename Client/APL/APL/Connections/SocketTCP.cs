@@ -11,13 +11,18 @@ namespace APL.Connections
 {
     public static class SocketTCP
     {
-        public static Mutex mut = new Mutex();
+        public static Mutex mut;
         const string host = "localhost";
         const Int32 port = 13000;
-        static TcpClient client =  new TcpClient(host, port);
-        static NetworkStream stream = client.GetStream();
+        static TcpClient client;
+        static NetworkStream stream;
         // Close everything.
 
+        static SocketTCP() {
+            mut = new Mutex();
+            client = new TcpClient(host, port);
+            stream = client.GetStream();
+        }
 
         static public void CloseConnection() {
             stream.Close();
@@ -65,7 +70,6 @@ namespace APL.Connections
             stream.Write(lenbytes, 0, lenbytes.Length);
             Debug.WriteLine(outJson.Length);
             stream.Write(outJson, 0, outJson.Length);
-            return;
         }
         static public void sendSingleMsg(string message)
         {

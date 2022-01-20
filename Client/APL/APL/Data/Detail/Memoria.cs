@@ -9,21 +9,13 @@ namespace APL.Data.Detail
 {
     public class Memoria : Details
     {
-        public Memoria(string modello, int valutazione, string tipo)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.Tipo = tipo;
-        }
-
-        public Memoria() { }
 
         [JsonProperty("modello_memoria")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("tipo")]
-        public string? Tipo { get; private set; }
+        public string Tipo { get; init; }
 
         public string[] getDetail()
         {
@@ -31,18 +23,6 @@ namespace APL.Data.Detail
                 return Array.Empty<string>();
             string[] detail = new string[1] { Tipo };
             return detail;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)    
-                return string.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return this.Valutazione;
         }
     }
 }

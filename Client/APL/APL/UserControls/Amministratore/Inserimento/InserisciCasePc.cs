@@ -26,8 +26,11 @@ namespace APL.UserControls.Amministratore.Inserimento
 
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && comboBoxTaglia.Text != string.Empty)
             {
-                CasePC elem = new CasePC(inserisciComponente.getModello(),
-                    int.Parse(textBoxValutazione.Text), comboBoxTaglia.Text);
+                CasePC elem = new CasePC() 
+                { 
+                    Modello = inserisciComponente.getModello(), Valutazione=
+                    int.Parse(textBoxValutazione.Text), Taglia  = comboBoxTaglia.Text 
+                };
                 return elem;
             }
             else { return null; }

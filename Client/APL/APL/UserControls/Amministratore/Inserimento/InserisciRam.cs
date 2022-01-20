@@ -27,8 +27,13 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxFrequenza.Text != string.Empty
                  && textBoxStandard.Text != string.Empty )
             {
-                Ram elem = new Ram(inserisciComponente.getModello(), int.Parse(textBoxValutazione.Text),
-                    float.Parse(textBoxFrequenza.Text),textBoxStandard.Text);
+                Ram elem = new Ram()
+                {
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione = int.Parse(textBoxValutazione.Text),
+                    Frequenza = float.Parse(textBoxFrequenza.Text),
+                    Standard = textBoxStandard.Text
+                };
                 return elem;
             }
             else { return null; }

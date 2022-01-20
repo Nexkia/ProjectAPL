@@ -20,12 +20,14 @@ namespace APL.Forms
     public partial class FormCarrello : Form
     {
         bool disableCloseEvent;
+        Protocol pt;
         public FormCarrello()
          {
              InitializeComponent();
             
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
+            pt = new Protocol();
         }
 
         public ListView getListView() { return listViewCarrello; }
@@ -212,7 +214,7 @@ namespace APL.Forms
             }
         }
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
             string[] modelli = recuperaModelloCpuSchedaMadreRamDissipatore();
             string[] categorie = { "cpu", "schedaMadre", "ram", "dissipatore" };
@@ -233,19 +235,17 @@ namespace APL.Forms
             SocketTCP.GetMutex().WaitOne();
 
             SocketTCP.send(pt);
-            string okmsg = await SocketTCP.receive();
             SocketTCP.sendSingleMsg(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
 
             for (int i = 0; i < 4; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string detailMsg = await SocketTCP.receive();
+                string detailMsg =  SocketTCP.receive();
                 Details componenteF = factory.GetDetails(categorie[i]);
                 Type categoria = componenteF.GetType();
                 MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
-                Debug.WriteLine(MyDetails[i].getModello());
+                Debug.WriteLine(MyDetails[i].Modello);
             }
             SocketTCP.GetMutex().ReleaseMutex();
 

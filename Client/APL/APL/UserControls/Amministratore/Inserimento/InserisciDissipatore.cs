@@ -31,7 +31,12 @@ namespace APL.UserControls.Amministratore.Inserimento
             Debug.WriteLine("getInputDetail");
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && vet.Length>0 )
             {
-                Dissipatore elem = new Dissipatore(inserisciComponente.getModello(), int.Parse(textBoxValutazione.Text), vet);
+                Dissipatore elem = new Dissipatore() 
+                { 
+                    Modello = inserisciComponente.getModello(), 
+                    Valutazione = int.Parse(textBoxValutazione.Text), 
+                    CpuSocket=vet 
+                };
                 Debug.WriteLine("getInputDetail true");
                 return elem;
             }
