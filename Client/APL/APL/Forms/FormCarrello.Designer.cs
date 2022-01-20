@@ -30,6 +30,10 @@ namespace APL.Forms
         private void InitializeComponent()
         {
             this.panelSfondo = new System.Windows.Forms.Panel();
+            this.labelCpuSchedaMadre = new System.Windows.Forms.Label();
+            this.labelRamSchedaMadre = new System.Windows.Forms.Label();
+            this.labelCpuDissipatore = new System.Windows.Forms.Label();
+            this.buttonCompatibilita = new System.Windows.Forms.Button();
             this.buttonSvuotaCarrello = new System.Windows.Forms.Button();
             this.buttonConferma = new System.Windows.Forms.Button();
             this.buttonRimuovi = new System.Windows.Forms.Button();
@@ -46,6 +50,10 @@ namespace APL.Forms
             // 
             // panelSfondo
             // 
+            this.panelSfondo.Controls.Add(this.labelCpuSchedaMadre);
+            this.panelSfondo.Controls.Add(this.labelRamSchedaMadre);
+            this.panelSfondo.Controls.Add(this.labelCpuDissipatore);
+            this.panelSfondo.Controls.Add(this.buttonCompatibilita);
             this.panelSfondo.Controls.Add(this.buttonSvuotaCarrello);
             this.panelSfondo.Controls.Add(this.buttonConferma);
             this.panelSfondo.Controls.Add(this.buttonRimuovi);
@@ -55,16 +63,53 @@ namespace APL.Forms
             this.panelSfondo.Location = new System.Drawing.Point(0, 0);
             this.panelSfondo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelSfondo.Name = "panelSfondo";
-            this.panelSfondo.Size = new System.Drawing.Size(885, 605);
+            this.panelSfondo.Size = new System.Drawing.Size(887, 605);
             this.panelSfondo.TabIndex = 0;
             this.panelSfondo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSfondo_Paint);
             // 
+            // labelCpuSchedaMadre
+            // 
+            this.labelCpuSchedaMadre.AutoSize = true;
+            this.labelCpuSchedaMadre.Location = new System.Drawing.Point(201, 9);
+            this.labelCpuSchedaMadre.Name = "labelCpuSchedaMadre";
+            this.labelCpuSchedaMadre.Size = new System.Drawing.Size(316, 20);
+            this.labelCpuSchedaMadre.TabIndex = 17;
+            this.labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
+            // 
+            // labelRamSchedaMadre
+            // 
+            this.labelRamSchedaMadre.AutoSize = true;
+            this.labelRamSchedaMadre.Location = new System.Drawing.Point(201, 32);
+            this.labelRamSchedaMadre.Name = "labelRamSchedaMadre";
+            this.labelRamSchedaMadre.Size = new System.Drawing.Size(320, 20);
+            this.labelRamSchedaMadre.TabIndex = 16;
+            this.labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
+            // 
+            // labelCpuDissipatore
+            // 
+            this.labelCpuDissipatore.AutoSize = true;
+            this.labelCpuDissipatore.Location = new System.Drawing.Point(201, 58);
+            this.labelCpuDissipatore.Name = "labelCpuDissipatore";
+            this.labelCpuDissipatore.Size = new System.Drawing.Size(296, 20);
+            this.labelCpuDissipatore.TabIndex = 15;
+            this.labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
+            // 
+            // buttonCompatibilita
+            // 
+            this.buttonCompatibilita.Location = new System.Drawing.Point(667, 213);
+            this.buttonCompatibilita.Name = "buttonCompatibilita";
+            this.buttonCompatibilita.Size = new System.Drawing.Size(203, 57);
+            this.buttonCompatibilita.TabIndex = 14;
+            this.buttonCompatibilita.Text = "Compatibilità";
+            this.buttonCompatibilita.UseVisualStyleBackColor = true;
+            this.buttonCompatibilita.Click += new System.EventHandler(this.buttonCompatibilita_Click);
+            // 
             // buttonSvuotaCarrello
             // 
-            this.buttonSvuotaCarrello.Location = new System.Drawing.Point(676, 166);
+            this.buttonSvuotaCarrello.Location = new System.Drawing.Point(667, 148);
             this.buttonSvuotaCarrello.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSvuotaCarrello.Name = "buttonSvuotaCarrello";
-            this.buttonSvuotaCarrello.Size = new System.Drawing.Size(197, 55);
+            this.buttonSvuotaCarrello.Size = new System.Drawing.Size(203, 58);
             this.buttonSvuotaCarrello.TabIndex = 13;
             this.buttonSvuotaCarrello.Text = "Svuota Carrello";
             this.buttonSvuotaCarrello.UseVisualStyleBackColor = true;
@@ -72,10 +117,10 @@ namespace APL.Forms
             // 
             // buttonConferma
             // 
-            this.buttonConferma.Location = new System.Drawing.Point(676, 353);
+            this.buttonConferma.Location = new System.Drawing.Point(672, 514);
             this.buttonConferma.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonConferma.Name = "buttonConferma";
-            this.buttonConferma.Size = new System.Drawing.Size(197, 55);
+            this.buttonConferma.Size = new System.Drawing.Size(203, 74);
             this.buttonConferma.TabIndex = 12;
             this.buttonConferma.Text = "Conferma Carrello";
             this.buttonConferma.UseVisualStyleBackColor = true;
@@ -83,10 +128,10 @@ namespace APL.Forms
             // 
             // buttonRimuovi
             // 
-            this.buttonRimuovi.Location = new System.Drawing.Point(674, 86);
+            this.buttonRimuovi.Location = new System.Drawing.Point(667, 82);
             this.buttonRimuovi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRimuovi.Name = "buttonRimuovi";
-            this.buttonRimuovi.Size = new System.Drawing.Size(199, 58);
+            this.buttonRimuovi.Size = new System.Drawing.Size(203, 58);
             this.buttonRimuovi.TabIndex = 11;
             this.buttonRimuovi.Text = "Rimuovi Elemento";
             this.buttonRimuovi.UseVisualStyleBackColor = true;
@@ -147,7 +192,7 @@ namespace APL.Forms
             this.labelTitolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelTitolo.Location = new System.Drawing.Point(27, 12);
             this.labelTitolo.Name = "labelTitolo";
-            this.labelTitolo.Size = new System.Drawing.Size(297, 66);
+            this.labelTitolo.Size = new System.Drawing.Size(168, 66);
             this.labelTitolo.TabIndex = 1;
             this.labelTitolo.Text = "Carrello";
             // 
@@ -155,11 +200,12 @@ namespace APL.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 605);
+            this.ClientSize = new System.Drawing.Size(887, 605);
             this.Controls.Add(this.panelSfondo);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormCarrello";
             this.panelSfondo.ResumeLayout(false);
+            this.panelSfondo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -178,5 +224,9 @@ namespace APL.Forms
         private System.Windows.Forms.Button buttonConferma;
         private System.Windows.Forms.ColumnHeader column6;
         private System.Windows.Forms.Button buttonSvuotaCarrello;
+        private System.Windows.Forms.Button buttonCompatibilita;
+        private System.Windows.Forms.Label labelCpuSchedaMadre;
+        private System.Windows.Forms.Label labelRamSchedaMadre;
+        private System.Windows.Forms.Label labelCpuDissipatore;
     }
 }

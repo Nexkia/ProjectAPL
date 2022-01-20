@@ -1,8 +1,10 @@
 ﻿using APL.Connections;
 using APL.Data;
+using APL.Data.Detail;
 using APL.UserControls.Amministratore;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,15 +20,43 @@ namespace APL.Forms.Amministratore
     public partial class FormInserisciPreassemblato : Form
     {
         Protocol pt = new Protocol();
-        public FormInserisciPreassemblato()
+        bool disableCloseEvent;
+        FormAmministratore parent;
+        FormPleaseWait pleaseWait;
+        public FormInserisciPreassemblato(FormAmministratore parent)
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
+            disableCloseEvent = true;
+            this.parent = parent;
+
+            pleaseWait = new FormPleaseWait();
+            
         }
 
         private Componente[] comp;
+        private string modelloCpu, modelloSchedaMadre, modelloRam, modelloDissipatore;
 
-        private async void FormInserisciPreassemblato_Load(object sender, EventArgs e)
+        public void EnableCloseEvent() { this.disableCloseEvent = false;  }
+        void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
+        private void FormInserisciPreassemblato_Load(object sender, EventArgs e)
+        {
+            
+
             pt.SetProtocolID("buildSolo");
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -36,25 +66,24 @@ namespace APL.Forms.Amministratore
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             List<List<Componente>> myList = new List<List<Componente>>();
+            
             for (int i = 0; i < 8; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string nElements = await SocketTCP.receive();
+                string nElements =  SocketTCP.receive();
                 int n = int.Parse(nElements);
-                SocketTCP.sendSingleMsg("ok");
                 string response = String.Empty;
-                do
-                {
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
+                response = SocketTCP.receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
+                pleaseWait.Show();
                 myList.Add(singleComponent);
+                
             }
             SocketTCP.GetMutex().ReleaseMutex();
             Debug.WriteLine(myList.Count());
 
+            
             stampaComponentsPreassemblato(myList);
         }
 
@@ -131,12 +160,7 @@ namespace APL.Forms.Amministratore
         
         private void creaVettoreOrdinato()
         {
-            
-            string modello;
-            string marca;
-            string prezzo;
-            string capienza;
-            string categoria;
+            string modello,marca,prezzo,capienza,categoria;
             comp = new Componente[8];
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -158,7 +182,7 @@ namespace APL.Forms.Amministratore
 
             }
         }
-        private async void Conferma_Click(object sender, EventArgs e)
+        private void Conferma_Click(object sender, EventArgs e)
         {
             if(contaComponentiPreassemblati() && textBoxNome.Text!=string.Empty && textBoxPrezzo.Text != string.Empty )
             {
@@ -167,11 +191,150 @@ namespace APL.Forms.Amministratore
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 SocketTCP.GetMutex().WaitOne();
                 SocketTCP.send(pt);
-                string okmsg = await SocketTCP.receive();
                 SocketTCP.GetMutex().ReleaseMutex();
             }
         }
 
-        
+        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count >= 8)
+            {
+                pleaseWait.Close();
+            }
+        }
+
+        private void buttonSvuotaLista_Click(object sender, EventArgs e)
+        {
+            listViewPreassemblato.Items.Clear();
+        }
+
+        private void buttonRimuoviElemento_Click(object sender, EventArgs e)
+        {
+                if (listViewPreassemblato.SelectedItems.Count > 0)
+                {
+                    ListViewItem item = listViewPreassemblato.SelectedItems[0];
+                   
+
+                    //rimuoviamo l'elemento selezionato dalla listViewPreassemblato
+                    listViewPreassemblato.Items.Remove(item);
+
+                }
+                else
+                {
+                    MessageBox.Show("Nessun componente è stato selezionato",
+                              "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            
+        }
+
+        private void buttonControllaCompatibilita_Click(object sender, EventArgs e)
+        {
+            
+            if (listViewPreassemblato.Items.Count == 8)
+            {
+                recuperaDetailCpuSchedaMadreRamDissipatore();
+                labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Assente";
+                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Assente";
+                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Assente";
+            }
+            else
+            {
+                MessageBox.Show("Selezionare 8 componenti prima di controllare la compatibilità", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private string[] recuperaModelloCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli=new string[4];
+            foreach (ListViewItem item in listViewPreassemblato.Items)
+            {
+                switch (item.SubItems[4].Text.ToString())
+                {
+                    case "cpu":
+                        modelli[0] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "schedaMadre":
+                        modelli[1] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "ram":
+                        modelli[2] = item.SubItems[0].Text.ToString();
+                        break;
+                    case "dissipatore":
+                        modelli[3] = item.SubItems[0].Text.ToString();
+                        break;
+                }
+            }
+
+            return modelli;
+        }
+
+        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        {
+            string[] modelli=recuperaModelloCpuSchedaMadreRamDissipatore();
+            string[] categorie = { "cpu", "schedaMadre", "ram", "dissipatore" };
+
+            Details[] MyDetails = new Details[4];
+            pt.Data = "";pt.SetProtocolID("compatibilita");
+            for (int i = 0; i < modelli.Length; i++)
+            {
+                pt.Data += modelli[i] + "#";
+            }
+
+            string cat="";
+            for (int i = 0; i < categorie.Length; i++)
+            {
+                cat += categorie[i] + "#";
+            }
+
+            cat += "\n";
+            SocketTCP.GetMutex().WaitOne();
+
+            SocketTCP.send(pt);
+            SocketTCP.sendSingleMsg(cat);
+
+            ConstructorDetail factory = new ConstructorDetail();
+           
+            for (int i = 0; i < 4; i++)
+            {
+                string detailMsg=SocketTCP.receive();
+                Details componenteF = factory.GetDetails(categorie[i]);
+                Type categoria = componenteF.GetType();
+                MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
+                Debug.WriteLine(MyDetails[i].Modello);
+            }
+            SocketTCP.GetMutex().ReleaseMutex();
+
+            string[] vet = MyDetails[0].getDetail();
+            string cpuSocket = vet[1];
+
+            vet = MyDetails[1].getDetail();
+            string cpuSocketSchedaMadre = vet[0];
+            string ramSchedaMadre = vet[1];
+
+            vet = MyDetails[2].getDetail();
+            string standardRam = vet[1];
+
+            string[] cpuSocketDissipatore = MyDetails[3].getDetail();
+
+            foreach (string tipoSocket in cpuSocketDissipatore)
+            {
+                if(tipoSocket== cpuSocket)
+                {
+                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Presente";
+                }
+            }
+
+            if(cpuSocketSchedaMadre== cpuSocket)
+            {
+                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Presente";
+            }
+
+            if(standardRam== ramSchedaMadre)
+            {
+                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Presente";
+            }
+            
+
+        }
     }
 }

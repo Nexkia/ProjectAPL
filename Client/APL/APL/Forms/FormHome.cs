@@ -22,6 +22,7 @@ using System.Diagnostics;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 
 using MessageBox = System.Windows.Forms.MessageBox;
+using APL.Cache;
 
 namespace APL.Forms
 {
@@ -33,27 +34,26 @@ namespace APL.Forms
         PcPreassemblato[] ricevuto;
         int dimRicevuto;
         FormCarrello carrelloForm;
-
-        public FormHome(FormLogin_Register f_start, string token)
+        FormPleaseWait pleaseWait;
+        public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
-            this.pt.Token = token;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello(pt.Token);
+            carrelloForm = new FormCarrello();
+
+            pleaseWait = new FormPleaseWait();
+            
         }
 
-        private async void FormHome_Load(object sender, EventArgs e)
+        private  void FormHome_Load(object sender, EventArgs e)
         {
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
             string responseData = String.Empty;
-            do
-            {
-                responseData += await SocketTCP.receive();
-            } while (!responseData.Contains("\n"));
+            responseData = SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
             int dim = 3;
             PcPreassemblato[] a = new PcPreassemblato[dim];
@@ -109,6 +109,7 @@ namespace APL.Forms
                 listItems[i].IconBackground = Color.SteelBlue;
                 listItems[i].NomeModello = pre[i].Nome;
                 listItems[i].Prezzo = pre[i].Prezzo;
+                listItems[i].setTitle();
 
                 string message = "";
                 //8 come il numero dei componenti
@@ -143,23 +144,10 @@ namespace APL.Forms
             
         }
 
-        private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
-        {
+      
 
-        }
+        private void buttonCarrello_Click(object sender, EventArgs e){carrelloForm.Show();}
 
-        private void buttonCarrello_Click(object sender, EventArgs e)
-        {
-            carrelloForm.Show();
-
-           
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -169,7 +157,6 @@ namespace APL.Forms
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pt.Token = String.Empty;
             parent.Visible = true;
             this.Close();
 
@@ -184,12 +171,12 @@ namespace APL.Forms
         private void populateItemsBuildG()
         {
             //  Console.WriteLine(pre.Stampa());
-            Profiles[] profiles = new Profiles[4];
+            Profiles[] profiles = new Profiles[5];
 
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView(),pt.Token);
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView());
 
                 switch (i)
                 {
@@ -197,47 +184,58 @@ namespace APL.Forms
 
 
                         profiles[i].Title = "Basic";
-                        profiles[i].Price = "a partire da 300€";
-                        profiles[i].Message = "\n" + "► Socket AM4 with B450 chipset" + "\n" +
-                                             "► Scheda grafica integrata" + "\n" +
-                                             "► RAM 8GB DDR4 2133 MHz" + "\n" +
-                                             "► SSD 250GB SATA" + "\n" +
-                                             "► Bassi consumi " + "\n" +
+                        profiles[i].Price = "entro i 560€";
+                        profiles[i].Message = "\n" + "► Socket AM4 " + "\n" +
+                                             "► Scheda grafica dedicata fascia bassa" + "\n" +
+                                             "► RAM massimo 8GB DDR3 " + "\n" +
+                                             "► HDD fino ad 1000GB SATA" + "\n" +
+                                             "► Bassi consumi, alimentatore da massimo 600W " + "\n" +
                                              "► Ideale per navigare in Internet, guardare film e ascoltare musica";
                         break;
 
                     case 1:
 
                         profiles[i].Title = "Advanced";
-                        profiles[i].Price = "a partire da 600€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i3 Quad Core" + "\n" +
+                        profiles[i].Price = "entro i 1200€";
+                        profiles[i].Message = "\n" + "► Socket AM4" + "\n" +
                                              "► Scheda grafica di fascia media" + "\n" +
-                                             "► RAM 8GB DDR4 2400 MHz" + "\n" +
-                                             "► SSD 500GB SATA" + "\n" +
-                                             "► Consumi medi " + "\n" +
+                                             "► RAM massimo 16GB DDR4 " + "\n" +
+                                             "► SSD massimo 1000GB SATA" + "\n" +
+                                             "► Consumi medi, massimo 750W " + "\n" +
                                              "► Consigliato per il lavoro d'ufficio e per giocare ai videogiochi casualmente";
                         break;
 
                     case 2:
 
                         profiles[i].Title = "Gamer";
-                        profiles[i].Price = "a partire da 1100€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i5 11th gen 6 - Core" + "\n" +
-                                             "► GPU NVidia RTX 3060 Ti or AMD RX 6700 XT" + "\n" +
-                                             "► RAM 16GB DDR4 3000 MHz" + "\n" +
-                                             "► SSD 1TB M.2 NVME" + "\n" +
-                                             "► Consumi Alti " + "\n" +
+                        profiles[i].Price = "entro i 1600€";
+                        profiles[i].Message = "\n" + "► Processore Intel" + "\n" +
+                                             "► Scheda grafica di fascia medio-alta" + "\n" +
+                                             "► RAM massimo 16GB DDR4" + "\n" +
+                                             "► SSD massimo 1250GB " + "\n" +
+                                             "► Consumi Alti, massimo 750W " + "\n" +
                                              "► Consigliato per appassionati di videogiochi";
                         break;
 
                     case 3:
                         profiles[i].Title = "Pro";
-                        profiles[i].Price = "a partire da 1800€";
-                        profiles[i].Message = "\n" + "► CPU Intel Core i7/ i9 11th gen" + "\n" +
-                                             "► GPU NVidia RTX 3070 / RTX 3080 Ti" + "\n" +
-                                             "► RAM 16GB DDR4 3200 MHz" + "\n" +
-                                             "► SSD 1TB M.2 NVME" + "\n" +
-                                             "► Consumi Alti " + "\n" +
+                        profiles[i].Price = "entro i 3200€";
+                        profiles[i].Message = "\n" + "► Socket TR4" + "\n" +
+                                             "► Scheda video di fascia alta" + "\n" +
+                                             "► RAM massimo 32GB DDR4 " + "\n" +
+                                             "► SSD massimo 2000GB" + "\n" +
+                                             "► Consumi Alti, massimo 1000W " + "\n" +
+                                             "► Consigliato per lavori di modellazione 3d";
+                        break;
+
+                    case 4:
+                        profiles[i].Title = "Ultra";
+                        profiles[i].Price = "entro i 4800€";
+                        profiles[i].Message = "\n" + "►  Intel " + "\n" +
+                                             "► Scheda video di fascia alta" + "\n" +
+                                             "► RAM massimo 64GB " + "\n" +
+                                             "► SSD massimo 2000GB" + "\n" +
+                                             "► Consumi Alti,massimo 1250W " + "\n" +
                                              "► Consigliato per lavori di modellazione 3d";
                         break;
 
@@ -259,7 +257,58 @@ namespace APL.Forms
             }
         }
 
-        private async void populateItemsBuilSolo()
+        #region Cache
+        private void aggiungiListaInCache(List<Componente> lista)
+        {
+            CachingProviderBase.Instance.AddItem(lista[0].Categoria+"BuildSolo", lista);
+            Debug.WriteLine("lista "+lista[0].Categoria+" inserita in cache: " + DateTime.Now + " ///////////////");
+        }
+
+        private bool recuperaListaDallaCache()
+        {
+            List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
+            List<Componente> cpuMessage = CachingProviderBase.Instance.GetItem("cpuBuildSolo");
+            List<Componente> ramMessage = CachingProviderBase.Instance.GetItem("ramBuildSolo");
+            List<Componente> schedaVideoMessage = CachingProviderBase.Instance.GetItem("schedaVideoBuildSolo");
+            List<Componente> alimentatoreMessage = CachingProviderBase.Instance.GetItem("alimentatoreBuildSolo");
+            List<Componente> casepcMessage = CachingProviderBase.Instance.GetItem("casepcBuildSolo");
+            List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
+            List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
+
+            if (schedaMadreMessage == null || cpuMessage==null || ramMessage==null ||
+                schedaVideoMessage==null || alimentatoreMessage==null || casepcMessage==null ||
+                memoriaMessage==null || dissipatoreMessage==null) 
+            { return false; }
+
+
+            List<List<Componente>> lista = new List<List<Componente>>();
+            lista.Add(schedaMadreMessage); lista.Add(cpuMessage); lista.Add(ramMessage);
+            lista.Add(schedaVideoMessage); lista.Add(alimentatoreMessage); lista.Add(casepcMessage);
+            lista.Add(memoriaMessage); lista.Add(dissipatoreMessage);
+
+            stampaComponentsSolo(lista);
+            return true;
+        }
+        #endregion
+        private void populateItemsBuilSolo()
+        {
+            
+            
+            if (recuperaListaDallaCache() == false)
+            {
+                
+                getItemsBuildSolo();
+                
+            }
+            else
+            {
+                
+                Debug.WriteLine("lista di liste componenti recuperate dalla cache///////////////////////");
+            }
+            
+        }
+
+        private void getItemsBuildSolo()
         {
             pt.SetProtocolID("buildSolo");
 
@@ -272,26 +321,22 @@ namespace APL.Forms
             List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string nElements = await SocketTCP.receive();
+                string nElements = SocketTCP.receive();
                 int n = int.Parse(nElements);
-                SocketTCP.sendSingleMsg("ok");
                 string response = String.Empty;
-                do
-                {
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
+                response = SocketTCP.receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
-                myList.Add(singleComponent);  
+                myList.Add(singleComponent);
+
+                aggiungiListaInCache(singleComponent);
             }
             SocketTCP.GetMutex().ReleaseMutex();
             Debug.WriteLine(myList.Count());
 
             stampaComponentsSolo(myList);
         }
-
 
         private void stampaComponentsSolo(List<List<Componente>> myList)
         {
@@ -329,7 +374,11 @@ namespace APL.Forms
                     flowLayoutPanel1.Controls.Clear();
                 }
                 else
-                    flowLayoutPanel1.Controls.Add(componentsSolo[index-1]);
+                {
+                    flowLayoutPanel1.Controls.Add(componentsSolo[index - 1]);
+                    
+                }
+                    
 
             }
         }
@@ -352,20 +401,18 @@ namespace APL.Forms
             }
             else
             {
+                pleaseWait.Visible = true;
                 populateItemsBuilSolo();
                 Debug.WriteLine("valore combobox: " + comboBox1.Text);
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+       
 
-
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormCatalogo fcg = new FormCatalogo(pt.Token);
+            FormCatalogo fcg = new FormCatalogo();
             fcg.Show();
         }
 
@@ -388,23 +435,24 @@ namespace APL.Forms
             }
         }
 
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
-        private void listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+        
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
 
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati(pt.Token);
             acquistiPassati.Show();
+        }
+        
 
+        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count>=8)
+            {
+                pleaseWait.Visible = false;
+            }
         }
 
        

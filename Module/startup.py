@@ -26,33 +26,6 @@ connect = connetion()
 
 
 
-
-
-def loop(sckt):
-    listaAcquistiLast = []
-    numeroAcquistiUtenteLast =[]
-    listaPreAssemblatiLast = []
-    listaDetLast = []
-    listaCompLast = []
-    while True:
-        check, listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLast, listaDetLast, listaCompLast =  \
-            checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast)
-        if check:
-            raccomandazione,raccomandazionePre = calcolaModelli(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast)
-            sckt.send(b"17 \n")
-            print(sckt.recv(256).decode())
-            print(raccomandazione)
-            for listComp in raccomandazione:
-                for comp in listComp:
-                    comp = comp+"\n"
-                    sckt.send(comp.encode())
-                    print(sckt.recv(256).decode())
-            for name in raccomandazionePre:
-                name = name + "\n"
-                sckt.send(name.encode())
-                print(sckt.recv(256).decode())
-        time.sleep(120)
-
 def checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,listaDetLast,listaCompLast):
     listaAcquisti = []
     coll = connect.getCollection("Venduti")
@@ -82,6 +55,8 @@ def checkList(listaAcquistiLast,numeroAcquistiUtenteLast,listaPreAssemblatiLast,
         listaComp.append([list(elm) for elm in x.items()])
     listaComp = getFixedList(listaComp)
     check = False
+    if listaAcquisti != listaAcquistiLast or numeroAcquistiUtente!= numeroAcquistiUtenteLast:
+        check = True
     if listaPreAssemblati != listaPreAssemblatiLast or listaDet != listaDetLast or listaComp == listaCompLast:
         check = True
     return check,listaAcquisti,numeroAcquistiUtente,listaPreAssemblati,listaDet,listaComp

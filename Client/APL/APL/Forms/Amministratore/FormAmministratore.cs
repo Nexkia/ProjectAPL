@@ -17,63 +17,105 @@ namespace APL.Forms
     public partial class FormAmministratore : Form
     {
         Protocol pt = new Protocol();
-        public FormAmministratore()
+        bool disableCloseEvent;
+        FormLogin_Register parent;
+        FormInserisciPreassemblato formInserisciPreassemblato;
+        FormInserisciComponente formInserisciComponente; 
+        public FormAmministratore(FormLogin_Register f_start)
         {
             InitializeComponent();
-           
+            this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
+            disableCloseEvent = true;
+            parent = f_start;
+            formInserisciPreassemblato = new FormInserisciPreassemblato(this);
+            formInserisciComponente = new FormInserisciComponente(this);
         }
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         private void buttonInserisciComponente_Click(object sender, EventArgs e)
         {
-            FormInserisciComponente insert = new FormInserisciComponente();
-            insert.Show();
+            
+            formInserisciComponente.Show();
+            this.Visible = false;
         }
 
-        private async void buttonEliminaComponente_Click(object sender, EventArgs e)
+        private void buttonEliminaComponente_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
-            string okmsg = await SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
         private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
         {
-            FormInserisciPreassemblato pre = new FormInserisciPreassemblato();
-            pre.Show();
+            
+            formInserisciPreassemblato.Show();
+            this.Visible = false; //invisible amministratore
         }
 
-        private  async void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
+        private  void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
             SocketTCP.GetMutex().WaitOne();
             SocketTCP.send(pt);
-            string okmsg = await SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
-        private void buttonStatistiche_Click(object sender, EventArgs e)
+        private  void buttonStatistiche_Click(object sender, EventArgs e)
         {
-           
             FormStatistiche statistiche = new FormStatistiche();
-            statistiche.setVenditeComponenti(recuperaImmagine());
+
+            pt.SetProtocolID("recupera_statistiche");
+            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.send(pt);
+            for (int i = 0; i < 3; i++)
+            {
+
+                byte[] vet =  SocketTCP.receiveBytesBlock();
+                File.WriteAllBytes("image"+Convert.ToString(i)+".txt", vet);
+                byte[] decompressed = ZLibDotnetDecompress(vet, vet.Length);
+                File.WriteAllBytes("image_compressed" + Convert.ToString(i) + ".txt.txt", decompressed);
+                statistiche.setVenditeComponenti(decompressed, i);
+            }
+
+            SocketTCP.GetMutex().ReleaseMutex();
             statistiche.Show();
         }
 
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+
+        public static byte[] ZLibDotnetDecompress(byte[] data, int size)
         {
-            using (var ms = new MemoryStream())
-            {
-                Debug.WriteLine(ms);
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
+            MemoryStream compressed = new MemoryStream(data);
+            zlib.ZInputStream inputStream = new zlib.ZInputStream(compressed);
+            Byte[] result = new byte[size]; // Since ZinputStream is inherited is binaryReader instead of stream, you can only prepare the output buffer in advance and then use the READ to get the fixed length data.
+            inputStream.read(result, 0, result.Length); // Note that the read letter here is lowercase
+            return result;
         }
-        private byte[] recuperaImmagine()
-        { 
-            Image prova = Image.FromFile("c:\\Users\\dario\\Source\\Repos\\ProjectAPL\\Client\\APL\\APL\\Img\\statistiche\\hist.png");
-            return ImageToByteArray(prova);
+
+
+        protected override void OnClosed(EventArgs e)
+        {
+            parent.Visible = true;
+            formInserisciPreassemblato.EnableCloseEvent();
+            formInserisciPreassemblato.Close();
+            base.OnClosed(e);
         }
+
     }
 }

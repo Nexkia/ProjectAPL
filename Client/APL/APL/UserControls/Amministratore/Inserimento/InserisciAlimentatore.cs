@@ -31,8 +31,11 @@ namespace APL.UserControls.Amministratore.Inserimento
             
             if (inserisciComponente.getModello()!= string.Empty && textBoxValutazione.Text != string.Empty && textBoxWatt.Text != string.Empty)
             {
-                Alimentatore elem = new Alimentatore(inserisciComponente.getModello(),
-                    int.Parse( textBoxValutazione.Text), int.Parse(textBoxWatt.Text));
+                Alimentatore elem = new Alimentatore() { 
+                    Modello = inserisciComponente.getModello(), 
+                    Valutazione = int.Parse(textBoxValutazione.Text), 
+                    Watt = int.Parse(textBoxWatt.Text) 
+                };
                 return elem;
             }
             else { return null; }

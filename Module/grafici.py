@@ -14,27 +14,9 @@ def ConvertiInUnaLista(lista):
             listaFinale.append(''.join(a))
     return listaFinale
 
-def histDataVendite():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["apl_database"]
-    listaAcquisti = []
-
-    col = db["Venduti"]
+def histDataVendite(listaAcquisti,numeroAcquistiUtente):
 
     print("\n////////////////////////////Vendite per data/////////////////////////////////")
-    dim = 0
-    for x in col.find():
-        dim = dim + 1
-
-    print("numero utente che hanno effettuato acquisti in venduti", dim)
-
-    numeroAcquistiUtente = []
-    # tutti gli acquisti di ogni utente, rappresentano un elemento della listaAcquisti
-    for num in range(0, dim, 1):
-        listaAcquisti.append(col.find().__getitem__(num))
-        numeroAcquistiUtente.append(len(col.find().__getitem__(num)))
-        print("lunghezza: ", len(col.find().__getitem__(num)), " utente n°: ", num)
-
     i = 0
 
     listeModelliPrezzo = []
@@ -89,32 +71,13 @@ def histDataVendite():
     plt.xlabel('Date')
     plt.savefig('histDataVendite.png')
     #plt.show()
-    plt.close(figure)
+    plt.close()
     im = mpimg.imread('histDataVendite.png')
 
     return im
 
-def histNumeroComponentiEPreassemblati():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["apl_database"]
-    listaAcquisti = []
-
-    col = db["Venduti"]
+def histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente):
     print("\n////////////////////////////Componenti e Preassemblati/////////////////////////////////")
-
-    dim = 0
-    for x in col.find():
-        dim = dim + 1
-
-    print("numero acquisti in venduti", dim)
-
-    numeroAcquistiUtente = []
-    # tutti gli acquisti di ogni utente, rappresentano un elemento della listaAcquisti
-    for num in range(0, dim, 1):
-        listaAcquisti.append(col.find().__getitem__(num))
-        numeroAcquistiUtente.append(len(col.find().__getitem__(num)))
-        print("lunghezza: ", len(col.find().__getitem__(num)), " utente n°: ", num)
-
     i = 0
 
     listeModelliPrezzo = []
@@ -182,7 +145,7 @@ def histNumeroComponentiEPreassemblati():
     plt.xlabel('Modelli Componenti')
     plt.savefig('histNumeroComponenti.png')
     #plt.show()
-    plt.close(figure)
+    plt.close()
 
     Pkey15 = list(sorted_Preassemblati.keys())[:15]  # i primi n keys del dizionario, dentro una lista
     Pvalue15 = list(sorted_Preassemblati.values())[:15]
@@ -202,7 +165,7 @@ def histNumeroComponentiEPreassemblati():
     plt.xlabel('Preassemblati')
     plt.savefig('histNumeroPreassemblati.png')
     #plt.show()
-    plt.close(figure)
+    plt.close()
     im1 = mpimg.imread('histNumeroComponenti.png')
     im2 = mpimg.imread('histNumeroPreassemblati.png')
 
@@ -212,8 +175,8 @@ def histNumeroComponentiEPreassemblati():
 
     return listIMG
 
-def listaImmagini():
-    listIMG = histNumeroComponentiEPreassemblati()
-    listIMG.append(histDataVendite())
+def listaImmagini(listaAcquisti,numeroAcquistiUtente):
+    listIMG = histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente)
+    listIMG.append(histDataVendite(listaAcquisti,numeroAcquistiUtente))
     return listIMG
 

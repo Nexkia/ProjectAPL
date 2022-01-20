@@ -12,28 +12,33 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using System.IO;
+
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
     {
         Protocol pt;
         CheckFields controllo;
+        FormAmministratore amministratoreForm;
         public FormLogin_Register()
         {
             InitializeComponent();
             pt = new Protocol();
             controllo = new CheckFields();
+            amministratoreForm = new FormAmministratore(this);
+            
+            
         }
         protected override void OnClosed(EventArgs e)
         {
-            pt.Token = String.Empty;
             pt.SetProtocolID("close");
             SocketTCP.sendClose(pt);
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
         }
-        private async void Register_Click(object sender, EventArgs e)
+        private void Register_Click(object sender, EventArgs e)
         {
             string result = controllo.CheckRegister(TextBoxNomeUtente.Text,
                 TextBoxEmail.Text, TextBoxIndirizzo.Text,
@@ -51,18 +56,22 @@ namespace APL.Forms
                         }
                         );
                     //conversione da Json a Byte
-                    pt.SetProtocolID("register"); pt.Token = ""; pt.Data = Json;
+                    pt.SetProtocolID("register"); pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
                     SocketTCP.send(pt);
-                    string response = await SocketTCP.receive();
+                    string response = SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
-                    if (result.Contains("Registrazione"))
+                    
+                    if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
                         TextBoxEmail.Text = string.Empty;
                         TextBoxIndirizzo.Text = string.Empty;
                         TextBoxInserisciPassword.Text = string.Empty;
                         TextBoxConfermaPassword.Text = string.Empty;
+
+                        MessageBox.Show("Registrazione avvenuta correttamente",
+                           "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -76,7 +85,7 @@ namespace APL.Forms
             }
         }
 
-        private async void Login_Click(object sender, EventArgs e)
+        private  void Login_Click(object sender, EventArgs e)
         {
             string result = controllo.CheckLogin(TextBoxLoginEmail.Text, TextBoxLoginPassword.Text);
             switch (result)
@@ -89,29 +98,24 @@ namespace APL.Forms
                         Password = TextBoxLoginPassword.Text
                     }
                     );
-                    pt.SetProtocolID("login"); pt.Token = ""; pt.Data = Json;
+                    pt.SetProtocolID("login");  pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
                     SocketTCP.send(pt);
-                    string responseData = await SocketTCP.receive();
-                    SocketTCP.sendSingleMsg("ok");
-                    string checkadmin = await SocketTCP.receive();
-                    bool admin = bool.Parse(checkadmin);
+                    string responseData = SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
-                    pt.Token = responseData;
-                    Debug.WriteLine(admin);
-                    if (responseData.Contains("errore: "))
+                    if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
                         MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }else if (admin == true)
+                    }else if (responseData.Contains("true"))
                     {
-                        FormAmministratore amm = new FormAmministratore();
-                        amm.Show();
+                        amministratoreForm.Show();
+                        this.Visible = false; //invisible form1
                     }
                     else
                     {
                         Debug.WriteLine("Login effettuato");
-                        FormHome home = new FormHome(this, pt.Token); // Instantiate a Form2 object.
+                        FormHome home = new FormHome(this); // Instantiate a Form2 object.
                         home.Show(); // Show Form2 and
                         this.Visible = false; //invisible form1
                     }
@@ -161,10 +165,10 @@ namespace APL.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
+
+
+
+
     }
 
 }
