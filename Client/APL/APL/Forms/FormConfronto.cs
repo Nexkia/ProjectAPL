@@ -43,7 +43,7 @@ namespace APL.Forms
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"#";
             }
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             ConstructorDetail factory = new ConstructorDetail();
             Details componenteF = factory.GetDetails(categoriaOriginale);
             Type categoria = componenteF.GetType();

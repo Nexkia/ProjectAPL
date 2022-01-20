@@ -33,9 +33,8 @@ namespace APL.Connections
         static public Mutex GetMutex() { 
             return mut;
         }
-        static public void send(Protocol p)
+        static public void send(string message)
         {
-            string message = p.GetProtocolID() + p.Limit + p.Data+"\n";
             Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             var lenbytes = new byte[16];
@@ -52,43 +51,7 @@ namespace APL.Connections
             Debug.WriteLine(outJson.Length);
             stream.Write(outJson, 0, outJson.Length);
         }
-        static public void sendClose(Protocol p)
-        {
-            string message = p.GetProtocolID() + p.Limit + p.Data;
-            Debug.WriteLine("Sended: {0}", message);
-            byte[] outJson = Encoding.ASCII.GetBytes(message);
-            var lenbytes = new byte[16];
-            string lenmsg = Convert.ToString(outJson.Length);
-            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
-            var difference = lenbytes.Length - len_.Length;
-
-            for (int i = 0; i < len_.Length; i++)
-            {
-                lenbytes[difference + i - 1] = len_[i];
-            }
-            lenbytes[lenbytes.Length - 1] = 10;
-            stream.Write(lenbytes, 0, lenbytes.Length);
-            Debug.WriteLine(outJson.Length);
-            stream.Write(outJson, 0, outJson.Length);
-        }
-        static public void sendSingleMsg(string message)
-        {
-            Debug.WriteLine("Sended: {0}", message);
-            byte[] outJson = Encoding.ASCII.GetBytes(message);
-            var lenbytes = new byte[16];
-            string lenmsg = Convert.ToString(outJson.Length);
-            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
-            var difference = lenbytes.Length - len_.Length;
-
-            for (int i = 0; i < len_.Length; i++)
-            {
-                lenbytes[difference + i - 1] = len_[i];
-            }
-            lenbytes[lenbytes.Length - 1] = 10;
-            stream.Write(lenbytes, 0, lenbytes.Length);
-            Debug.WriteLine(outJson.Length);
-            stream.Write(outJson, 0, outJson.Length);
-        }
+       
 
         static public string receive()
         {

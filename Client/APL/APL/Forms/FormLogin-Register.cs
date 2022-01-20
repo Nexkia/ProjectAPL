@@ -33,7 +33,8 @@ namespace APL.Forms
         protected override void OnClosed(EventArgs e)
         {
             pt.SetProtocolID("close");
-            SocketTCP.sendClose(pt);
+            pt.Data = String.Empty;
+            SocketTCP.send(pt.ToString());
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
@@ -58,7 +59,7 @@ namespace APL.Forms
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
-                    SocketTCP.send(pt);
+                    SocketTCP.send(pt.ToString());
                     string response = SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
                     
@@ -100,7 +101,7 @@ namespace APL.Forms
                     );
                     pt.SetProtocolID("login");  pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
-                    SocketTCP.send(pt);
+                    SocketTCP.send(pt.ToString());
                     string responseData = SocketTCP.receive();
                     SocketTCP.GetMutex().ReleaseMutex();
                     if (responseData.Contains("Errore"))

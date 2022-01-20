@@ -234,8 +234,8 @@ namespace APL.Forms
 
             SocketTCP.GetMutex().WaitOne();
 
-            SocketTCP.send(pt);
-            SocketTCP.sendSingleMsg(cat);
+            SocketTCP.send(pt.ToString());
+            SocketTCP.send(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
 

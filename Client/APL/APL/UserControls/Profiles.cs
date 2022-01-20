@@ -65,7 +65,7 @@ namespace APL.UserControls
 
             ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
             pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
 
 
             Dictionary<string, int> order = new Dictionary<string, int>{

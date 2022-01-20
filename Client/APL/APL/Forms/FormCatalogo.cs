@@ -232,7 +232,7 @@ namespace APL.Forms
 
             string response = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             // n elem
             string nelem = SocketTCP.receive();
             Componente[] cp = new Componente[int.Parse(nelem)];

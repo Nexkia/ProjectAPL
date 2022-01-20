@@ -22,9 +22,9 @@ namespace APL.UserControls.Amministratore
             pt.SetProtocolID("inserimento");pt.Data = JsonComponente;
             SocketTCP.GetMutex().WaitOne();
             //invio il componente
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             //invio il detail
-            SocketTCP.sendSingleMsg(JsonDetail+"\n");
+            SocketTCP.send(JsonDetail+"\n");
             SocketTCP.GetMutex().ReleaseMutex();
             return "ok";
         }

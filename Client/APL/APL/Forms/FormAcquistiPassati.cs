@@ -36,7 +36,7 @@ namespace APL.Forms
             string[] PcPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             string response = String.Empty;
             response = SocketTCP.receive();
             if (response.Contains("notFound"))

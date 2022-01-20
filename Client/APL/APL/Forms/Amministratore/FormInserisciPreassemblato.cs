@@ -64,7 +64,7 @@ namespace APL.Forms.Amministratore
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             List<List<Componente>> myList = new List<List<Componente>>();
             
             for (int i = 0; i < 8; i++)
@@ -190,7 +190,7 @@ namespace APL.Forms.Amministratore
                 string jsonPreassemblato = JsonConvert.SerializeObject(pre);
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt);
+                SocketTCP.send(pt.ToString());
                 SocketTCP.GetMutex().ReleaseMutex();
             }
         }
@@ -289,8 +289,8 @@ namespace APL.Forms.Amministratore
             cat += "\n";
             SocketTCP.GetMutex().WaitOne();
 
-            SocketTCP.send(pt);
-            SocketTCP.sendSingleMsg(cat);
+            SocketTCP.send(pt.ToString());
+            SocketTCP.send(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
            

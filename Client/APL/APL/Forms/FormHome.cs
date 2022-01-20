@@ -51,7 +51,7 @@ namespace APL.Forms
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             string responseData = String.Empty;
             responseData = SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
@@ -317,7 +317,7 @@ namespace APL.Forms
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
