@@ -1,8 +1,12 @@
-﻿using APL.UserControls.Amministratore;
+﻿using APL;
+using APL.Cache;
+using APL.UserControls.Amministratore;
+using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -60,16 +64,20 @@ namespace APL.Forms.Amministratore
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
             File.WriteAllBytes("c#.txt", byteArrayIn);
-          
+
             MemoryStream ms = new MemoryStream(byteArrayIn);
-             Image returnImage = Image.FromStream(ms);
-
-
+            Image returnImage = Image.FromStream(ms);
             //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
             //Image Image = (Image)converter.ConvertFrom(byteArrayIn);
 
             return returnImage;
         }
+
+
+
+       
+
+
 
     }
 }
