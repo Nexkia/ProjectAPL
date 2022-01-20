@@ -9,24 +9,16 @@ namespace APL.Data.Detail
 {
     public class Ram : Details
     {
-        public Ram(string modello, int valutazione, float frequenza,string standard)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.Frequenza = frequenza;
-            this.Standard = standard;
-        }
 
-        public Ram() { }
         [JsonProperty("modello_ram")]
-        public string? Modello { get; private set; }
+        public string? Modello { get; init; }
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("frequenza")]
-        public float Frequenza { get; private set; }
+        public float Frequenza { get; init; }
 
         [JsonProperty("standard")]
-        public string? Standard { get; private set; }
+        public string? Standard { get; init; }
 
 
         public string[] getDetail()
@@ -38,18 +30,6 @@ namespace APL.Data.Detail
                 Standard,
             };
             return detail;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }

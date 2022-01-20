@@ -26,8 +26,12 @@ namespace APL.UserControls.Amministratore.Inserimento
 
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && comboBoxTipo.Text != string.Empty)
             {
-                Memoria elem = new Memoria(inserisciComponente.getModello(),
-                    int.Parse(textBoxValutazione.Text), comboBoxTipo.Text);
+                Memoria elem = new Memoria()
+                {
+                    Modello =inserisciComponente.getModello(), 
+                    Valutazione=
+                    int.Parse(textBoxValutazione.Text), Tipo= comboBoxTipo.Text 
+                };
                 return elem;
             }
             else { return null; }

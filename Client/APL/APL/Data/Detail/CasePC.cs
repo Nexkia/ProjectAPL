@@ -9,21 +9,13 @@ namespace APL.Data.Detail
 {
     public class CasePC : Details
     {
-        public CasePC(string modello, int valutazione, string taglia)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.Taglia = taglia;
-        }
-
-        public CasePC(){}
 
         [JsonProperty("modello_casepc")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("taglia")]
-        public string? Taglia { get; private set; }
+        public string Taglia { get; init; }
 
 
         public string[] getDetail()
@@ -34,16 +26,5 @@ namespace APL.Data.Detail
             return detail;
         }
 
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return Valutazione;
-        }
     }
 }

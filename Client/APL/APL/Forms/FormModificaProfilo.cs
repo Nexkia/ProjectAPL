@@ -24,13 +24,12 @@ namespace APL.Forms
             this.pt = pt;   
         }
 
-        private async void FormModificaProfilo_Load(object sender, EventArgs e)
+        private void FormModificaProfilo_Load(object sender, EventArgs e)
         {
             Utente utente;
             pt.SetProtocolID("getUtente");pt.Data = String.Empty;
-            Debug.WriteLine("token: " + pt.Token);
-            SocketTCP.send(pt);
-            string user = await SocketTCP.receive();
+            SocketTCP.send(pt.ToString());
+            string user = SocketTCP.receive();
             utente = JsonConvert.DeserializeObject<Utente>(user);
             TextBoxNomeUtente.Text = utente.Nome;
             TextBoxEmail.Text = utente.Email;
@@ -38,7 +37,7 @@ namespace APL.Forms
             TextBoxIndirizzo.Text = utente.Indirizzo;
         }
 
-        private async void ButtonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             string result = controllo.CheckRegister(TextBoxNomeUtente.Text,
                 TextBoxEmail.Text, TextBoxIndirizzo.Text,
@@ -47,9 +46,9 @@ namespace APL.Forms
             {
                 case "Email o Codice Fiscale già usati in altri account":
                     pt.SetProtocolID("modificaUtente");
-                    pt.Data = TextBoxEmail.Text + "-" + TextBoxVecchiaPassword.Text;
-                    SocketTCP.send(pt);
-                    string check = await SocketTCP.receive();
+                    pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
+                    SocketTCP.send(pt.ToString());
+                    string check = SocketTCP.receive();
                     Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
@@ -59,9 +58,8 @@ namespace APL.Forms
                         mod.Indirizzo = TextBoxIndirizzo.Text;
                         mod.Password = TextBoxNuovaPassword.Text;
                         string json_update = JsonConvert.SerializeObject(mod);
-                        SocketTCP.sendSingleMsg(json_update + pt.End);
+                        SocketTCP.send(json_update);
                         //aggiorna il token, che cambia con la nuova password
-                        pt.Token = await SocketTCP.receive();
                         Debug.WriteLine(json_update);
                         this.Close();
                     }

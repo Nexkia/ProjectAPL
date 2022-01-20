@@ -39,7 +39,7 @@ namespace APL.UserControls
         public float Prezzo { set { prezzo = value; } }
         // modello = m; prezzo = p;
 
-        public string Title{  set { lblTitle.Text = "Nome: " + modello + " Prezzo: " + prezzo; } }
+        public void setTitle(){  lblTitle.Text = "Nome: " + modello + " Prezzo: " + prezzo;  }
         public Color IconBackground{  set {  panel1.BackColor = value; }}
         public string Message{set {  lblMessage.Text = value; }}
         public Image Icon{set { pictureBox1.Image = value; }}

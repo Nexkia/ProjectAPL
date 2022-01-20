@@ -27,8 +27,14 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxCpuSocket.Text != string.Empty
                  && textBoxRam.Text != string.Empty && textBoxChipset.Text != string.Empty )
             {
-                SchedaMadre elem = new SchedaMadre(inserisciComponente.getModello(), int.Parse(textBoxValutazione.Text), textBoxCpuSocket.Text,
-                    textBoxRam.Text, textBoxChipset.Text);
+                SchedaMadre elem = new SchedaMadre()
+                {
+                    Modello = inserisciComponente.getModello(), 
+                    Valutazione = int.Parse(textBoxValutazione.Text),
+                    CpuSocket = textBoxCpuSocket.Text,
+                    Ram =textBoxRam.Text, 
+                    Chipset =textBoxChipset.Text 
+                };
                 return elem;
             }
             else { return null; }

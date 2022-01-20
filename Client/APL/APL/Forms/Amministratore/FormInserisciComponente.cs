@@ -16,15 +16,35 @@ namespace APL.Forms.Amministratore
 {
     public partial class FormInserisciComponente : Form
     {
-        
-        public FormInserisciComponente()
+        bool disableCloseEvent;
+        FormAmministratore parent;
+        public FormInserisciComponente(FormAmministratore parent)
         {
             InitializeComponent();
-            
+            this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
+            disableCloseEvent = true;
+            this.parent = parent;
+
         }
 
         private string categoria;
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         public string getModello() { return textBoxModello.Text; }
         private void buttonConfermaTipoComponente_Click(object sender, EventArgs e)
         {

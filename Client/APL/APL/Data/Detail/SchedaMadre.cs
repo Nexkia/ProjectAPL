@@ -9,26 +9,17 @@ namespace APL.Data.Detail
 {
     public class SchedaMadre : Details
     {
-        public SchedaMadre(string modello, int valutazione, string cpuSocket, string ram,string chipset)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.CpuSocket = cpuSocket;
-            this.Ram = ram;
-            this.Chipset = chipset;
-        }
 
-        public SchedaMadre() { }
         [JsonProperty("modello_schedaMadre")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("cpusocket")]
-        public string? CpuSocket { get; private set; }
+        public string CpuSocket { get; init; }
         [JsonProperty("ram")]
-        public string? Ram { get; private set; }
+        public string Ram { get; init; }
         [JsonProperty("chipset")]
-        public string? Chipset { get; private set; }
+        public string Chipset { get; init; }
 
 
         public string[] getDetail()
@@ -43,22 +34,8 @@ namespace APL.Data.Detail
                 CpuSocket,
                 Ram,
                 Chipset,
-
             };
             return detail;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-
-
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }

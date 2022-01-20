@@ -12,71 +12,127 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using APL.Controlli;
+using System.Runtime.Caching;
+using System.IO;
+using APL.Cache;
 
 namespace APL.Forms
 {
     public partial class FormCatalogo : Form
     {
         Protocol pt = new Protocol();
-        public FormCatalogo(String token)
+        public FormCatalogo()
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
-            pt.Token = token;
-
             comboBoxPrezzo.Text = "Ascendente";
         }
 
-        private List<Componente> listaComponenti;
 
         private  void cpu_Click(object sender, EventArgs e)
         {
-            pt.Data =  cpuButton.Text;
-             GetElements( pt);
+            if (recuperaListaDallaCache(cpuButton.Text) == false)
+            {
+                pt.Data = cpuButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
+            
+           
         }
-
 
         private  void schedaMadre_Click(object sender, EventArgs e)
         {
-            pt.Data = schedaMadreButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(schedaMadreButton.Text) == false)
+            {
+                pt.Data = schedaMadreButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void ram_Click(object sender, EventArgs e)
         {
-            pt.Data = ramButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(ramButton.Text) == false)
+            {
+                pt.Data = ramButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void memoria_Click(object sender, EventArgs e)
         {
-            pt.Data = memoriaButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(memoriaButton.Text) == false)
+            {
+                pt.Data = memoriaButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void alimentatore_Click(object sender, EventArgs e)
         {
-            pt.Data = alimentatoreButton.Text;
-            GetElements(pt);
-
+            if (recuperaListaDallaCache(alimentatoreButton.Text) == false)
+            {
+                pt.Data = alimentatoreButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void schedaVideo_Click(object sender, EventArgs e)
         {
-            pt.Data = schedaVideoButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(schedaVideoButton.Text) == false)
+            {
+                pt.Data = schedaVideoButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void casepc_Click(object sender, EventArgs e)
         {
-            pt.Data = casepcButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(casepcButton.Text) == false)
+            {
+                pt.Data = casepcButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private  void dissipatore_Click(object sender, EventArgs e)
         {
-            pt.Data = dissipatoreButton.Text;
-            GetElements(pt);
+            if (recuperaListaDallaCache(dissipatoreButton.Text) == false)
+            {
+                pt.Data = dissipatoreButton.Text;
+                GetElements(pt);
+            }
+            else
+            {
+                Debug.WriteLine("lista recuperata dalla cache///////////////////////");
+            }
         }
 
         private void buttonAggiungi_Click(object sender, EventArgs e)
@@ -161,7 +217,7 @@ namespace APL.Forms
                     categoria = item.SubItems[4].Text.ToString();
                     Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
                 }
-                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria,pt.Token);
+                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria);
                 cf.Show();
             }
             else
@@ -171,21 +227,16 @@ namespace APL.Forms
             }
         }
 
-
-        private async void GetElements(Protocol pt) {
-            listaComponenti = new List<Componente>();
+        private  void GetElements(Protocol pt) {
+            List<Componente> listaC = new List<Componente>();
 
             string response = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             // n elem
-            string nelem = await SocketTCP.receive();
+            string nelem = SocketTCP.receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            SocketTCP.sendSingleMsg("ok");
-            do
-            {
-                response += await SocketTCP.receive();
-            } while (!response.Contains("\n"));
+            response =  SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
@@ -207,14 +258,48 @@ namespace APL.Forms
                 lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
 
+                
+                
                 //salvo tutti i componenti appena ricevuti in una lista
-                listaComponenti.Add(new Componente(cp[i].Modello, cp[i].Marca, cp[i].Prezzo, cp[i].Capienza, cp[i].Categoria));
+                listaC.Add(new Componente(cp[i].Modello, cp[i].Marca, cp[i].Prezzo, cp[i].Capienza, cp[i].Categoria));
+                
             }
-            Debug.WriteLine("fine del for");
+            //salvo la lista nella cache
+            aggiungiListaInCache(listaC);
+            
+            
         }
 
+        #region Ordina
+        private List<Componente> recuperaListaDallaListView()
+        {
+            List<Componente> lista = new List<Componente>();
+            string modello, marca,  categoria;
+            float prezzo;
+            int capienza;
+
+            foreach (ListViewItem item in listView_record.Items)
+            {
+                modello = item.SubItems[0].Text.ToString();
+                marca = item.SubItems[1].Text.ToString();
+                prezzo = float.Parse(item.SubItems[2].Text.ToString());
+                
+                categoria = item.SubItems[4].Text.ToString();
+                if (categoria != "ram" && categoria != "memoria")
+                { capienza = 0; }
+                else
+                {
+                capienza = int.Parse(item.SubItems[3].Text.ToString());
+                }
+
+                lista.Add(new Componente(modello, marca, prezzo, capienza, categoria));
+            }
+
+            return lista;
+        }
         private void buttonOrdinaPerPrezzo_Click(object sender, EventArgs e)
         {
+            List<Componente> listaComponenti = recuperaListaDallaListView();
             if (listaComponenti != null)
             {
                 if (comboBoxPrezzo.Text == "Ascendente")
@@ -228,12 +313,14 @@ namespace APL.Forms
                     cambiaOrdineListView(listaComponentiOrdinata);
                 }
             }
-            
-        }
 
+            
+
+        }
 
         private void buttonOrdinaPerMarca_Click(object sender, EventArgs e)
         {
+            List<Componente> listaComponenti = recuperaListaDallaListView();
             if (listaComponenti != null)
             {
                 if (comboBoxPrezzo.Text == "Ascendente")
@@ -247,11 +334,14 @@ namespace APL.Forms
                     cambiaOrdineListView(listaComponentiOrdinata);
                 }
             }
+
+            
         }
 
         private void buttonOrdinaPerCapienza_Click(object sender, EventArgs e)
         {
-            if (listaComponenti != null)
+            List<Componente> listaComponenti = recuperaListaDallaListView();
+            if (listView_record.Items.Count>0)
             {
                 if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria=="ram" || listaComponenti[0].Categoria == "memoria"))
                 {
@@ -264,10 +354,13 @@ namespace APL.Forms
                     cambiaOrdineListView(listaComponentiOrdinata);
                 }
             }
+
+          
         }
 
         private void buttonOrdinaPerModello_Click(object sender, EventArgs e)
         {
+            List<Componente> listaComponenti = recuperaListaDallaListView();
             if (listaComponenti != null)
             {
                 if (comboBoxPrezzo.Text == "Ascendente")
@@ -281,6 +374,8 @@ namespace APL.Forms
                     cambiaOrdineListView(listaComponentiOrdinata);
                 }
             }
+
+           
         }
 
         private void cambiaOrdineListView(IOrderedEnumerable<Componente> listaComponentiOrdinata)
@@ -304,7 +399,40 @@ namespace APL.Forms
 
 
         }
+        #endregion
 
-   
-    }
+
+        #region Cache
+        private void aggiungiListaInCache(List<Componente> lista)
+        {
+            CachingProviderBase.Instance.AddItem(lista[0].Categoria, lista);
+            Debug.WriteLine("lista inserita in cache: "+DateTime.Now+" ///////////////");
+        }
+
+        private bool recuperaListaDallaCache(string categoria)
+        {
+            List<Componente> message = CachingProviderBase.Instance.GetItem(categoria);
+
+            if (message == null){return false;}
+
+            listView_record.Items.Clear();
+            foreach (Componente item in message)
+            {
+                ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
+                lvitem.SubItems.Add("" + item.Marca + "");
+                lvitem.SubItems.Add("" + item.Prezzo + "");
+
+                if (item.Categoria != "ram" && item.Categoria != "memoria")
+                { lvitem.SubItems.Add(""); }
+                else { lvitem.SubItems.Add("" + item.Capienza + ""); }
+
+                lvitem.SubItems.Add("" + item.Categoria + "");
+                listView_record.Items.Add(lvitem);
+
+            }
+                return true;
+        }
+        #endregion
+    }   
+    
 }

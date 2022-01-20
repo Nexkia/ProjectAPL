@@ -12,10 +12,9 @@ namespace APL.Forms
     public partial class FormCheckOut : Form
     {
         Protocol pt = new Protocol();
-        public FormCheckOut(string Token)
+        public FormCheckOut()
         {
             InitializeComponent();
-            pt.Token = Token;
         }
 
         private float totale;
@@ -103,7 +102,7 @@ namespace APL.Forms
         }
 
 
-        private async void buttonConfermaCheckout_Click(object sender, EventArgs e)
+        private  void buttonConfermaCheckout_Click(object sender, EventArgs e)
         {
             meseScadenza = textBoxMese.Text;
             annoScadenza = textBoxAnno.Text;
@@ -128,7 +127,6 @@ namespace APL.Forms
                 string Json = System.Text.Json.JsonSerializer.Serialize(
                     new
                     {
-                        id_token = pt.Token,
                         acquisto = new
                         {
                             Lista = CheckOut,
@@ -139,10 +137,9 @@ namespace APL.Forms
                     );
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
                 SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt);
-                string okmsg = await SocketTCP.receive();
-                SocketTCP.sendSingleMsg(JsonInfop+"\n");
-                string response = await SocketTCP.receive();
+                SocketTCP.send(pt.ToString());
+                SocketTCP.send(JsonInfop+"\n");
+                string response = SocketTCP.receive();
                 SocketTCP.GetMutex().ReleaseMutex();
                 if (response.Contains("done")) {
                     Debug.WriteLine(response);
@@ -159,16 +156,15 @@ namespace APL.Forms
             }
         }
 
-        private async void FormCheckOut_Load(object sender, EventArgs e)
+        private  void FormCheckOut_Load(object sender, EventArgs e)
         {
             calcolaTotale();
 
             InfoPayment infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
-            Debug.WriteLine("token: " + pt.Token);
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
-            string infop = await SocketTCP.receive();
+            SocketTCP.send(pt.ToString());
+            string infop =  SocketTCP.receive();
             SocketTCP.GetMutex().ReleaseMutex();
 
             if (!infop.Contains("notFound"))

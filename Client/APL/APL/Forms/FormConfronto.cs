@@ -23,11 +23,10 @@ namespace APL.Forms
         string[] modelli;
         string[] prezzi;
         string[] capienze;
-        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria, string Token)
+        public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria)
         {
             InitializeComponent();
             pt.SetProtocolID("confronto");
-            pt.Token = Token;
             this.modelli = modelli;
             this.prezzi = prezzi;
             this.capienze = capienze;
@@ -39,12 +38,12 @@ namespace APL.Forms
 
         }
 
-        private async void Confronto_Load(object sender, EventArgs e1)
+        private  void Confronto_Load(object sender, EventArgs e1)
         {
             for (int i = 0; i < modelli.Length; i++) {
-                pt.Data += modelli[i]+"!";
+                pt.Data += modelli[i]+"#";
             }
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             ConstructorDetail factory = new ConstructorDetail();
             Details componenteF = factory.GetDetails(categoriaOriginale);
             Type categoria = componenteF.GetType();
@@ -53,11 +52,10 @@ namespace APL.Forms
 
             for (int i = 0; i < modelli.Length; i++)
             {
-                SocketTCP.sendSingleMsg("ok");
-                string response = await SocketTCP.receive();
+                string response = SocketTCP.receive();
                 Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
                 MyList.Add(a);
-                Debug.WriteLine("getmodello: " + a.getModello());
+                Debug.WriteLine("getmodello: " + a.Modello);
     
             }
             ConfrontaParametri(MyList, categoriaOriginale, capienze);
@@ -178,8 +176,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -211,9 +209,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -235,7 +233,7 @@ namespace APL.Forms
                    
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, a[0], b[0]);//frequenza
                                                     //socket
@@ -253,9 +251,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -276,7 +274,7 @@ namespace APL.Forms
                         
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//frequenza
                                                               //socket
@@ -302,8 +300,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -331,9 +329,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -350,7 +348,7 @@ namespace APL.Forms
                    
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, a[0], b[0]);//Tdp
                     ColoraLabelDet3(sc, a[1], b[1]);//Vram
@@ -367,9 +365,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -385,7 +383,7 @@ namespace APL.Forms
 
  
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//Tdp
                         ColoraLabelDet3(sc, a[1], b[1], c[1]);//Vram
@@ -407,8 +405,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -434,9 +432,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -454,7 +452,7 @@ namespace APL.Forms
 
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     //cpu socket
                     //ram
@@ -469,9 +467,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -487,7 +485,7 @@ namespace APL.Forms
                         sc.labelMod3Det4Name(c[2]);
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                        //cpu socket
                        //ram
@@ -508,8 +506,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -538,9 +536,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -559,7 +557,7 @@ namespace APL.Forms
 
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                                                     
                     ColoraLabelDet2(sc, a[0], b[0]);//frequenza
@@ -577,9 +575,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -596,7 +594,7 @@ namespace APL.Forms
 
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//frequenza
                                                               //Standard
@@ -618,8 +616,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -638,9 +636,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -653,7 +651,7 @@ namespace APL.Forms
 
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, a[0], b[0]);//watt
 
@@ -667,9 +665,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -680,7 +678,7 @@ namespace APL.Forms
 
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//watt
 
@@ -703,8 +701,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -727,9 +725,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -745,7 +743,7 @@ namespace APL.Forms
 
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                                                             //cpu socket
 
@@ -759,9 +757,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -775,7 +773,7 @@ namespace APL.Forms
 
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                                                                             //cpu socket
 
@@ -797,8 +795,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -819,9 +817,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -837,7 +835,7 @@ namespace APL.Forms
                     sc.labelMod2Det3Name(capienze[1]);
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, tipo[0], tipo[1]);//Tipo
                     ColoraLabelDet3(sc, capienze[0], capienze[1]);//capienza
@@ -852,9 +850,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -869,7 +867,7 @@ namespace APL.Forms
                         sc.labelMod3Det3Name(capienze[2]);
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, tipo[0], tipo[1], tipo[2]);//Tipo
                         ColoraLabelDet3(sc, capienze[0], capienze[1],capienze[2]);//capienza
@@ -892,8 +890,8 @@ namespace APL.Forms
 
 
 
-                sc.labelModello1Name(componente1.getModello());
-                sc.labelValutazione1Name(Convert.ToString(componente1.getValutazione()));
+                sc.labelModello1Name(componente1.Modello);
+                sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
 
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
@@ -912,9 +910,9 @@ namespace APL.Forms
 
                     Details componente2 = (Details)componenti[1];
 
-                    Debug.WriteLine(componente2.getModello());
-                    sc.labelModello2Name(componente2.getModello());
-                    sc.labelValutazione2Name(Convert.ToString(componente2.getValutazione()));
+                    Debug.WriteLine(componente2.Modello);
+                    sc.labelModello2Name(componente2.Modello);
+                    sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
 
 
                     //prezzo
@@ -929,7 +927,7 @@ namespace APL.Forms
 
 
                     //colora i campi con i valori migliori
-                    ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()));
+                    ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, tipo[0], tipo[1]);//Tipo
 
@@ -943,9 +941,9 @@ namespace APL.Forms
 
 
                         Details componente3 = (Details)componenti[2];
-                        Debug.WriteLine(componente3.getModello());
-                        sc.labelModello3Name(componente3.getModello());
-                        sc.labelValutazione3Name(Convert.ToString(componente3.getValutazione()));
+                        Debug.WriteLine(componente3.Modello);
+                        sc.labelModello3Name(componente3.Modello);
+                        sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
                         //prezzo
                         sc.labelMod3Det1Name(prezzi[2]);
@@ -957,7 +955,7 @@ namespace APL.Forms
                          tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0],c[0]);
 
                         //colora i campi che hanno il valore migliore
-                        ColoraValutazione(sc, Convert.ToString(componente1.getValutazione()), Convert.ToString(componente2.getValutazione()), Convert.ToString(componente3.getValutazione()));
+                        ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, tipo[0], tipo[1], tipo[2]);//Tipo
 

@@ -12,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 using APL.Data;
 
 namespace APL.Forms
@@ -20,17 +19,16 @@ namespace APL.Forms
     public partial class FormAcquistiPassati : Form
     {
         Protocol pt = new Protocol();
-        public FormAcquistiPassati(string Token)
+        public FormAcquistiPassati()
         {
             InitializeComponent();
-            pt.Token = Token;
         }
 
 
       
        
 
-        private async void FormAcquistiPassati_Load(object sender, EventArgs e)
+        private void FormAcquistiPassati_Load(object sender, EventArgs e)
         {
             pt.SetProtocolID("storico"); pt.Data = String.Empty;
             PcAssemblato[] PcAssemblati;
@@ -38,33 +36,25 @@ namespace APL.Forms
             string[] PcPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.send(pt.ToString());
             string response = String.Empty;
-            response = await SocketTCP.receive();
+            response = SocketTCP.receive();
             if (response.Contains("notFound"))
             {
                 SocketTCP.GetMutex().ReleaseMutex();
                 return;
             }
             int numeroDiAcquisti = int.Parse(response);
-            SocketTCP.sendSingleMsg("ok");
             response = String.Empty;
             for (int i = 0; i < numeroDiAcquisti; i++){
-                do
-                {
-                    // pcassemblati
-                    response += await SocketTCP.receive();
-                } while (!response.Contains("\n"));
+
+                response =  SocketTCP.receive();
                 PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
-                SocketTCP.sendSingleMsg("ok");
-                response = await SocketTCP.receive();
+                response = SocketTCP.receive();
                 PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                SocketTCP.sendSingleMsg("ok");
-                response = await SocketTCP.receive();
-                SocketTCP.sendSingleMsg("ok");
+                response = SocketTCP.receive();
                 PrezzoTot = response;
-                response = await SocketTCP.receive();
-                SocketTCP.sendSingleMsg("ok");
+                response = SocketTCP.receive();
                 DateTime data = DateTime.Parse(response);
                 response = String.Empty;
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto

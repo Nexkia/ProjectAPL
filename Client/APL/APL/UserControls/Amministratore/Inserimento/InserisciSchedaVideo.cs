@@ -27,8 +27,13 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty 
                 && textBoxTdp.Text != string.Empty && textBoxVram.Text != string.Empty )
             {
-                SchedaVideo elem = new SchedaVideo(inserisciComponente.getModello(),
-                    int.Parse(textBoxValutazione.Text), int.Parse(textBoxTdp.Text),int.Parse(textBoxVram.Text));
+                SchedaVideo elem = new SchedaVideo()
+                {
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione = int.Parse(textBoxValutazione.Text), 
+                    Tdp = int.Parse(textBoxTdp.Text),
+                    Vram = int.Parse(textBoxVram.Text) 
+                };
                 return elem;
             }
             else { return null; }

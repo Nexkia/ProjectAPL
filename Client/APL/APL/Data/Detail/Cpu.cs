@@ -10,31 +10,20 @@ namespace APL.Data.Detail
     public class Cpu : Details
     {
        
-            public Cpu(string modello, int valutazione, float frequenza,string socket,int core,int thread)
-            {
-                this.Modello = modello;
-                this.Valutazione = valutazione;
-                this.Frequenza = frequenza;
-                this.Socket = socket;
-                this.Core = core;
-                this.Thread = thread;
-            }
 
-            public Cpu() { }
-
-            [JsonProperty("modello_cpu")]
-        public string? Modello { get; private set; }
+        [JsonProperty("modello_cpu")]
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
 
         [JsonProperty("frequenza")]
-        public float Frequenza { get; private set; }
+        public float Frequenza { get; init; }
         [JsonProperty("socket")]
-        public string? Socket { get; private set; }
+        public string Socket { get; init; }
         [JsonProperty("core")]
-        public int Core { get; private set; }
+        public int Core { get; init; }
         [JsonProperty("thread")]
-        public int Thread { get; private set; }
+        public int Thread { get; init; }
 
 
 
@@ -49,18 +38,6 @@ namespace APL.Data.Detail
                 Convert.ToString(Thread),
             };
             return detail;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }
