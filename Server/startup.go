@@ -2,7 +2,7 @@ package main
 
 import (
 	"Server/data"
-	"context"
+	"Server/utils"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
@@ -27,9 +27,6 @@ const (
 var flag_check bool
 
 func invio(mongodb *mongo.Database) {
-
-	coll_comp := mongodb.Collection("componenti")
-	coll_detail := mongodb.Collection("detail")
 	rand.Seed(time.Now().UnixNano())
 	content, err := ioutil.ReadFile("database/case.txt")
 	if err != nil {
@@ -41,7 +38,7 @@ func invio(mongodb *mongo.Database) {
 	cspc_detail := data.CasePCDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			cspc.Categoria = "casepc"
 			cspc.Marca = strings.Title(strings.ToLower(elem[1]))
@@ -54,8 +51,8 @@ func invio(mongodb *mongo.Database) {
 			cspc_detail.Modello = modello
 			cspc_detail.Taglia = elem[3]
 			cspc_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), cspc)
-			coll_detail.InsertOne(context.TODO(), cspc_detail)
+			utils.InsertOne("componenti", mongodb, cspc)
+			utils.InsertOne("detail", mongodb, cspc_detail)
 		}
 	}
 	content, err = ioutil.ReadFile("database/cpu.txt")
@@ -69,10 +66,10 @@ func invio(mongodb *mongo.Database) {
 
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			cpu.Categoria = "cpu"
-			cpu.Marca = elem[1]
+			cpu.Marca = strings.Title(strings.ToLower(elem[1]))
 			cpu.Modello = modello
 			if elem[8] != "" {
 				cpu.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
@@ -85,8 +82,8 @@ func invio(mongodb *mongo.Database) {
 			cpu_detail.Core, _ = strconv.Atoi(elem[6])
 			cpu_detail.Thread, _ = strconv.Atoi(elem[7])
 			cpu_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), cpu)
-			coll_detail.InsertOne(context.TODO(), cpu_detail)
+			utils.InsertOne("componenti", mongodb, cpu)
+			utils.InsertOne("detail", mongodb, cpu_detail)
 		}
 	}
 
@@ -100,10 +97,10 @@ func invio(mongodb *mongo.Database) {
 	gpu_detail := data.SchedaVideoDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			gpu.Categoria = "schedaVideo"
-			gpu.Marca = elem[1]
+			gpu.Marca = strings.Title(strings.ToLower(elem[1]))
 			gpu.Modello = modello
 			if elem[8] != "" {
 				gpu.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
@@ -114,8 +111,8 @@ func invio(mongodb *mongo.Database) {
 			gpu_detail.Vram, _ = strconv.Atoi(elem[4])
 			gpu_detail.Tdp, _ = strconv.Atoi(elem[6])
 			gpu_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), gpu)
-			coll_detail.InsertOne(context.TODO(), gpu_detail)
+			utils.InsertOne("componenti", mongodb, gpu)
+			utils.InsertOne("detail", mongodb, gpu_detail)
 		}
 	}
 
@@ -129,10 +126,10 @@ func invio(mongodb *mongo.Database) {
 	psu_detail := data.AlimentatoreDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			psu.Categoria = "alimentatore"
-			psu.Marca = elem[1]
+			psu.Marca = strings.Title(strings.ToLower(elem[1]))
 			psu.Modello = modello
 			if elem[5] != "" {
 				psu.Prezzo, _ = strconv.ParseFloat(elem[5], 64)
@@ -142,8 +139,8 @@ func invio(mongodb *mongo.Database) {
 			psu_detail.Modello = modello
 			psu_detail.Watt, _ = strconv.Atoi(elem[3])
 			psu_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), psu)
-			coll_detail.InsertOne(context.TODO(), psu_detail)
+			utils.InsertOne("componenti", mongodb, psu)
+			utils.InsertOne("detail", mongodb, psu_detail)
 		}
 	}
 
@@ -157,10 +154,10 @@ func invio(mongodb *mongo.Database) {
 	ram_detail := data.RamDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			ram.Categoria = "ram"
-			ram.Marca = elem[1]
+			ram.Marca = strings.Title(strings.ToLower(elem[1]))
 			ram.Modello = modello
 			ram.Capienza, _ = strconv.Atoi(elem[3])
 			if elem[8] != "" {
@@ -172,8 +169,8 @@ func invio(mongodb *mongo.Database) {
 			ram_detail.Standard = elem[4]
 			ram_detail.Frequenza, _ = strconv.Atoi(elem[5])
 			ram_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), ram)
-			coll_detail.InsertOne(context.TODO(), ram_detail)
+			utils.InsertOne("componenti", mongodb, ram)
+			utils.InsertOne("detail", mongodb, ram_detail)
 		}
 	}
 
@@ -187,10 +184,10 @@ func invio(mongodb *mongo.Database) {
 	hdd_detail := data.MemoriaDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			hdd.Categoria = "memoria"
-			hdd.Marca = elem[1]
+			hdd.Marca = strings.Title(strings.ToLower(elem[1]))
 			hdd.Modello = modello
 			hdd.Capienza, _ = strconv.Atoi(elem[3])
 			hdd.Capienza = hdd.Capienza * 1000
@@ -202,8 +199,8 @@ func invio(mongodb *mongo.Database) {
 			hdd_detail.Modello = modello
 			hdd_detail.Tipo = "hdd"
 			hdd_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), hdd)
-			coll_detail.InsertOne(context.TODO(), hdd_detail)
+			utils.InsertOne("componenti", mongodb, hdd)
+			utils.InsertOne("detail", mongodb, hdd_detail)
 		}
 	}
 
@@ -217,10 +214,10 @@ func invio(mongodb *mongo.Database) {
 	ssd_detail := data.MemoriaDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			ssd.Categoria = "memoria"
-			ssd.Marca = elem[1]
+			ssd.Marca = strings.Title(strings.ToLower(elem[1]))
 			ssd.Modello = modello
 			ssd.Capienza, _ = strconv.Atoi(elem[3])
 			if elem[8] != "" {
@@ -235,8 +232,8 @@ func invio(mongodb *mongo.Database) {
 			ssd_detail.Modello = modello
 			ssd_detail.Tipo = "ssd"
 			ssd_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), ssd)
-			coll_detail.InsertOne(context.TODO(), ssd_detail)
+			utils.InsertOne("componenti", mongodb, ssd)
+			utils.InsertOne("detail", mongodb, ssd_detail)
 		}
 	}
 
@@ -250,10 +247,10 @@ func invio(mongodb *mongo.Database) {
 	cpucooler_detail := data.DissipatoreDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			cpucooler.Categoria = "dissipatore"
-			cpucooler.Marca = elem[1]
+			cpucooler.Marca = strings.Title(strings.ToLower(elem[1]))
 			cpucooler.Modello = modello
 			if elem[7] != "" {
 				cpucooler.Prezzo, _ = strconv.ParseFloat(elem[7], 64)
@@ -272,8 +269,8 @@ func invio(mongodb *mongo.Database) {
 			}
 			cpucooler_detail.CpuSocket = listSocketL
 			cpucooler_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), cpucooler)
-			coll_detail.InsertOne(context.TODO(), cpucooler_detail)
+			utils.InsertOne("componenti", mongodb, cpucooler)
+			utils.InsertOne("detail", mongodb, cpucooler_detail)
 		}
 	}
 
@@ -287,10 +284,10 @@ func invio(mongodb *mongo.Database) {
 	mb_detail := data.SchedaMadreDetail{}
 	for _, elem := range result {
 		modello := strings.TrimSuffix(elem[2], " ")
-		flag_check = controlloModello(modello, coll_comp)
+		flag_check = controlloModello(modello, mongodb)
 		if flag_check {
 			mb.Categoria = "schedaMadre"
-			mb.Marca = elem[1]
+			mb.Marca = strings.Title(strings.ToLower(elem[1]))
 			mb.Modello = modello
 			if elem[8] != "" {
 				mb.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
@@ -303,23 +300,111 @@ func invio(mongodb *mongo.Database) {
 			ram_number := rand.Intn((max_ram-min_ram)+1) + min_ram
 			mb_detail.Ram = "DDR" + strconv.Itoa(ram_number)
 			mb_detail.Valutazione = rand.Intn((max_val-min_val)+1) + min_val
-			coll_comp.InsertOne(context.TODO(), mb)
-			coll_detail.InsertOne(context.TODO(), mb_detail)
+			utils.InsertOne("componenti", mongodb, mb)
+			utils.InsertOne("detail", mongodb, mb_detail)
 		}
 	}
 
 	/*
-		Creazione PcPreassemblati
-
+			Creazione PcPreassemblati
+		// 		{Prezzo: 150, Marca: "intel", Modello: "i5-2780", Categoria: "cpu"},
+		// 		{Prezzo: 100, Marca: "Gigabyte", Modello: "Hi500", Categoria: "schedaMadre"},
+		// 		{Prezzo: 350, Marca: "nvidia", Modello: "gtx 1660", Categoria: "schedaVideo"},
+		// 		{Prezzo: 60, Marca: "CoolerMaster", Modello: "CS550", Categoria: "casepc"},
+		// 		{Prezzo: 35, Marca: "Artic", Modello: "Duos", Categoria: "dissipatore"},
+		// 		{Prezzo: 30, Marca: "CoolerMaster", Modello: "CX300", Categoria: "alimentatore"},
+		// 		{Prezzo: 50, Marca: "Samsung", Capienza: 500, Modello: "Evo 850", Categoria: "memoria"},
+		// 		{Prezzo: 100, Marca: "Corsair", Capienza: 16, Modello: "Ballistix", Categoria: "ram"},
+		// 	},
+		// }
 	*/
-	//categorie := []string{"schedaMadre,cpu,ram,dissipatore,"}
-	//filter := bson.D{{"$match", bson.D{{"categoria", "cpu"}}}, {"$sample", bson.D{{"size", 1}}}}
-
+	categorie := []string{"schedaVideo", "casepc", "alimentatore", "memoria"}
+	n_pre := 5
+	min_price_pre := 1000
+	max_price_pre := 5000
+	for i := 0; i < n_pre; i++ {
+		pre := data.PcpreAssemblato{}
+		comp := data.Componente{}
+		filter_comp := bson.D{{"$match", bson.D{{"categoria", "schedaMadre"}}}}
+		filter_sample := bson.D{{"$sample", bson.D{{"size", 1}}}}
+		res := utils.Aggregate("componenti", mongodb, filter_comp, filter_sample)
+		bsonUnmarshaling(res[0], &comp)
+		pre.Componenti[1] = comp
+		/* Dai detail della schedaMadre ottengo tutte le caratterische per
+		i successivi componenti compatibili
+		*/
+		mb_ := data.SchedaMadreDetail{}
+		filter := bson.D{{"modello_" + "schedaMadre", comp.Modello}}
+		utils.FindOne(filter, "detail", mongodb).Decode(&mb_)
+		/// CPU
+		filter_comp = bson.D{{"$match", bson.D{{"socket", mb_.CpuSocket}}}}
+		cpu_ := data.CpuDetail{}
+		res = utils.Aggregate("detail", mongodb, filter_comp, filter_sample)
+		bsonUnmarshaling(res[0], &cpu_)
+		filter = bson.D{{"modello", cpu_.Modello}}
+		comp = data.Componente{}
+		utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
+		pre.Componenti[0] = comp
+		// RAM
+		filter_comp = bson.D{{"$match", bson.D{{"standard", mb_.Ram}}}}
+		ram_ := data.RamDetail{}
+		res = utils.Aggregate("detail", mongodb, filter_comp, filter_sample)
+		bsonUnmarshaling(res[0], &ram_)
+		filter = bson.D{{"modello", ram_.Modello}}
+		comp = data.Componente{}
+		utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
+		pre.Componenti[7] = comp
+		// DISSIPATORE
+		filter_comp = bson.D{{"$match", bson.D{{"cpusocket", mb_.CpuSocket}}}}
+		cooler_ := data.DissipatoreDetail{}
+		res = utils.Aggregate("detail", mongodb, filter_comp, filter_sample)
+		bsonUnmarshaling(res[0], &cooler_)
+		filter = bson.D{{"modello", cooler_.Modello}}
+		comp = data.Componente{}
+		utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
+		pre.Componenti[4] = comp
+		/// Componenti che non richiedono compatibilità
+		for _, categoria := range categorie {
+			comp = data.Componente{}
+			filter_comp = bson.D{{"$match", bson.D{{"categoria", categoria}}}}
+			res = utils.Aggregate("componenti", mongodb, filter_comp, filter_sample)
+			bsonUnmarshaling(res[0], &comp)
+			switch categoria {
+			case "schedaVideo":
+				pre.Componenti[2] = comp
+			case "casepc":
+				pre.Componenti[3] = comp
+			case "alimentatore":
+				pre.Componenti[5] = comp
+			case "memoria":
+				pre.Componenti[6] = comp
+			}
+		}
+		pre.Nome = "pre_" + strconv.Itoa(i)
+		pre.Prezzo = float64(rand.Intn((max_price_pre-min_price_pre)+1) + min_price_pre)
+		check := controlloNome(pre.Nome, mongodb)
+		if check {
+			utils.InsertOne("preAssemblati", mongodb, pre)
+		}
+	}
 }
 
-func controlloModello(modello string, coll *mongo.Collection) bool {
+func controlloModello(modello string, mongodb *mongo.Database) bool {
 	filter := bson.D{{"modello", modello}}
 	var result bson.D
-	err := coll.FindOne(context.TODO(), filter).Decode(&result)
+	err := utils.FindOne(filter, "componenti", mongodb).Decode(&result)
+	return err != nil
+}
+
+func bsonUnmarshaling(in interface{}, out interface{}) interface{} {
+	in_byte, _ := bson.Marshal(in)
+	bson.Unmarshal(in_byte, out)
+	return out
+}
+
+func controlloNome(nome string, mongodb *mongo.Database) bool {
+	filter := bson.D{{"nome", nome}}
+	var result bson.D
+	err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&result)
 	return err != nil
 }

@@ -3,7 +3,6 @@ package service
 import (
 	"Server/data"
 	"Server/utils"
-	"context"
 	"encoding/json"
 	"net"
 	"strconv"
@@ -25,11 +24,8 @@ func SendCatalogo(categoria string, conn net.Conn, mongodb *mongo.Database) {
 }
 
 func getByCategoria(categoria string, conn net.Conn, mongodb *mongo.Database) []data.Componente {
-	coll := mongodb.Collection("componenti")
 	comp := []data.Componente{}
 	filter := bson.D{{"categoria", categoria}}
-	cursor, _ := coll.Find(context.TODO(), filter)
-	defer cursor.Close(context.TODO())
-	cursor.All(context.TODO(), &comp)
+	utils.Find("componenti", mongodb, filter, &comp)
 	return comp
 }
