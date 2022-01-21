@@ -177,6 +177,8 @@ def histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente):
 
 def listaImmagini(listaAcquisti,numeroAcquistiUtente):
     listIMG = histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente)
+    print(len(listIMG))
     listIMG.append(histDataVendite(listaAcquisti,numeroAcquistiUtente))
+    print(len(listIMG))
     return listIMG
 
