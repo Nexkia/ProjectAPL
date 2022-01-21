@@ -11,6 +11,7 @@ namespace APL.Connections
         private string ProtocolID {get;set;}
         public string Data {get;set;}
         public string Limit = " ";
+        public string End = "\n";
         private Dictionary<string, string> FuncDict = new Dictionary<string, string>
         {
             { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},
@@ -30,6 +31,10 @@ namespace APL.Connections
             if (this.ProtocolID == null)
                 return String.Empty;
             return ProtocolID;
+        }
+        public override string ToString()
+        {
+            return GetProtocolID()+Limit+Data+End;
         }
     }
 }

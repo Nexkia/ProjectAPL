@@ -58,7 +58,7 @@ namespace APL.Forms
         {
             pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.Send(pt.ToString());
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
@@ -73,7 +73,7 @@ namespace APL.Forms
         {
             pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.Send(pt.ToString());
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
@@ -83,7 +83,7 @@ namespace APL.Forms
 
             pt.SetProtocolID("recupera_statistiche");
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 3; i++)
             {
 

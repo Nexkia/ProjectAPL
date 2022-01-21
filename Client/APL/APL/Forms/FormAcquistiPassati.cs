@@ -36,9 +36,9 @@ namespace APL.Forms
             string[] PcPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt);
+            SocketTCP.Send(pt.ToString());
             string response = String.Empty;
-            response = SocketTCP.receive();
+            response = SocketTCP.Receive();
             if (response.Contains("notFound"))
             {
                 SocketTCP.GetMutex().ReleaseMutex();
@@ -48,13 +48,13 @@ namespace APL.Forms
             response = String.Empty;
             for (int i = 0; i < numeroDiAcquisti; i++){
 
-                response =  SocketTCP.receive();
+                response =  SocketTCP.Receive();
                 PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 PrezzoTot = response;
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 DateTime data = DateTime.Parse(response);
                 response = String.Empty;
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
