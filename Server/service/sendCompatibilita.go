@@ -6,16 +6,15 @@ import (
 	"encoding/json"
 	"net"
 	"strings"
-	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SendCompatibilita(out chan string, msg string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func SendCompatibilita(msg string, conn net.Conn, mongodb *mongo.Database) {
 	msg_rcv := strings.Trim(msg, "\n")
 	msg_split := strings.Split(msg_rcv, "#")
-	lock.Lock()
+
 	byte_categoria := utils.Receive(conn)
 	categ_split := strings.Split(string(byte_categoria), "#")
 	for i := 0; i < len(msg_split)-1; i++ {
@@ -24,13 +23,11 @@ func SendCompatibilita(out chan string, msg string, conn net.Conn, mongodb *mong
 		err := utils.FindOne(filter, "detail", mongodb).Decode(detail)
 		if err != nil {
 			utils.Send([]byte("NotFound"), conn)
-			lock.Unlock()
-			out <- "done"
+
 			return
 		}
 		json_result, _ := json.Marshal(detail)
 		utils.Send(json_result, conn)
 	}
-	lock.Unlock()
-	out <- "done"
+
 }

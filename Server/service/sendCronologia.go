@@ -7,22 +7,20 @@ import (
 	"net"
 	"strconv"
 	"strings"
-	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 	filter := bson.D{{"password", token}}
 	u := data.Utente{}
-	lock.Lock()
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 
@@ -31,8 +29,7 @@ func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo
 	err = utils.FindOne(filter, "Venduti", mongodb).Decode(&result)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 	Pc := data.PcAssemblato{}
@@ -82,6 +79,5 @@ func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo
 			utils.Send([]byte(data), conn)
 		}
 	}
-	lock.Unlock()
-	out <- "done"
+
 }

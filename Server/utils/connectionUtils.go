@@ -8,7 +8,8 @@ import (
 )
 
 func Send(msg []byte, conn net.Conn) {
-	len_msg := strconv.Itoa(len(msg))
+	bytemsg := []byte(msg)
+	len_msg := strconv.Itoa(len(bytemsg))
 	byteslen_msg := []byte(len_msg)
 	byteslen := make([]byte, 16)
 	diff := len(byteslen) - len(byteslen_msg)
@@ -21,7 +22,7 @@ func Send(msg []byte, conn net.Conn) {
 		log.Println("SendMsg: ", string(msg))
 	}
 	conn.Write(byteslen)
-	conn.Write([]byte(msg))
+	conn.Write(bytemsg)
 }
 
 func Receive(conn net.Conn) []byte {

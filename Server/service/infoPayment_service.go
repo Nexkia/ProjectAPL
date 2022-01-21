@@ -6,21 +6,19 @@ import (
 	"encoding/json"
 	"net"
 	"strconv"
-	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SendInfoPayment(out chan string, token string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func SendInfoPayment(token string, conn net.Conn, mongodb *mongo.Database) {
 	filter := bson.D{{"password", token}}
 	u := data.Utente{}
-	lock.Lock()
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 	filter = bson.D{{"email", u.Email}}
@@ -28,26 +26,23 @@ func SendInfoPayment(out chan string, token string, conn net.Conn, mongodb *mong
 	err = utils.FindOne(filter, "InfoPayment", mongodb).Decode(&Info)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 	InfoJson, _ := json.Marshal(Info)
 	utils.Send(InfoJson, conn)
-	lock.Unlock()
-	out <- "done"
+
 }
 
-func DoPayment(out chan string, elementiVenduti string, token string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mongo.Database) {
 	// Ricerca email utente
 	filter := bson.D{{"password", token}}
 	u := data.Utente{}
-	lock.Lock()
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 	filter = bson.D{{"email", u.Email}}
@@ -91,6 +86,5 @@ func DoPayment(out chan string, elementiVenduti string, token string, conn net.C
 		utils.UpdateOne("InfoPayment", mongodb, filter, updateMongo)
 	}
 	utils.Send([]byte("payment done"), conn)
-	lock.Unlock()
-	out <- "done"
+
 }

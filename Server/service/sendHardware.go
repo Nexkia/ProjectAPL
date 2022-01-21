@@ -13,9 +13,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SendPreassemblati(out chan string, conn net.Conn, mongodb *mongo.Database, name *[3]string, lock *sync.Mutex) {
+func SendPreassemblati(conn net.Conn, mongodb *mongo.Database, name *[3]string) {
 	pc := make([]data.PcpreAssemblato, 3)
-	lock.Lock()
+
 	for i := 0; i < 3; i++ {
 		filter := bson.D{{"nome", name[i]}}
 		print(name[i])
@@ -24,27 +24,23 @@ func SendPreassemblati(out chan string, conn net.Conn, mongodb *mongo.Database, 
 	//trasformiamo l'oggetto in json e in byte
 	prejson, _ := json.Marshal(pc)
 	utils.Send(prejson, conn)
-	lock.Unlock()
-	out <- "done"
 
 }
 
-func SendBuildConsigliate(out chan string, profile string, conn net.Conn, profiles *[5][8][3]data.Componente, lock *sync.Mutex) {
+func SendBuildConsigliate(profile string, conn net.Conn, profiles *[5][8][3]data.Componente, lock *sync.RWMutex) {
 	log.Println(profile)
 	index, _ := strconv.Atoi(profile)
-	lock.Lock()
+	lock.RLock()
 	for _, categ := range profiles[index] {
 		json_comp, _ := json.Marshal(categ)
 		utils.Send(json_comp, conn)
 	}
-	lock.Unlock()
-	out <- "done"
-
+	lock.RUnlock()
 }
 
-func SendBuildSolo(out chan string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func SendBuildSolo(conn net.Conn, mongodb *mongo.Database) {
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
-	lock.Lock()
+
 	for _, categ := range categoria {
 		comp := getByCategoria(categ, conn, mongodb)
 		n_comp := strconv.Itoa(len(comp))
@@ -52,6 +48,5 @@ func SendBuildSolo(out chan string, conn net.Conn, mongodb *mongo.Database, lock
 		json_comp, _ := json.Marshal(comp)
 		utils.Send(json_comp, conn)
 	}
-	lock.Unlock()
-	out <- "done"
+
 }
