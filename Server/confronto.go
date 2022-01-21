@@ -15,7 +15,7 @@ import (
 func Confronto(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
 	msg := <-inputChannel
 	msg_rcv := strings.Trim(msg, "\n")
-	msg_split := strings.Split(msg_rcv, "!")
+	msg_split := strings.Split(msg_rcv, "#")
 	modello1 := msg_split[0]
 	coll := mongodb.Collection("componenti")
 	filter := bson.D{{"modello", modello1}}
@@ -43,4 +43,30 @@ func Confronto(inputChannel chan string, conn net.Conn, mongodb *mongo.Database,
 
 	//vetresult := make([]CpuDetail, 2)
 	wait.Done()
+}
+
+func Compatibilita(conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup, msg string) {
+	coll := mongodb.Collection("detail")
+
+	conn.Write([]byte("ok"))
+	byte_categoria := make([]byte, 500)
+	conn.Read(byte_categoria)
+
+	msg_rcv := strings.Trim(msg, "\n")
+	msg_split := strings.Split(msg_rcv, "#")
+
+	categ_split := strings.Split(string(byte_categoria), "#")
+
+	for i, modello := range msg_split {
+		ok := make([]byte, 16)
+		conn.Read(ok)
+
+		filter := bson.D{{"modello_" + categ_split[i], modello}}
+		detail, _ := getDetailType(categ_split[i])
+		coll.FindOne(context.TODO(), filter).Decode(detail)
+		json_result, _ := json.Marshal(detail)
+		conn.Write(json_result)
+
+	}
+
 }

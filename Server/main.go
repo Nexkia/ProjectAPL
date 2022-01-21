@@ -19,8 +19,16 @@ const uri = "mongodb://127.0.0.1:27017"
 
 // only needed below for sample processing
 
-func main() {
+type Img struct {
+	Img []byte
+}
 
+var rWlock = sync.RWMutex{}
+var img = [3]Img{}
+var profiles = [5][8][3]Componente{}
+var namePre = [3]string{}
+
+func main() {
 	fmt.Println("Launching server...")
 
 	// listen on all interfaces
@@ -51,7 +59,6 @@ func main() {
 		if err != nil {
 			fmt.Println("Error accepting request:", err)
 		}
-
 		go handleRequest(conn, mongodb)
 	}
 }
@@ -87,7 +94,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 2:
 			fmt.Println("caso 2: ", MP)
-			go homepage(inputChannel, conn, mongodb, &waitGroup)
+			go homepage(inputChannel, conn, mongodb, &waitGroup, &namePre)
 			waitGroup.Add(1)
 			inputChannel <- ID
 		case 3:
@@ -102,7 +109,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 5:
 			fmt.Println("caso 5: ", MP)
-			go sendComponents(inputChannel, 3, conn, mongodb, &waitGroup)
+			go sendRecommendation(inputChannel, conn, &waitGroup, &profiles)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 6:
@@ -117,7 +124,7 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			inputChannel <- Mjson
 		case 8:
 			fmt.Println("caso 8:", MP)
-			go sendComponents(inputChannel, 0, conn, mongodb, &waitGroup)
+			go sendComponents(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
 		case 9:
@@ -159,6 +166,22 @@ func handleRequest(conn net.Conn, mongodb *mongo.Database) {
 			go Cancellazione_pre(inputChannel, conn, mongodb, &waitGroup)
 			waitGroup.Add(1)
 			inputChannel <- Mjson
+		case 17:
+			fmt.Println("case 17", MP)
+			go getProfiles(conn, &waitGroup, mongodb, &profiles, &namePre)
+			waitGroup.Add(1)
+		case 18:
+			fmt.Println("case 18", MP)
+			go getImages(conn, &waitGroup, &img)
+			waitGroup.Add(1)
+		case 19:
+			fmt.Println("case 19", MP)
+			go admin_images(conn, &waitGroup, &img)
+			waitGroup.Add(1)
+		case 20:
+			fmt.Println("case 20", MP)
+			go Compatibilita(conn, mongodb, &waitGroup, Mjson)
+			waitGroup.Add(1)
 		default:
 			fmt.Println("CASO DI DEFAULT")
 		}

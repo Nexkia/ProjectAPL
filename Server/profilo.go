@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net"
 	"strconv"
 	"sync"
@@ -13,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
+func sendComponents(inputChannel chan string, conn net.Conn, mongodb *mongo.Database, wait *sync.WaitGroup) {
 	profile := <-inputChannel
 	fmt.Println(profile)
 	coll := mongodb.Collection("componenti")
@@ -22,32 +21,15 @@ func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb 
 		ok := make([]byte, 256)
 		conn.Read(ok)
 		filter := bson.D{{"categoria", categoria[i]}}
-		cursor, err := coll.Find(context.TODO(), filter)
+		cursor, _ := coll.Find(context.TODO(), filter)
 		defer cursor.Close(context.TODO())
 		var json_comp []byte
 		//limit rappresenta il numero di risultati trovati
 		comp := []Componente{}
-		if limit == 3 {
-			compguidata := make([]Componente, limit)
-			index := 0
-			for cursor.Next(context.TODO()) {
-				err = cursor.Decode(&compguidata[index])
-				index++
-				if limit == index {
-					fmt.Println(index)
-					break
-				}
-				if err != nil {
-					log.Fatal(err)
-				}
-			}
-			json_comp, _ = json.Marshal(compguidata)
-		} else {
-			cursor.All(context.TODO(), &comp)
-			conn.Write([]byte(strconv.Itoa(len(comp))))
-			conn.Read(ok)
-			json_comp, _ = json.Marshal(comp)
-		}
+		cursor.All(context.TODO(), &comp)
+		conn.Write([]byte(strconv.Itoa(len(comp))))
+		conn.Read(ok)
+		json_comp, _ = json.Marshal(comp)
 		size := len(json_comp)
 		rest := size % 1024
 		div := size / 1024
@@ -57,6 +39,20 @@ func sendComponents(inputChannel chan string, limit int, conn net.Conn, mongodb 
 		if rest > 0 {
 			conn.Write(json_comp[div*1024 : size])
 		}
+		conn.Write([]byte("\n"))
+	}
+	wait.Done()
+}
+
+func sendRecommendation(inputChannel chan string, conn net.Conn, wait *sync.WaitGroup, profiles *[5][8][3]Componente) {
+	profile := <-inputChannel
+	fmt.Println(profile)
+	index, _ := strconv.Atoi(profile)
+	ok := make([]byte, 256)
+	for _, categ := range profiles[index] {
+		conn.Read(ok)
+		json_comp, _ := json.Marshal(categ)
+		conn.Write(json_comp)
 		conn.Write([]byte("\n"))
 	}
 	wait.Done()
