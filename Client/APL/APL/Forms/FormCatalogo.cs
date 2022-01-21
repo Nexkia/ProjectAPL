@@ -232,11 +232,11 @@ namespace APL.Forms
 
             string response = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
             // n elem
-            string nelem = SocketTCP.receive();
+            string nelem = SocketTCP.Receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            response =  SocketTCP.receive();
+            response =  SocketTCP.Receive();
             SocketTCP.GetMutex().ReleaseMutex() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);

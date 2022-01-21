@@ -234,14 +234,14 @@ namespace APL.Forms
 
             SocketTCP.GetMutex().WaitOne();
 
-            SocketTCP.send(pt.ToString());
-            SocketTCP.send(cat);
+            SocketTCP.Send(pt.ToString());
+            SocketTCP.Send(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
 
             for (int i = 0; i < 4; i++)
             {
-                string detailMsg =  SocketTCP.receive();
+                string detailMsg =  SocketTCP.Receive();
                 Details componenteF = factory.GetDetails(categorie[i]);
                 Type categoria = componenteF.GetType();
                 MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
