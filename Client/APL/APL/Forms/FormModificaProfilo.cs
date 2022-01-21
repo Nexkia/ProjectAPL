@@ -28,8 +28,8 @@ namespace APL.Forms
         {
             Utente utente;
             pt.SetProtocolID("getUtente");pt.Data = String.Empty;
-            SocketTCP.send(pt);
-            string user = SocketTCP.receive();
+            SocketTCP.Send(pt.ToString());
+            string user = SocketTCP.Receive();
             utente = JsonConvert.DeserializeObject<Utente>(user);
             TextBoxNomeUtente.Text = utente.Nome;
             TextBoxEmail.Text = utente.Email;
@@ -47,8 +47,8 @@ namespace APL.Forms
                 case "Email o Codice Fiscale già usati in altri account":
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
-                    SocketTCP.send(pt);
-                    string check = SocketTCP.receive();
+                    SocketTCP.Send(pt.ToString());
+                    string check = SocketTCP.Receive();
                     Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
@@ -58,7 +58,7 @@ namespace APL.Forms
                         mod.Indirizzo = TextBoxIndirizzo.Text;
                         mod.Password = TextBoxNuovaPassword.Text;
                         string json_update = JsonConvert.SerializeObject(mod);
-                        SocketTCP.sendSingleMsg(json_update);
+                        SocketTCP.Send(json_update);
                         //aggiorna il token, che cambia con la nuova password
                         Debug.WriteLine(json_update);
                         this.Close();

@@ -27,8 +27,15 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxFrequenza.Text != string.Empty
                  &&  textBoxSocket.Text != string.Empty && textBoxCore.Text != string.Empty && textBoxThread.Text != string.Empty)
             {
-                Cpu elem = new Cpu(inserisciComponente.getModello(),int.Parse(textBoxValutazione.Text), float.Parse(textBoxFrequenza.Text),
-                    textBoxSocket.Text,int.Parse(textBoxCore.Text),int.Parse(textBoxThread.Text));
+                Cpu elem = new Cpu()
+                {
+                    Modello = inserisciComponente.getModello(), 
+                    Valutazione = int.Parse(textBoxValutazione.Text), 
+                    Frequenza = float.Parse(textBoxFrequenza.Text), 
+                    Socket = textBoxSocket.Text, 
+                    Core = int.Parse(textBoxCore.Text),
+                    Thread = int.Parse(textBoxThread.Text)
+                };
                 return elem;
             }
             else { return null; }

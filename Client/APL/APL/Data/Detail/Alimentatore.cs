@@ -11,39 +11,16 @@ namespace APL.Data.Detail
     {
 
 
-        public Alimentatore(string modello, int valutazione,int watt)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.Watt = watt;
-        }
-
-        public Alimentatore()
-        {
-           
-        }
-
         [JsonProperty("modello_alimentatore")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("watt")]
-        public int Watt { get; private set; }
+        public int Watt { get; init; }
         public string[] getDetail()
         {
             string[] detail = new string[1] { Convert.ToString(Watt) };
             return detail;
-        }
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }

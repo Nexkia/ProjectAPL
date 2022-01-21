@@ -9,20 +9,13 @@ namespace APL.Data.Detail
 {
     public class Dissipatore:Details
     {
-        public Dissipatore(string modello, int valutazione, string[] cpusocket)
-        {
-            this.Modello = modello;
-            this.Valutazione = valutazione;
-            this.CpuSocket = cpusocket;
-        }
 
-        public Dissipatore() { }
         [JsonProperty("modello_dissipatore")]
-        public string? Modello { get; private set; }
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
-        public int Valutazione { get; private set; }
+        public int Valutazione { get; init; }
         [JsonProperty("cpusocket")]
-        public string[]? CpuSocket { get; private set; }
+        public string[] CpuSocket { get; init; }
 
 
         public string[] getDetail()
@@ -30,17 +23,6 @@ namespace APL.Data.Detail
             if (CpuSocket == null)
                 return Array.Empty<string>();
             return CpuSocket;
-        }
-
-        public string getModello()
-        {
-            if (Modello == null)
-                return string.Empty;
-            return Modello;
-        }
-        public int getValutazione()
-        {
-            return Valutazione;
         }
     }
 }

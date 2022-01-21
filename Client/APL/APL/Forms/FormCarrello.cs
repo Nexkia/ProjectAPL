@@ -20,12 +20,14 @@ namespace APL.Forms
     public partial class FormCarrello : Form
     {
         bool disableCloseEvent;
+        Protocol pt;
         public FormCarrello()
          {
              InitializeComponent();
             
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
+            pt = new Protocol();
         }
 
 
@@ -240,7 +242,7 @@ namespace APL.Forms
             
         }
 
-        private void ControllaCompatibilita()
+      private void ControllaCompatibilita()
         { 
             if(ramSchedaMadre!="" && standardRam!="")
             {
@@ -275,7 +277,3 @@ namespace APL.Forms
             
 
     }
-
-        
-    }
-}

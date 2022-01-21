@@ -11,13 +11,18 @@ namespace APL.Connections
 {
     public static class SocketTCP
     {
-        public static Mutex mut = new Mutex();
+        public static Mutex mut;
         const string host = "localhost";
         const Int32 port = 13000;
-        static TcpClient client =  new TcpClient(host, port);
-        static NetworkStream stream = client.GetStream();
+        static TcpClient client;
+        static NetworkStream stream;
         // Close everything.
 
+        static SocketTCP() {
+            mut = new Mutex();
+            client = new TcpClient(host, port);
+            stream = client.GetStream();
+        }
 
         static public void CloseConnection() {
             stream.Close();
@@ -28,9 +33,8 @@ namespace APL.Connections
         static public Mutex GetMutex() { 
             return mut;
         }
-        static public void send(Protocol p)
+        static public void Send(string message)
         {
-            string message = p.GetProtocolID() + p.Limit + p.Data+"\n";
             Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             var lenbytes = new byte[16];
@@ -43,74 +47,47 @@ namespace APL.Connections
                 lenbytes[difference + i -1] = len_[i];
             }
             lenbytes[lenbytes.Length - 1] = 10;
-            stream.Write(lenbytes, 0, lenbytes.Length);
-            Debug.WriteLine(outJson.Length);
-            stream.Write(outJson, 0, outJson.Length);
-        }
-        static public void sendClose(Protocol p)
-        {
-            string message = p.GetProtocolID() + p.Limit + p.Data;
-            Debug.WriteLine("Sended: {0}", message);
-            byte[] outJson = Encoding.ASCII.GetBytes(message);
-            var lenbytes = new byte[16];
-            string lenmsg = Convert.ToString(outJson.Length);
-            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
-            var difference = lenbytes.Length - len_.Length;
-
-            for (int i = 0; i < len_.Length; i++)
+            if (client.Connected)
             {
-                lenbytes[difference + i - 1] = len_[i];
-            }
-            lenbytes[lenbytes.Length - 1] = 10;
-            stream.Write(lenbytes, 0, lenbytes.Length);
-            Debug.WriteLine(outJson.Length);
-            stream.Write(outJson, 0, outJson.Length);
-            return;
-        }
-        static public void sendSingleMsg(string message)
-        {
-            Debug.WriteLine("Sended: {0}", message);
-            byte[] outJson = Encoding.ASCII.GetBytes(message);
-            var lenbytes = new byte[16];
-            string lenmsg = Convert.ToString(outJson.Length);
-            byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
-            var difference = lenbytes.Length - len_.Length;
+                stream.Write(lenbytes, 0, lenbytes.Length);
+                stream.Flush();
+                Debug.WriteLine(outJson.Length);
+                stream.Write(outJson, 0, outJson.Length);
+                stream.Flush();
 
-            for (int i = 0; i < len_.Length; i++)
-            {
-                lenbytes[difference + i - 1] = len_[i];
             }
-            lenbytes[lenbytes.Length - 1] = 10;
-            stream.Write(lenbytes, 0, lenbytes.Length);
-            Debug.WriteLine(outJson.Length);
-            stream.Write(outJson, 0, outJson.Length);
         }
+       
 
-        static public string receive()
+        static public string Receive()
         {
             var data = new Byte[16];
             // String to store the response ASCII representation.
             String lenData = String.Empty;
             // Read the first batch of the TcpServer response bytes.
-            Int32 bytes = stream.Read(data, 0, data.Length);
-            int inizio = 0;
-            for (int i = 0; i < 16; i++) {
-                if (data[i] > 47 && data[i] < 58)
-                {
-                    inizio = i;
-                    break;
-                }
-            }
-            int fine = data.Length - 1;
-            data = data[inizio..fine];
-            lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
-            Debug.WriteLine(data.Length);
-            int lenmsg = int.Parse(lenData);
-            var msg = new Byte[lenmsg];
             String responseData = String.Empty;
-            Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
-            Debug.WriteLine("Received: {0}", responseData);
+            if (client.Connected)
+            {
+                Int32 bytes = stream.Read(data, 0, data.Length);
+                int inizio = 0;
+                for (int i = 0; i < 16; i++)
+                {
+                    if (data[i] > 47 && data[i] < 58)
+                    {
+                        inizio = i;
+                        break;
+                    }
+                }
+                int fine = data.Length - 1;
+                data = data[inizio..fine];
+                lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
+                Debug.WriteLine(data.Length);
+                int lenmsg = int.Parse(lenData);
+                var msg = new Byte[lenmsg];
+                Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
+                Debug.WriteLine("Received: {0}", responseData);
+            }
             return responseData;
         }
 

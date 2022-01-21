@@ -8,8 +8,8 @@ namespace APL.Data.Detail
 {
     public interface Details
     {
+        int Valutazione { get; init; }
+        string Modello { get; init; }
         string[] getDetail();
-        int getValutazione();
-        string getModello();
     }
 }
