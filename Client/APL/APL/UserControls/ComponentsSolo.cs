@@ -132,13 +132,13 @@ namespace APL.UserControls
  
             SocketTCP.GetMutex().WaitOne();
                 SocketTCP.send(pt);
-                string okmsg = await SocketTCP.receive();
+                string okmsg =  SocketTCP.receive();
                 SocketTCP.sendSingleMsg(categoria+"\n");
 
                 ConstructorDetail factory = new ConstructorDetail();
 
                 SocketTCP.sendSingleMsg("ok");
-                string detailMsg = await SocketTCP.receive();
+                string detailMsg = SocketTCP.receive();
                 Details componenteF = factory.GetDetails(categoria);
                 Type categ = componenteF.GetType();
                 MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);

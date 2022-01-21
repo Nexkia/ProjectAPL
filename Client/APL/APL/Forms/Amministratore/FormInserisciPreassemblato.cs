@@ -289,7 +289,7 @@ namespace APL.Forms.Amministratore
             SocketTCP.GetMutex().WaitOne();
 
             SocketTCP.send(pt);
-            string okmsg=await SocketTCP.receive();
+            string okmsg= SocketTCP.receive();
             SocketTCP.sendSingleMsg(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
@@ -297,7 +297,7 @@ namespace APL.Forms.Amministratore
             for (int i = 0; i < 4; i++)
             {
                 SocketTCP.sendSingleMsg("ok");
-                string detailMsg=await SocketTCP.receive();
+                string detailMsg= SocketTCP.receive();
                 Details componenteF = factory.GetDetails(categorie[i]);
                 Type categoria = componenteF.GetType();
                 MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);

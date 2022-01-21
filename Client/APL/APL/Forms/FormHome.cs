@@ -176,7 +176,7 @@ namespace APL.Forms
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView());
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListViewC());
 
                 switch (i)
                 {
