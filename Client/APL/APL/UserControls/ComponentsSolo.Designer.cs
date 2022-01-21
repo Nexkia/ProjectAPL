@@ -66,7 +66,7 @@ namespace APL.UserControls
             this.listViewSolo.TabIndex = 1;
             this.listViewSolo.UseCompatibleStateImageBehavior = false;
             this.listViewSolo.View = System.Windows.Forms.View.Details;
-            this.listViewSolo.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+           
             // 
             // columnHeader1
             // 
@@ -104,7 +104,7 @@ namespace APL.UserControls
             this.labelCategoria.TabIndex = 0;
             this.labelCategoria.Text = "labelCategoria";
             this.labelCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelCategoria.Click += new System.EventHandler(this.labelCategoria_Click);
+            
             // 
             // buttonCarrello
             // 

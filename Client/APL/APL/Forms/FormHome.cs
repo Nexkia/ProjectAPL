@@ -103,7 +103,7 @@ namespace APL.Forms
             for (int i = 0; i < listItems.Length; i++) {
 
                Debug.Write("pre:" +pre[i]);
-                listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListView());
+                listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListViewC());
                 listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.preassemblato;
                 listItems[i].IconBackground = Color.SteelBlue;
@@ -176,7 +176,7 @@ namespace APL.Forms
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView());
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListViewC());
 
                 switch (i)
                 {
@@ -348,7 +348,7 @@ namespace APL.Forms
 
             foreach (List<Componente> subList in myList)
             {
-                componentsSolo[index] = new ComponentsSolo(carrelloForm.getListView());
+                componentsSolo[index] = new ComponentsSolo(carrelloForm);
 
                 int i = 0;
 

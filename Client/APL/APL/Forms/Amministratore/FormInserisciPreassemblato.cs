@@ -288,7 +288,6 @@ namespace APL.Forms.Amministratore
 
             cat += "\n";
             SocketTCP.GetMutex().WaitOne();
-
             SocketTCP.Send(pt.ToString());
             SocketTCP.Send(cat);
 
