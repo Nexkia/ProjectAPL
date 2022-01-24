@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ListView = System.Windows.Forms.ListView;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 using System.Diagnostics;
 using APL.Connections;
-using APL.Data.Detail;
-using Newtonsoft.Json;
-using APL.Data;
+
 
 namespace APL.Forms
 {
@@ -38,19 +29,19 @@ namespace APL.Forms
 
         public void setCpuDetail(string value)
         {
-            cpuSocket = value; ControllaCompatibilita();
+            cpuSocket = value;
         }
         public void setSchedaMadreDetail(string cpu, string ram)
         {
-            cpuSocketSchedaMadre = cpu; ramSchedaMadre = ram; ControllaCompatibilita();
+            cpuSocketSchedaMadre = cpu; ramSchedaMadre = ram;
         }
         public void setRamDetail(string value)
         {
-            standardRam = value; ControllaCompatibilita();
+            standardRam = value;
         }
         public void setDissipatoreDetail(string[] value)
         {
-            cpuSocketDissipatore = value; ControllaCompatibilita();
+            cpuSocketDissipatore = value;
         }
 
         public ListView getListViewC() { return listViewCarrello; }
@@ -90,27 +81,21 @@ namespace APL.Forms
                         case "cpu":
                             cpuSocket = "";
                             eliminaElementoListViewDetail("cpu");
-                            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
-                            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
                             break;
 
                         case "schedaMadre":
                             cpuSocketSchedaMadre = ""; ramSchedaMadre = "";
                             eliminaElementoListViewDetail("schedaMadre");
-                            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
-                            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
                             break;
 
                         case "dissipatore":
                             cpuSocketDissipatore = null;
                             eliminaElementoListViewDetail("dissipatore");
-                            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
                             break;
 
                         case "ram":
                             standardRam = "";
                             eliminaElementoListViewDetail("ram");
-                            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
                             break;
                     }
                 }
@@ -233,9 +218,6 @@ namespace APL.Forms
             listViewCarrelloDetail.Items.Clear();
             cpuSocketDissipatore = null;
             cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
-            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
-            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
-            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
         }
 
         private void creaCheckOut()
@@ -253,39 +235,6 @@ namespace APL.Forms
 
         }
 
-        private void ControllaCompatibilita()
-        {
-            if (ramSchedaMadre != "" && standardRam != "")
-            {
-                if (ramSchedaMadre == standardRam)
-                    labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Presente";
-                else
-                    labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Assente";
-            }
-
-            if (cpuSocketSchedaMadre != "" && cpuSocket != "")
-            {
-                if (cpuSocketSchedaMadre == cpuSocket)
-                    labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Presente";
-                else
-                    labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Assente";
-            }
-
-            if (cpuSocketDissipatore != null && cpuSocket != "")
-            {
-                bool SocketCpuTrovata = false;
-                foreach (string tipoSocket in cpuSocketDissipatore)
-                {
-                    if (tipoSocket == cpuSocket)
-                        SocketCpuTrovata = true;
-                }
-
-                if (SocketCpuTrovata == true)
-                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Presente";
-                else
-                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Assente";
-            }
-
-        }
+       
     }
 }

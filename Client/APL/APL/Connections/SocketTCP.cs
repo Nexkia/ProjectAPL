@@ -92,30 +92,6 @@ namespace APL.Connections
         }
 
 
-        public static Byte[] receiveBytesBlock()
-        {
-            Byte[] data = new Byte[16];
-            // String to store the response ASCII representation.
-            String lenData = String.Empty;
-            // Read the first batch of the TcpServer response bytes.
-            Int32 bytes = stream.Read(data, 0, data.Length);
-            int inizio = 0;
-            for (int i = 0; i < 16; i++)
-            {
-                if (data[i] > 47 && data[i] < 58)
-                {
-                    inizio = i;
-                    break;
-                }
-            }
-            int fine = data.Length - 1;
-            data = data[inizio..fine];
-            lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
-            Debug.WriteLine(data.Length);
-            int lenmsg = int.Parse(lenData);
-            Byte[] msg = new Byte[lenmsg];
-            Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
-            return msg;
-        }
+       
     }
 }

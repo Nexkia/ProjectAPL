@@ -1,15 +1,6 @@
 ﻿using APL.Connections;
 using APL.Forms.Amministratore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APL.Forms
@@ -83,32 +74,17 @@ namespace APL.Forms
 
             pt.SetProtocolID("recupera_statistiche");
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
-            for (int i = 0; i < 3; i++)
-            {
+                SocketTCP.Send(pt.ToString());
+                for (int i = 0; i < 3; i++)
+                {
 
-                byte[] vet =  SocketTCP.receiveBytesBlock();
-                File.WriteAllBytes("image"+Convert.ToString(i)+".txt", vet);
-                //byte[] decompressed = ZLibDotnetDecompress(vet, vet.Length);
-                //File.WriteAllBytes("image_compressed" + Convert.ToString(i) + ".txt.txt", decompressed);
-                //statistiche.setVenditeComponenti(decompressed, i);
-            }
-
+                    string vet = SocketTCP.Receive();
+                    statistiche.setVenditeComponenti(vet, i);
+                }
             SocketTCP.GetMutex().ReleaseMutex();
+
             statistiche.Show();
         }
-
-        /*
-        public static byte[] ZLibDotnetDecompress(byte[] data, int size)
-        {
-            
-            MemoryStream compressed = new MemoryStream(data);
-            zlib.ZInputStream inputStream = new zlib.ZInputStream(compressed);
-            Byte[] result = new byte[size]; // Since ZinputStream is inherited is binaryReader instead of stream, you can only prepare the output buffer in advance and then use the READ to get the fixed length data.
-            inputStream.read(result, 0, result.Length); // Note that the read letter here is lowercase
-            return result;
-        }
-        */
 
         protected override void OnClosed(EventArgs e)
         {
