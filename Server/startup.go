@@ -313,7 +313,7 @@ func invio(mongodb *mongo.Database) {
 
 	*/
 	categorie := []string{"schedaVideo", "casepc", "alimentatore", "memoria"}
-	n_pre := 30
+	n_pre := 3
 	min_price_pre := 1000
 	max_price_pre := 5000
 	for i := 0; i < n_pre; i++ {
