@@ -18,9 +18,6 @@ func Send(msg []byte, conn net.Conn) {
 	}
 	byteslen[len(byteslen)-1] = 10 //10 = ritorno a capo
 	log.Println("Send: ", byteslen)
-	if len(byteslen) < 100 {
-		log.Println("SendMsg: ", string(msg))
-	}
 	conn.Write(byteslen)
 	conn.Write(bytemsg)
 }

@@ -26,9 +26,9 @@ func Round(num float64) int {
 }
 
 func (pc *PcAssemblato) PrezzoTot() {
-	for _, comp := range (*pc).Componenti {
-		(*pc).Prezzo += comp.Prezzo
+	for _, comp := range pc.Componenti {
+		pc.Prezzo += comp.Prezzo
 	}
 	output := math.Pow(10, float64(2))
-	(*pc).Prezzo = float64(Round((*pc).Prezzo*output)) / output
+	pc.Prezzo = float64(Round(pc.Prezzo*output)) / output
 }

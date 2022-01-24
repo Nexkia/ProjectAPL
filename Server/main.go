@@ -9,11 +9,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Database URL
 const uri = "mongodb://127.0.0.1:27017"
 
 func main() {
 	log.Println("Launching server...")
-	// listen on all interfaces
 	ln, err := net.Listen("tcp", ":13000")
 	if err != nil {
 		log.Println("Error listening on port:", err)

@@ -25,7 +25,7 @@ func SendCatalogo(categoria string, conn net.Conn, mongodb *mongo.Database) {
 
 func getByCategoria(categoria string, conn net.Conn, mongodb *mongo.Database) []data.Componente {
 	comp := []data.Componente{}
-	filter := bson.D{{"categoria", categoria}}
+	filter := bson.D{{Key: "categoria", Value: categoria}}
 	utils.Find("componenti", mongodb, filter, &comp)
 	return comp
 }

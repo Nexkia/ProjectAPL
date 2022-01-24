@@ -16,7 +16,7 @@ func SendCompatibilita(msg string, conn net.Conn, mongodb *mongo.Database) {
 
 	byte_categoria := utils.Receive(conn)
 	categ_ := strings.Trim(string(byte_categoria), "\n")
-	filter := bson.D{{"modello_" + categ_, msg_rcv}}
+	filter := bson.D{{Key: "modello_" + categ_, Value: msg_rcv}}
 	detail := data.GetDetailType(categ_)
 	err := utils.FindOne(filter, "detail", mongodb).Decode(detail)
 	if err != nil {
