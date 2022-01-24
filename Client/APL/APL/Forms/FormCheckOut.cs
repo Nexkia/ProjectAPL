@@ -56,18 +56,21 @@ namespace APL.Forms
                 if (tipo == "preassemblato")
                 {
                     totPreassemblato += float.Parse(prezzo);
+                    totPreassemblato = (float)(Math.Truncate((double)totPreassemblato * 100.0) / 100.0);
                     listaPreassemblati.Add(modello);
                 }
 
                 if(tipo == "Build Guidata")
                 {
                     totBuildGuidata += float.Parse(prezzo);
+                    totBuildGuidata = (float)(Math.Truncate((double)totBuildGuidata * 100.0) / 100.0);
                     listaBuildGuidata.Add(modello);
                 }
 
                 if (tipo == "Build Solo")
                 {
                     totBuildSolo += float.Parse(prezzo);
+                    totBuildSolo= (float)(Math.Truncate((double)totBuildSolo * 100.0) / 100.0);
                     listaBuildSolo.Add(modello);
                 }
             }

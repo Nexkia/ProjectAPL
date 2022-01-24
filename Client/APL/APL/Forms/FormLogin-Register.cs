@@ -94,12 +94,12 @@ namespace APL.Forms
                     }
                     );
                     pt.SetProtocolID("login");  pt.Data = Json;
-
+                    
                     SocketTCP.GetMutex().WaitOne();
                         SocketTCP.Send(pt.ToString());
                         string responseData = SocketTCP.Receive();
                     SocketTCP.GetMutex().ReleaseMutex();
-
+                   
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
@@ -111,6 +111,8 @@ namespace APL.Forms
                         //apriamo il pannello dell'amministratore
                         amministratoreForm.Show();
                         this.Visible = false; //invisible form1
+                        TextBoxLoginEmail.Text = string.Empty;
+                        TextBoxLoginPassword.Text = string.Empty;
                     }
                     else
                     {
@@ -119,10 +121,11 @@ namespace APL.Forms
                         FormHome home = new FormHome(this); 
                         home.Show(); 
                         this.Visible = false; //invisible form1
+                        TextBoxLoginEmail.Text = string.Empty;
+                        TextBoxLoginPassword.Text = string.Empty;
                     }
                     
-                    TextBoxLoginEmail.Text = string.Empty;
-                    TextBoxLoginPassword.Text = string.Empty;
+                    
                     break;
 
                 default:
