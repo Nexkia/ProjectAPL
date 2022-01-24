@@ -4,6 +4,7 @@ import (
 	"Server/data"
 	"Server/utils"
 	"encoding/json"
+	"log"
 	"net"
 	"strconv"
 
@@ -42,7 +43,6 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-
 		return
 	}
 	filter = bson.D{{Key: "email", Value: u.Email}}
@@ -52,6 +52,9 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	vend := data.Vendita{}
 	var dat map[string]interface{}
 	json.Unmarshal([]byte(elementiVenduti), &dat)
+	if !Check(dat, mongodb) {
+		utils.Send([]byte("Un elemento non presente"), conn)
+	}
 	if err != nil {
 		vend.Email = u.Email
 		vend.Acquisto = dat["acquisto"]
@@ -87,4 +90,39 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	}
 	utils.Send([]byte("payment done"), conn)
 
+}
+
+func Check(dat map[string]interface{}, mongodb *mongo.Database) bool {
+	var CheckExistence bool = true
+	acquisto := dat["acquisto"]
+	log.Println(acquisto)
+	acquisto_internal := acquisto.(map[string]interface{})
+	lista_acquisti := acquisto_internal["Lista"].([]interface{})
+	log.Println(lista_acquisti)
+	for _, elem := range lista_acquisti {
+		pc1 := elem.([]interface{})
+		for _, comp := range pc1 {
+			if len(pc1) == 8 {
+				filter := bson.D{{Key: "modello", Value: comp}}
+				log.Println(filter)
+				componente := data.Componente{}
+				err := utils.FindOne(filter, "componenti", mongodb).Decode(&componente)
+				// Se non lo trova
+				if err != nil {
+					CheckExistence = false
+					return CheckExistence
+				}
+			} else {
+				filter := bson.D{{Key: "name", Value: comp}}
+				log.Println(filter)
+				pre := data.PcpreAssemblato{}
+				err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pre)
+				if err != nil {
+					CheckExistence = false
+					return CheckExistence
+				}
+			}
+		}
+	}
+	return CheckExistence
 }

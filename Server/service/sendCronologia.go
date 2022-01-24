@@ -56,9 +56,12 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 						filter = bson.D{{Key: "modello", Value: comp}}
 						componente := data.Componente{}
 						err = utils.FindOne(filter, "componenti", mongodb).Decode(&componente)
-						if err == nil {
-							Pc.Componenti[i] = componente
+						// Se non lo trova
+						if err != nil {
+							componente.Modello = comp.(string)
 						}
+						Pc.Componenti[i] = componente
+
 					} else {
 						PreAssemblati = append(PreAssemblati, comp.(string))
 					}
