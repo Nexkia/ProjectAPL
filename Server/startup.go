@@ -9,7 +9,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -30,7 +29,8 @@ const (
 var flag_check bool
 
 func invio(mongodb *mongo.Database) {
-	rand.Seed(time.Now().UnixNano())
+	//rand.Seed(time.Now().UnixNano())
+	rand.Seed(500)
 	// GENERAZIONE CASEPC
 	content, err := ioutil.ReadFile("database/case.txt")
 	if err != nil {
@@ -313,7 +313,7 @@ func invio(mongodb *mongo.Database) {
 
 	*/
 	categorie := []string{"schedaVideo", "casepc", "alimentatore", "memoria"}
-	n_pre := 3
+	n_pre := 30
 	min_price_pre := 1000
 	max_price_pre := 5000
 	for i := 0; i < n_pre; i++ {
