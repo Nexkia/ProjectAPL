@@ -56,6 +56,61 @@ namespace APL.UserControls
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2ComponentsTab)).BeginInit();
             this.SuspendLayout();
+
+
+
+
+
+
+            // 
+            // checkBox1ComponentsTab
+            // 
+            this.checkBox1ComponentsTab.AutoEllipsis = true;
+            this.checkBox1ComponentsTab.BackColor = System.Drawing.Color.Maroon;
+            this.checkBox1ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1ComponentsTab.ForeColor = System.Drawing.Color.White;
+            this.checkBox1ComponentsTab.Location = new System.Drawing.Point(95, 304);
+            this.checkBox1ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1ComponentsTab.Name = "checkBox1ComponentsTab";
+            this.checkBox1ComponentsTab.Size = new System.Drawing.Size(61, 52);
+            this.checkBox1ComponentsTab.TabIndex = 7;
+            this.checkBox1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1ComponentsTab.UseVisualStyleBackColor = false;
+            this.checkBox1ComponentsTab.Checked = false;
+            // 
+            // checkBox2ComponentsTab
+            // 
+            this.checkBox2ComponentsTab.AutoEllipsis = true;
+            this.checkBox2ComponentsTab.BackColor = System.Drawing.Color.Maroon;
+            this.checkBox2ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox2ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2ComponentsTab.ForeColor = System.Drawing.Color.White;
+            this.checkBox2ComponentsTab.Location = new System.Drawing.Point(355, 304);
+            this.checkBox2ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox2ComponentsTab.Name = "checkBox2ComponentsTab";
+            this.checkBox2ComponentsTab.Size = new System.Drawing.Size(61, 52);
+            this.checkBox2ComponentsTab.TabIndex = 8;
+            this.checkBox2ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox2ComponentsTab.UseVisualStyleBackColor = false;
+            this.checkBox2ComponentsTab.Checked = false;
+
+            // 
+            // checkBox3ComponentsTab
+            // 
+            this.checkBox3ComponentsTab.AutoEllipsis = true;
+            this.checkBox3ComponentsTab.BackColor = System.Drawing.Color.Maroon;
+            this.checkBox3ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox3ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox3ComponentsTab.ForeColor = System.Drawing.Color.White;
+            this.checkBox3ComponentsTab.Location = new System.Drawing.Point(609, 304);
+            this.checkBox3ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox3ComponentsTab.Name = "checkBox3ComponentsTab";
+            this.checkBox3ComponentsTab.Size = new System.Drawing.Size(61, 52);
+            this.checkBox3ComponentsTab.TabIndex = 9;
+            this.checkBox3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox3ComponentsTab.UseVisualStyleBackColor = false;
+            this.checkBox3ComponentsTab.Checked = false;
             // 
             // panel1
             // 
@@ -220,51 +275,6 @@ namespace APL.UserControls
             this.label3ComponentsTab.TabIndex = 15;
             this.label3ComponentsTab.Text = "testo2";
             this.label3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // checkBox1ComponentsTab
-            // 
-            this.checkBox1ComponentsTab.AutoEllipsis = true;
-            this.checkBox1ComponentsTab.BackColor = System.Drawing.Color.Maroon;
-            this.checkBox1ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox1ComponentsTab.Location = new System.Drawing.Point(95, 304);
-            this.checkBox1ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox1ComponentsTab.Name = "checkBox1ComponentsTab";
-            this.checkBox1ComponentsTab.Size = new System.Drawing.Size(61, 52);
-            this.checkBox1ComponentsTab.TabIndex = 7;
-            this.checkBox1ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1ComponentsTab.UseVisualStyleBackColor = false;
-            // 
-            // checkBox2ComponentsTab
-            // 
-            this.checkBox2ComponentsTab.AutoEllipsis = true;
-            this.checkBox2ComponentsTab.BackColor = System.Drawing.Color.Maroon;
-            this.checkBox2ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox2ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox2ComponentsTab.Location = new System.Drawing.Point(355, 304);
-            this.checkBox2ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox2ComponentsTab.Name = "checkBox2ComponentsTab";
-            this.checkBox2ComponentsTab.Size = new System.Drawing.Size(61, 52);
-            this.checkBox2ComponentsTab.TabIndex = 8;
-            this.checkBox2ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox2ComponentsTab.UseVisualStyleBackColor = false;
-            // 
-            // checkBox3ComponentsTab
-            // 
-            this.checkBox3ComponentsTab.AutoEllipsis = true;
-            this.checkBox3ComponentsTab.BackColor = System.Drawing.Color.Maroon;
-            this.checkBox3ComponentsTab.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox3ComponentsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3ComponentsTab.ForeColor = System.Drawing.Color.White;
-            this.checkBox3ComponentsTab.Location = new System.Drawing.Point(609, 304);
-            this.checkBox3ComponentsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox3ComponentsTab.Name = "checkBox3ComponentsTab";
-            this.checkBox3ComponentsTab.Size = new System.Drawing.Size(61, 52);
-            this.checkBox3ComponentsTab.TabIndex = 9;
-            this.checkBox3ComponentsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox3ComponentsTab.UseVisualStyleBackColor = false;
             // 
             // ComponentsGuidata
             // 

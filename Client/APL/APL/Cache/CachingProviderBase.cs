@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Caching;
-using System.Diagnostics;
 using APL.Data;
 
 namespace APL.Cache
@@ -27,18 +23,13 @@ namespace APL.Cache
 
             class Nested
             {
-                // Explicit static constructor to tell C# compiler
-                // not to mark type as beforefieldinit
-                static Nested()
-                {
-                }
                 internal static readonly CachingProviderBase instance = new CachingProviderBase();
             }
-            #endregion
+        #endregion
 
-            protected MemoryCache cache = new MemoryCache("CachingProvider");
 
-            static readonly object locker = new object();
+            private MemoryCache cache = new MemoryCache("CachingProvider");
+            private static readonly object locker = new object();
 
             public  void AddItem(string key, object value)
             {
