@@ -137,9 +137,9 @@ namespace APL.Forms
                     );
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
                 SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt.ToString());
-                SocketTCP.send(JsonInfop+"\n");
-                string response = SocketTCP.receive();
+                SocketTCP.Send(pt.ToString());
+                SocketTCP.Send(JsonInfop+"\n");
+                string response = SocketTCP.Receive();
                 SocketTCP.GetMutex().ReleaseMutex();
                 if (response.Contains("done")) {
                     Debug.WriteLine(response);
@@ -163,8 +163,8 @@ namespace APL.Forms
             InfoPayment infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt.ToString());
-            string infop =  SocketTCP.receive();
+            SocketTCP.Send(pt.ToString());
+            string infop =  SocketTCP.Receive();
             SocketTCP.GetMutex().ReleaseMutex();
 
             if (!infop.Contains("notFound"))

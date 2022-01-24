@@ -64,15 +64,15 @@ namespace APL.Forms.Amministratore
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
             List<List<Componente>> myList = new List<List<Componente>>();
             
             for (int i = 0; i < 8; i++)
             {
-                string nElements =  SocketTCP.receive();
+                string nElements =  SocketTCP.Receive();
                 int n = int.Parse(nElements);
                 string response = String.Empty;
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
@@ -190,7 +190,7 @@ namespace APL.Forms.Amministratore
                 string jsonPreassemblato = JsonConvert.SerializeObject(pre);
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt.ToString());
+                SocketTCP.Send(pt.ToString());
                 SocketTCP.GetMutex().ReleaseMutex();
             }
         }
@@ -288,15 +288,14 @@ namespace APL.Forms.Amministratore
 
             cat += "\n";
             SocketTCP.GetMutex().WaitOne();
-
-            SocketTCP.send(pt.ToString());
-            SocketTCP.send(cat);
+            SocketTCP.Send(pt.ToString());
+            SocketTCP.Send(cat);
 
             ConstructorDetail factory = new ConstructorDetail();
            
             for (int i = 0; i < 4; i++)
             {
-                string detailMsg=SocketTCP.receive();
+                string detailMsg=SocketTCP.Receive();
                 Details componenteF = factory.GetDetails(categorie[i]);
                 Type categoria = componenteF.GetType();
                 MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);

@@ -7,32 +7,29 @@ import (
 	"net"
 	"strconv"
 	"strings"
-	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
-	filter := bson.D{{"password", token}}
+func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
+	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
-	lock.Lock()
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 
-	filter = bson.D{{"email", u.Email}}
+	filter = bson.D{{Key: "email", Value: u.Email}}
 	var result map[string]interface{}
 	err = utils.FindOne(filter, "Venduti", mongodb).Decode(&result)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-		lock.Unlock()
-		out <- "done"
+
 		return
 	}
 	Pc := data.PcAssemblato{}
@@ -56,7 +53,7 @@ func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo
 				Pc = data.PcAssemblato{}
 				for i, comp := range pc1 {
 					if len(pc1) == 8 {
-						filter = bson.D{{"modello", comp}}
+						filter = bson.D{{Key: "modello", Value: comp}}
 						componente := data.Componente{}
 						err = utils.FindOne(filter, "componenti", mongodb).Decode(&componente)
 						if err == nil {
@@ -82,6 +79,5 @@ func SendCronologia(out chan string, token string, conn net.Conn, mongodb *mongo
 			utils.Send([]byte(data), conn)
 		}
 	}
-	lock.Unlock()
-	out <- "done"
+
 }

@@ -7,13 +7,12 @@ import (
 	"log"
 	"net"
 	"strconv"
-	"sync"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func Register(out chan string, u_json string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func Register(u_json string, conn net.Conn, mongodb *mongo.Database) {
 
 	var result bson.D
 	var msg string
@@ -24,8 +23,8 @@ func Register(out chan string, u_json string, conn net.Conn, mongodb *mongo.Data
 		Prima dell'inserimento
 		verifica che l'utente non sia già registrato
 	*/
-	filter := bson.D{{"email", u.Email}}
-	lock.Lock()
+	filter := bson.D{{Key: "email", Value: u.Email}}
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&result)
 	/*
 		Se l'errore è diverso da nil vuol dire che l'utente non è registrato
@@ -44,11 +43,10 @@ func Register(out chan string, u_json string, conn net.Conn, mongodb *mongo.Data
 		msg = "email gia' usata"
 	}
 	utils.Send([]byte(msg), conn)
-	lock.Unlock()
-	out <- "done"
+
 }
 
-func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Database, lock *sync.Mutex) {
+func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Database) {
 	var result bson.D
 	u := data.Utente{}
 	// Conversione da json a Utente
@@ -59,8 +57,8 @@ func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Databas
 	json.Unmarshal([]byte(u_json), &u)
 	log.Println("utente: ", u_json, " utente_conv: ", u)
 	u.Password = utils.Encoding(u.Email, u.Password)
-	filter := bson.D{{"email", u.Email}, {"password", u.Password}}
-	lock.Lock()
+	filter := bson.D{{Key: "email", Value: u.Email}, {Key: "password", Value: u.Password}}
+
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&result)
 	if err != nil {
 		msg := "Errore utente non trovato"
@@ -71,5 +69,5 @@ func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Databas
 		utils.Send([]byte(admin), conn)
 		out <- u.Password
 	}
-	lock.Unlock()
+
 }

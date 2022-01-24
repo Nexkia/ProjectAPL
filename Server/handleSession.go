@@ -48,14 +48,13 @@ func handleSession(conn net.Conn, mongodb *mongo.Database) {
 	var (
 		MP    MessagePT
 		Token string
-		state string
-		lock  = sync.Mutex{}
+		lock  = sync.RWMutex{}
 	)
 	for {
-		lock.Lock()
+
 		log.Println(conn.RemoteAddr())
 		response := utils.Receive(conn)
-		lock.Unlock()
+
 		message := string(response)
 		log.Println("Message Received: ", message)
 		pt, err := SplitProtocol(message)
@@ -72,84 +71,69 @@ func handleSession(conn net.Conn, mongodb *mongo.Database) {
 
 		case register:
 			log.Println("Register --")
-			go service.Register(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
-			log.Println(state)
+			service.Register(Mjson, conn, mongodb)
 
 		case login:
 			log.Println("Login --")
-			go service.Login(inputChannel, Mjson, conn, mongodb, &lock)
+			service.Login(inputChannel, Mjson, conn, mongodb)
 			Token = <-inputChannel
 
 		case sendPreassemblati:
 			log.Println("sendPreassemblati --")
-			go service.SendPreassemblati(inputChannel, conn, mongodb, &namePre, &lock)
-			state = <-inputChannel
+			service.SendPreassemblati(conn, mongodb, &namePre)
 
 		case sendinfoModifica:
 			log.Println("sendinfoModifica --")
-			go service.SendinfoModifica(inputChannel, Token, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendinfoModifica(Token, conn, mongodb)
 
 		case updateinfoModifica:
 			log.Println("updateinfoModifica --")
-			go service.UpdateinfoModifica(inputChannel, Mjson, Token, conn, mongodb, &lock)
+			service.UpdateinfoModifica(inputChannel, Mjson, Token, conn, mongodb)
 			Token = <-inputChannel
 
 		case sendBuildConsigliate:
 			log.Println("sendBuildConsigliate --")
-			go service.SendBuildConsigliate(inputChannel, Mjson, conn, &profiles, &lock)
-			state = <-inputChannel
+			service.SendBuildConsigliate(Mjson, conn, &profiles, &lock)
 
 		case sendCatalogo:
 			log.Println("sendCatalogo --")
-			go service.SendCatalogo(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendCatalogo(Mjson, conn, mongodb)
 
 		case doConfronto:
 			log.Println("doConfronto --")
-			go service.DoConfronto(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.DoConfronto(Mjson, conn, mongodb)
 
 		case sendBuildSolo:
 			log.Println("sendBuildSolo --")
-			go service.SendBuildSolo(inputChannel, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendBuildSolo(conn, mongodb)
 
 		case sendinfoInfoPayment:
 			log.Println("sendinfoInfoPayment --")
-			go service.SendInfoPayment(inputChannel, Token, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendInfoPayment(Token, conn, mongodb)
 
 		case do_InfoPayment:
 			log.Println("do_InfoPayment --")
-			go service.DoPayment(inputChannel, Mjson, Token, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.DoPayment(Mjson, Token, conn, mongodb)
 
 		case sendCronologia:
 			log.Println("getCronologia --")
-			go service.SendCronologia(inputChannel, Token, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendCronologia(Token, conn, mongodb)
 
 		case adminInserimento:
 			log.Println("adminInserimento --")
-			go service.Inserimento(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.Inserimento(Mjson, conn, mongodb)
 
 		case adminInserimentoPre:
 			log.Println("adminInserimentoPre --")
-			go service.Inserimento_pre(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.Inserimento_pre(Mjson, conn, mongodb)
 
 		case adminCancellazione:
 			log.Println("adminCancellazione --")
-			go service.Cancellazione(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.Cancellazione(Mjson, conn, mongodb)
 
 		case adminCancellationPre:
 			log.Println("adminCancellationPre --")
-			go service.Cancellazione_pre(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.Cancellazione_pre(Mjson, conn, mongodb)
 
 		case closeConn:
 			log.Println("close --")
@@ -159,22 +143,18 @@ func handleSession(conn net.Conn, mongodb *mongo.Database) {
 
 		case updateBuildConsigliate:
 			log.Println("updateBuildConsigliate --")
-			go service.UpdateBuildConsigliate(inputChannel, conn, mongodb, &profiles, &namePre, &lock)
-			state = <-inputChannel
+			service.UpdateBuildConsigliate(conn, mongodb, &profiles, &namePre, &lock)
 
 		case updateStatistics:
 			log.Println("updateStatistics --")
-			go service.UpdateStatistics(inputChannel, conn, mongodb, &img, &lock)
-			state = <-inputChannel
+			service.UpdateStatistics(conn, mongodb, &img, &lock)
 
 		case sendStatistics:
 			log.Println("sendStatistics --")
-			go service.SendStatistics(inputChannel, conn, img, &lock)
-			state = <-inputChannel
+			service.SendStatistics(conn, img, &lock)
 
 		case sendCompatibilita:
-			go service.SendCompatibilita(inputChannel, Mjson, conn, mongodb, &lock)
-			state = <-inputChannel
+			service.SendCompatibilita(Mjson, conn, mongodb)
 		}
 	}
 }

@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func UpdateBuildConsigliate(out chan string, conn net.Conn, mongodb *mongo.Database, profiles *[5][8][3]data.Componente, name *[3]string, lock *sync.Mutex) {
+func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5][8][3]data.Componente, name *[3]string, lock *sync.RWMutex) {
 
 	var profili int = 5
 	var categorie int = 8
@@ -23,7 +23,7 @@ func UpdateBuildConsigliate(out chan string, conn net.Conn, mongodb *mongo.Datab
 			for k := 0; k < n_elem; k++ {
 				response := utils.Receive(conn)
 				modello := strings.Trim(string(response), "\n")
-				filter := bson.D{{"modello", modello}}
+				filter := bson.D{{Key: "modello", Value: modello}}
 				utils.FindOne(filter, "componenti", mongodb).Decode(&profiles[i][j][k])
 			}
 		}
@@ -34,10 +34,9 @@ func UpdateBuildConsigliate(out chan string, conn net.Conn, mongodb *mongo.Datab
 		name[i] = name_pc
 	}
 	lock.Unlock()
-	out <- "done"
 }
 
-func UpdateStatistics(out chan string, conn net.Conn, mongodb *mongo.Database, img *[3][]byte, lock *sync.Mutex) {
+func UpdateStatistics(conn net.Conn, mongodb *mongo.Database, img *[3][]byte, lock *sync.RWMutex) {
 	lock.Lock()
 	for i := 0; i < 3; i++ {
 		byte_img := utils.Receive(conn)
@@ -45,5 +44,4 @@ func UpdateStatistics(out chan string, conn net.Conn, mongodb *mongo.Database, i
 		log.Println(len(byte_img))
 	}
 	lock.Unlock()
-	out <- "done"
 }

@@ -34,7 +34,7 @@ namespace APL.Forms
         {
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
@@ -59,8 +59,8 @@ namespace APL.Forms
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
-                    SocketTCP.send(pt.ToString());
-                    string response = SocketTCP.receive();
+                    SocketTCP.Send(pt.ToString());
+                    string response = SocketTCP.Receive();
                     SocketTCP.GetMutex().ReleaseMutex();
                     
                     if (response.Contains("Registrazione"))
@@ -101,8 +101,8 @@ namespace APL.Forms
                     );
                     pt.SetProtocolID("login");  pt.Data = Json;
                     SocketTCP.GetMutex().WaitOne();
-                    SocketTCP.send(pt.ToString());
-                    string responseData = SocketTCP.receive();
+                    SocketTCP.Send(pt.ToString());
+                    string responseData = SocketTCP.Receive();
                     SocketTCP.GetMutex().ReleaseMutex();
                     if (responseData.Contains("Errore"))
                     {

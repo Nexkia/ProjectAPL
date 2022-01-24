@@ -51,9 +51,9 @@ namespace APL.Forms
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
             string responseData = String.Empty;
-            responseData = SocketTCP.receive();
+            responseData = SocketTCP.Receive();
             SocketTCP.GetMutex().ReleaseMutex();
             int dim = 3;
             PcPreassemblato[] a = new PcPreassemblato[dim];
@@ -103,7 +103,7 @@ namespace APL.Forms
             for (int i = 0; i < listItems.Length; i++) {
 
                Debug.Write("pre:" +pre[i]);
-                listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListView());
+                listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListViewC());
                 listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.preassemblato;
                 listItems[i].IconBackground = Color.SteelBlue;
@@ -176,7 +176,7 @@ namespace APL.Forms
             for (int i = 0; i < profiles.Length; i++)
 
             {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListView());
+                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListViewC());
 
                 switch (i)
                 {
@@ -317,14 +317,14 @@ namespace APL.Forms
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
             List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                string nElements = SocketTCP.receive();
+                string nElements = SocketTCP.Receive();
                 int n = int.Parse(nElements);
                 string response = String.Empty;
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 Componente[] pezzo = new Componente[n];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 List<Componente> singleComponent = pezzo.ToList();
@@ -348,7 +348,7 @@ namespace APL.Forms
 
             foreach (List<Componente> subList in myList)
             {
-                componentsSolo[index] = new ComponentsSolo(carrelloForm.getListView());
+                componentsSolo[index] = new ComponentsSolo(carrelloForm);
 
                 int i = 0;
 

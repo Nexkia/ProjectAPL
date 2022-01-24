@@ -65,7 +65,7 @@ namespace APL.UserControls
 
             ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
             pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
-            SocketTCP.send(pt.ToString());
+            SocketTCP.Send(pt.ToString());
 
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -76,7 +76,7 @@ namespace APL.UserControls
             for (int i = 0; i < componentsTab.Length; i++) {
                 componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
                 string response = String.Empty;
-                response = SocketTCP.receive();
+                response = SocketTCP.Receive();
                 Componente[] pezzo = new Componente[3];
                 pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
                 int idx = order[pezzo[0].Categoria]; 

@@ -1,10 +1,6 @@
 MSI B450 Tomahawk MaxATX Socket AM4 Chipset B450 4 Ramslots USD 114.99 
 ASRock 970 PRO3 R2.0 GL/SATA600/R/USB3.0 970ATX Socket AM3+ Chipset 970 4 Ramslots 
 ASRock A88M-G/3.1 A88XMicro-ATX Socket FM2+ Chipset A88X 4 Ramslots 
-ASRock B250 Pro4ATX Socket 1151 Chipset B250 4 Ramslots 
-ASRock B360 Pro4ATX Socket 1151 Chipset B360 4 Ramslots USD 100.25 
-ASRock B360M Pro4Micro-ATX Socket 1151 Chipset B360 4 Ramslots USD 77.99 
-ASRock Fatal1ty B250M PerformanceMicro-ATX Socket 1151 Chipset B250 4 Ramslots USD 99.99 
 ASRock Fatal1ty X399 Professional GamingATX Socket TR4 Chipset X399 8 Ramslots USD 399.99 
 ASRock FM2A88M Pro3+Micro-ATX Socket FM2+ Chipset A88X 4 Ramslots 
 ASRock H110M-HDSMicro-ATX Socket 1151 Chipset H110 2 Ramslots USD 51.99 
@@ -12,60 +8,22 @@ ASRock H97M AnniversaryMicro-ATX Socket 1150 Chipset H97 4 Ramslots
 ASRock X299 Gaming K6ATX Socket 2066 Chipset X299 8 Ramslots USD 199.99 
 ASRock X399 TaichiATX Socket TR4 Chipset X399 8 Ramslots USD 339.99 
 ASRock X570 Taichi, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 289.99 
-ASRock Z270 Killer SLIATX Socket 1151 Chipset Z270 4 Ramslots USD 127.99 
-ASRock Z270 Pro4ATX Socket 1151 Chipset Z270 4 Ramslots 
-ASRock Z270M Pro4Micro-ATX Socket 1151 Chipset Z270 4 Ramslots USD 124.63 
-ASRock Z370 Pro4ATX Socket 1151 Chipset Z370 4 Ramslots USD 134.75 
-ASRock Z370M Pro4Micro-ATX Socket 1151 Chipset Z370 4 Ramslots USD 97.99 
-ASRock Z390 Extreme 4ATX Socket 1151 Chipset Z390 4 Ramslots USD 144.99 
-ASRock Z390 TaichiATX Socket 1151 Chipset Z390 4 Ramslots USD 195.99 
 ASRock Z97 AnniversaryATX Socket 1150 Chipset Z97 4 Ramslots 
 ASUS 970 Pro Gaming/AuraATX Socket AM3+ Chipset 970 4 Ramslots 
 ASUS B365-PLUSATX Socket 1151 Chipset B365 4 Ramslots 
 ASUS H81M-P PlusMicro-ATX Socket 1150 Chipset H81 2 Ramslots 
-ASUS Maximus VIII RANGERATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS PRIME B250M-AMicro-ATX Socket 1151 Chipset B250 4 Ramslots USD 75.00 
-ASUS PRIME B250M-CMicro-ATX Socket 1151 Chipset B250 4 Ramslots 
-ASUS PRIME Z270-PATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS PRIME Z270M-PLUSMicro-ATX Socket 1151 Chipset Z270 4 Ramslots 
-Asus PRIME Z270M-PLUSATX Socket 1151 Chipset Z270 4 Ramslots USD 131.25 
 ASUS PRIME Z490-PATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS PRIME Z490M-PLUSMicro-ATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS PRIME Z690M-PLUS D4Micro-ATX Socket 1700 Chipset Z690 4 Ramslots 
 Asus ROG RAMPAGE VI EXTREMEE-ATX Socket 2066 Chipset X299 8 Ramslots USD 529.99 
 ASUS ROG Zenith ExtremeE-ATX Socket TR4 Chipset X399 8 Ramslots USD 576.99 
-ASUS Strix B365-F GamingATX Socket 1151 Chipset B365 4 Ramslots 
-ASUS Strix B365-G GamingMicro-ATX Socket 1151 Chipset B365 4 Ramslots 
-ASUS STRIX Z270G Gaming, RoGMicro-ATX Socket 1151 Chipset Z270 4 Ramslots USD 31.67 
-ASUS TUF B365M-Plus GamingMicro-ATX Socket 1151 Chipset B365 4 Ramslots 
 Asus TUF X299 MARK 1ATX Socket 2066 Chipset X299 8 Ramslots USD 334.58 
 ASUS Z170-PATX Socket 1151 Chipset Z170 4 Ramslots 
 Gigabyte Aorus X299-GamingATX Socket 2066 Chipset X299 4 Ramslots USD 128.67 
 Gigabyte Aorus X399 Gaming 7ATX Socket TR4 Chipset X399 8 Ramslots USD 334.99 
-Gigabyte Aorus Z270X-Gaming 5ATX Socket 1151 Chipset Z270 4 Ramslots USD 194.99 
-Gigabyte Aorus Z270X-Gaming 9E-ATX Socket 1151 Chipset Z270 4 Ramslots USD 119.99 
-Gigabyte B250M-DS3HMicro-ATX Socket 1151 Chipset B250 4 Ramslots USD 69.99 
-Gigabyte B360 HD3ATX Socket 1151 Chipset B360 4 Ramslots USD 91.99 
-Gigabyte B360M Aorus Gaming 3Micro-ATX Socket 1151 Chipset B360 4 Ramslots 
-Gigabyte B360M D3HMicro-ATX Socket 1151 Chipset B360 4 Ramslots USD 79.99 
-Gigabyte B360M DS3HMicro-ATX Socket 1151 Chipset B360 4 Ramslots USD 63.99 
-Gigabyte B365 M Aorus EliteMicro-ATX Socket 1151 Chipset B365 4 Ramslots 
-Gigabyte B365M DS3HMicro-ATX Socket 1151 Chipset B365 4 Ramslots USD 69.99 
-Gigabyte B365M HMicro-ATX Socket 1151 Chipset B365 4 Ramslots 
-Gigabyte B450 Aorus M, AMD B450Micro-ATX Socket AM4 Chipset B450 4 Ramslots USD 69.99 
-Gigabyte H270M-DS3HMicro-ATX Socket 1151 Chipset H270 4 Ramslots USD 94.88 
-Gigabyte Q270M-D3HMicro-ATX Socket 1151 Chipset Q270 4 Ramslots USD 66.00 
 Gigabyte X570 Aorus Elite, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 118.99 
 Gigabyte X570 Aorus Pro, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 249.99 
 Gigabyte X570 Gaming X, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 189.99 
-Gigabyte Z170-Gaming K3ATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z270-Gaming K3ATX Socket 1151 Chipset Z270 4 Ramslots USD 199.99 
-Gigabyte Z270-HD3PATX Socket 1151 Chipset Z270 4 Ramslots USD 110.50 
-Gigabyte Z270M-D3PMicro-ATX Socket 1151 Chipset Z270 4 Ramslots 
-Gigabyte Z270X-Ultra GamingATX Socket 1151 Chipset Z270 4 Ramslots USD 119.99 
-Gigabyte Z270XP-SLIATX Socket 1151 Chipset Z270 4 Ramslots USD 139.99 
-Gigabyte Z370 PD3ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z390 UDATX Socket 1151 Chipset Z390 4 Ramslots USD 84.99 
 Gigabyte Z490 Aorus EliteATX Socket 1200 Chipset Z490 4 Ramslots 
 Gigabyte Z490 Aorus Elite ACATX Socket 1200 Chipset Z490 4 Ramslots 
 Gigabyte Z490 Vision GATX Socket 1200 Chipset Z490 4 Ramslots 
@@ -77,14 +35,6 @@ Gigabyte Z97-HD3ATX Socket 1150 Chipset Z97 4 Ramslots USD 200.99
 MSI 970A SLI Krait EditionATX Socket AM3+ Chipset 970 4 Ramslots 
 MSI 970A-G43ATX Socket AM3+ Chipset 970 4 Ramslots 
 MSI A68HM GrenadeMicro-ATX Socket FM2+ Chipset A68H 2 Ramslots 
-MSI B150M BazookaMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150M MortarMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B250M BazookaMicro-ATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250M MortarMicro-ATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250M Pro-VDHMicro-ATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B350 TomahawkATX Socket AM4 Chipset B350 4 Ramslots USD 99.99 
-MSI B360M MortarMicro-ATX Socket 1151 Chipset B360 4 Ramslots USD 99.99 
-MSI B365M Pro-VDH, socket 1151Micro-ATX Socket 1151 Chipset B365 4 Ramslots 
 MSI B450 Gaming Plus Max, AMD B450ATX Socket AM4 Chipset B450 4 Ramslots USD 99.99 
 MSI B450 TomahawkATX Socket AM4 Chipset B450 4 Ramslots USD 91.99 
 MSI B450-A ProATX Socket AM4 Chipset B450 4 Ramslots USD 89.99 
@@ -105,20 +55,6 @@ MSI MEG Z490 UnifyATX Socket 1200 Chipset Z490 4 Ramslots
 MSI Pro Z690-A DDR4ATX Socket 1700 Chipset Z690 4 Ramslots USD 219.99 
 MSI Pro Z690-A WiFi DDR4ATX Socket 1700 Chipset Z690 4 Ramslots 
 MSI X399 Gaming Pro Carbon ACATX Socket TR4 Chipset X399 8 Ramslots USD 231.99 
-MSI Z170-A ProATX Socket 1151 Chipset Z170 4 Ramslots 
-MSI Z170A Gaming M7ATX Socket 1151 Chipset Z170 4 Ramslots 
-MSI Z170A PC MateATX Socket 1151 Chipset Z170 4 Ramslots 
-MSI Z270 Gaming PLUSATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 Gaming Pro CarbonATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 KRAIT GamingATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 PC MATEATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 SLI PLUSATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 TomahawkATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270 Xpower Gaming TitaniumATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z270-A ProATX Socket 1151 Chipset Z270 4 Ramslots 
-MSI Z370 Gaming PlusATX Socket 1151 Chipset Z370 4 Ramslots 
-MSI Z370 SLI PlusATX Socket 1151 Chipset Z370 4 Ramslots 
-MSI Z370-A ProATX Socket 1151 Chipset Z370 4 Ramslots USD 62.99 
 MSI Z490M Gaming Edge WiFiMicro-ATX Socket 1200 Chipset Z490 4 Ramslots 
 ASRock 760GM-HDVMicro-ATX Socket AM3+ Chipset 760G 2 Ramslots USD 55.99 
 ASRock 970 Extreme3 R2.0ATX Socket AM3+ Chipset 970 4 Ramslots 
@@ -142,11 +78,6 @@ ASRock AB350M Pro4, AMD B350Micro-ATX Socket AM4 Chipset B350 4 Ramslots USD 59.
 ASRock AB350M-HDVMicro-ATX Socket AM4 Chipset B350 2 Ramslots 
 ASRock AB350M-HDV R3.0Micro-ATX Socket AM4 Chipset B350 2 Ramslots 
 ASRock AB350M-HDV R4.0, AMD B350Micro-ATX Socket AM4 Chipset B350 2 Ramslots 
-ASRock B150M-HDSMicro-ATX Socket 1151 Chipset B150 2 Ramslots 
-ASRock B250M Pro4Micro-ATX Socket 1151 Chipset B250 4 Ramslots USD 84.53 
-ASRock B250M-HDVMicro-ATX Socket 1151 Chipset B250 2 Ramslots USD 57.99 
-ASRock B360 Gaming K4 Fatal1tyATX Socket 1151 Chipset B360 4 Ramslots USD 119.99 
-ASRock B360M-HDVMicro-ATX Socket 1151 Chipset B360 2 Ramslots USD 74.99 
 ASRock B450 Gaming K4, AMD B450ATX Socket AM4 Chipset B450 4 Ramslots USD 99.99 
 ASRock B450 Pro 4, AMD B450ATX Socket AM4 Chipset B450 4 Ramslots USD 89.99 
 ASRock B450M Pro4, AMD B450Micro-ATX Socket AM4 Chipset B450 4 Ramslots USD 69.99 
@@ -184,29 +115,12 @@ ASRock Fatal1ty FM2A88X+ KillerATX Socket FM2+ Chipset A88X 4 Ramslots
 ASRock Fatal1ty H270 PerformanceATX Socket 1151 Chipset H270 4 Ramslots USD 140.37 
 ASRock Fatal1ty H270M PerformanceMicro-ATX Socket 1151 Chipset H270 4 Ramslots USD 129.99 
 ASRock Fatal1ty X299 Professional Gaming i9 XEATX Socket 2066 Chipset X299 8 Ramslots USD 451.05 
-ASRock Fatal1ty Z170 Gaming K4ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Fatal1ty Z170 Gaming K6+ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Fatal1ty Z270 Gaming K4ATX Socket 1151 Chipset Z270 4 Ramslots USD 139.99 
-ASRock Fatal1ty Z270 Gaming K6ATX Socket 1151 Chipset Z270 4 Ramslots 
-ASRock Fatal1ty Z270 Professional Gaming i7, Intel Z270ATX Socket 1151 Chipset Z270 4 Ramslots 
-ASRock Fatal1ty Z370 Gaming K6ATX Socket 1151 Chipset Z370 4 Ramslots USD 220.00 
-ASRock Fatal1ty Z370 Professional Gaming i7ATX Socket 1151 Chipset Z370 4 Ramslots 
 ASRock Fatal1ty Z97X KillerATX Socket 1150 Chipset Z97 4 Ramslots 
 ASRock Fatal1ty Z97X Killer/3.1ATX Socket 1150 Chipset Z97 4 Ramslots 
 ASRock FM2A58+ BTCATX Socket FM2+ Chipset A58 4 Ramslots 
 ASRock FM2A88X Extreme4+ATX Socket FM2+ Chipset A88X 4 Ramslots 
 ASRock FM2A88X Extreme6+ATX Socket FM2+ Chipset A88X 4 Ramslots 
 ASRock FM2A88X+ BTC Bitcoin GL/SATA600/USB3.0/DVI/VGAATX Socket FM2+ Chipset A88X 4 Ramslots 
-ASRock H110 PRO BTC+ATX Socket 1151 Chipset H110 2 Ramslots USD 99.99 
-ASRock H170 PRO4ATX Socket 1151 Chipset H170 4 Ramslots USD 94.99 
-ASRock H170M PRO4Micro-ATX Socket 1151 Chipset H170 4 Ramslots 
-ASRock H270 Pro 4ATX Socket 1151 Chipset H270 4 Ramslots 
-ASRock H270M Pro4Micro-ATX Socket 1151 Chipset H270 4 Ramslots USD 99.00 
-ASRock H310M-DGSMicro-ATX Socket 1151 Chipset H310 2 Ramslots USD 54.78 
-ASRock H310M-HDV/M.2Micro-ATX Socket 1151 Chipset H310 2 Ramslots USD 71.45 
-ASRock H370 Performance Fatal1tyATX Socket 1151 Chipset H370 4 Ramslots USD 104.99 
-ASRock H370 Pro4ATX Socket 1151 Chipset H370 4 Ramslots USD 89.99 
-ASRock H370M Pro4Micro-ATX Socket 1151 Chipset H370 4 Ramslots USD 95.59 
 ASRock H410M-HDVMicro-ATX Socket 1200 Chipset H410 2 Ramslots USD 59.99 
 ASRock H410M-HDV/M.2Micro-ATX Socket 1200 Chipset H410 2 Ramslots USD 64.99 
 ASRock H410M-HVSMicro-ATX Socket 1200 Chipset H410 2 Ramslots 
@@ -245,26 +159,6 @@ ASRock X570 Phantom Gaming X, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD
 ASRock X570 Pro4, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 169.99 
 ASRock X570 Steel Legend, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 195.99 
 ASRock X570M Pro4, AMD X570Micro-ATX Socket AM4 Chipset X570 4 Ramslots USD 177.99  
-ASRock Z170 Extreme4ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z170 Extreme6ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z170 Extreme6+ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z170 Extreme7+ATX Socket 1151 Chipset Z170 4 Ramslots USD 199.52 
-ASRock Z170 Gaming K6ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z170 OC Formula USB3.1/DP/HDMI/M.2/SATAeATX Socket 1151 Chipset Z170 4 Ramslots USD 212.99 
-ASRock Z170 Pro4/D3 USB3.0/SATA600/DVI/HDMI/M.2/SATAeATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z170A-X1ATX Socket 1151 Chipset Z170 4 Ramslots USD 69.99 
-ASRock Z170M Pro4S USB3.0/SATA600/DVI/HDMI/M.2Micro-ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASRock Z270 Extreme4ATX Socket 1151 Chipset Z270 4 Ramslots USD 159.99 
-ASRock Z270 SuperCarrier, Intel Z270ATX Socket 1151 Chipset Z270 4 Ramslots 
-ASRock Z270 TaichiATX Socket 1151 Chipset Z270 4 Ramslots USD 159.99 
-ASRock Z270M Extreme4Micro-ATX Socket 1151 Chipset Z270 4 Ramslots 
-ASRock Z370 Extreme4ATX Socket 1151 Chipset Z370 4 Ramslots USD 150.25 
-ASRock Z370 Killer SLIATX Socket 1151 Chipset Z370 4 Ramslots 
-ASRock Z370 TaichiATX Socket 1151 Chipset Z370 4 Ramslots USD 168.99 
-ASRock Z390 M Pro 4Micro-ATX Socket 1151 Chipset Z390 4 Ramslots USD 114.99 
-ASRock Z390 Phantom Gaming 4ATX Socket 1151 Chipset Z390 4 Ramslots USD 118.99 
-ASRock Z390 Pro 4ATX Socket 1151 Chipset Z390 4 Ramslots USD 112.99 
-ASRock Z390 Taichi UltimateATX Socket 1151 Chipset Z390 4 Ramslots USD 254.99 
 ASRock Z490 AquaE-ATX Socket 1200 Chipset Z490 4 Ramslots USD 1030.99 
 ASRock Z490 Extreme4ATX Socket 1200 Chipset Z490 4 Ramslots USD 189.99 
 ASRock Z490 PG VelocitaATX Socket 1200 Chipset Z490 4 Ramslots USD 259.99 
@@ -288,18 +182,6 @@ ASRock Z97 Extreme3 GL/SATA600/DVI/HDMI/VGAATX Socket 1150 Chipset Z97 4 Ramslot
 ASRock Z97 Extreme4ATX Socket 1150 Chipset Z97 4 Ramslots 
 ASUS A68HM-K GL/SATA600/R/USB3.0/DVI/VGA A68XMicro-ATX Socket FM2+ Chipset A68H 2 Ramslots USD 49.00 
 ASUS A88XM-E USB 3.1Micro-ATX Socket FM2+ Chipset A88X 2 Ramslots 
-ASUS B150 Pro Gaming/AuraATX Socket 1151 Chipset B150 4 Ramslots 
-Asus B150-PLUSATX Socket 1151 Chipset B150 4 Ramslots USD 90.22 
-ASUS B150-ProATX Socket 1151 Chipset B150 4 Ramslots 
-ASUS B150-PRO Gaming USB3.1/M.2/SATA600/HDMI/VGAATX Socket 1151 Chipset B150 4 Ramslots 
-ASUS B150M-A D3Micro-ATX Socket 1151 Chipset B150 4 Ramslots 
-Asus B150M-A D3ATX Socket 1151 Chipset B150 4 Ramslots USD 72.23 
-ASUS B150M-CMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-ASUS B150M-C D3Micro-ATX Socket 1151 Chipset B150 4 Ramslots 
-ASUS B150M-Plus D3Micro-ATX Socket 1151 Chipset B150 4 Ramslots 
-Asus B150M-PLUS D3ATX Socket 1151 Chipset B150 4 Ramslots USD 89.29 
-ASUS B150M-PRO Gaming USB3.0/M.2/SATA600/HDMIMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-ASUS B250 Mining Expert BTCATX Socket 1151 Chipset B250 2 Ramslots 
 ASUS B85-Plus (C2) GL/USB3.0/SATA600/R/DVI/VGA B85ATX Socket 1150 Chipset B85 4 Ramslots 
 ASUS B85-Pro GamerATX Socket 1150 Chipset B85 4 Ramslots 
 ASUS B85M-G GL/USB3.0/SATA600/R/DVI/HDMI/VGA B85Micro-ATX Socket 1150 Chipset B85 4 Ramslots 
@@ -308,24 +190,7 @@ ASUS B85M-G/USB3.1 SATA600/R/DVI/HDMI/VGA B85Micro-ATX Socket 1150 Chipset B85 4
 ASUS B85M-Gamer GL/USB3.0/SATA600/HDMI/VGA B85Micro-ATX Socket 1150 Chipset B85 4 Ramslots 
 ASUS Crossblade RANGER, RoGATX Socket FM2+ Chipset A88X 4 Ramslots 
 ASUS Crosshair V Formula Z, RoGATX Socket AM3+ Chipset 990FX 4 Ramslots 
-ASUS E3 PRO GAMING V5ATX Socket 1151 Chipset C232 4 Ramslots 
 ASUS EX-A320MMicro-ATX Socket AM4 Chipset A320 4 Ramslots 
-Asus EX-B250-V7ATX Socket 1151 Chipset B250 4 Ramslots USD 98.65 
-ASUS H110-PLUSATX Socket 1151 Chipset H110 2 Ramslots 
-ASUS H110M-A/M.2Micro-ATX Socket 1151 Chipset H110 2 Ramslots 
-ASUS H110M-CMicro-ATX Socket 1151 Chipset H110 2 Ramslots 
-ASUS H110M-DMicro-ATX Socket 1151 Chipset H110 2 Ramslots 
-ASUS H110M-KMicro-ATX Socket 1151 Chipset H110 2 Ramslots USD 69.49 
-Asus H110M-KATX Socket 1151 Chipset H110 2 Ramslots USD 77.99 
-ASUS H110M-PLUS USB3.1/GL/SATA600/DVI/VGA/HDMIMicro-ATX Socket 1151 Chipset H110 2 Ramslots 
-Asus H170 PRO GAMINGATX Socket 1151 Chipset H170 4 Ramslots USD 82.98 
-ASUS H170-Plus D3ATX Socket 1151 Chipset H170 4 Ramslots 
-ASUS H170-PROATX Socket 1151 Chipset H170 4 Ramslots 
-ASUS H170-PRO GamingATX Socket 1151 Chipset H170 4 Ramslots 
-ASUS H170-PRO USB 3.1ATX Socket 1151 Chipset H170 4 Ramslots 
-ASUS H170M-E D3Micro-ATX Socket 1151 Chipset H170 4 Ramslots 
-ASUS H170M-PlusMicro-ATX Socket 1151 Chipset H170 4 Ramslots 
-Asus H370 MINING MASTERATX Socket 1151 Chipset H370 2 Ramslots USD 53.00 
 ASUS H81-GamerATX Socket 1150 Chipset H81 4 Ramslots 
 ASUS H81-Plus GL/USB3.0/SATA600/R/VGA/Parallel/Seriell H81ATX Socket 1150 Chipset H81 2 Ramslots 
 Asus H81M-AATX Socket 1150 Chipset H81 2 Ramslots 
@@ -340,20 +205,6 @@ ASUS M5A97 LE R2.0 GL/SATA600/R/USB3.0 AMD970ATX Socket AM3+ Chipset 970 4 Ramsl
 ASUS M5A97 R2.0 GL/SATA600/R/USB3.0 AMD970ATX Socket AM3+ Chipset 970 4 Ramslots 
 ASUS M5A99FX PRO R2.0ATX Socket AM3+ Chipset 990FX 4 Ramslots 
 ASUS M5A99X EVO R2.0 GL/SATA600/R/eSATA/USB3.0 AMD990XATX Socket AM3+ Chipset 990X 4 Ramslots 
-ASUS Maximus IX FORMULA, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS Maximus IX HERO, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS Maximus TUF MARK 1, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS Maximus TUF MARK 2, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS Maximus VIII ExtremeE-ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Maximus VIII GENEMicro-ATX Socket 1151 Chipset Z170 4 Ramslots 
-Asus MAXIMUS VIII GENEATX Socket 1151 Chipset Z170 4 Ramslots USD 198.00 
-ASUS Maximus VIII HEROATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Maximus VIII HERO ALPHAATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Maximus X APEX, RoGE-ATX Socket 1151 Chipset Z370 2 Ramslots 
-Asus P10S WSATX Socket 1151 Chipset C236 4 Ramslots USD 216.00 
-ASUS P10S WS 2x GL/USB3.0/SATA600/VGAATX Socket 1151 Chipset C236 4 Ramslots 
-Asus P10S-M WSATX Socket 1151 Chipset C236 4 Ramslots USD 197.01 
-ASUS P10S-V/4L 4x GL/USB3.0/SATA600/VGAATX Socket 1151 Chipset C236 4 Ramslots 
 ASUS P9D-X PCIe3.0 2xGL/SATA600/R/VGAWorkstationATX Socket 1150 Chipset C222 4 Ramslots 
 ASUS PRIME A320M-AMicro-ATX Socket AM4 Chipset A320 4 Ramslots 
 Asus PRIME A320M-AATX Socket AM4 Chipset A320 4 Ramslots USD 61.00 
@@ -395,25 +246,6 @@ ASUS Prime B550M-KMicro-ATX Socket AM4 Chipset B550 4 Ramslots
 ASUS PRIME B560-PLUSATX Socket 1200 Chipset B560 4 Ramslots 
 ASUS PRIME B560M-AMicro-ATX Socket 1200 Chipset B560 4 Ramslots 
 ASUS PRIME B560M-KMicro-ATX Socket 1200 Chipset B560 2 Ramslots 
-ASUS PRIME H270-PLUSATX Socket 1151 Chipset H270 4 Ramslots 
-ASUS PRIME H270-PROATX Socket 1151 Chipset H270 4 Ramslots 
-Asus PRIME H270-PROATX Socket 1151 Chipset H270 4 Ramslots USD 145.99 
-ASUS PRIME H270M-PLUSMicro-ATX Socket 1151 Chipset H270 4 Ramslots 
-ASUS PRIME H310-PlusATX Socket 1151 Chipset H310 2 Ramslots 
-Asus PRIME H310M-AATX Socket 1151 Chipset H310 2 Ramslots USD 69.99 
-ASUS PRIME H310M-AMicro-ATX Socket 1151 Chipset H310 2 Ramslots USD 72.99 
-ASUS PRIME H310M-DMicro-ATX Socket 1151 Chipset H310 2 Ramslots 
-Asus PRIME H310M-EATX Socket 1151 Chipset H310 2 Ramslots USD 59.99 
-ASUS PRIME H310M-EMicro-ATX Socket 1151 Chipset H310 2 Ramslots USD 59.99 
-ASUS PRIME H310M-E R2.0Micro-ATX Socket 1151 Chipset H310 2 Ramslots USD 55.99 
-ASUS PRIME H310M-KMicro-ATX Socket 1151 Chipset H310 2 Ramslots 
-ASUS PRIME H310M-K R2.0Micro-ATX Socket 1151 Chipset H310 2 Ramslots 
-Asus PRIME H370-AATX Socket 1151 Chipset H370 4 Ramslots USD 111.99 
-ASUS PRIME H370-AATX Socket 1151 Chipset H370 4 Ramslots USD 111.99 
-ASUS PRIME H370-PlusATX Socket 1151 Chipset H370 4 Ramslots 
-Asus PRIME H370-PLUSATX Socket 1151 Chipset H370 4 Ramslots USD 112.89 
-Asus PRIME H370M-PLUSATX Socket 1151 Chipset H370 4 Ramslots USD 99.99 
-ASUS PRIME H370M-PlusMicro-ATX Socket 1151 Chipset H370 4 Ramslots USD 105.99 
 ASUS PRIME H410M-AMicro-ATX Socket 1200 Chipset H410 2 Ramslots 
 ASUS PRIME H410M-DMicro-ATX Socket 1200 Chipset H410 2 Ramslots 
 ASUS PRIME H410M-EMicro-ATX Socket 1200 Chipset H410 2 Ramslots 
@@ -445,19 +277,6 @@ Asus PRIME X470-PROATX Socket AM4 Chipset X470 4 Ramslots USD 118.99
 ASUS PRIME X470-Pro, AMD X470ATX Socket AM4 Chipset X470 4 Ramslots USD 118.99 
 ASUS Prime X570-P, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 133.99 
 ASUS Prime X570-Pro, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 249.99 
-ASUS PRIME Z270-AATX Socket 1151 Chipset Z270 4 Ramslots 
-Asus PRIME Z270-ARATX Socket 1151 Chipset Z270 4 Ramslots USD 159.00 
-ASUS PRIME Z270-KATX Socket 1151 Chipset Z270 4 Ramslots 
-Asus PRIME Z270-KATX Socket 1151 Chipset Z270 4 Ramslots USD 155.99 
-Asus PRIME Z370-AATX Socket 1151 Chipset Z370 4 Ramslots USD 144.99 
-ASUS PRIME Z370-AATX Socket 1151 Chipset Z370 4 Ramslots USD 144.99 
-ASUS PRIME Z370-A IIATX Socket 1151 Chipset Z370 4 Ramslots USD 144.99 
-Asus PRIME Z370-PATX Socket 1151 Chipset Z370 4 Ramslots USD 84.99 
-ASUS PRIME Z370-PATX Socket 1151 Chipset Z370 4 Ramslots USD 114.99 
-ASUS PRIME Z370-P IIATX Socket 1151 Chipset Z370 4 Ramslots USD 114.99 
-ASUS PRIME Z390-AATX Socket 1151 Chipset Z390 4 Ramslots USD 309.99 
-ASUS PRIME Z390-PATX Socket 1151 Chipset Z390 4 Ramslots USD 134.99 
-ASUS PRIME Z390M-PLUSMicro-ATX Socket 1151 Chipset Z390 4 Ramslots 
 ASUS PRIME Z490-AATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS PRIME Z590-AATX Socket 1200 Chipset Z590 4 Ramslots 
 ASUS PRIME Z590-PATX Socket 1200 Chipset Z590 4 Ramslots 
@@ -485,28 +304,6 @@ ASUS ROG Crosshair VIII ExtremeE-ATX Socket AM4 Chipset X570 4 Ramslots
 ASUS ROG Crosshair VIII Formula, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 481.99 
 ASUS ROG Crosshair VIII Hero (WI-FI), AMD X570ATX Socket AM4 Chipset X570 4 Ramslots 
 ASUS ROG Crosshair VIII Hero, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 339.99 
-ASUS ROG Maximus IX APEXE-ATX Socket 1151 Chipset Z270 2 Ramslots USD 239.99 
-ASUS ROG Maximus IX CODEATX Socket 1151 Chipset Z270 4 Ramslots 
-Asus ROG MAXIMUS IX EXTREMEE-ATX Socket 1151 Chipset Z270 4 Ramslots USD 109.99 
-ASUS ROG Maximus IX ExtremeE-ATX Socket 1151 Chipset Z270 4 Ramslots USD 141.99 
-Asus ROG MAXIMUS IX FORMULAATX Socket 1151 Chipset Z270 4 Ramslots USD 339.00 
-Asus ROG MAXIMUS IX HEROATX Socket 1151 Chipset Z270 4 Ramslots USD 229.00 
-Asus ROG MAXIMUS VIII HERO ALPHAATX Socket 1151 Chipset Z170 4 Ramslots USD 216.46 
-Asus ROG MAXIMUS X APEXE-ATX Socket 1151 Chipset Z370 2 Ramslots USD 203.99 
-ASUS ROG MAXIMUS X CODEATX Socket 1151 Chipset Z370 4 Ramslots 
-Asus ROG MAXIMUS X CODEATX Socket 1151 Chipset Z370 4 Ramslots USD 279.99 
-Asus ROG MAXIMUS X FORMULAATX Socket 1151 Chipset Z370 4 Ramslots USD 343.12 
-ASUS ROG MAXIMUS X HEROATX Socket 1151 Chipset Z370 4 Ramslots USD 204.99 
-Asus ROG MAXIMUS X HERO (WI-FI AC)ATX Socket 1151 Chipset Z370 4 Ramslots USD 163.99 
-ASUS ROG MAXIMUS X HERO Wi-FiATX Socket 1151 Chipset Z370 4 Ramslots USD 259.65 
-ASUS ROG Maximus XI APEXATX Socket 1151 Chipset Z390 2 Ramslots 
-ASUS ROG Maximus XI CODEATX Socket 1151 Chipset Z390 4 Ramslots USD 349.99 
-ASUS ROG Maximus XI ExtremeE-ATX Socket 1151 Chipset Z390 4 Ramslots USD 501.99 
-ASUS ROG Maximus XI FORMULAATX Socket 1151 Chipset Z390 4 Ramslots USD 379.99 
-ASUS ROG Maximus XI GENEMicro-ATX Socket 1151 Chipset Z390 2 Ramslots USD 399.99 
-ASUS ROG Maximus XI HEROATX Socket 1151 Chipset Z390 4 Ramslots USD 279.99 
-ASUS ROG Maximus XI HERO Wi-FiATX Socket 1151 Chipset Z390 4 Ramslots USD 283.08 
-ASUS ROG Maximus XI HERO Wi-Fi CEATX Socket 1151 Chipset Z390 4 Ramslots 
 ASUS ROG Maximus XII ExtremeE-ATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS ROG Maximus XII FormulaATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS ROG Maximus XII Hero Wi-FiATX Socket 1200 Chipset Z490 4 Ramslots 
@@ -559,21 +356,6 @@ Asus ROG STRIX X470-F GAMINGATX Socket AM4 Chipset X470 4 Ramslots USD 152.99
 ASUS ROG Strix X470-F Gaming, AMD X470ATX Socket AM4 Chipset X470 4 Ramslots 
 ASUS ROG Strix X570-E Gaming, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots 
 ASUS ROG Strix X570-F Gaming, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 254.99 
-Asus ROG STRIX Z270E GAMINGATX Socket 1151 Chipset Z270 4 Ramslots USD 199.00 
-Asus ROG STRIX Z270F GAMINGATX Socket 1151 Chipset Z270 4 Ramslots USD 148.36 
-Asus ROG STRIX Z270G GAMINGATX Socket 1151 Chipset Z270 4 Ramslots USD 239.99 
-Asus ROG STRIX Z270H GAMINGATX Socket 1151 Chipset Z270 4 Ramslots USD 159.00 
-ASUS ROG STRIX Z370-F GamingATX Socket 1151 Chipset Z370 4 Ramslots 
-Asus ROG STRIX Z370-F GAMINGATX Socket 1151 Chipset Z370 4 Ramslots USD 161.99 
-ASUS ROG STRIX Z370-G GamingMicro-ATX Socket 1151 Chipset Z370 4 Ramslots 
-Asus ROG STRIX Z370-G GAMING (WI-FI AC)ATX Socket 1151 Chipset Z370 4 Ramslots USD 167.99 
-ASUS ROG STRIX Z370-G Wi-Fi GamingMicro-ATX Socket 1151 Chipset Z370 4 Ramslots 
-ASUS ROG STRIX Z370-H GamingATX Socket 1151 Chipset Z370 4 Ramslots 
-Asus ROG STRIX Z370-H GAMINGATX Socket 1151 Chipset Z370 4 Ramslots USD 167.92 
-ASUS ROG Strix Z390-E GamingATX Socket 1151 Chipset Z390 4 Ramslots USD 203.99 
-ASUS ROG Strix Z390-F GamingATX Socket 1151 Chipset Z390 4 Ramslots USD 209.99 
-ASUS ROG Strix Z390-H GamingATX Socket 1151 Chipset Z390 4 Ramslots USD 189.40 
-ASUS ROG Strix Z390-I GamingATX Socket 1151 Chipset Z390 4 Ramslots USD 182.99 
 ASUS ROG Strix Z490-A GamingATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS ROG Strix Z490-E GamingATX Socket 1200 Chipset Z490 4 Ramslots 
 ASUS ROG Strix Z490-F GamingATX Socket 1200 Chipset Z490 4 Ramslots 
@@ -590,24 +372,9 @@ ASUS ROG WS Z390 PROATX Socket 1151 Chipset Z390 4 Ramslots
 ASUS ROG Zenith II ExtremeE-ATX Socket TRX40 Chipset TRX40 8 Ramslots USD 849.99 
 ASUS ROG Zenith II Extreme ALPHAE-ATX Socket TRX40 Chipset TRX40 8 Ramslots 
 ASUS Sabertooth MARK 2 USB 3.1ATX Socket 1150 Chipset Z97 4 Ramslots 
-ASUS Sabertooth Z170 Mark 1ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS STRIX H270F GamingATX Socket 1151 Chipset H270 4 Ramslots 
-ASUS STRIX Z270E Gaming, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS STRIX Z270F Gaming, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS STRIX Z270H Gaming, RoGATX Socket 1151 Chipset Z270 4 Ramslots 
-ASUS STRIX Z370-E Gaming, RoGATX Socket 1151 Chipset Z370 4 Ramslots 
 ASUS Trooper B85 GL/USB3.0/SATA600/DVI/VGA B85ATX Socket 1150 Chipset B85 2 Ramslots 
 ASUS TUF B350M-PLUS GamingMicro-ATX Socket AM4 Chipset B350 4 Ramslots 
 Asus TUF B350M-PLUS GAMINGATX Socket AM4 Chipset B350 4 Ramslots USD 91.70 
-Asus TUF B360-PLUS GAMINGATX Socket 1151 Chipset B360 4 Ramslots USD 101.99 
-ASUS TUF B360-Plus GamingATX Socket 1151 Chipset B360 4 Ramslots USD 101.99 
-ASUS TUF B360-Pro GamingATX Socket 1151 Chipset B360 4 Ramslots USD 235.05 
-Asus TUF B360-PRO GAMING (WI-FI)ATX Socket 1151 Chipset B360 4 Ramslots USD 110.99 
-ASUS TUF B360-Pro Gaming (Wi-Fi)ATX Socket 1151 Chipset B360 4 Ramslots USD 117.59 
-Asus TUF B360M-E GAMINGATX Socket 1151 Chipset B360 2 Ramslots USD 80.53 
-ASUS TUF B360M-E GamingMicro-ATX Socket 1151 Chipset B360 2 Ramslots USD 112.21 
-ASUS TUF B360M-Plus GamingMicro-ATX Socket 1151 Chipset B360 4 Ramslots 
-Asus TUF B360M-PLUS GAMINGATX Socket 1151 Chipset B360 4 Ramslots USD 85.76 
 Asus TUF B450-PLUS GAMINGATX Socket AM4 Chipset B450 4 Ramslots USD 106.05 
 ASUS TUF B450-Plus Gaming, AMD B450ATX Socket AM4 Chipset B450 4 Ramslots 
 ASUS TUF B450-PLUS II GamingATX Socket AM4 Chipset B450 4 Ramslots 
@@ -663,18 +430,6 @@ ASUS TUF Z490-PLUS Gaming Wi-FiATX Socket 1200 Chipset Z490 4 Ramslots
 ASUS WS X299 PROATX Socket 2066 Chipset X299 8 Ramslots 
 ASUS WS X299 Pro/SEATX Socket 2066 Chipset X299 8 Ramslots USD 461.99 
 ASUS Z10PA-D8ATX Socket -V3 Chipset C612 8 Ramslots 
-ASUS Z170 Pro GamingATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Z170 Pro Gaming AuraATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Z170-AATX Socket 1151 Chipset Z170 4 Ramslots 
-Asus Z170-AATX Socket 1151 Chipset Z170 4 Ramslots USD 148.49 
-ASUS Z170-DeluxeATX Socket 1151 Chipset Z170 4 Ramslots 
-Asus Z170-EATX Socket 1151 Chipset Z170 4 Ramslots USD 119.99 
-ASUS Z170-E USB3.1/M.2/SATAe/SATA600/DVI/HDMI Z170ATX Socket 1151 Chipset Z170 4 Ramslots 
-ASUS Z170-KATX Socket 1151 Chipset Z170 4 Ramslots 
-Asus Z170-KATX Socket 1151 Chipset Z170 4 Ramslots USD 82.49 
-ASUS Z170-PROATX Socket 1151 Chipset Z170 4 Ramslots 
-Asus Z170-PROATX Socket 1151 Chipset Z170 4 Ramslots USD 244.21 
-ASUS Z170-WSATX Socket 1151 Chipset Z170 4 Ramslots 
 ASUS Z170-WS 2x GLAN/USB3.1/SATA600/M.2/DP/HDMIATX Socket 1151 Chipset Z170 4 Ramslots 
 ASUS Z170M-PlusMicro-ATX Socket 1151 Chipset Z170 4 Ramslots 
 ASUS Z97-AATX Socket 1150 Chipset Z97 4 Ramslots 
@@ -774,20 +529,6 @@ Gigabyte B560M DS3HMicro-ATX Socket 1200 Chipset B560 4 Ramslots
 Gigabyte B85M-D2VMicro-ATX Socket 1150 Chipset B85 2 Ramslots 
 Gigabyte C246-WU4ATX Socket 2066 Chipset C246 4 Ramslots USD 245.99 
 Gigabyte F2A88XM-HD3PMicro-ATX Socket FM2+ Chipset A88X 2 Ramslots 
-Gigabyte H110-D3A BTC EditionATX Socket 1151 Chipset H110 2 Ramslots USD 37.99 
-Gigabyte H110M-S2HPMicro-ATX Socket 1151 Chipset H110 2 Ramslots USD 127.36 
-Gigabyte H110M-S2PV DDR3Micro-ATX Socket 1151 Chipset H110 2 Ramslots 
-Gigabyte H170-D3HPATX Socket 1151 Chipset H170 4 Ramslots USD 111.40 
-Gigabyte H170-HD3ATX Socket 1151 Chipset H170 4 Ramslots 
-Gigabyte H170M-D3HMicro-ATX Socket 1151 Chipset H170 4 Ramslots USD 97.22 
-Gigabyte H170M-HD3 DDR3Micro-ATX Socket 1151 Chipset H170 2 Ramslots 
-Gigabyte H270-Gaming 3ATX Socket 1151 Chipset H270 4 Ramslots 
-Gigabyte H270-HD3ATX Socket 1151 Chipset H270 4 Ramslots USD 99.99 
-Gigabyte H310M S2HATX Socket 1151 Chipset H310 2 Ramslots USD 57.99 
-Gigabyte H310M S2H 2.0ATX Socket 1151 Chipset H310 2 Ramslots 
-Gigabyte H370 Aorus Gaming 3 WIFIATX Socket 1151 Chipset H370 4 Ramslots USD 138.02 
-Gigabyte H370 HD3ATX Socket 1151 Chipset H370 4 Ramslots USD 114.99 
-Gigabyte H370M D3H GSMMicro-ATX Socket 1151 Chipset H370 4 Ramslots USD 122.99 
 Gigabyte H410M S2HMicro-ATX Socket 1200 Chipset H410 2 Ramslots 
 Gigabyte H410M S2H V2Micro-ATX Socket 1200 Chipset H470 2 Ramslots 
 Gigabyte H470 HD3ATX Socket 1200 Chipset H470 4 Ramslots USD 129.99 
@@ -815,46 +556,6 @@ Gigabyte X570 Aorus Master, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 3
 Gigabyte X570 Aorus Ultra, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 296.99 
 Gigabyte X570 Aorus Xtreme, AMD X570E-ATX Socket AM4 Chipset X570 4 Ramslots USD 479.99 
 Gigabyte X570 UD, AMD X570ATX Socket AM4 Chipset X570 4 Ramslots USD 159.99 
-Gigabyte Z170-HD3PATX Socket 1151 Chipset Z170 4 Ramslots USD 129.17 
-Gigabyte Z170M-D3HMicro-ATX Socket 1151 Chipset Z170 4 Ramslots USD 112.43 
-Gigabyte Z170MX-Gaming 5Micro-ATX Socket 1151 Chipset Z170 4 Ramslots USD 136.99 
-Gigabyte Z170X Gaming 7-EKATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z170X Ultra GamingATX Socket 1151 Chipset Z170 4 Ramslots USD 135.00 
-Gigabyte Z170X-DesignareATX Socket 1151 Chipset Z170 4 Ramslots USD 214.90 
-Gigabyte Z170X-Gaming 3-EUATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z170X-Gaming 7ATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z170X-SOC ForceE-ATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z170XP-SLIATX Socket 1151 Chipset Z170 4 Ramslots 
-Gigabyte Z270M-D3HMicro-ATX Socket 1151 Chipset Z270 4 Ramslots USD 119.99 
-Gigabyte Z270X-UD3ATX Socket 1151 Chipset Z270 4 Ramslots USD 162.86 
-Gigabyte Z370 Aorus Gaming 3ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370 Aorus Gaming 5ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370 Aorus Gaming 7ATX Socket 1151 Chipset Z370 4 Ramslots USD 149.99 
-Gigabyte Z370 Aorus Gaming 7 + 32GB OptaneATX Socket 1151 Chipset Z370 4 Ramslots USD 149.99 
-Gigabyte Z370 Aorus Gaming K3ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370 Aorus Ultra GamingATX Socket 1151 Chipset Z370 4 Ramslots USD 127.99 
-Gigabyte Z370 Aorus Ultra Gaming 2.0ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370 Aorus Ultra Gaming 2.0 + 32GB OptaneATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370 Aorus Ultra Gaming WiFiATX Socket 1151 Chipset Z370 4 Ramslots USD 127.99 
-Gigabyte Z370 Aorus Ultra Gaming Wifi + 32GB OptaneATX Socket 1151 Chipset Z370 4 Ramslots USD 169.99
-Gigabyte Z370 HD3 + 32GB OptaneATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370-HD3ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370-HD3PATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z370M-D3HMicro-ATX Socket 1151 Chipset Z370 4 Ramslots 
-Gigabyte Z390 Aorus EliteATX Socket 1151 Chipset Z390 4 Ramslots USD 139.99 
-Gigabyte Z390 Aorus MasterATX Socket 1151 Chipset Z390 4 Ramslots USD 169.99 
-Gigabyte Z390 Aorus Master G2 EditionATX Socket 1151 Chipset Z390 4 Ramslots 
-Gigabyte Z390 Aorus ProATX Socket 1151 Chipset Z390 4 Ramslots USD 149.99 
-Gigabyte Z390 Aorus Pro WiFiATX Socket 1151 Chipset Z390 4 Ramslots USD 169.99 
-Gigabyte Z390 Aorus UltraATX Socket 1151 Chipset Z390 4 Ramslots USD 249.99 
-Gigabyte Z390 Aorus XtremeATX Socket 1151 Chipset Z390 4 Ramslots USD 549.99 
-Gigabyte Z390 Aorus Xtreme WaterforceE-ATX Socket 1151 Chipset Z390 4 Ramslots USD 899.99 
-Gigabyte Z390 DATX Socket 1151 Chipset Z390 4 Ramslots USD 269.99 
-Gigabyte Z390 DesignareATX Socket 1151 Chipset Z390 4 Ramslots USD 169.99 
-Gigabyte Z390 Gaming SLIATX Socket 1151 Chipset Z390 4 Ramslots USD 204.96 
-Gigabyte Z390 Gaming XATX Socket 1151 Chipset Z390 4 Ramslots USD 116.99 
-Gigabyte Z390 MMicro-ATX Socket 1151 Chipset Z390 4 Ramslots USD 141.99 
-Gigabyte Z390 M GamingMicro-ATX Socket 1151 Chipset Z390 4 Ramslots USD 141.89 
 Gigabyte Z490 Aorus MasterATX Socket 1200 Chipset Z490 4 Ramslots USD 419.00 
 Gigabyte Z490 Aorus Pro AXATX Socket 1200 Chipset Z490 4 Ramslots USD 299.00 
 Gigabyte Z490 Aorus UltraATX Socket 1200 Chipset Z490 4 Ramslots 
@@ -888,65 +589,7 @@ Gigabyte Z97P-D3ATX Socket 1150 Chipset Z97 4 Ramslots
 MSI 970 GamingATX Socket AM3+ Chipset 970 4 Ramslots 
 MSI 970A Gaming Pro CarbonsATX Socket AM3+ Chipset 970 4 Ramslots 
 MSI 970A-G43 PlusATX Socket AM3+ Chipset 970 4 Ramslots 
-MSI 990FXA GamingATX Socket AM3+ Chipset 990FX 4 Ramslots 
-MSI A320M BazookaMicro-ATX Socket AM4 Chipset A320 4 Ramslots 
-MSI A320M GrenadeMicro-ATX Socket AM4 Chipset A320 2 Ramslots 
-MSI A320M-A Pro Max, socket AM4Micro-ATX Socket AM4 Chipset A320 2 Ramslots 
-MSI A320M-A Pro, socket AM4Micro-ATX Socket AM4 Chipset A320 2 Ramslots USD 54.99 
-MSI A520M ProMicro-ATX Socket AM4 Chipset A520 2 Ramslots USD 74.22 
-MSI A520M Vector WiFiMicro-ATX Socket AM4 Chipset A520 2 Ramslots USD 81.99 
-MSI A520M-A ProMicro-ATX Socket AM4 Chipset A520 2 Ramslots USD 69.99 
-MSI A68HM-E33 V2Micro-ATX Socket FM2+ Chipset A68H 2 Ramslots USD 49.99 
-MSI A88XM-E35 V2Micro-ATX Socket FM2+ Chipset A88X 2 Ramslots 
-MSI B150 Gaming M3ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150 PC MateATX Socket 1151 Chipset B150 4 Ramslots USD 76.99 
-MSI B150A Gaming ProATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150M Bazooka PlusMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150M Gaming ProMicro-ATX Socket 1151 Chipset B150 2 Ramslots 
-MSI B150M Mortar ArcticMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150M Night ElfMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B150M PRO-DDPMicro-ATX Socket 1151 Chipset B150 4 Ramslots 
-MSI B250 Gaming M3ATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250 Gaming Pro CarbonATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250 KRAIT GamingATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250 PC MATEATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250M Gaming ProMicro-ATX Socket 1151 Chipset B250 2 Ramslots 
-MSI B250M Mortar ArcticMicro-ATX Socket 1151 Chipset B250 4 Ramslots 
-MSI B250M Pro-VDMicro-ATX Socket 1151 Chipset B250 2 Ramslots 
-MSI B250M Pro-VHMicro-ATX Socket 1151 Chipset B250 2 Ramslots 
-MSI B350 Gaming Pro CarbonATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350 Krait GamingATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350 PC MateATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350 Tomahawk ArcticATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350M Gaming ProMicro-ATX Socket AM4 Chipset B350 2 Ramslots 
-MSI B350M MortarMicro-ATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350M Mortar ArcticMicro-ATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B350M Pro-VDHMicro-ATX Socket AM4 Chipset B350 4 Ramslots 
-MSI B360 Gaming PlusATX Socket 1151 Chipset B360 4 Ramslots USD 99.99 
-MSI B360 Gaming Pro CarbonATX Socket 1151 Chipset B360 4 Ramslots 
-MSI B360-A ProATX Socket 1151 Chipset B360 4 Ramslots 
-MSI B360M BazookaMicro-ATX Socket 1151 Chipset B360 4 Ramslots 
-MSI B360M Gaming PlusMicro-ATX Socket 1151 Chipset B360 2 Ramslots 
-MSI B360M Mortar TitaniumMicro-ATX Socket 1151 Chipset B360 4 Ramslots 
-MSI B360M Pro-VDMicro-ATX Socket 1151 Chipset B360 2 Ramslots 
-MSI B360M Pro-VDHMicro-ATX Socket 1151 Chipset B360 4 Ramslots USD 107.05 
-MSI B360M Pro-VHMicro-ATX Socket 1151 Chipset B360 2 Ramslots 
-MSI B365M Pro-VH, socket 1151Micro-ATX Socket 1151 Chipset B365 2 Ramslots USD 48.27 
-MSI B450 Gaming PlusATX Socket AM4 Chipset B450 4 Ramslots USD 94.04 
-MSI B450 Gaming Pro Carbon AC, AMD B450ATX Socket AM4 Chipset B450 4 Ramslots USD 159.99 
-MSI B450 Tomahawk Max IIATX Socket AM4 Chipset B450 4 Ramslots USD 114.99 
-MSI B450-A Pro Max, AMD B450-, socket AM4ATX Socket AM4 Chipset B450 4 Ramslots 
-MSI B450M Bazooka V2, AMD B450Micro-ATX Socket AM4 Chipset B450 4 Ramslots 
-MSI B450M Gaming PlusMicro-ATX Socket AM4 Chipset B450 2 Ramslots USD 89.99 
-MSI B450M Pro-M2Micro-ATX Socket AM4 Chipset B450 2 Ramslots USD 71.49 
-MSI B450M Pro-M2 Max, AMD B450-, socket AM4Micro-ATX Socket AM4 Chipset B450 2 Ramslots 
-MSI B450M Pro-VDHMicro-ATX Socket AM4 Chipset B450 4 Ramslots 
-MSI B450M-A Pro MaxMicro-ATX Socket AM4 Chipset B450 2 Ramslots USD 63.99 
-MSI B460M ProMicro-ATX Socket 1200 Chipset B460 2 Ramslots 
-MSI B460M Pro-VDH WiFiMicro-ATX Socket 1200 Chipset B460 4 Ramslots 
-MSI B550-A ProATX Socket AM4 Chipset B550 4 Ramslots USD 124.99 
-MSI B550M Pro-VDHMicro-ATX Socket AM4 Chipset B550 4 Ramslots 
-MSI B550M Pro-VDH WiFiMicro-ATX Socket AM4 Chipset B550 4 Ramslots 
+MSI 990FXA GamingATX Socket AM3+ Chipset 990FX 4 Ramslots  
 MSI B560M ProMicro-ATX Socket 1200 Chipset B560 2 Ramslots 
 MSI B560M Pro-VDHMicro-ATX Socket 1200 Chipset B560 4 Ramslots 
 MSI B560M Pro-VDH WiFiMicro-ATX Socket 1200 Chipset B560 4 Ramslots 
