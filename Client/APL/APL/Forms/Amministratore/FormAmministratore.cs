@@ -48,8 +48,10 @@ namespace APL.Forms
         private void buttonEliminaComponente_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
+
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
+                SocketTCP.Send(pt.ToString());
+                string response = SocketTCP.Receive();
             SocketTCP.GetMutex().ReleaseMutex();
         }
 
@@ -64,7 +66,8 @@ namespace APL.Forms
         {
             pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
             SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
+                SocketTCP.Send(pt.ToString());
+                string receve = SocketTCP.Receive();
             SocketTCP.GetMutex().ReleaseMutex();
         }
 

@@ -52,7 +52,6 @@ namespace APL.Forms
                         mod.Password = TextBoxNuovaPassword.Text;
                         string json_update = JsonConvert.SerializeObject(mod);
                         SocketTCP.Send(json_update);
-                        //aggiorna il token, che cambia con la nuova password
                         Debug.WriteLine(json_update);
                         this.Close();
                     }
@@ -63,7 +62,7 @@ namespace APL.Forms
                     }
                     break;
                 default:
-                    MessageBox.Show("Email o Codice Fiscale già usati in altri account", "Errore", 
+                    MessageBox.Show("Le nuove password non sono uguali", "Errore", 
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }

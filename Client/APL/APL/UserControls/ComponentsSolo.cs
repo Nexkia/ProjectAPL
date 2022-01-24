@@ -93,7 +93,7 @@ namespace APL.UserControls
             }
         }
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private  void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
             Details MyDetails;
             pt.Data = modello; pt.SetProtocolID("compatibilita");
