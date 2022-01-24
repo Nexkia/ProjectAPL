@@ -1,4 +1,4 @@
-from connection import connetion
+from connection import Connetion
 import pandas as pd
 from DataFrameStd import DataFrame
 from DataFrameFiltering import DataFrameFilter
@@ -21,7 +21,7 @@ def ConvertiInUnaLista(lista):
     return listaFinale
 
 
-connect = connetion()
+connect = Connetion()
 
 
 def checkList(listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLast, listaDetLast, listaCompLast):
@@ -194,27 +194,18 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
     filterDT = DataFrameFilter(listdf)
 
     raccomandazione = []
-    listdf2 = filterDT.fiter(listdf, 70, "AM4", "DDR3", 80, 6, 600, 1000, "hdd", "Midi-Tower", 8)
-    for i in range(len(listdf2)):
-        raccomandazione.append(list(listdf2[i][modelli[i]][:3].values))
-    listdf2 = filterDT.fiter(listdf, 150, "AM4", "DDR4", 120, 8, 750, 1000, "ssd", "Midi-Tower", 16)
-    for i in range(len(listdf2)):
-        raccomandazione.append(list(listdf2[i][modelli[i]][:3].values))
 
-    listdf2 = filterDT.fiter(listdf, 200, "1200", "DDR4", 160, 8, 750, 1250, "ssd", "Midi-Tower", 16)
-    for i in range(len(listdf2)):
-        raccomandazione.append(list(listdf2[i][modelli[i]][:3].values))
-
-    listdf2 = filterDT.fiter(listdf, 400, "TR4", "DDR4", 300, 12, 1000, 2000, "ssd", "Big-Tower", 32)
-
-    for i in range(len(listdf2)):
-        raccomandazione.append(list(listdf2[i][modelli[i]][:3].values))
-
-    listdf2 = filterDT.fiter(listdf, prezzo=600, socket="2066", tipo_ram="DDR4", tdp_gpu=300, vram=16,
-                             watt=1250, mem_capienza=2000, tipo_mem="ssd", size_case="Big-Tower", ram_capienza=64)
-
-    for i in range(len(listdf2)):
-        raccomandazione.append(list(listdf2[i][modelli[i]][:3].values))
+    ListOfValues = [[70, "AM4", "DDR3", 80, 6, 600, 1000, "hdd", "Midi-Tower", 8],
+                   [150, "AM4", "DDR4", 120, 8, 750, 1000, "ssd", "Midi-Tower", 16],
+                   [200, "1200", "DDR4", 160, 8, 750, 1250, "ssd", "Midi-Tower", 16],
+                   [400, "TR4", "DDR4", 300, 12, 1000, 2000, "ssd", "Big-Tower", 32],
+                   [600, "2066", "DDR4", 300, 16, 1250, 2000, "ssd", "Big-Tower", 64]]
+    for value in ListOfValues:
+        result = filterDT.Filter(listdf, prezzo=value[0], socket=value[1], tipo_ram=value[2], tdp_gpu=value[3],
+                                 vram=value[4], watt=value[5], mem_capienza=value[6], tipo_mem=value[7],
+                                 size_case=value[8], ram_capienza=value[9])
+        for j in range(len(result)):
+            raccomandazione.append(list(result[j][modelli[j]][:3].values))
 
     DFpre = pd.DataFrame(data=listaNomiPre, columns=["nome"])
     DFpre["venduti"] = 0
@@ -227,6 +218,5 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
     raccomandazionePre = list(DFpre["nome"][:2].values)
     random_pre = list(DFpre["nome"][2:].sample().values)
     raccomandazionePre.append(random_pre[0])
-
 
     return raccomandazione, raccomandazionePre
