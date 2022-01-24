@@ -1,5 +1,5 @@
+import base64
 import socket
-import zlib
 
 import startup
 import grafici
@@ -49,9 +49,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sckt:
                 send(name_byte)
             time.sleep(5)
             send("18 \n".encode(encoding="ascii"))
-            for img in grafici.listaImmagini(listaAcquistiLast, numeroAcquistiUtenteLast):
-                img_byte = zlib.compress(img)
-                send(img_byte)
+            for img_path in grafici.listaImmagini(listaAcquistiLast, numeroAcquistiUtenteLast):
+                with open(img_path, 'rb') as img:
+                    img_byte = base64.b64encode(img.read())
+                    send(img_byte)
         time.sleep(120)
 
 

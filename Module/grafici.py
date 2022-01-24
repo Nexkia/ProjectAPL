@@ -72,7 +72,7 @@ def histDataVendite(listaAcquisti,numeroAcquistiUtente):
     plt.savefig('histDataVendite.png')
     #plt.show()
     plt.close()
-    im = mpimg.imread('histDataVendite.png')
+    im ='histDataVendite.png'
 
     return im
 
@@ -166,8 +166,8 @@ def histNumeroComponentiEPreassemblati(listaAcquisti,numeroAcquistiUtente):
     plt.savefig('histNumeroPreassemblati.png')
     #plt.show()
     plt.close()
-    im1 = mpimg.imread('histNumeroComponenti.png')
-    im2 = mpimg.imread('histNumeroPreassemblati.png')
+    im1 = 'histNumeroComponenti.png'
+    im2 = 'histNumeroPreassemblati.png'
 
     listIMG=[]
     listIMG.append(im1)

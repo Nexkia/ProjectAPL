@@ -17,7 +17,7 @@ func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 	modelli := strings.Split(msg_rcv, "#")
 	modello1 := modelli[0]
 	comp := data.Componente{}
-	filter := bson.D{{"modello", modello1}}
+	filter := bson.D{{Key: "modello", Value: modello1}}
 
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
 	if err != nil {
@@ -30,7 +30,7 @@ func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 	log.Printf("%T \n", detail)
 	for _, mod := range modelli {
 		if mod != "" {
-			filter = bson.D{{"modello_" + comp.Categoria, mod}}
+			filter = bson.D{{Key: "modello_" + comp.Categoria, Value: mod}}
 			err := utils.FindOne(filter, "detail", mongodb).Decode(detail)
 			if err != nil {
 				utils.Send([]byte("NotFound"), conn)

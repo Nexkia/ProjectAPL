@@ -14,7 +14,7 @@ import (
 )
 
 func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
-	filter := bson.D{{"password", token}}
+	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
 
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
@@ -24,7 +24,7 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 		return
 	}
 
-	filter = bson.D{{"email", u.Email}}
+	filter = bson.D{{Key: "email", Value: u.Email}}
 	var result map[string]interface{}
 	err = utils.FindOne(filter, "Venduti", mongodb).Decode(&result)
 	if err != nil {
@@ -53,7 +53,7 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 				Pc = data.PcAssemblato{}
 				for i, comp := range pc1 {
 					if len(pc1) == 8 {
-						filter = bson.D{{"modello", comp}}
+						filter = bson.D{{Key: "modello", Value: comp}}
 						componente := data.Componente{}
 						err = utils.FindOne(filter, "componenti", mongodb).Decode(&componente)
 						if err == nil {

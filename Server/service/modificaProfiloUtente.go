@@ -14,7 +14,7 @@ import (
 )
 
 func SendinfoModifica(token string, conn net.Conn, mongodb *mongo.Database) {
-	filter := bson.D{{"password", token}}
+	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
 
 	utils.FindOne(filter, "utenti", mongodb).Decode(&u)
@@ -44,13 +44,13 @@ func UpdateinfoModifica(out chan string, msg string, token string, conn net.Conn
 	//conversione della stringa in byte
 	json.Unmarshal([]byte(update_info), &u)
 	u.Password = utils.Encoding(u.Email, u.Password)
-	filter := bson.D{{"password", token}}
+	filter := bson.D{{Key: "password", Value: token}}
 	updateMongo := bson.D{
-		{"$set", bson.D{
-			{"email", u.Email},
-			{"indirizzo", u.Indirizzo},
-			{"nome", u.NomeUtente},
-			{"password", u.Password},
+		{Key: "$set", Value: bson.D{
+			{Key: "email", Value: u.Email},
+			{Key: "indirizzo", Value: u.Indirizzo},
+			{Key: "nome", Value: u.NomeUtente},
+			{Key: "password", Value: u.Password},
 		}},
 	}
 	utils.UpdateOne("utenti", mongodb, filter, updateMongo)

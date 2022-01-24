@@ -3,7 +3,16 @@ import pandas as pd
 
 class DataFrame:
 
-    def __init__(self, rows, columns,vendite):
+    def __init__(self, rows, columns, vendite):
+        self.DFmem = None
+        self.DFmb = None
+        self.listDF = None
+        self.DFcooler = None
+        self.DFram = None
+        self.DFpsu = None
+        self.DFgpu = None
+        self.DFcpu = None
+        self.DFcasepc = None
         self.vendite = vendite
         self.exclude = ["valutazione", "prezzo", "modello", "marca", "socket"]
         self.conv = ["taglia", "tipo", "standard", "cpusocket"]
@@ -12,7 +21,6 @@ class DataFrame:
             , "modello_memoria", "modello_dissipatore"]
         self.newColumns = ["col1", "col2", "col3"]
         self.createDataFrame(rows, columns)
-
 
     def createDataFrame(self, rows, columns):
         self.DFcasepc = pd.DataFrame(data=rows[0], columns=columns[0])
@@ -51,7 +59,7 @@ class DataFrame:
             df["score"] = df["score"].fillna(0)
             df["score"] = df["score"].rank()
             df.sort_values("score", inplace=True, ascending=False)
-        #schedaMadre
+        # schedaMadre
         del self.listDF[3]["score"]
         self.listDF[3].sort_values("valutazione", inplace=True, ascending=False)
         return self.listDF
@@ -94,7 +102,7 @@ class DataFrame:
 
     def calculate_score(self, row, index):
         result = 0
-        if index !=0 :
+        if index != 0:
             for i in range(index):
                 result += row[self.newColumns[i]]
             result *= row["valutazione"] * 0.2
@@ -102,7 +110,7 @@ class DataFrame:
             result /= index
             return result
 
-    def addVendite(self,vendite):
+    def addVendite(self, vendite):
         for key, value in vendite.items():
             for df in self.listDF:
                 columns_df = df.columns

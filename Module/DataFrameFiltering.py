@@ -3,18 +3,21 @@ import pandas as pd
 
 class DataFrameFilter:
     def __init__(self, listDF):
+        # Effettuo una copia della lista dei dataframe in modo da non modificare la lista originale
         self.listDF = listDF.copy()
 
     '''
-    0 casepc 3 mb   6 mem 
-    1 cpu    4 psu  7 cooler
-    2 gpu    5 ram
+    Gli indici corrispondo alle seguenti categorie:
+    0 casepc    1 cpu       2 gpu 
+    3 mb        4 psu       5 ram
+    6 mem       7 cooler
     '''
 
-    def fiter(self, listDF,prezzo, socket, tipo_ram, tdp_gpu,vram, watt,mem_capienza,tipo_mem,size_case,ram_capienza):
+    def Filter(self, listDF, prezzo, socket, tipo_ram, tdp_gpu, vram, watt, mem_capienza, tipo_mem, size_case,
+              ram_capienza):
         self.listDF = listDF.copy()
         for i in range(len(self.listDF)):
-            self.listDF[i]  = self.listDF[i] .loc[self.listDF[i]['prezzo'] <= prezzo]
+            self.listDF[i] = self.listDF[i].loc[self.listDF[i]['prezzo'] <= prezzo]
         self.listDF[0] = self.listDF[0].loc[self.listDF[0]["taglia"].str.contains(size_case)]
         self.listDF[1] = self.listDF[1].loc[self.listDF[1]["socket"].str.contains(socket)]
         self.listDF[2] = self.listDF[2].loc[self.listDF[2]["tdp"] <= tdp_gpu]

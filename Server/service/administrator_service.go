@@ -17,7 +17,7 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 	detail := data.GetDetailType(comp.Categoria)
 	jsonDetail := utils.Receive(conn)
 	json.Unmarshal(jsonDetail, detail)
-	filter := bson.D{{"modello", comp.Modello}}
+	filter := bson.D{{Key: "modello", Value: comp.Modello}}
 	var result bson.D
 
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&result)
@@ -30,13 +30,13 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 	} else {
 		bsonComp := createBson(comp)
 		updateMongo := bson.D{
-			{"$set", bsonComp},
+			{Key: "$set", Value: bsonComp},
 		}
 		utils.UpdateOne("componenti", mongodb, filter, updateMongo)
 		bsonDetail := createBson(detail)
-		filter = bson.D{{"modello_" + comp.Categoria, comp.Modello}}
+		filter = bson.D{{Key: "modello_" + comp.Categoria, Value: comp.Modello}}
 		updateMongo = bson.D{
-			{"$set", bsonDetail},
+			{Key: "$set", Value: bsonDetail},
 		}
 		utils.UpdateOne("detail", mongodb, filter, updateMongo)
 	}
@@ -45,7 +45,7 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 
 func Cancellazione(modello string, conn net.Conn, mongodb *mongo.Database) {
 	comp := data.Componente{}
-	filter := bson.D{{"modello", modello}}
+	filter := bson.D{{Key: "modello", Value: modello}}
 
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
 	if err != nil {
@@ -54,7 +54,7 @@ func Cancellazione(modello string, conn net.Conn, mongodb *mongo.Database) {
 		return
 	}
 	utils.DeleteOne("componenti", mongodb, filter)
-	filter = bson.D{{"modello_" + comp.Categoria, comp.Modello}}
+	filter = bson.D{{Key: "modello_" + comp.Categoria, Value: comp.Modello}}
 	utils.DeleteOne("detail", mongodb, filter)
 	utils.Send([]byte("Done"), conn)
 
@@ -64,7 +64,7 @@ func Inserimento_pre(jsonPre string, conn net.Conn, mongodb *mongo.Database) {
 	pre := data.PcpreAssemblato{}
 	var result bson.D
 	json.Unmarshal([]byte(jsonPre), &pre)
-	filter := bson.D{{"nome", pre.Nome}}
+	filter := bson.D{{Key: "nome", Value: pre.Nome}}
 
 	err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&result)
 	if err != nil {
@@ -74,7 +74,7 @@ func Inserimento_pre(jsonPre string, conn net.Conn, mongodb *mongo.Database) {
 	}
 	bsonPre := createBson(pre)
 	updateMongo := bson.D{
-		{"$set", bsonPre},
+		{Key: "$set", Value: bsonPre},
 	}
 	utils.UpdateOne("preAssemblati", mongodb, filter, updateMongo)
 
@@ -82,7 +82,7 @@ func Inserimento_pre(jsonPre string, conn net.Conn, mongodb *mongo.Database) {
 
 func Cancellazione_pre(nome string, conn net.Conn, mongodb *mongo.Database) {
 	var result bson.D
-	filter := bson.D{{"nome", nome}}
+	filter := bson.D{{Key: "nome", Value: nome}}
 
 	err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&result)
 	if err != nil {
