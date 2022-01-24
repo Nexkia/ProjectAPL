@@ -40,7 +40,7 @@ namespace APL.Forms
             this.flowLayoutPanelConfronto.Name = "flowLayoutPanelConfronto";
             this.flowLayoutPanelConfronto.Size = new System.Drawing.Size(911, 579);
             this.flowLayoutPanelConfronto.TabIndex = 1;
-            this.flowLayoutPanelConfronto.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            
             // 
             // Confronto
             // 

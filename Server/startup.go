@@ -30,7 +30,7 @@ var flag_check bool
 
 func invio(mongodb *mongo.Database) {
 	//rand.Seed(time.Now().UnixNano())
-	rand.Seed(500)
+	rand.Seed(800)
 	// GENERAZIONE CASEPC
 	content, err := ioutil.ReadFile("database/case.txt")
 	if err != nil {
@@ -165,8 +165,9 @@ func invio(mongodb *mongo.Database) {
 			ram.Marca = strings.Title(strings.ToLower(elem[1]))
 			ram.Modello = modello
 			ram.Capienza, _ = strconv.Atoi(elem[3])
-			if elem[8] != "" {
-				ram.Prezzo, _ = strconv.ParseFloat(elem[8], 64)
+			elem_price, _ := strconv.ParseFloat(elem[8], 64)
+			if elem_price > 0 {
+				ram.Prezzo = elem_price
 			} else {
 				ram.Prezzo = float64(rand.Intn((max_price-min_price)+1) + min_price)
 			}

@@ -3,13 +3,6 @@ using APL.Controlli;
 using APL.Data;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 namespace APL.Forms
@@ -44,7 +37,7 @@ namespace APL.Forms
                 TextBoxNuovaPassword.Text, TextBoxRipetiPassword.Text);
             switch (result)
             {
-                case "Email o Codice Fiscale già usati in altri account":
+                case "Registrazione avvenuta correttamente":
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
                     SocketTCP.Send(pt.ToString());
@@ -59,7 +52,6 @@ namespace APL.Forms
                         mod.Password = TextBoxNuovaPassword.Text;
                         string json_update = JsonConvert.SerializeObject(mod);
                         SocketTCP.Send(json_update);
-                        //aggiorna il token, che cambia con la nuova password
                         Debug.WriteLine(json_update);
                         this.Close();
                     }
@@ -70,7 +62,8 @@ namespace APL.Forms
                     }
                     break;
                 default:
-                    MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Le nuove password non sono uguali", "Errore", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }
         }
@@ -78,37 +71,25 @@ namespace APL.Forms
         private void ButtonMostraRepeat_Click(object sender, EventArgs e)
         {
             if (TextBoxRipetiPassword.PasswordChar == default)
-            {
                 TextBoxRipetiPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxRipetiPassword.PasswordChar = default;
-            }
         }
 
         private void ButtonMostraNew_Click(object sender, EventArgs e)
         {
             if (TextBoxNuovaPassword.PasswordChar == default)
-            {
                 TextBoxNuovaPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxNuovaPassword.PasswordChar = default;
-            }
         }
 
         private void ButtonMostraOld_Click(object sender, EventArgs e)
         {
             if (TextBoxVecchiaPassword.PasswordChar == default)
-            {
                 TextBoxVecchiaPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxVecchiaPassword.PasswordChar = default;
-            }
         }
     }
 }

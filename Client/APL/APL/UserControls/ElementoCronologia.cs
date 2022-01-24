@@ -1,13 +1,5 @@
 ﻿using APL.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APL.UserControls
@@ -24,7 +16,6 @@ namespace APL.UserControls
       
         public void addComponenteListView(Componente comp)
         {
-            //---prensi dal server-------
             string modello = comp.Modello.ToString();
             string marca = comp.Marca.ToString();
             string prezzo = comp.Prezzo.ToString();
@@ -41,15 +32,12 @@ namespace APL.UserControls
             lvitem.SubItems.Add("" + categoria + "");
 
             listViewElementoC.Items.Add(lvitem);
-            
         }
 
         public void addPreassemblatoListView(string nome)
         {
             ListViewItem lvitem = new ListViewItem("" + nome + "");
-
             listViewElementoC.Items.Add(lvitem);
-
         }
 
 

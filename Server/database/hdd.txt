@@ -59,7 +59,6 @@ Seagate FireCuda SSHD 2 TB 2 TB 5400 RPM 128 MB Cache USD 89.99
 Seagate IronWolf Hard Drive 6 TB 6 TB 7200 RPM 256 MB Cache USD 153.99 
 Seagate IronWolf Hard Drive 6 TB 6 TB 5400 RPM 256 MB Cache USD 157.99 
 Seagate IronWolf Hard Drive 8 TB 8 TB 7200 RPM 256 MB Cache USD 204.99 
-Seagate IronWolf NAS Hard Drive ST10000VN0004 10 TB 7200 RPMUSD 279.99 
 Seagate IronWolf NAS Hard Drive ST2000VN004 2 TB 5900 RPMUSD 78.95 
 Seagate IronWolf NAS Hard Drive ST3000VN007 3 TB 5900 RPMUSD 99.99 
 Seagate IronWolf NAS Hard Drive ST4000VN008 4 TB 5900 RPMUSD 99.99 
@@ -159,7 +158,6 @@ Western Digital Gold 8 TB 8 TB 7200 RPM 256 MB Cache USD 265.99
 Western Digital RE 2 TB 7200 RPM 128 MB Cache USD 274.99 
 Western Digital Red 1 TB 1 TB 5400 RPM 64 MB Cache USD 54.99 
 Western Digital Red 1 TB 1 TB 5400 RPM 16 MB Cache USD 65.99 
-Western Digital Red 10 TB 10 TB 5400 RPM 256 MB Cache USD 282.75 
 Western Digital Red 12 TB 12 TB 5400 RPM 256 MB Cache USD 309.99 
 Western Digital Red 14 TB 14 TB 5400 RPM 512 MB Cache USD 423.39 
 Western Digital Red 2 TB 2 TB 5400 RPM 64 MB Cache USD 62.99 
