@@ -63,6 +63,7 @@ func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Databas
 	if err != nil {
 		msg := "Errore utente non trovato"
 		utils.Send([]byte(msg), conn)
+		out <- ""
 	} else {
 		checkAdmin := (u.Password == "VlPUwbiQVA6j2OBXnVyL0GGbdR2EeMk9OUulJHi0YjE=")
 		admin := strconv.FormatBool(checkAdmin)
