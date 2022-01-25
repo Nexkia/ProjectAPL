@@ -23,7 +23,7 @@ func Register(u_json string, conn net.Conn, mongodb *mongo.Database) {
 		Prima dell'inserimento
 		verifica che l'utente non sia già registrato
 	*/
-	filter := bson.D{{"email", u.Email}}
+	filter := bson.D{{Key: "email", Value: u.Email}}
 
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&result)
 	/*
@@ -57,12 +57,13 @@ func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Databas
 	json.Unmarshal([]byte(u_json), &u)
 	log.Println("utente: ", u_json, " utente_conv: ", u)
 	u.Password = utils.Encoding(u.Email, u.Password)
-	filter := bson.D{{"email", u.Email}, {"password", u.Password}}
+	filter := bson.D{{Key: "email", Value: u.Email}, {Key: "password", Value: u.Password}}
 
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&result)
 	if err != nil {
 		msg := "Errore utente non trovato"
 		utils.Send([]byte(msg), conn)
+		out <- ""
 	} else {
 		checkAdmin := (u.Password == "VlPUwbiQVA6j2OBXnVyL0GGbdR2EeMk9OUulJHi0YjE=")
 		admin := strconv.FormatBool(checkAdmin)

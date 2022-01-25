@@ -23,7 +23,7 @@ func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5
 			for k := 0; k < n_elem; k++ {
 				response := utils.Receive(conn)
 				modello := strings.Trim(string(response), "\n")
-				filter := bson.D{{"modello", modello}}
+				filter := bson.D{{Key: "modello", Value: modello}}
 				utils.FindOne(filter, "componenti", mongodb).Decode(&profiles[i][j][k])
 			}
 		}

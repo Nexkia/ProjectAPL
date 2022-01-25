@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace APL.UserControls
@@ -27,8 +20,8 @@ namespace APL.UserControls
         public void panel6Invisible() { panel6.Visible = false; }
         public void label7Invisible() { label7.Visible = false; }
         public void panel7Invisible() { panel7.Visible = false; }
-        
         public void panel8Invisible() { panel8.Visible = false; }
+
         public void labelMod1Det3Invisible() { labelMod1Det3.Visible = false;  }
         public void labelMod1Det4Invisible() { labelMod1Det4.Visible = false; }
         public void labelMod1Det5Invisible() { labelMod1Det5.Visible = false; }

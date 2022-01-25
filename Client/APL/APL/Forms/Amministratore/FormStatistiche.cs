@@ -1,19 +1,7 @@
-﻿using APL;
-using APL.Cache;
-using APL.UserControls.Amministratore;
-using Org.BouncyCastle.Utilities.Zlib;
+﻿using APL.UserControls.Amministratore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APL.Forms.Amministratore

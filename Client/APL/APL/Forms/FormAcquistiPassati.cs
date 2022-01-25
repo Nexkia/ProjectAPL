@@ -1,16 +1,11 @@
 ﻿using APL.Connections;
-
 using APL.UserControls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using APL.Data;
 
@@ -24,10 +19,6 @@ namespace APL.Forms
             InitializeComponent();
             pt = new Protocol();
         }
-
-
-      
-       
 
         private void FormAcquistiPassati_Load(object sender, EventArgs e)
         {
@@ -91,7 +82,7 @@ namespace APL.Forms
                     foreach (Componente comp in item.Componenti)
                     {
                         if (item.Componenti.Length > 0)
-                        {  elem.addComponenteListView(comp);}
+                            elem.addComponenteListView(comp);
                     }
                 }
             }
@@ -99,13 +90,11 @@ namespace APL.Forms
             if (PcPreAssemblati.Length > 0)
             {
                 for (int i = 0; i < PcPreAssemblati.Length; i++)
-                {elem.addPreassemblatoListView(PcPreAssemblati[i].ToString());}
+                    elem.addPreassemblatoListView(PcPreAssemblati[i].ToString());
             }
 
             if (flowLayoutPanel1.Controls.Count < 0)
-            {
                 flowLayoutPanel1.Controls.Clear();
-            }
             else
                 flowLayoutPanel1.Controls.Add(elem);
         }

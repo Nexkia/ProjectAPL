@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APL.Controlli
 {
@@ -48,8 +44,8 @@ namespace APL.Controlli
                         }
                         else
                         {
-                            //questa è la return che viene utilizzata quando tutto procede senza problemi
-                            return "Email o Codice Fiscale già usati in altri account";
+
+                            return "Registrazione avvenuta correttamente";
                         }
                     }
                 }
@@ -74,8 +70,7 @@ namespace APL.Controlli
                 }
                 else
                 {
-                    //questa è la return che viene utilizzata quando tutto procede senza problemi
-                    return "Login fallito, Email o Password errate";
+                    return "Login effettuato correttamente";
                 }
             }
             else
