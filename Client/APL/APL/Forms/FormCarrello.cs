@@ -12,13 +12,15 @@ namespace APL.Forms
     {
         bool disableCloseEvent;
         Protocol pt;
-        public FormCarrello()
+        FormCheckOut checkoutForm;
+        public FormCarrello(FormCheckOut checkoutForm)
         {
             InitializeComponent();
 
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             pt = new Protocol();
+            this.checkoutForm=checkoutForm;
         }
 
 
@@ -26,6 +28,9 @@ namespace APL.Forms
         private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
+        private bool RamSchedaMadre = false; 
+        private bool CpuSchedaMadre = false;
+        private bool CpuDissipatore = false;
 
         public void setCpuDetail(string value)
         {
@@ -128,9 +133,14 @@ namespace APL.Forms
                 //caso in cui l'utente vuole prendere una Build Solo e una Build Guidata
                 if (contaComponentiBuild("Build Guidata") > 0 && contaComponentiBuild("Build Guidata") == 8 &&
                    contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
-                {
+                {   
+                    //verifichiamo che i componenti della buildsolo siano compatibili
+                    ControllaCompatibilita();
+                    if(RamSchedaMadre == true && CpuSchedaMadre ==true && CpuDissipatore==true)
+                        creaCheckOut();
+                    else
+                        MessageBox.Show("Componenti Build Solo non compatibili,","Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    creaCheckOut();
 
                     //caso in cui l'utente vuole prendere solo una Build Guidata
                 }
@@ -149,7 +159,16 @@ namespace APL.Forms
                 else if (contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
                 {
                     //la listView piene passata al CheckOut solo se non ci sono componenti di BuildGuidata
-                    if (contaComponentiBuild("Build Guidata") == 0) { creaCheckOut(); }
+                    if (contaComponentiBuild("Build Guidata") == 0) 
+                    {
+
+                        //verifichiamo che i componenti della buildsolo siano compatibili
+                        ControllaCompatibilita();
+                        if (RamSchedaMadre == true && CpuSchedaMadre == true && CpuDissipatore == true)
+                            creaCheckOut();
+                        else
+                            MessageBox.Show("Componenti Build Solo non compatibili,", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     else
                     {
                         MessageBox.Show("Bisogna finire di scegliere gli 8 componenti di Build Guidata," +
@@ -212,29 +231,54 @@ namespace APL.Forms
             }
         }
 
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e)
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+
+        public void svuotaCarrello()
         {
             listViewCarrello.Items.Clear();
             listViewCarrelloDetail.Items.Clear();
             cpuSocketDissipatore = null;
             cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
         }
-
         private void creaCheckOut()
         {
-            FormCheckOut checkout = new FormCheckOut();
-            checkout.Show();
+            
+            checkoutForm.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)
             {
-                checkout.getListView().Items.Add((ListViewItem)item.Clone());
+                checkoutForm.getListView().Items.Add((ListViewItem)item.Clone());
             }
 
-            checkout.calcolaTotale();
+            checkoutForm.calcolaTotale();
 
 
         }
 
-       
+        private void ControllaCompatibilita()
+        {
+            RamSchedaMadre = false; CpuSchedaMadre = false;
+            CpuDissipatore = false;
+            if (ramSchedaMadre != "" && standardRam != "")
+            {
+                if (ramSchedaMadre == standardRam)
+                    RamSchedaMadre = true;
+            }
+
+            if (cpuSocketSchedaMadre != "" && cpuSocket != "")
+            {
+                if (cpuSocketSchedaMadre == cpuSocket)
+                    CpuSchedaMadre = true;
+            }
+
+            if (cpuSocketDissipatore != null && cpuSocket != "")
+            {
+                foreach (string tipoSocket in cpuSocketDissipatore)
+                {
+                    if (tipoSocket == cpuSocket)
+                        CpuDissipatore = true;
+                }
+            }
+        }
     }
 }

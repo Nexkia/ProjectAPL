@@ -21,15 +21,32 @@ namespace APL.Forms
     public partial class FormCatalogo : Form
     {
         Protocol pt;
+        bool disableCloseEvent;
         public FormCatalogo()
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
             comboBoxPrezzo.Text = "Ascendente";
             pt = new Protocol();
+            this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
+            disableCloseEvent = true;
         }
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
 
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         private  void cpu_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(cpuButton.Text) == false)

@@ -22,15 +22,18 @@ namespace APL.Forms
         
         FormCarrello carrelloForm;
         FormPleaseWait pleaseWait;
+        FormCatalogo catalogoForm;
+        FormCheckOut checkoutForm;
         public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello();
             pt = new Protocol();
-            pleaseWait = new FormPleaseWait();
-            
+            checkoutForm = new FormCheckOut(this);
+            carrelloForm = new FormCarrello(checkoutForm);
+            catalogoForm = new FormCatalogo();
+            pleaseWait = new FormPleaseWait();  
         }
 
         private  void FormHome_Load(object sender, EventArgs e)
@@ -54,7 +57,11 @@ namespace APL.Forms
         {
             parent.Visible = true;
             carrelloForm.EnableCloseEvent();
+            catalogoForm.EnableCloseEvent();
+            checkoutForm.EnableCloseEvent();
             carrelloForm.Close();
+            catalogoForm.Close();
+            checkoutForm.Close();
             base.OnClosed(e);
         }
 
@@ -163,7 +170,7 @@ namespace APL.Forms
             }
             else
             {
-                pleaseWait.Visible = true;
+                
                 populateItemsBuilSolo();
             }
         }
@@ -244,6 +251,7 @@ namespace APL.Forms
 
         private void populateItemsBuilSolo()
         {
+            pleaseWait.Visible = true;
             if (recuperaListaDallaCache() == false)
                 recuperaItemsBuildSoloDalServer();
             else
@@ -345,11 +353,7 @@ namespace APL.Forms
 
         #region Altro----------------------------------------------------------------
         private void buttonCarrello_Click(object sender, EventArgs e) { carrelloForm.Show(); }
-        private void Catalogo_Click(object sender, EventArgs e)
-        {
-            FormCatalogo fcg = new FormCatalogo();
-            fcg.Show();
-        }
+        private void Catalogo_Click(object sender, EventArgs e){catalogoForm.Show();}
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
@@ -373,7 +377,23 @@ namespace APL.Forms
                 pleaseWait.Visible = false;
             }
         }
+
+        public void ricaricaBuildSolo()
+        {
+            if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
+            {
+                flowLayoutPanel1.Controls.Clear();
+                populateItemsBuilSolo();
+            }
+                
+        }
+        public void svuotaCarrello()
+        {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database
+            carrelloForm.svuotaCarrello();
+            carrelloForm.Visible = false;
+        }
         #endregion
+
 
     }
 }

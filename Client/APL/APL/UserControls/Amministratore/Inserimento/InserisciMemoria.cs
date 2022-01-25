@@ -38,7 +38,7 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
             {
                 MessageBox.Show("Inserimento avvenuto",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -46,6 +46,25 @@ namespace APL.UserControls.Amministratore.Inserimento
                 MessageBox.Show("Riempire i campi detail",
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void textBoxValutazione_TextChanged(object sender, EventArgs e)
+        {
+            //impediamo di inserire una valutazione non valida
+            if (textBoxValutazione.Text != string.Empty)
+            {
+                if (int.Parse(textBoxValutazione.Text) > 10)
+                    textBoxValutazione.Text = "10";
+                if (int.Parse(textBoxValutazione.Text) == 0)
+                    textBoxValutazione.Text = "1";
+            }
+        }
+
+        private void textBoxValutazione_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //impedisce l'inserimento di un input non numerico
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

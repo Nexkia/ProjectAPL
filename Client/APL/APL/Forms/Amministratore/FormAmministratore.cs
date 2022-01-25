@@ -11,7 +11,8 @@ namespace APL.Forms
         bool disableCloseEvent;
         FormLogin_Register parent;
         FormInserisciPreassemblato formInserisciPreassemblato;
-        FormInserisciComponente formInserisciComponente; 
+        FormInserisciComponente formInserisciComponente;
+        
         public FormAmministratore(FormLogin_Register f_start)
         {
             InitializeComponent();
@@ -48,10 +49,27 @@ namespace APL.Forms
 
         private void buttonEliminaComponente_Click(object sender, EventArgs e)
         {
-            pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            SocketTCP.Release();
+            if (TextBoxModello.Text != string.Empty)
+            {
+                pt.SetProtocolID("cancellazione"); pt.Data = TextBoxModello.Text;
+
+                SocketTCP.Wait();
+                SocketTCP.Send(pt.ToString());
+                string response = SocketTCP.Receive();
+                SocketTCP.Release();
+
+                if (response == "NotFound")
+                {
+                    MessageBox.Show("Eliminazione fallita",
+                   "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (response == "Done")
+                {
+                    MessageBox.Show("Eliminazione avvenuta correttamente",
+                        "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TextBoxModello.Text = "";
+                }
+            }
         }
 
         private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
@@ -63,10 +81,26 @@ namespace APL.Forms
 
         private  void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
         {
-            pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            SocketTCP.Release();
+            if (textBoxNome.Text != string.Empty) 
+            {
+                pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
+                SocketTCP.Wait();
+                SocketTCP.Send(pt.ToString());
+                string receve = SocketTCP.Receive();
+                SocketTCP.Release();
+  
+                if (receve == "NotFound")
+                {
+                    MessageBox.Show("Eliminazione fallita",
+                   "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (receve == "Done")
+                {
+                    MessageBox.Show("Eliminazione avvenuta correttamente",
+                        "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBoxNome.Text = "";
+                }
+            }
         }
 
         private  void buttonStatistiche_Click(object sender, EventArgs e)
@@ -94,5 +128,6 @@ namespace APL.Forms
             base.OnClosed(e);
         }
 
+       
     }
 }

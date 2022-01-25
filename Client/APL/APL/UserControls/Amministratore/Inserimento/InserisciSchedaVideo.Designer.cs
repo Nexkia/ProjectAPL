@@ -63,6 +63,8 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxVram.Name = "textBoxVram";
             this.textBoxVram.Size = new System.Drawing.Size(348, 27);
             this.textBoxVram.TabIndex = 24;
+            this.textBoxVram.TextChanged += new System.EventHandler(this.textBoxTdp_TextChanged);
+            this.textBoxVram.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelVram
             // 
@@ -79,13 +81,18 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxTdp.Name = "textBoxTdp";
             this.textBoxTdp.Size = new System.Drawing.Size(348, 27);
             this.textBoxTdp.TabIndex = 22;
+            this.textBoxTdp.TextChanged += new System.EventHandler(this.textBoxTdp_TextChanged);
+            this.textBoxTdp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // textBoxValutazione
             // 
             this.textBoxValutazione.Location = new System.Drawing.Point(121, 72);
+            this.textBoxValutazione.MaxLength = 2;
             this.textBoxValutazione.Name = "textBoxValutazione";
             this.textBoxValutazione.Size = new System.Drawing.Size(348, 27);
             this.textBoxValutazione.TabIndex = 21;
+            this.textBoxValutazione.TextChanged += new System.EventHandler(this.textBoxValutazione_TextChanged);
+            this.textBoxValutazione.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelFrequenza
             // 

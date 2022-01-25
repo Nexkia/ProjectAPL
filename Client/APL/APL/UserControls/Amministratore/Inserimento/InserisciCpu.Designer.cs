@@ -71,6 +71,8 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxThread.Name = "textBoxThread";
             this.textBoxThread.Size = new System.Drawing.Size(348, 27);
             this.textBoxThread.TabIndex = 20;
+            this.textBoxThread.TextChanged += new System.EventHandler(this.textBoxCore_TextChanged);
+            this.textBoxThread.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelThread
             // 
@@ -87,6 +89,8 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxCore.Name = "textBoxCore";
             this.textBoxCore.Size = new System.Drawing.Size(348, 27);
             this.textBoxCore.TabIndex = 18;
+            this.textBoxCore.TextChanged += new System.EventHandler(this.textBoxCore_TextChanged);
+            this.textBoxCore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelCore
             // 
@@ -119,13 +123,17 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxFrequenza.Name = "textBoxFrequenza";
             this.textBoxFrequenza.Size = new System.Drawing.Size(348, 27);
             this.textBoxFrequenza.TabIndex = 14;
+            this.textBoxFrequenza.TextChanged += new System.EventHandler(this.textBoxFrequenza_TextChanged);
             // 
             // textBoxValutazione
             // 
             this.textBoxValutazione.Location = new System.Drawing.Point(121, 74);
+            this.textBoxValutazione.MaxLength = 2;
             this.textBoxValutazione.Name = "textBoxValutazione";
             this.textBoxValutazione.Size = new System.Drawing.Size(348, 27);
             this.textBoxValutazione.TabIndex = 13;
+            this.textBoxValutazione.TextChanged += new System.EventHandler(this.textBoxValutazione_TextChanged);
+            this.textBoxValutazione.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelFrequenza
             // 
@@ -166,12 +174,12 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.labelTitolo.Text = "Cpu";
             this.labelTitolo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // InsericiCpu
+            // InserisciCpu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "InsericiCpu";
+            this.Name = "InserisciCpu";
             this.Size = new System.Drawing.Size(526, 420);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
