@@ -45,6 +45,11 @@ namespace APL.Connections
         }
         static public void Send(string message)
         {
+            /*
+             I primi 16 byte inviati sono la lunghezza del messaggio
+            con l'ultimo byte contente il ritorno a capo
+             
+             */
             Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             var lenbytes = new byte[16];
@@ -77,8 +82,11 @@ namespace APL.Connections
 
         static public string Receive()
         {
+             /*
+             I primi 16 byte ricevuti sono la lunghezza del messaggio
+            con l'ultimo byte contente il ritorno a capo
+             */
             var data = new Byte[16];
-
             String responseData = String.Empty;
             if (client.Connected)
             {
