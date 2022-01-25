@@ -24,7 +24,7 @@ namespace APL.Forms
             pt.SetProtocolID("storico"); pt.Data = String.Empty;
             PcAssemblato[] PcAssemblati;
             string PrezzoTot;
-            string[] PcPreAssemblati;
+            string[] PcPreAssemblati, PrezziPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
 
             SocketTCP.GetMutex().WaitOne();
@@ -50,27 +50,30 @@ namespace APL.Forms
                     PrezzoTot = response;
                     response = SocketTCP.Receive();
                     DateTime data = DateTime.Parse(response);
+                    response = SocketTCP.Receive();
+                    PrezziPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
                     response = String.Empty;
                     // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                     Debug.WriteLine(PcAssemblati.Length);
                     // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                     Debug.WriteLine(PcPreAssemblati.Length);
+                    Debug.WriteLine("prezzi preassemblati: "+PrezziPreAssemblati.Length);
 
                    // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
-                    Acquisti.Add(new Acquisto(PrezzoTot, data, PcAssemblati, PcPreAssemblati));
+                    Acquisti.Add(new Acquisto(PrezzoTot, data, PcAssemblati, PcPreAssemblati, PrezziPreAssemblati));
                 }
             SocketTCP.GetMutex().ReleaseMutex();
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
             foreach(Acquisto acq in AcquistiOrdinati)
             {
-             aggiungiPcAllaListView(acq.PrezzoTot, acq.Data, acq.PcAssemblati, acq.PcPreAssemblati);
+             aggiungiPcAllaListView(acq.PrezzoTot, acq.Data, acq.PcAssemblati, acq.PcPreAssemblati, acq.PrezziPreAssemblati);
             }
            
         }
 
        
-        private void aggiungiPcAllaListView( string PrezzoTot, DateTime data, PcAssemblato[] PcAssemblati, string[] PcPreAssemblati)
+        private void aggiungiPcAllaListView( string PrezzoTot, DateTime data, PcAssemblato[] PcAssemblati, string[] PcPreAssemblati,string[] PrezziPreAssemblati)
         {
             ElementoCronologia elem = new ElementoCronologia();
             elem.setPrezzoData(PrezzoTot,data);
@@ -90,7 +93,7 @@ namespace APL.Forms
             if (PcPreAssemblati.Length > 0)
             {
                 for (int i = 0; i < PcPreAssemblati.Length; i++)
-                    elem.addPreassemblatoListView(PcPreAssemblati[i].ToString());
+                    elem.addPreassemblatoListView(PcPreAssemblati[i].ToString(), PrezziPreAssemblati[i].ToString());
             }
 
             if (flowLayoutPanel1.Controls.Count < 0)

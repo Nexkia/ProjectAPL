@@ -231,14 +231,15 @@ namespace APL.Forms
             }
         }
 
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e)
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+
+        public void svuotaCarrello()
         {
             listViewCarrello.Items.Clear();
             listViewCarrelloDetail.Items.Clear();
             cpuSocketDissipatore = null;
             cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
         }
-
         private void creaCheckOut()
         {
             

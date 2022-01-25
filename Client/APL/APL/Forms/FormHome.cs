@@ -28,7 +28,7 @@ namespace APL.Forms
             InitializeComponent();
             parent = f_start;
             comboBox1.Text = "Build Guidata";
-            checkoutForm = new FormCheckOut();
+            checkoutForm = new FormCheckOut(this);
             carrelloForm = new FormCarrello(checkoutForm);
             catalogoForm = new FormCatalogo();
 
@@ -153,7 +153,7 @@ namespace APL.Forms
             }
             else
             {
-                pleaseWait.Visible = true;
+                
                 populateItemsBuilSolo();
             }
         }
@@ -234,6 +234,7 @@ namespace APL.Forms
 
         private void populateItemsBuilSolo()
         {
+            pleaseWait.Visible = true;
             if (recuperaListaDallaCache() == false)
                 recuperaItemsBuildSoloDalServer();
             else
@@ -363,7 +364,19 @@ namespace APL.Forms
                 pleaseWait.Visible = false;
             }
         }
+
+        public void svuotaBuildSolo()
+        {
+            if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
+                flowLayoutPanel1.Controls.Clear();
+        }
+        public void svuotaCarrello()
+        {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database
+            carrelloForm.svuotaCarrello();
+            carrelloForm.Visible = false;
+        }
         #endregion
+
 
     }
 }

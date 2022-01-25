@@ -1,4 +1,5 @@
-﻿using APL.Connections;
+﻿using APL.Cache;
+using APL.Connections;
 using APL.Data;
 using Newtonsoft.Json;
 using System;
@@ -12,11 +13,13 @@ namespace APL.Forms
     {
         Protocol pt = new Protocol();
         bool disableCloseEvent;
-        public FormCheckOut()
+        FormHome vecchiaHome;
+        public FormCheckOut(FormHome vecchiaHome)
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
+            this.vecchiaHome= vecchiaHome;
         }
 
         private float totale;
@@ -165,7 +168,22 @@ namespace APL.Forms
                 SocketTCP.Send(JsonInfop+"\n");
                 string response = SocketTCP.Receive();
                 SocketTCP.GetMutex().ReleaseMutex();
-                if (response.Contains("done")) {
+                
+                if(response.Contains("Un elemento non presente")) 
+                {
+                    MessageBox.Show("Checkout non confermato",
+                      "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    resetCache();
+                    //resetto i parametri dentro il checkout
+                    listViewCheckOut.Items.Clear();
+                    this.Visible = false;
+                    //resetto i parametri dentro il carrello
+                    vecchiaHome.svuotaCarrello();
+                    //resetto i parametri dentro a BuildSolo (solo se l'utente lo tiene aperto)
+                    vecchiaHome.svuotaBuildSolo();
+                }
+                else
+                {
                     Debug.WriteLine(response);
                     MessageBox.Show("CheckOut confermato",
                     "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -209,6 +227,36 @@ namespace APL.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void resetCache()
+        {
+            List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
+            List<Componente> cpuMessage = CachingProviderBase.Instance.GetItem("cpuBuildSolo");
+            List<Componente> ramMessage = CachingProviderBase.Instance.GetItem("ramBuildSolo");
+            List<Componente> schedaVideoMessage = CachingProviderBase.Instance.GetItem("schedaVideoBuildSolo");
+            List<Componente> alimentatoreMessage = CachingProviderBase.Instance.GetItem("alimentatoreBuildSolo");
+            List<Componente> casepcMessage = CachingProviderBase.Instance.GetItem("casepcBuildSolo");
+            List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
+            List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
+
+            if(schedaMadreMessage != null)
+                CachingProviderBase.Instance.RemoveItems("schedaMadreBuildSolo");
+            if (cpuMessage != null)
+                CachingProviderBase.Instance.RemoveItems("cpuBuildSolo");
+            if(ramMessage!=null)
+                CachingProviderBase.Instance.RemoveItems("ramBuildSolo");
+            if (schedaVideoMessage != null)
+                CachingProviderBase.Instance.RemoveItems("schedaVideoBuildSolo");
+            if(alimentatoreMessage != null)
+                CachingProviderBase.Instance.RemoveItems("alimentatoreBuildSolo");
+            if(casepcMessage != null)
+                CachingProviderBase.Instance.RemoveItems("casepcBuildSolo");
+            if (memoriaMessage != null)
+                CachingProviderBase.Instance.RemoveItems("memoriaBuildSolo");
+            if(dissipatoreMessage != null)
+                CachingProviderBase.Instance.RemoveItems("dissipatoreBuildSolo");
+           
         }
     } 
 }

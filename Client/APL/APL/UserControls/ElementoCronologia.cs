@@ -45,9 +45,24 @@ namespace APL.UserControls
 
         }
 
-        public void addPreassemblatoListView(string nome)
+        public void addPreassemblatoListView(string nome,string prezzo)
         {
-            ListViewItem lvitem = new ListViewItem("" + nome + "");
+            ListViewItem lvitem = new ListViewItem(nome );
+            if (prezzo != "0")
+            {
+                lvitem.SubItems.Add("");
+                lvitem.SubItems.Add(prezzo);
+            }
+            else
+            {
+                lvitem.BackColor = System.Drawing.Color.Red;
+                lvitem.ForeColor = System.Drawing.Color.White;
+                lvitem.SubItems.Add("PREASSEMBLATO");
+                lvitem.SubItems.Add("ELIMINATO");
+                lvitem.SubItems.Add("DAL DATABASE");
+                lvitem.SubItems.Add("");
+            }
+            
             listViewElementoC.Items.Add(lvitem);
         }
 
