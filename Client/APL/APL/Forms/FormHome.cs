@@ -365,10 +365,14 @@ namespace APL.Forms
             }
         }
 
-        public void svuotaBuildSolo()
+        public void ricaricaBuildSolo()
         {
             if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
+            {
                 flowLayoutPanel1.Controls.Clear();
+                populateItemsBuilSolo();
+            }
+                
         }
         public void svuotaCarrello()
         {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database

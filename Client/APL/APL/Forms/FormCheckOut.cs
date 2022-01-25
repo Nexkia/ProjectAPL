@@ -180,7 +180,7 @@ namespace APL.Forms
                     //resetto i parametri dentro il carrello
                     vecchiaHome.svuotaCarrello();
                     //resetto i parametri dentro a BuildSolo (solo se l'utente lo tiene aperto)
-                    vecchiaHome.svuotaBuildSolo();
+                    vecchiaHome.ricaricaBuildSolo();
                 }
                 else
                 {
