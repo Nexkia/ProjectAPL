@@ -83,12 +83,14 @@ namespace APL.Forms.Amministratore
                     setReadOnly(false);
                     InserisciRam detRam = new InserisciRam(this);
                     setFlowLayoutPanel(detRam);
+                    textBoxCapienza.Text = "1";
                     break;
                 case "memoria":
                     categoria = "memoria";
                     setReadOnly(false);
                     InserisciMemoria detMem = new InserisciMemoria(this);
                     setFlowLayoutPanel(detMem);
+                    textBoxCapienza.Text = "1";
                     break;
                 default:
                     MessageBox.Show("Selezionare un Componente", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -148,6 +150,22 @@ namespace APL.Forms.Amministratore
                 return null; }
             
         }
-       
+
+        private void textBoxCapienza_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //impedisce l'inserimento di un input non numerico
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void textBoxPrezzo_TextChanged(object sender, EventArgs e)
+        {
+            bool isInvalidPrezzo = textBoxPrezzo.Text.Contains(".");
+            //permette di inserire solo dei Float nel prezzo
+            if (!float.TryParse(textBoxPrezzo.Text, out float value))
+                textBoxPrezzo.Text = "";
+            if(isInvalidPrezzo)
+                textBoxPrezzo.Text = "";
+        }
     }
 }

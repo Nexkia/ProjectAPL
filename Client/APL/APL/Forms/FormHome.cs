@@ -21,12 +21,16 @@ namespace APL.Forms
         
         FormCarrello carrelloForm;
         FormPleaseWait pleaseWait;
+        FormCatalogo catalogoForm;
+        FormCheckOut checkoutForm;
         public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello();
+            checkoutForm = new FormCheckOut();
+            carrelloForm = new FormCarrello(checkoutForm);
+            catalogoForm = new FormCatalogo();
 
             pleaseWait = new FormPleaseWait();
             
@@ -36,7 +40,11 @@ namespace APL.Forms
         {
             parent.Visible = true;
             carrelloForm.EnableCloseEvent();
+            catalogoForm.EnableCloseEvent();
+            checkoutForm.EnableCloseEvent();
             carrelloForm.Close();
+            catalogoForm.Close();
+            checkoutForm.Close();
             base.OnClosed(e);
         }
 
@@ -331,11 +339,7 @@ namespace APL.Forms
 
         #region Altro----------------------------------------------------------------
         private void buttonCarrello_Click(object sender, EventArgs e) { carrelloForm.Show(); }
-        private void Catalogo_Click(object sender, EventArgs e)
-        {
-            FormCatalogo fcg = new FormCatalogo();
-            fcg.Show();
-        }
+        private void Catalogo_Click(object sender, EventArgs e){catalogoForm.Show();}
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)

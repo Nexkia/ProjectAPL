@@ -9,7 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using APL.Data;
 
-namespace APL.Forms
+namespace APL.Forms         
 {
     public partial class FormAcquistiPassati : Form
     {

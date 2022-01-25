@@ -68,9 +68,12 @@ namespace APL.UserControls.Amministratore.Inserimento
             // textBoxValutazione
             // 
             this.textBoxValutazione.Location = new System.Drawing.Point(115, 75);
+            this.textBoxValutazione.MaxLength = 2;
             this.textBoxValutazione.Name = "textBoxValutazione";
             this.textBoxValutazione.Size = new System.Drawing.Size(348, 27);
             this.textBoxValutazione.TabIndex = 20;
+            this.textBoxValutazione.TextChanged += new System.EventHandler(this.textBoxValutazione_TextChanged);
+            this.textBoxValutazione.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelTipo
             // 

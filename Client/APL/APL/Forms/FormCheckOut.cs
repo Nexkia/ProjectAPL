@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 
 namespace APL.Forms
@@ -12,9 +11,12 @@ namespace APL.Forms
     public partial class FormCheckOut : Form
     {
         Protocol pt = new Protocol();
+        bool disableCloseEvent;
         public FormCheckOut()
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
+            disableCloseEvent = true;
         }
 
         private float totale;
@@ -31,6 +33,25 @@ namespace APL.Forms
 
         public ListView getListView() { return listViewCheckOut; }
 
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+
+                //resetto i parametri dentro il checkout
+                listViewCheckOut.Items.Clear();
+                
+
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
         public void calcolaTotale()
         {
             string modello;
@@ -178,6 +199,15 @@ namespace APL.Forms
                 textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
                 textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
                 textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
+            }
+        }
+
+        //Fa si che all'interno delle textBox si possano inserire solo numeri
+        private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     } 

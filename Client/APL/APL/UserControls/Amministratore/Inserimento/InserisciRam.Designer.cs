@@ -79,13 +79,17 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxFrequenza.Name = "textBoxFrequenza";
             this.textBoxFrequenza.Size = new System.Drawing.Size(348, 27);
             this.textBoxFrequenza.TabIndex = 22;
+            this.textBoxFrequenza.TextChanged += new System.EventHandler(this.textBoxFrequenza_TextChanged);
             // 
             // textBoxValutazione
             // 
             this.textBoxValutazione.Location = new System.Drawing.Point(121, 72);
+            this.textBoxValutazione.MaxLength = 2;
             this.textBoxValutazione.Name = "textBoxValutazione";
             this.textBoxValutazione.Size = new System.Drawing.Size(348, 27);
             this.textBoxValutazione.TabIndex = 21;
+            this.textBoxValutazione.TextChanged += new System.EventHandler(this.textBoxValutazione_TextChanged);
+            this.textBoxValutazione.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValutazione_KeyPress);
             // 
             // labelFrequenza
             // 

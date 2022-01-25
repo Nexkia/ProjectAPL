@@ -22,16 +22,27 @@ namespace APL.UserControls
             string capienza = comp.Capienza.ToString();
             string categoria = comp.Categoria.ToString();
 
-
             ListViewItem lvitem = new ListViewItem("" + modello + "");
-            lvitem.SubItems.Add("" + marca + "");
-            lvitem.SubItems.Add("" + prezzo + "");
+            if (marca == "") 
+            {
+                lvitem.BackColor = System.Drawing.Color.Red;
+                lvitem.ForeColor = System.Drawing.Color.White;
+                lvitem.SubItems.Add("COMPONENTE");
+                lvitem.SubItems.Add("ELIMINATO");
+                lvitem.SubItems.Add("DAL DATABASE");
+                lvitem.SubItems.Add("");
+            }
+            else 
+            {
+                lvitem.SubItems.Add("" + marca + "");
+                lvitem.SubItems.Add("" + prezzo + "");
 
-            if (categoria!="memoria" && categoria !="ram") { capienza = ""; }
-            lvitem.SubItems.Add("" + capienza + "");
-            lvitem.SubItems.Add("" + categoria + "");
-
+                if (categoria != "memoria" && categoria != "ram") { capienza = ""; }
+                lvitem.SubItems.Add("" + capienza + "");
+                lvitem.SubItems.Add("" + categoria + "");
+            }
             listViewElementoC.Items.Add(lvitem);
+
         }
 
         public void addPreassemblatoListView(string nome)
