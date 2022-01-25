@@ -20,12 +20,13 @@ namespace APL.Forms
 {
     public partial class FormCatalogo : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         public FormCatalogo()
         {
             InitializeComponent();
             pt.SetProtocolID("catalogo"); 
             comboBoxPrezzo.Text = "Ascendente";
+            pt = new Protocol();
         }
 
 
@@ -230,14 +231,13 @@ namespace APL.Forms
         private  void GetElements(Protocol pt) {
             List<Componente> listaC = new List<Componente>();
 
-            string response = String.Empty;
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             // n elem
             string nelem = SocketTCP.Receive();
             Componente[] cp = new Componente[int.Parse(nelem)];
-            response =  SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex() ;
+            string response =  SocketTCP.Receive();
+            SocketTCP.Release() ;
 
             cp = JsonConvert.DeserializeObject<Componente[]>(response);
             Debug.WriteLine(response);
@@ -251,17 +251,23 @@ namespace APL.Forms
                 lvitem.SubItems.Add("" + cp[i].Marca + "");
                 lvitem.SubItems.Add("" + cp[i].Prezzo + "");
 
-                if(cp[i].Categoria!="ram" && cp[i].Categoria != "memoria")
-                {lvitem.SubItems.Add("");}
-                else{lvitem.SubItems.Add("" + cp[i].Capienza + "");}
-                
+                if (cp[i].Categoria != "ram" && cp[i].Categoria != "memoria")
+                { lvitem.SubItems.Add(""); }
+                else { lvitem.SubItems.Add("" + cp[i].Capienza + ""); }
+
                 lvitem.SubItems.Add("" + cp[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
 
-                
-                
+
+
                 //salvo tutti i componenti appena ricevuti in una lista
-                listaC.Add(new Componente(cp[i].Modello, cp[i].Marca, cp[i].Prezzo, cp[i].Capienza, cp[i].Categoria));
+                listaC.Add(new Componente() { 
+                    Modello =cp[i].Modello,
+                    Marca = cp[i].Marca, 
+                    Prezzo = cp[i].Prezzo, 
+                    Capienza = cp[i].Capienza, 
+                    Categoria = cp[i].Categoria
+                });
                 
             }
             //salvo la lista nella cache
@@ -283,16 +289,22 @@ namespace APL.Forms
                 modello = item.SubItems[0].Text.ToString();
                 marca = item.SubItems[1].Text.ToString();
                 prezzo = float.Parse(item.SubItems[2].Text.ToString());
-                
+
                 categoria = item.SubItems[4].Text.ToString();
                 if (categoria != "ram" && categoria != "memoria")
                 { capienza = 0; }
                 else
                 {
-                capienza = int.Parse(item.SubItems[3].Text.ToString());
+                    capienza = int.Parse(item.SubItems[3].Text.ToString());
                 }
 
-                lista.Add(new Componente(modello, marca, prezzo, capienza, categoria));
+                lista.Add(new Componente() { 
+                    Modello = modello, 
+                    Marca = marca, 
+                    Prezzo = prezzo, 
+                    Capienza = capienza, 
+                    Categoria = categoria 
+                });
             }
 
             return lista;

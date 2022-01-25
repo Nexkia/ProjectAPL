@@ -30,9 +30,9 @@ namespace APL.Forms.Amministratore
         }
         private void FormStatistiche_Load(object sender, EventArgs e)
         {
-            ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
-            ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
-            ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
+            ImgStatistiche img1 = new ImgStatistiche(Base64ToImage(venditePreassemblati));
+            ImgStatistiche img2 = new ImgStatistiche(Base64ToImage(venditePerData));
+            ImgStatistiche img3 = new ImgStatistiche(Base64ToImage(venditeComponenti));
            
             if (flowLayoutPanel1.Controls.Count < 0)
             {
@@ -48,19 +48,19 @@ namespace APL.Forms.Amministratore
         }
 
 
-       
-        public Image byteArrayToImage(string image64Bit)
+        public Image Base64ToImage(string base64String)
         {
-            Image returnImage=ConvertBase64StringToImage(image64Bit);
-            return returnImage;
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            // Convert byte[] to Image
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
 
 
-        public Image ConvertBase64StringToImage(string image64Bit)
-        {
-            byte[] imageBytes = Convert.FromBase64String(image64Bit);
-            return new Bitmap(new MemoryStream(imageBytes));
-        }
 
 
 

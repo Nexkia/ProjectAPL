@@ -14,14 +14,12 @@ namespace APL.UserControls.Amministratore
             string JsonDetail = JsonConvert.SerializeObject(detail);
             string JsonComponente = JsonConvert.SerializeObject(comp);
             pt.SetProtocolID("inserimento");pt.Data = JsonComponente;
-
-            SocketTCP.GetMutex().WaitOne();
-                //invio il componente
-                SocketTCP.Send(pt.ToString());
-                //invio il detail
-                SocketTCP.Send(JsonDetail+"\n");
-            SocketTCP.GetMutex().ReleaseMutex();
-
+            SocketTCP.Wait();
+            //invio il componente
+            SocketTCP.Send(pt.ToString());
+            //invio il detail
+            SocketTCP.Send(JsonDetail+"\n");
+            SocketTCP.Release();
             return "ok";
         }
     }

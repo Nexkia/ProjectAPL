@@ -21,15 +21,8 @@ namespace APL.Data.Detail
         [JsonProperty("chipset")]
         public string Chipset { get; init; }
 
-
         public string[] getDetail()
         {
-            if (CpuSocket == null)
-                return Array.Empty<string>();
-            if (Ram == null)
-                return Array.Empty<string>();
-            if (Chipset == null)
-                return Array.Empty<string>();
             string[] detail = new string[3] {
                 CpuSocket,
                 Ram,

@@ -19,9 +19,9 @@ namespace APL.Data.Detail
 
         public string[] getDetail()
         {
-            if (Tipo == null)
-                return Array.Empty<string>();
-            string[] detail = new string[1] { Tipo };
+            string[] detail = new string[1] { 
+                Tipo 
+            };
             return detail;
         }
     }

@@ -21,8 +21,10 @@ namespace APL.Forms
         {
             Utente utente;
             pt.SetProtocolID("getUtente");pt.Data = String.Empty;
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             string user = SocketTCP.Receive();
+            SocketTCP.Release();
             utente = JsonConvert.DeserializeObject<Utente>(user);
             TextBoxNomeUtente.Text = utente.Nome;
             TextBoxEmail.Text = utente.Email;
@@ -40,16 +42,18 @@ namespace APL.Forms
                 case "Registrazione avvenuta correttamente":
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
+                    SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string check = SocketTCP.Receive();
                     Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
-                        Utente mod = new Utente();
-                        mod.Nome = TextBoxNomeUtente.Text;
-                        mod.Email = TextBoxEmail.Text;
-                        mod.Indirizzo = TextBoxIndirizzo.Text;
-                        mod.Password = TextBoxNuovaPassword.Text;
+                        Utente mod = new Utente() { 
+                            Nome = TextBoxNomeUtente.Text,
+                            Email = TextBoxEmail.Text,
+                            Indirizzo = TextBoxIndirizzo.Text,
+                            Password = TextBoxNuovaPassword.Text
+                        };
                         string json_update = JsonConvert.SerializeObject(mod);
                         SocketTCP.Send(json_update);
                         Debug.WriteLine(json_update);
@@ -60,6 +64,7 @@ namespace APL.Forms
                         MessageBox.Show("la Vecchia Password è errata",
                                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    SocketTCP.Release();
                     break;
                 default:
                     MessageBox.Show("Le nuove password non sono uguali", "Errore", 

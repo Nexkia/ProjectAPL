@@ -17,12 +17,13 @@ namespace APL.Data.Detail
         [JsonProperty("taglia")]
         public string Taglia { get; init; }
 
-
         public string[] getDetail()
         {
             if (Taglia == null)
                 return Array.Empty<string>();
-            string[] detail = new string[1] { Taglia };
+            string[] detail = new string[1] { 
+                Taglia
+            };
             return detail;
         }
 

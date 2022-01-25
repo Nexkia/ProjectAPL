@@ -13,10 +13,11 @@ namespace APL.Forms
 {
     public partial class FormAcquistiPassati : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         public FormAcquistiPassati()
         {
             InitializeComponent();
+            pt = new Protocol();
         }
 
         private void FormAcquistiPassati_Load(object sender, EventArgs e)
@@ -26,40 +27,39 @@ namespace APL.Forms
             string PrezzoTot;
             string[] PcPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            string response = SocketTCP.Receive();
+            if (response.Contains("notFound"))
+            {
+                SocketTCP.Release();
+                return;
+            }
+            int numeroDiAcquisti = int.Parse(response);
+            for (int i = 0; i < numeroDiAcquisti; i++) {
 
-            SocketTCP.GetMutex().WaitOne();
-                SocketTCP.Send(pt.ToString());
-                string response = String.Empty;
                 response = SocketTCP.Receive();
+                PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
+                response = SocketTCP.Receive();
+                PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
+                response = SocketTCP.Receive();
+                PrezzoTot = response;
+                response = SocketTCP.Receive();
+                DateTime data = DateTime.Parse(response);
+                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
+                Debug.WriteLine(PcAssemblati.Length);
+                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
+                Debug.WriteLine(PcPreAssemblati.Length);
 
-                if (response.Contains("notFound"))
-                {
-                    SocketTCP.GetMutex().ReleaseMutex();
-                    return;
-                }
-                int numeroDiAcquisti = int.Parse(response);
-                response = String.Empty;
-
-                for (int i = 0; i < numeroDiAcquisti; i++)
-                {
-                    response =  SocketTCP.Receive();
-                    PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
-                    response = SocketTCP.Receive();
-                    PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                    response = SocketTCP.Receive();
-                    PrezzoTot = response;
-                    response = SocketTCP.Receive();
-                    DateTime data = DateTime.Parse(response);
-                    response = String.Empty;
-                    // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
-                    Debug.WriteLine(PcAssemblati.Length);
-                    // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
-                    Debug.WriteLine(PcPreAssemblati.Length);
-
-                   // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
-                    Acquisti.Add(new Acquisto(PrezzoTot, data, PcAssemblati, PcPreAssemblati));
-                }
-            SocketTCP.GetMutex().ReleaseMutex();
+                // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
+                Acquisti.Add(new Acquisto() {
+                    PrezzoTot = PrezzoTot, 
+                    Data = data, 
+                    PcAssemblati = PcAssemblati,
+                    PcPreAssemblati = PcPreAssemblati
+                });
+            }
+            SocketTCP.Release();
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
             foreach(Acquisto acq in AcquistiOrdinati)

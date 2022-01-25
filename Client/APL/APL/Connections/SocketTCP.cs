@@ -1,40 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Forms;
+using System.IO;
 
 namespace APL.Connections
 {
     public static class SocketTCP
     {
-        public static Mutex mut;
+        private static readonly Mutex mut;
         const string host = "localhost";
         const Int32 port = 13000;
-        static TcpClient client;
-        static NetworkStream stream;
-        // Close everything.
+        private static readonly TcpClient client;
+        private static readonly  NetworkStream stream;
 
         static SocketTCP() {
             mut = new Mutex();
-            client = new TcpClient(host, port);
-            stream = client.GetStream();
+            client = new TcpClient();
+            try
+            {
+                client.Connect(host, port);
+                stream = client.GetStream();
+             }
+            catch (SocketException se) { 
+                MessageBox.Show(se.Message + "Assicurarsi che il server remoto sia in ascolto");
+                System.Environment.Exit(50);
+            }
         }
-
+        // Close everything.
         static public void CloseConnection() {
             stream.Close();
             client.Close();
             mut.Close();
         }
 
-        static public Mutex GetMutex() { 
-            return mut;
+        static public void Wait() {
+            mut.WaitOne();
+        }
+
+        static public void Release() {
+            mut.ReleaseMutex();
         }
         static public void Send(string message)
         {
+            /*
+             I primi 16 byte inviati sono la lunghezza del messaggio
+            con l'ultimo byte contente il ritorno a capo
+             
+             */
             Debug.WriteLine("Sended: {0}", message);
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             var lenbytes = new byte[16];
@@ -49,49 +64,64 @@ namespace APL.Connections
             lenbytes[lenbytes.Length - 1] = 10;
             if (client.Connected)
             {
-                stream.Write(lenbytes, 0, lenbytes.Length);
-                stream.Flush();
-                Debug.WriteLine(outJson.Length);
-                stream.Write(outJson, 0, outJson.Length);
-                stream.Flush();
-
+                try
+                {
+                    stream.Write(lenbytes, 0, lenbytes.Length);
+                    stream.Flush();
+                    Debug.WriteLine(outJson.Length);
+                    stream.Write(outJson, 0, outJson.Length);
+                    stream.Flush();
+                }
+                catch (IOException io){
+                    MessageBox.Show(io.Message + "Connessione col Server interrotta");
+                    System.Environment.Exit(51);
+                }
             }
         }
        
 
         static public string Receive()
         {
+             /*
+             I primi 16 byte ricevuti sono la lunghezza del messaggio
+            con l'ultimo byte contente il ritorno a capo
+             */
             var data = new Byte[16];
-            // String to store the response ASCII representation.
-            String lenData = String.Empty;
-            // Read the first batch of the TcpServer response bytes.
             String responseData = String.Empty;
             if (client.Connected)
             {
-                Int32 bytes = stream.Read(data, 0, data.Length);
-                int inizio = 0;
-                for (int i = 0; i < 16; i++)
+                try
                 {
-                    if (data[i] > 47 && data[i] < 58)
+                    Int32 bytes = stream.Read(data, 0, data.Length);
+                    int inizio = 0;
+                    for (int i = 0; i < 16; i++)
                     {
-                        inizio = i;
-                        break;
+                        if (data[i] > 47 && data[i] < 58)
+                        {
+                            inizio = i;
+                            break;
+                        }
                     }
+                    int fine = data.Length - 1;
+                    data = data[inizio..fine];
+                    string lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
+                    Debug.WriteLine(data.Length);
+                    int lenmsg = int.Parse(lenData);
+                    var msg = new Byte[lenmsg];
+                    Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
+                    Debug.WriteLine("Received: {0}", responseData);
                 }
-                int fine = data.Length - 1;
-                data = data[inizio..fine];
-                lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
-                Debug.WriteLine(data.Length);
-                int lenmsg = int.Parse(lenData);
-                var msg = new Byte[lenmsg];
-                Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
-                responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
-                Debug.WriteLine("Received: {0}", responseData);
+                catch (IOException io)
+                {
+                    MessageBox.Show(io.Message + "Connessione col Server interrotta");
+                    System.Environment.Exit(51);
+                }
             }
             return responseData;
         }
 
 
-       
+        
     }
 }
