@@ -15,7 +15,6 @@ namespace APL.Data.Detail
         public string Modello { get; init; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; init; }
-
         [JsonProperty("frequenza")]
         public float Frequenza { get; init; }
         [JsonProperty("socket")]
@@ -25,12 +24,8 @@ namespace APL.Data.Detail
         [JsonProperty("thread")]
         public int Thread { get; init; }
 
-
-
         public string[] getDetail()
         {
-            if (Socket == null)
-                return Array.Empty<string>();
             string[] detail = new string[4] {
                 Convert.ToString(Frequenza),
                 Socket,

@@ -17,11 +17,8 @@ namespace APL.Data.Detail
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; init; }
 
-
         public string[] getDetail()
         {
-            if (CpuSocket == null)
-                return Array.Empty<string>();
             return CpuSocket;
         }
     }

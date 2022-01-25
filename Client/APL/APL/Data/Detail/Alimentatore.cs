@@ -10,7 +10,6 @@ namespace APL.Data.Detail
     public class Alimentatore : Details
     {
 
-
         [JsonProperty("modello_alimentatore")]
         public string Modello { get; init; }
         [JsonProperty("Valutazione")]
@@ -19,7 +18,9 @@ namespace APL.Data.Detail
         public int Watt { get; init; }
         public string[] getDetail()
         {
-            string[] detail = new string[1] { Convert.ToString(Watt) };
+            string[] detail = new string[1] { 
+                Convert.ToString(Watt) 
+            };
             return detail;
         }
     }

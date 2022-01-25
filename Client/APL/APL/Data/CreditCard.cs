@@ -7,13 +7,13 @@ namespace APL.Data
     {
 
         [JsonProperty("number")]
-        public long  Number { get;  set; }
+        public long  Number { get;  init; }
         [JsonProperty("month")]
-        public int Month { get;  set; }
+        public int Month { get; init; }
         [JsonProperty("year")]
-        public int Year{ get;  set; }
+        public int Year{ get; init; }
         [JsonProperty("cvv")]
-        public int CVV { get;  set; }
+        public int CVV { get; init; }
 
 
     }

@@ -7,7 +7,7 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         bool disableCloseEvent;
         FormLogin_Register parent;
         FormInserisciPreassemblato formInserisciPreassemblato;
@@ -21,7 +21,7 @@ namespace APL.Forms
             parent = f_start;
             formInserisciPreassemblato = new FormInserisciPreassemblato(this);
             formInserisciComponente = new FormInserisciComponente(this);
-            
+            pt = new Protocol();
         }
 
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
@@ -53,10 +53,10 @@ namespace APL.Forms
             {
                 pt.SetProtocolID("cancellazione"); pt.Data = TextBoxModello.Text;
 
-                SocketTCP.GetMutex().WaitOne();
+                SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
                 string response = SocketTCP.Receive();
-                SocketTCP.GetMutex().ReleaseMutex();
+                SocketTCP.Release();
 
                 if (response == "NotFound")
                 {
@@ -70,7 +70,6 @@ namespace APL.Forms
                     TextBoxModello.Text = "";
                 }
             }
-            
         }
 
         private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
@@ -85,11 +84,11 @@ namespace APL.Forms
             if (textBoxNome.Text != string.Empty) 
             {
                 pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
-                SocketTCP.GetMutex().WaitOne();
+                SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
                 string receve = SocketTCP.Receive();
-                SocketTCP.GetMutex().ReleaseMutex();
-
+                SocketTCP.Release();
+  
                 if (receve == "NotFound")
                 {
                     MessageBox.Show("Eliminazione fallita",
@@ -102,8 +101,6 @@ namespace APL.Forms
                     textBoxNome.Text = "";
                 }
             }
-           
-               
         }
 
         private  void buttonStatistiche_Click(object sender, EventArgs e)
@@ -111,18 +108,17 @@ namespace APL.Forms
             FormStatistiche statistiche = new FormStatistiche();
 
             pt.SetProtocolID("recupera_statistiche");
-            SocketTCP.GetMutex().WaitOne();
-                SocketTCP.Send(pt.ToString());
-                for (int i = 0; i < 3; i++)
-                {
-
-                    string vet = SocketTCP.Receive();
-                    statistiche.setVenditeComponenti(vet, i);
-                }
-            SocketTCP.GetMutex().ReleaseMutex();
-
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            for (int i = 0; i < 3; i++)
+            {
+                string Img =  SocketTCP.Receive();
+                statistiche.setVenditeComponenti(Img, i);
+            }
+            SocketTCP.Release();
             statistiche.Show();
         }
+
 
         protected override void OnClosed(EventArgs e)
         {

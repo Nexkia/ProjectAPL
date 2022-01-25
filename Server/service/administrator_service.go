@@ -19,7 +19,6 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 	json.Unmarshal(jsonDetail, detail)
 	filter := bson.D{{Key: "modello", Value: comp.Modello}}
 	var result bson.D
-
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&result)
 	/*	Se non trova il componente lo inserisce ed inserisce il suo detail
 		altrimenti ne aggiorna i valori
@@ -46,11 +45,9 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 func Cancellazione(modello string, conn net.Conn, mongodb *mongo.Database) {
 	comp := data.Componente{}
 	filter := bson.D{{Key: "modello", Value: modello}}
-
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
 	if err != nil {
 		utils.Send([]byte("NotFound"), conn)
-
 		return
 	}
 	utils.DeleteOne("componenti", mongodb, filter)
@@ -65,11 +62,9 @@ func Inserimento_pre(jsonPre string, conn net.Conn, mongodb *mongo.Database) {
 	var result bson.D
 	json.Unmarshal([]byte(jsonPre), &pre)
 	filter := bson.D{{Key: "nome", Value: pre.Nome}}
-
 	err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&result)
 	if err != nil {
 		utils.InsertOne("preAssemblati", mongodb, pre)
-
 		return
 	}
 	bsonPre := createBson(pre)
@@ -83,16 +78,13 @@ func Inserimento_pre(jsonPre string, conn net.Conn, mongodb *mongo.Database) {
 func Cancellazione_pre(nome string, conn net.Conn, mongodb *mongo.Database) {
 	var result bson.D
 	filter := bson.D{{Key: "nome", Value: nome}}
-
 	err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&result)
 	if err != nil {
 		utils.Send([]byte("NotFound"), conn)
-
 		return
 	}
 	utils.DeleteOne("preAssemblati", mongodb, filter)
 	utils.Send([]byte("Done"), conn)
-
 }
 
 func SendStatistics(conn net.Conn, img [3][]byte, lock *sync.RWMutex) {

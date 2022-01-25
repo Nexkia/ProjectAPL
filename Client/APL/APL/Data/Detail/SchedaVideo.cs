@@ -20,7 +20,6 @@ namespace APL.Data.Detail
         [JsonProperty("vram")]
         public int Vram { get; init; }
 
-
         public string[] getDetail()
         {
             string[] detail = new string[2] {

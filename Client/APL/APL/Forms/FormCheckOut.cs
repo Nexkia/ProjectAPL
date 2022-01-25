@@ -11,7 +11,7 @@ namespace APL.Forms
 {
     public partial class FormCheckOut : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         bool disableCloseEvent;
         FormHome vecchiaHome;
         public FormCheckOut(FormHome vecchiaHome)
@@ -20,6 +20,7 @@ namespace APL.Forms
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             this.vecchiaHome= vecchiaHome;
+            pt = new Protocol();
         }
 
         private float totale;
@@ -142,14 +143,18 @@ namespace APL.Forms
             {
 
                 //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-                InfoPayment info = new InfoPayment();
-                info.CreditCard = new CreditCard();
-                info.CreditCard.CVV = int.Parse(cvv);
-                info.CreditCard.Month = int.Parse(meseScadenza);
-                info.CreditCard.Year = int.Parse(annoScadenza);
-                info.CreditCard.Number = long.Parse(numeroCarta);
-                info.IndirizzoFatturazione = indirizzoFatturazione;
-                info.Email = String.Empty;
+                InfoPayment info = new InfoPayment()
+                {
+                    CreditCard = new CreditCard()
+                    {
+                        CVV = int.Parse(cvv),
+                        Month = int.Parse(meseScadenza),
+                        Year = int.Parse(annoScadenza),
+                        Number = long.Parse(numeroCarta)
+                    },
+                    IndirizzoFatturazione = indirizzoFatturazione,
+                    Email = String.Empty
+                };
                 string JsonInfop = JsonConvert.SerializeObject(info);
                 string Json = System.Text.Json.JsonSerializer.Serialize(
                     new
@@ -163,12 +168,11 @@ namespace APL.Forms
                     }
                     );
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
-                SocketTCP.GetMutex().WaitOne();
+                SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
                 SocketTCP.Send(JsonInfop+"\n");
                 string response = SocketTCP.Receive();
-                SocketTCP.GetMutex().ReleaseMutex();
-                
+                SocketTCP.Release();
                 if(response.Contains("Un elemento non presente")) 
                 {
                     MessageBox.Show("Checkout non confermato",
@@ -189,7 +193,6 @@ namespace APL.Forms
                     "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                
             }
             else
             {
@@ -204,10 +207,10 @@ namespace APL.Forms
 
             InfoPayment infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             string infop =  SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
 
             if (!infop.Contains("notFound"))
             {

@@ -13,7 +13,6 @@ import (
 
 func SendCompatibilita(msg string, conn net.Conn, mongodb *mongo.Database) {
 	msg_rcv := strings.Trim(msg, "\n")
-
 	byte_categoria := utils.Receive(conn)
 	categ_ := strings.Trim(string(byte_categoria), "\n")
 	filter := bson.D{{Key: "modello_" + categ_, Value: msg_rcv}}

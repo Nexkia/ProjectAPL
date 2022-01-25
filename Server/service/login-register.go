@@ -43,7 +43,6 @@ func Register(u_json string, conn net.Conn, mongodb *mongo.Database) {
 		msg = "email gia' usata"
 	}
 	utils.Send([]byte(msg), conn)
-
 }
 
 func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Database) {
@@ -52,22 +51,20 @@ func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Databas
 	// Conversione da json a Utente
 	/*
 		Cerchiamo prima se è presente l'utente nel nostro database
-
 	*/
 	json.Unmarshal([]byte(u_json), &u)
 	log.Println("utente: ", u_json, " utente_conv: ", u)
 	u.Password = utils.Encoding(u.Email, u.Password)
 	filter := bson.D{{Key: "email", Value: u.Email}, {Key: "password", Value: u.Password}}
-
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&result)
 	if err != nil {
 		msg := "Errore utente non trovato"
 		utils.Send([]byte(msg), conn)
+		out <- ""
 	} else {
 		checkAdmin := (u.Password == "VlPUwbiQVA6j2OBXnVyL0GGbdR2EeMk9OUulJHi0YjE=")
 		admin := strconv.FormatBool(checkAdmin)
 		utils.Send([]byte(admin), conn)
 		out <- u.Password
 	}
-
 }

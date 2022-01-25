@@ -8,6 +8,10 @@ import (
 )
 
 func Send(msg []byte, conn net.Conn) {
+	/*
+		Quando viene mandato un messaggio i primi 16 byte
+		contengono la dimensione del messaggio
+	*/
 	bytemsg := []byte(msg)
 	len_msg := strconv.Itoa(len(bytemsg))
 	byteslen_msg := []byte(len_msg)
@@ -16,6 +20,7 @@ func Send(msg []byte, conn net.Conn) {
 	for i := 0; i < len(byteslen_msg); i++ {
 		byteslen[diff+i-1] = byteslen_msg[i]
 	}
+	// L'ultimo byte contiene un ritorno a capo
 	byteslen[len(byteslen)-1] = 10 //10 = ritorno a capo
 	log.Println("Send: ", byteslen)
 	conn.Write(byteslen)
@@ -23,6 +28,10 @@ func Send(msg []byte, conn net.Conn) {
 }
 
 func Receive(conn net.Conn) []byte {
+	/*
+		In ricezione prima arriva la lunghezza del messaggio
+		16 byte di cui l'ultimo carattere è un ritorno a capo
+	*/
 	byteslen := make([]byte, 16)
 	conn.Read(byteslen)
 	var len_msg int
@@ -36,7 +45,7 @@ func Receive(conn net.Conn) []byte {
 	}
 	bytesmsg := make([]byte, len_msg)
 	conn.Read(bytesmsg)
-	if len(bytesmsg) < 20000 {
+	if len(bytesmsg) < 512 {
 		log.Println("Receive message: ", string(bytesmsg))
 	}
 	return bytesmsg

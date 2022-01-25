@@ -25,7 +25,9 @@ namespace APL.Forms
         {
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
+            SocketTCP.Release();
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
@@ -38,9 +40,9 @@ namespace APL.Forms
                 TextBoxIndirizzo.Text,TextBoxInserisciPassword.Text, TextBoxConfermaPassword.Text);
 
             switch (result) {
-                case "Registrazione avvenuta correttamente":
-                   
-                    string Json = JsonSerializer.Serialize(
+                case "Email o Codice Fiscale già usati in altri account":
+                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
+                    string UserJson = JsonSerializer.Serialize(
                         new
                         {
                             Email = TextBoxEmail.Text,
@@ -50,12 +52,11 @@ namespace APL.Forms
                         }
                         );
                     //conversione da Json a Byte
-                    pt.SetProtocolID("register"); pt.Data = Json;
-
-                    SocketTCP.GetMutex().WaitOne();
-                        SocketTCP.Send(pt.ToString());
-                        string response = SocketTCP.Receive();
-                    SocketTCP.GetMutex().ReleaseMutex();
+                    pt.SetProtocolID("register"); pt.Data = UserJson;
+                    SocketTCP.Wait();
+                    SocketTCP.Send(pt.ToString());
+                    string response = SocketTCP.Receive();
+                    SocketTCP.Release();
                     
                     if (response.Contains("Registrazione"))
                     {
@@ -85,21 +86,19 @@ namespace APL.Forms
             string result = controllo.CheckLogin(TextBoxLoginEmail.Text, TextBoxLoginPassword.Text);
             switch (result)
             {
-                case "Login effettuato correttamente":
-                    
-                    string Json = JsonSerializer.Serialize(new
+                case "Login fallito, Email o Password errate":
+                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
+                    string UserJson = JsonSerializer.Serialize(new
                     {
                         Email = TextBoxLoginEmail.Text,
                         Password = TextBoxLoginPassword.Text
                     }
                     );
-                    pt.SetProtocolID("login");  pt.Data = Json;
-                    
-                    SocketTCP.GetMutex().WaitOne();
-                        SocketTCP.Send(pt.ToString());
-                        string responseData = SocketTCP.Receive();
-                    SocketTCP.GetMutex().ReleaseMutex();
-                   
+                    pt.SetProtocolID("login");  pt.Data = UserJson;
+                    SocketTCP.Wait();
+                    SocketTCP.Send(pt.ToString());
+                    string responseData = SocketTCP.Receive();
+                    SocketTCP.Release();
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
