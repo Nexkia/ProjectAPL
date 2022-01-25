@@ -32,6 +32,7 @@ func SendInfoPayment(token string, conn net.Conn, mongodb *mongo.Database) {
 }
 
 func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mongo.Database) {
+	infoPByte := utils.Receive(conn)
 	// Ricerca email utente
 	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
@@ -66,7 +67,6 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	}
 	// Inserimento o aggiornamento del metodo di pagamento
 	infoPayment := data.InfoPayment{}
-	infoPByte := utils.Receive(conn)
 	json.Unmarshal([]byte(infoPByte), &infoPayment)
 	// Ricerca prima di inserire
 	infoPayment.Email = u.Email

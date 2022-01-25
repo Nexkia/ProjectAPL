@@ -16,14 +16,12 @@ import (
 func SendinfoModifica(token string, conn net.Conn, mongodb *mongo.Database) {
 	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
-
 	utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	user, err := json.Marshal(u)
 	if err != nil {
 		fmt.Println("error parsing")
 	}
 	utils.Send(user, conn)
-
 }
 
 func UpdateinfoModifica(out chan string, msg string, token string, conn net.Conn, mongodb *mongo.Database) {

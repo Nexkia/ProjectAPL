@@ -61,7 +61,6 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 							componente.Modello = comp.(string)
 						}
 						Pc.Componenti[i] = componente
-
 					} else {
 						PreAssemblati = append(PreAssemblati, comp.(string))
 					}
@@ -71,7 +70,7 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 					PcAssemblati = append(PcAssemblati, Pc)
 				}
 			}
-			lista_prezzi := CalcoloPrezziPre(PreAssemblati, mongodb)
+			lista_prezzi := GetPrezziPre(PreAssemblati, mongodb)
 			data := acquisto_internal["Data"].(string)
 			prezzo := acquisto_internal["Prezzo"].(float64)
 			prezzo_bytes := []byte(strconv.FormatFloat(prezzo, 'f', -1, 64))
@@ -88,7 +87,7 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 
 }
 
-func CalcoloPrezziPre(nomiPre []string, mongodb *mongo.Database) []string {
+func GetPrezziPre(nomiPre []string, mongodb *mongo.Database) []string {
 	len_pre := len(nomiPre)
 	prezzi := make([]string, len_pre)
 	for i, nome := range nomiPre {

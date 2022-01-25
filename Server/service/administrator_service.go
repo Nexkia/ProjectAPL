@@ -19,7 +19,6 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 	json.Unmarshal(jsonDetail, detail)
 	filter := bson.D{{Key: "modello", Value: comp.Modello}}
 	var result bson.D
-
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&result)
 	/*	Se non trova il componente lo inserisce ed inserisce il suo detail
 		altrimenti ne aggiorna i valori

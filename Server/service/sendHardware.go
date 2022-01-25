@@ -17,12 +17,7 @@ func SendPreassemblati(conn net.Conn, mongodb *mongo.Database, name *[3]string) 
 	pc := make([]data.PcpreAssemblato, 3)
 	for i := 0; i < 3; i++ {
 		filter := bson.D{{Key: "nome", Value: name[i]}}
-		if err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pc[i]); err != nil {
-			filter_sample := bson.D{{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}}}
-			pipe := mongo.Pipeline{filter_sample}
-			res := utils.Aggregate("componenti", mongodb, pipe)
-			BsonUnmarshaling(res[0], &pc[i])
-		}
+		utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pc[i])
 	}
 	//trasformiamo l'oggetto in json e in byte
 	prejson, _ := json.Marshal(pc)
@@ -50,11 +45,4 @@ func SendBuildSolo(conn net.Conn, mongodb *mongo.Database) {
 		json_comp, _ := json.Marshal(comp)
 		utils.Send(json_comp, conn)
 	}
-
-}
-
-func BsonUnmarshaling(in interface{}, out interface{}) interface{} {
-	in_byte, _ := bson.Marshal(in)
-	bson.Unmarshal(in_byte, out)
-	return out
 }
