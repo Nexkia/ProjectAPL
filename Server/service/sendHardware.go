@@ -15,10 +15,8 @@ import (
 
 func SendPreassemblati(conn net.Conn, mongodb *mongo.Database, name *[3]string) {
 	pc := make([]data.PcpreAssemblato, 3)
-
 	for i := 0; i < 3; i++ {
 		filter := bson.D{{Key: "nome", Value: name[i]}}
-
 		if err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pc[i]); err != nil {
 			filter_sample := bson.D{{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}}}
 			pipe := mongo.Pipeline{filter_sample}
@@ -45,7 +43,6 @@ func SendBuildConsigliate(profile string, conn net.Conn, profiles *[5][8][3]data
 
 func SendBuildSolo(conn net.Conn, mongodb *mongo.Database) {
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
-
 	for _, categ := range categoria {
 		comp := getByCategoria(categ, conn, mongodb)
 		n_comp := strconv.Itoa(len(comp))

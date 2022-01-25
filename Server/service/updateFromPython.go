@@ -13,7 +13,6 @@ import (
 )
 
 func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5][8][3]data.Componente, name *[3]string, lock *sync.RWMutex) {
-
 	var profili int = 5
 	var categorie int = 8
 	var n_elem int = 3

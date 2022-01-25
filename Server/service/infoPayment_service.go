@@ -15,11 +15,9 @@ import (
 func SendInfoPayment(token string, conn net.Conn, mongodb *mongo.Database) {
 	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
-
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-
 		return
 	}
 	filter = bson.D{{Key: "email", Value: u.Email}}
@@ -27,19 +25,16 @@ func SendInfoPayment(token string, conn net.Conn, mongodb *mongo.Database) {
 	err = utils.FindOne(filter, "InfoPayment", mongodb).Decode(&Info)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-
 		return
 	}
 	InfoJson, _ := json.Marshal(Info)
 	utils.Send(InfoJson, conn)
-
 }
 
 func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mongo.Database) {
 	// Ricerca email utente
 	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
-
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
@@ -54,6 +49,7 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	json.Unmarshal([]byte(elementiVenduti), &dat)
 	if !Check(dat, mongodb) {
 		utils.Send([]byte("Un elemento non presente"), conn)
+		return
 	}
 	if err != nil {
 		vend.Email = u.Email
@@ -89,7 +85,6 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 		utils.UpdateOne("InfoPayment", mongodb, filter, updateMongo)
 	}
 	utils.Send([]byte("payment done"), conn)
-
 }
 
 func Check(dat map[string]interface{}, mongodb *mongo.Database) bool {

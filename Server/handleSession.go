@@ -54,7 +54,6 @@ func handleSession(conn net.Conn, mongodb *mongo.Database) {
 
 		log.Println(conn.RemoteAddr())
 		response := utils.Receive(conn)
-
 		message := string(response)
 		log.Println("Message Received: ", message)
 		pt, err := SplitProtocol(message)
