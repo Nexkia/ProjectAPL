@@ -18,10 +18,11 @@ namespace APL.Forms
 {
     public partial class FormAcquistiPassati : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         public FormAcquistiPassati()
         {
             InitializeComponent();
+            pt = new Protocol();
         }
 
 
@@ -35,20 +36,18 @@ namespace APL.Forms
             string PrezzoTot;
             string[] PcPreAssemblati;
             List<Acquisto> Acquisti=new List<Acquisto>();
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            string response = String.Empty;
-            response = SocketTCP.Receive();
+            string response = SocketTCP.Receive();
             if (response.Contains("notFound"))
             {
-                SocketTCP.GetMutex().ReleaseMutex();
+                SocketTCP.Release();
                 return;
             }
             int numeroDiAcquisti = int.Parse(response);
-            response = String.Empty;
-            for (int i = 0; i < numeroDiAcquisti; i++){
+            for (int i = 0; i < numeroDiAcquisti; i++) {
 
-                response =  SocketTCP.Receive();
+                response = SocketTCP.Receive();
                 PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
                 response = SocketTCP.Receive();
                 PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
@@ -56,18 +55,20 @@ namespace APL.Forms
                 PrezzoTot = response;
                 response = SocketTCP.Receive();
                 DateTime data = DateTime.Parse(response);
-                response = String.Empty;
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
 
-               // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
-                Acquisti.Add(new Acquisto(PrezzoTot, data, PcAssemblati, PcPreAssemblati));
-                
-                  
+                // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
+                Acquisti.Add(new Acquisto() {
+                    PrezzoTot = PrezzoTot, 
+                    Data = data, 
+                    PcAssemblati = PcAssemblati,
+                    PcPreAssemblati = PcPreAssemblati
+                });
             }
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
             foreach(Acquisto acq in AcquistiOrdinati)

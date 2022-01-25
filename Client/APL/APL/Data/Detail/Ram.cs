@@ -11,15 +11,14 @@ namespace APL.Data.Detail
     {
 
         [JsonProperty("modello_ram")]
-        public string? Modello { get; init; }
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; init; }
         [JsonProperty("frequenza")]
         public float Frequenza { get; init; }
 
         [JsonProperty("standard")]
-        public string? Standard { get; init; }
-
+        public string Standard { get; init; }
 
         public string[] getDetail()
         {

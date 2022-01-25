@@ -25,11 +25,11 @@ namespace APL.Forms.Amministratore
             InitializeComponent();
         }
 
-        private byte[] venditePerData;
-        private byte[] venditeComponenti;
-        private byte[] venditePreassemblati;
+        private string venditePerData;
+        private string venditeComponenti;
+        private string venditePreassemblati;
 
-        public void setVenditeComponenti(byte[] value,int i){ 
+        public void setVenditeComponenti(string value,int i){ 
             
             if(i==0)         
                 venditePreassemblati = value;
@@ -42,9 +42,9 @@ namespace APL.Forms.Amministratore
         }
         private void FormStatistiche_Load(object sender, EventArgs e)
         {
-            ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
-            //ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
-            //ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
+            ImgStatistiche img1 = new ImgStatistiche(Base64ToImage(venditePreassemblati));
+            ImgStatistiche img2 = new ImgStatistiche(Base64ToImage(venditePerData));
+            ImgStatistiche img3 = new ImgStatistiche(Base64ToImage(venditeComponenti));
            
             if (flowLayoutPanel1.Controls.Count < 0)
             {
@@ -54,28 +54,26 @@ namespace APL.Forms.Amministratore
             else 
             { 
                 flowLayoutPanel1.Controls.Add(img1);
-               // flowLayoutPanel1.Controls.Add(img2);
-              //  flowLayoutPanel1.Controls.Add(img3);
+                flowLayoutPanel1.Controls.Add(img2);
+                flowLayoutPanel1.Controls.Add(img3);
             }
         }
 
 
-       
-        public Image byteArrayToImage(byte[] byteArrayIn)
+        public Image Base64ToImage(string base64String)
         {
-
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-
-            //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-            //Image Image = (Image)converter.ConvertFrom(byteArrayIn);
-
-            return returnImage;
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            // Convert byte[] to Image
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
 
 
 
-       
 
 
 

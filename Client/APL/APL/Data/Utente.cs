@@ -10,15 +10,15 @@ namespace APL.Data
     internal class Utente
     {
         [JsonProperty("Email")]
-        public string? Email {get; set;}
+        public string Email {get; init; }
 
         [JsonProperty("Indirizzo")]
-        public string? Indirizzo {get; set;}
+        public string Indirizzo {get; init; }
 
         [JsonProperty("NomeUtente")]
-        public string? Nome { get; set; }
+        public string Nome { get; init; }
 
         [JsonProperty("Password")]
-        public string? Password { get; set; }
+        public string Password { get; init; }
     }
 }

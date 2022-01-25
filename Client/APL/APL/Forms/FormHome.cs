@@ -29,7 +29,7 @@ namespace APL.Forms
     public partial class FormHome : Form
     {
 
-        Protocol pt = new Protocol();
+        Protocol pt;
         FormLogin_Register parent;
         PcPreassemblato[] ricevuto;
         int dimRicevuto;
@@ -41,7 +41,7 @@ namespace APL.Forms
             parent = f_start;
             comboBox1.Text = "Build Guidata";
             carrelloForm = new FormCarrello();
-
+            pt = new Protocol();
             pleaseWait = new FormPleaseWait();
             
         }
@@ -50,16 +50,15 @@ namespace APL.Forms
         {
             // Richiede due messaggi 
             pt.SetProtocolID("home"); pt.Data = String.Empty;
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            string responseData = String.Empty;
-            responseData = SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex();
+            string responseData = SocketTCP.Receive();
+            SocketTCP.Release();
             int dim = 3;
-            PcPreassemblato[] a = new PcPreassemblato[dim];
-            a = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
-            populateItems(a, dim);
-            ricevuto = a;
+            PcPreassemblato[] pre = new PcPreassemblato[dim];
+            pre = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
+            populateItems(pre, dim);
+            ricevuto = pre;
             dimRicevuto = dim;
         }
 
@@ -312,27 +311,23 @@ namespace APL.Forms
         {
             pt.SetProtocolID("buildSolo");
 
-            Dictionary<string, int> order = new Dictionary<string, int>{
-                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
-                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
-            };
-            SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
             List<List<Componente>> myList = new List<List<Componente>>();
+
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 8; i++)
             {
                 string nElements = SocketTCP.Receive();
                 int n = int.Parse(nElements);
-                string response = String.Empty;
-                response = SocketTCP.Receive();
-                Componente[] pezzo = new Componente[n];
-                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                List<Componente> singleComponent = pezzo.ToList();
+                string response = SocketTCP.Receive();
+                Componente[] elem = new Componente[n];
+                elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                List<Componente> singleComponent = elem.ToList();
                 myList.Add(singleComponent);
 
                 aggiungiListaInCache(singleComponent);
             }
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
             Debug.WriteLine(myList.Count());
 
             stampaComponentsSolo(myList);

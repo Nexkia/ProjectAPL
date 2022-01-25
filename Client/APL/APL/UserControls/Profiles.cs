@@ -18,7 +18,7 @@ namespace APL.UserControls
     public partial class Profiles : UserControl
     {
         FlowLayoutPanel vecchioFlowLayoutPanel1;
-        Protocol pt = new Protocol();
+        Protocol pt;
         ListView vecchialistView;
         ListView vecchioCarrello;
 
@@ -28,6 +28,7 @@ namespace APL.UserControls
             vecchioFlowLayoutPanel1 = vfp1;
             vecchialistView = vlw;
             vecchioCarrello = carrello;
+            pt = new Protocol();
         }
 
         private string _title;
@@ -61,31 +62,31 @@ namespace APL.UserControls
                 { "Basic","0" },{ "Advanced","1" },{"Gamer","2"},{"Pro","3"},
                 {"Ultra","4"}
             };
-
-
-            ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
-            pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
-            SocketTCP.Send(pt.ToString());
-
-
             Dictionary<string, int> order = new Dictionary<string, int>{
                 { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
                 {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
             };
+            ComponentsGuidata[] componentsTab = new ComponentsGuidata[8];
             Componente[,] showElements = new Componente[8, 3];
+
+            pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
+            SocketTCP.Wait();
+
+            SocketTCP.Send(pt.ToString());
             for (int i = 0; i < componentsTab.Length; i++) {
                 componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
-                string response = String.Empty;
-                response = SocketTCP.Receive();
-                Componente[] pezzo = new Componente[3];
-                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                int idx = order[pezzo[0].Categoria]; 
+                string response = SocketTCP.Receive();
+                Componente[] elem = new Componente[3];
+                elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                // Sono 3 elementi suggeriti con la stessa categoria per cui ottengo l'ordine 
+                // con il primo elemento. L'ordine è dato dall'indice ottenuto dal dizionario
+                int idx = order[elem[0].Categoria]; 
                 for (int j = 0; j < 3; j++){
                     showElements[idx,j] = new Componente();
-                    showElements[idx, j] = pezzo[j];
+                    showElements[idx,j] = elem[j];
                 }
-
             }
+            SocketTCP.Release();
                 //ci sono 8 iterazionei, una per ogni componente
                 for (int i = 0; i < componentsTab.Length; i++){
                     componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
@@ -107,13 +108,10 @@ namespace APL.UserControls
                 //aggiunge al flow label
                 if (vecchioFlowLayoutPanel1.Controls.Count < 0)
                     {
-
                         vecchioFlowLayoutPanel1.Controls.Clear();
                     }
                     else
                         vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
-
-
                 }
         }
 

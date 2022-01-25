@@ -16,7 +16,7 @@ namespace APL.Forms
 {
     public partial class FormAmministratore : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         bool disableCloseEvent;
         FormLogin_Register parent;
         FormInserisciPreassemblato formInserisciPreassemblato;
@@ -29,6 +29,7 @@ namespace APL.Forms
             parent = f_start;
             formInserisciPreassemblato = new FormInserisciPreassemblato(this);
             formInserisciComponente = new FormInserisciComponente(this);
+            pt = new Protocol();
         }
 
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
@@ -57,9 +58,9 @@ namespace APL.Forms
         private void buttonEliminaComponente_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("cancellazione");pt.Data = TextBoxModello.Text;
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
         }
 
         private void buttonInserisciPreassemblato_Click(object sender, EventArgs e)
@@ -72,9 +73,9 @@ namespace APL.Forms
         private  void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
         }
 
         private  void buttonStatistiche_Click(object sender, EventArgs e)
@@ -82,33 +83,17 @@ namespace APL.Forms
             FormStatistiche statistiche = new FormStatistiche();
 
             pt.SetProtocolID("recupera_statistiche");
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 3; i++)
             {
-
-                byte[] vet =  SocketTCP.receiveBytesBlock();
-                File.WriteAllBytes("image"+Convert.ToString(i)+".txt", vet);
-                //byte[] decompressed = ZLibDotnetDecompress(vet, vet.Length);
-                //File.WriteAllBytes("image_compressed" + Convert.ToString(i) + ".txt.txt", decompressed);
-                //statistiche.setVenditeComponenti(decompressed, i);
+                string Img =  SocketTCP.Receive();
+                statistiche.setVenditeComponenti(Img, i);
             }
-
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
             statistiche.Show();
         }
 
-        /*
-        public static byte[] ZLibDotnetDecompress(byte[] data, int size)
-        {
-            
-            MemoryStream compressed = new MemoryStream(data);
-            zlib.ZInputStream inputStream = new zlib.ZInputStream(compressed);
-            Byte[] result = new byte[size]; // Since ZinputStream is inherited is binaryReader instead of stream, you can only prepare the output buffer in advance and then use the READ to get the fixed length data.
-            inputStream.read(result, 0, result.Length); // Note that the read letter here is lowercase
-            return result;
-        }
-        */
 
         protected override void OnClosed(EventArgs e)
         {

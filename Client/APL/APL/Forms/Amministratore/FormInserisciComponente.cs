@@ -147,8 +147,13 @@ namespace APL.Forms.Amministratore
             if(textBoxModello.Text!=string.Empty && textBoxMarca.Text!=string.Empty
                 && textBoxPrezzo.Text!=string.Empty && textBoxCapienza.Text != string.Empty && categoria !=string.Empty)
             {
-                Componente comp = new Componente(textBoxModello.Text, textBoxMarca.Text, 
-                    float.Parse(textBoxPrezzo.Text), int.Parse(textBoxCapienza.Text), categoria);
+                Componente comp = new Componente(){
+                    Modello = textBoxModello.Text, 
+                    Marca = textBoxMarca.Text,
+                    Prezzo = float.Parse(textBoxPrezzo.Text), 
+                    Capienza =int.Parse(textBoxCapienza.Text), 
+                    Categoria = categoria
+                };
                
                 return comp;
             }

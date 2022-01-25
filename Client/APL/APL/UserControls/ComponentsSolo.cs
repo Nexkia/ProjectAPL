@@ -21,16 +21,12 @@ namespace APL.UserControls
     public partial class ComponentsSolo : UserControl
     {
         FormCarrello vecchioCarrello;
-        Protocol pt = new Protocol();
+        Protocol pt;
         public ComponentsSolo(FormCarrello formCarrello)
         {
             InitializeComponent();
             vecchioCarrello = formCarrello;
-            
-
-            
-
-
+            pt = new Protocol();
         }
         private string categoria;
         private string modello;
@@ -125,24 +121,19 @@ namespace APL.UserControls
             }
         }
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
-            Details MyDetails;
+            ConstructorDetail factoryDetail = new ConstructorDetail();
+            Details MyDetails = factoryDetail.GetDetails(categoria);
+            Type categ = MyDetails.GetType();
             pt.Data = modello; pt.SetProtocolID("compatibilita");
- 
-            SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt);
-                string okmsg =  SocketTCP.receive();
-                SocketTCP.sendSingleMsg(categoria+"\n");
 
-                ConstructorDetail factory = new ConstructorDetail();
-
-                SocketTCP.sendSingleMsg("ok");
-                string detailMsg = SocketTCP.receive();
-                Details componenteF = factory.GetDetails(categoria);
-                Type categ = componenteF.GetType();
-                MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            SocketTCP.Send(categoria+"\n");
+            string detailMsg = SocketTCP.Receive();
+            SocketTCP.Release();
+            MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
 
             string[] vet;
             ListViewItem lvitem = new ListViewItem("" + categoria + "");

@@ -10,7 +10,7 @@ namespace APL.Data
     public class ConstructorDetail
     {
        
-        public Details? GetDetails(string detail) 
+        public Details GetDetails(string detail) 
         {
             switch (detail)
             {

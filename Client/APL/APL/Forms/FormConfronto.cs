@@ -18,7 +18,7 @@ namespace APL.Forms
 {
     public partial class FormConfronto : Form
     {
-        Protocol pt = new Protocol();
+        Protocol pt;
         string categoriaOriginale;
         string[] modelli;
         string[] prezzi;
@@ -26,6 +26,7 @@ namespace APL.Forms
         public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria)
         {
             InitializeComponent();
+            pt = new Protocol();
             pt.SetProtocolID("confronto");
             this.modelli = modelli;
             this.prezzi = prezzi;
@@ -40,24 +41,30 @@ namespace APL.Forms
 
         private  void Confronto_Load(object sender, EventArgs e1)
         {
+            /*
+             Gli oggetti da cofrontare hanno tutti la stessa categoria
+             Creo una lista a partire dal tipo di componente da confrontare
+             */
+            ConstructorDetail factoryDetail = new ConstructorDetail();
+            Details componenteF = factoryDetail.GetDetails(categoriaOriginale);
+            Type categoria = componenteF.GetType();
+            Type categoriaTypeList = typeof(List<>).MakeGenericType(categoria);
+            IList MyList = (IList)Activator.CreateInstance(categoriaTypeList);
+            // Invio un messaggi composto dai modelli da confrontare semparati da un carattere di separazione
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"#";
             }
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            ConstructorDetail factory = new ConstructorDetail();
-            Details componenteF = factory.GetDetails(categoriaOriginale);
-            Type categoria = componenteF.GetType();
-            Type genericListType = typeof(List<>).MakeGenericType(categoria);
-            IList MyList = (IList)Activator.CreateInstance(genericListType);
 
             for (int i = 0; i < modelli.Length; i++)
             {
                 string response = SocketTCP.Receive();
-                Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
-                MyList.Add(a);
-                Debug.WriteLine("getmodello: " + a.Modello);
-    
+                componenteF = (Details)JsonConvert.DeserializeObject(response, categoria);
+                MyList.Add(componenteF);
+                Debug.WriteLine("getmodello: " + componenteF.Modello);
             }
+            SocketTCP.Release();
             ConfrontaParametri(MyList, categoriaOriginale, capienze);
         }
 
