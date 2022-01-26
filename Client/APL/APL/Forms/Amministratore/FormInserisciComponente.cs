@@ -7,8 +7,8 @@ namespace APL.Forms.Amministratore
 {
     public partial class FormInserisciComponente : Form
     {
-        bool disableCloseEvent;
-        FormAmministratore parent;
+        private bool disableCloseEvent;
+        private FormAmministratore parent;
         public FormInserisciComponente(FormAmministratore parent)
         {
             InitializeComponent();
@@ -19,7 +19,10 @@ namespace APL.Forms.Amministratore
         }
 
         private string categoria;
+        public string getModello() { return textBoxModello.Text; }
 
+
+        #region Chiusura-----------------------------------------------------------------
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
         void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -36,10 +39,15 @@ namespace APL.Forms.Amministratore
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
         }
-        public string getModello() { return textBoxModello.Text; }
-        private void buttonConfermaTipoComponente_Click(object sender, EventArgs e)
-        {
+        #endregion
 
+
+        #region Scelta Componente---------------------------------------------------------
+        private void buttonConfermaTipoComponente_Click(object sender, EventArgs e)
+        {/*
+          L'utente seleziona il componente dalla ComboBox, in base alla scelta vengono
+            abilitati gli appositi campi del Form e viene caricato un diverso User Control
+          */
             switch (comboBox1.Text)
             {
                 case "cpu":
@@ -83,22 +91,23 @@ namespace APL.Forms.Amministratore
                     setReadOnly(false);
                     InserisciRam detRam = new InserisciRam(this);
                     setFlowLayoutPanel(detRam);
+                    textBoxCapienza.Text = "1";
                     break;
                 case "memoria":
                     categoria = "memoria";
                     setReadOnly(false);
                     InserisciMemoria detMem = new InserisciMemoria(this);
                     setFlowLayoutPanel(detMem);
+                    textBoxCapienza.Text = "1";
                     break;
                 default:
                     MessageBox.Show("Selezionare un Componente", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
-
             }
         }
-
         public void setReadOnly(bool value)
         {
+            // se non si sceglie ram o memoria la capacità viene settata a 0 di default
             textBoxModello.ReadOnly =
             textBoxMarca.ReadOnly =
             textBoxPrezzo.ReadOnly = value;
@@ -112,29 +121,22 @@ namespace APL.Forms.Amministratore
             {
                 textBoxCapienza.ReadOnly = value;
             }
-            
-           
         }
-
         public void setFlowLayoutPanel(Control value)
         {
-            
             flowLayoutPanel1.Controls.Clear();
-            //aggiunge al flow label
-            if (flowLayoutPanel1.Controls.Count< 0)
-                {
-
-                    flowLayoutPanel1.Controls.Clear();
-                }
-                else
-                    flowLayoutPanel1.Controls.Add(value);
-            
-
+            //aggiunge al flow label l'user control scelto 
+            if (flowLayoutPanel1.Controls.Count < 0)
+                flowLayoutPanel1.Controls.Clear();
+            else
+                flowLayoutPanel1.Controls.Add(value);
         }
+        #endregion
+
 
         public Componente areFullAllTextBox()
         {
-
+            /* Se i campi vengono riempiti correttamente ritorna il componente */
             if(textBoxModello.Text!=string.Empty && textBoxMarca.Text!=string.Empty
                 && textBoxPrezzo.Text!=string.Empty && textBoxCapienza.Text != string.Empty && categoria !=string.Empty)
             {
@@ -148,11 +150,27 @@ namespace APL.Forms.Amministratore
                
                 return comp;
             }
-            else {
-               
-                return null; }
-            
+            else 
+                return null; 
         }
-       
+
+
+        #region Controlli TextBox------------------------------------------------------------
+        private void textBoxCapienza_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //impedisce l'inserimento di un input non numerico
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+        private void textBoxPrezzo_TextChanged(object sender, EventArgs e)
+        {
+            bool isInvalidPrezzo = textBoxPrezzo.Text.Contains(".");
+            //permette di inserire solo dei Float nel prezzo
+            if (!float.TryParse(textBoxPrezzo.Text, out float value))
+                textBoxPrezzo.Text = "";
+            if(isInvalidPrezzo)
+                textBoxPrezzo.Text = "";
+        }
+        #endregion
     }
 }

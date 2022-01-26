@@ -44,7 +44,6 @@ namespace APL.Controlli
                         }
                         else
                         {
-
                             return "Registrazione avvenuta correttamente";
                         }
                     }

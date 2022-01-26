@@ -13,9 +13,9 @@ namespace APL.Forms
 {
     public partial class FormConfronto : Form
     {
-        Protocol pt;
-        string categoriaOriginale;
-        string[] modelli,prezzi,capienze;
+        private Protocol pt;
+        private string categoriaOriginale;
+        private string[] modelli,prezzi,capienze;
         public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria)
         {
             InitializeComponent();

@@ -17,44 +17,34 @@ namespace APL.Forms
     public partial class FormHome : Form
     {
 
-        Protocol pt;
-        FormLogin_Register parent;
+        private Protocol pt;
+        private FormLogin_Register parent;
         
-        FormCarrello carrelloForm;
-        FormPleaseWait pleaseWait;
+        private FormCarrello carrelloForm;
+        private FormPleaseWait pleaseWait;
+        private FormCatalogo catalogoForm;
+        private FormCheckOut checkoutForm;
         public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello();
             pt = new Protocol();
-            pleaseWait = new FormPleaseWait();
-            
+            checkoutForm = new FormCheckOut(this);
+            carrelloForm = new FormCarrello(checkoutForm);
+            catalogoForm = new FormCatalogo();
+            pleaseWait = new FormPleaseWait();  
         }
-
-        private  void FormHome_Load(object sender, EventArgs e)
-        {
-            // Richiede due messaggi 
-            pt.SetProtocolID("home"); pt.Data = String.Empty;
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            string responseData = SocketTCP.Receive();
-            SocketTCP.Release();
-            int dim = 3;
-            PcPreassemblato[] pre = new PcPreassemblato[dim];
-            pre = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
-            populateItems(pre, dim);
-            ricevuto = pre;
-            dimRicevuto = dim;
-        }
-
 
         protected override void OnClosed(EventArgs e)
         {
             parent.Visible = true;
             carrelloForm.EnableCloseEvent();
+            catalogoForm.EnableCloseEvent();
+            checkoutForm.EnableCloseEvent();
             carrelloForm.Close();
+            catalogoForm.Close();
+            checkoutForm.Close();
             base.OnClosed(e);
         }
 
@@ -94,11 +84,11 @@ namespace APL.Forms
         {
             pt.SetProtocolID("home"); pt.Data = String.Empty;
 
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             string responseData = String.Empty;
             responseData = SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
 
             int dim = 3;
             PcPreassemblato[] ricevuto = new PcPreassemblato[dim];
@@ -163,7 +153,7 @@ namespace APL.Forms
             }
             else
             {
-                pleaseWait.Visible = true;
+                
                 populateItemsBuilSolo();
             }
         }
@@ -244,6 +234,7 @@ namespace APL.Forms
 
         private void populateItemsBuilSolo()
         {
+            pleaseWait.Visible = true;
             if (recuperaListaDallaCache() == false)
                 recuperaItemsBuildSoloDalServer();
             else
@@ -345,11 +336,7 @@ namespace APL.Forms
 
         #region Altro----------------------------------------------------------------
         private void buttonCarrello_Click(object sender, EventArgs e) { carrelloForm.Show(); }
-        private void Catalogo_Click(object sender, EventArgs e)
-        {
-            FormCatalogo fcg = new FormCatalogo();
-            fcg.Show();
-        }
+        private void Catalogo_Click(object sender, EventArgs e){catalogoForm.Show();}
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
@@ -373,7 +360,23 @@ namespace APL.Forms
                 pleaseWait.Visible = false;
             }
         }
+
+        public void ricaricaBuildSolo()
+        {
+            if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
+            {
+                flowLayoutPanel1.Controls.Clear();
+                populateItemsBuilSolo();
+            }
+                
+        }
+        public void svuotaCarrello()
+        {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database
+            carrelloForm.svuotaCarrello();
+            carrelloForm.Visible = false;
+        }
         #endregion
+
 
     }
 }

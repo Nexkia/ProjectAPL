@@ -9,7 +9,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciDissipatore : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciDissipatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
@@ -102,7 +102,7 @@ namespace APL.UserControls.Amministratore.Inserimento
             if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
             {
                 MessageBox.Show("Inserimento avvenuto",
-                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -134,6 +134,23 @@ namespace APL.UserControls.Amministratore.Inserimento
             }
         }
 
+        private void textBoxValutazione_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //impedisce l'inserimento di un input non numerico
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
 
+        private void textBoxValutazione_TextChanged(object sender, EventArgs e)
+        {
+            //impediamo di inserire una valutazione non valida
+            if (textBoxValutazione.Text != string.Empty)
+            {
+                if (int.Parse(textBoxValutazione.Text) > 10)
+                    textBoxValutazione.Text = "10";
+                if (int.Parse(textBoxValutazione.Text) == 0)
+                    textBoxValutazione.Text = "1";
+            }
+        }
     }
 }

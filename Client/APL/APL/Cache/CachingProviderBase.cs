@@ -12,7 +12,7 @@ namespace APL.Cache
 
                 }
 
-            #region Singleton
+            #region Singleton-------------------------------------------------------------
             public static CachingProviderBase Instance
             {
                 get

@@ -11,10 +11,10 @@ namespace APL.UserControls
 {
     public partial class Profiles : UserControl
     {
-        FlowLayoutPanel vecchioFlowLayoutPanel1;
-        Protocol pt;
-        ListView vecchialistView;
-        ListView vecchioCarrello;
+        private FlowLayoutPanel vecchioFlowLayoutPanel1;
+        private Protocol pt;
+        private ListView vecchialistView;
+        private ListView vecchioCarrello;
 
         public Profiles(FlowLayoutPanel vfp1,ListView vlw,ListView carrello)
         {

@@ -7,10 +7,10 @@ namespace APL.UserControls
 {
     public partial class ListItem : UserControl
     {
-        FormHome vecchioForm2;
-        FlowLayoutPanel vecchioflowLayoutPanel1;
-        FlowLayoutPanel vecchioflowLayoutPanel2;
-        ListView vecchioCarrello;
+        private FormHome vecchioForm2;
+        private FlowLayoutPanel vecchioflowLayoutPanel1;
+        private FlowLayoutPanel vecchioflowLayoutPanel2;
+        private ListView vecchioCarrello;
         public ListItem(FlowLayoutPanel vfp2,FormHome f2,FlowLayoutPanel vfp1,ListView carrello)
         {
             InitializeComponent();

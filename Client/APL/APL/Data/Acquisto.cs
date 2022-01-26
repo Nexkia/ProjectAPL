@@ -13,6 +13,8 @@ namespace APL.Data
         public string PrezzoTot { get; init; }
 
         public DateTime Data { get; init; }
-     
+
+        public string[] PrezziPreAssemblati { get; init; }
+      
     }
 }

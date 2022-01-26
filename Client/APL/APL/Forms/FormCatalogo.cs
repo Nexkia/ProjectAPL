@@ -3,34 +3,49 @@ using APL.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using APL.Controlli;
-using System.Runtime.Caching;
-using System.IO;
 using APL.Cache;
 
 namespace APL.Forms
 {
     public partial class FormCatalogo : Form
     {
-        Protocol pt;
+        private Protocol pt;
+        private bool disableCloseEvent;
         public FormCatalogo()
         {
             InitializeComponent();
+            pt = new Protocol();
             pt.SetProtocolID("catalogo"); 
             comboBoxPrezzo.Text = "Ascendente";
-            pt = new Protocol();
+            
+            this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
+            disableCloseEvent = true;
         }
 
+        #region Chiusura-----------------------------------------------------------
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
 
-        private  void cpu_Click(object sender, EventArgs e)
+                //rende la finestra invisibile
+                this.Visible = false;
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
+        #endregion
+
+
+
+        #region Scarica Componenti------------------------------------------------------
+        private void cpu_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(cpuButton.Text) == false)
             {
@@ -44,7 +59,6 @@ namespace APL.Forms
             
            
         }
-
         private  void schedaMadre_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(schedaMadreButton.Text) == false)
@@ -57,7 +71,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void ram_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(ramButton.Text) == false)
@@ -70,7 +83,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void memoria_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(memoriaButton.Text) == false)
@@ -83,7 +95,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void alimentatore_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(alimentatoreButton.Text) == false)
@@ -96,7 +107,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void schedaVideo_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(schedaVideoButton.Text) == false)
@@ -109,7 +119,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void casepc_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(casepcButton.Text) == false)
@@ -122,7 +131,6 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-
         private  void dissipatore_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(dissipatoreButton.Text) == false)
@@ -136,6 +144,60 @@ namespace APL.Forms
             }
         }
 
+        private void GetElements(Protocol pt)
+        {/*Esegue la richiesta al Server per recuperare la lista di componenti
+          */
+            List<Componente> listaC = new List<Componente>();
+
+            SocketTCP.Wait();
+                SocketTCP.Send(pt.ToString());
+                // n elem
+                string nelem = SocketTCP.Receive();
+                Componente[] cp = new Componente[int.Parse(nelem)];
+                string response = SocketTCP.Receive();
+            SocketTCP.Release();
+
+            cp = JsonConvert.DeserializeObject<Componente[]>(response);
+            Debug.WriteLine(response);
+
+            listView_record.Items.Clear();
+            listViewCatalogo.Items.Clear();
+
+            for (int i = 0; i < cp.Length; i++)
+            {
+                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
+                lvitem.SubItems.Add("" + cp[i].Marca + "");
+                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+
+                if (cp[i].Categoria != "ram" && cp[i].Categoria != "memoria")
+                { lvitem.SubItems.Add(""); }
+                else { lvitem.SubItems.Add("" + cp[i].Capienza + ""); }
+
+                lvitem.SubItems.Add("" + cp[i].Categoria + "");
+                listView_record.Items.Add(lvitem);
+
+
+
+                //salvo tutti i componenti appena ricevuti in una lista
+                listaC.Add(new Componente()
+                {
+                    Modello = cp[i].Modello,
+                    Marca = cp[i].Marca,
+                    Prezzo = cp[i].Prezzo,
+                    Capienza = cp[i].Capienza,
+                    Categoria = cp[i].Categoria
+                });
+
+            }
+            //salvo la lista nella cache
+            aggiungiListaInCache(listaC);
+
+
+        }
+        #endregion
+
+
+        #region Buttons Confronto--------------------------------------------------
         private void buttonAggiungi_Click(object sender, EventArgs e)
         {
             if (listViewCatalogo.Items.Count < 3)
@@ -172,7 +234,6 @@ namespace APL.Forms
             }
            
         }
-
         private void buttonRimuovi_Click(object sender, EventArgs e)
         {
             if (listViewCatalogo.SelectedItems.Count > 0)
@@ -199,7 +260,6 @@ namespace APL.Forms
                           "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void buttonConfronta_Click(object sender, EventArgs e)
         {
             if (listViewCatalogo.Items.Count >0  && listViewCatalogo.Items.Count <4 )
@@ -227,97 +287,19 @@ namespace APL.Forms
                           "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private  void GetElements(Protocol pt) {
-            List<Componente> listaC = new List<Componente>();
-
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            // n elem
-            string nelem = SocketTCP.Receive();
-            Componente[] cp = new Componente[int.Parse(nelem)];
-            string response =  SocketTCP.Receive();
-            SocketTCP.Release() ;
-
-            cp = JsonConvert.DeserializeObject<Componente[]>(response);
-            Debug.WriteLine(response);
-
-            listView_record.Items.Clear();
-            listViewCatalogo.Items.Clear();
-
-            for (int i = 0; i < cp.Length; i++)
-            {
-                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Marca + "");
-                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
-
-                if (cp[i].Categoria != "ram" && cp[i].Categoria != "memoria")
-                { lvitem.SubItems.Add(""); }
-                else { lvitem.SubItems.Add("" + cp[i].Capienza + ""); }
-
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
-                listView_record.Items.Add(lvitem);
+        #endregion
 
 
-
-                //salvo tutti i componenti appena ricevuti in una lista
-                listaC.Add(new Componente() { 
-                    Modello =cp[i].Modello,
-                    Marca = cp[i].Marca, 
-                    Prezzo = cp[i].Prezzo, 
-                    Capienza = cp[i].Capienza, 
-                    Categoria = cp[i].Categoria
-                });
-                
-            }
-            //salvo la lista nella cache
-            aggiungiListaInCache(listaC);
-            
-            
-        }
-
-        #region Ordina
-        private List<Componente> recuperaListaDallaListView()
-        {
-            List<Componente> lista = new List<Componente>();
-            string modello, marca,  categoria;
-            float prezzo;
-            int capienza;
-
-            foreach (ListViewItem item in listView_record.Items)
-            {
-                modello = item.SubItems[0].Text.ToString();
-                marca = item.SubItems[1].Text.ToString();
-                prezzo = float.Parse(item.SubItems[2].Text.ToString());
-
-                categoria = item.SubItems[4].Text.ToString();
-                if (categoria != "ram" && categoria != "memoria")
-                { capienza = 0; }
-                else
-                {
-                    capienza = int.Parse(item.SubItems[3].Text.ToString());
-                }
-
-                lista.Add(new Componente() { 
-                    Modello = modello, 
-                    Marca = marca, 
-                    Prezzo = prezzo, 
-                    Capienza = capienza, 
-                    Categoria = categoria 
-                });
-            }
-
-            return lista;
-        }
+        #region Ordina--------------------------------------------------------------
         private void buttonOrdinaPerPrezzo_Click(object sender, EventArgs e)
-        {
+        {//recuperiamo dalla listVew la lista dei componenti
             List<Componente> listaComponenti = recuperaListaDallaListView();
             if (listaComponenti != null)
             {
                 if (comboBoxPrezzo.Text == "Ascendente")
-                {
+                {   //riordiniamo la lista
                     IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Prezzo);
-                    cambiaOrdineListView(listaComponentiOrdinata);
+                    cambiaOrdineListView(listaComponentiOrdinata);//rimettiamo i componenti nella listView
                 }
                 else
                 {
@@ -329,7 +311,6 @@ namespace APL.Forms
             
 
         }
-
         private void buttonOrdinaPerMarca_Click(object sender, EventArgs e)
         {
             List<Componente> listaComponenti = recuperaListaDallaListView();
@@ -349,12 +330,11 @@ namespace APL.Forms
 
             
         }
-
         private void buttonOrdinaPerCapienza_Click(object sender, EventArgs e)
         {
             List<Componente> listaComponenti = recuperaListaDallaListView();
             if (listView_record.Items.Count>0)
-            {
+            {   //la lista viene ordinata solo se si ha ram o memoria come categoria
                 if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria=="ram" || listaComponenti[0].Categoria == "memoria"))
                 {
                     IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Capienza);
@@ -369,7 +349,6 @@ namespace APL.Forms
 
           
         }
-
         private void buttonOrdinaPerModello_Click(object sender, EventArgs e)
         {
             List<Componente> listaComponenti = recuperaListaDallaListView();
@@ -389,9 +368,42 @@ namespace APL.Forms
 
            
         }
+        private List<Componente> recuperaListaDallaListView()
+        {//recuperiamo i componenti dalla listView e li mettiamo dentro una lista
+            List<Componente> lista = new List<Componente>();
+            string modello, marca, categoria;
+            float prezzo;
+            int capienza;
 
+            foreach (ListViewItem item in listView_record.Items)
+            {
+                modello = item.SubItems[0].Text.ToString();
+                marca = item.SubItems[1].Text.ToString();
+                prezzo = float.Parse(item.SubItems[2].Text.ToString());
+
+                categoria = item.SubItems[4].Text.ToString();
+                if (categoria != "ram" && categoria != "memoria")
+                { capienza = 0; }
+                else
+                {
+                    capienza = int.Parse(item.SubItems[3].Text.ToString());
+                }
+
+                lista.Add(new Componente()
+                {
+                    Modello = modello,
+                    Marca = marca,
+                    Prezzo = prezzo,
+                    Capienza = capienza,
+                    Categoria = categoria
+                });
+            }
+
+            return lista;
+        }
         private void cambiaOrdineListView(IOrderedEnumerable<Componente> listaComponentiOrdinata)
         {
+            //inseriamo la lista ordinata all'interno della listView
             listView_record.Items.Clear();
 
             foreach (Componente item in listaComponentiOrdinata)
@@ -414,13 +426,12 @@ namespace APL.Forms
         #endregion
 
 
-        #region Cache
+        #region Cache----------------------------------------------------------------
         private void aggiungiListaInCache(List<Componente> lista)
         {
             CachingProviderBase.Instance.AddItem(lista[0].Categoria, lista);
             Debug.WriteLine("lista inserita in cache: "+DateTime.Now+" ///////////////");
         }
-
         private bool recuperaListaDallaCache(string categoria)
         {
             List<Componente> message = CachingProviderBase.Instance.GetItem(categoria);
