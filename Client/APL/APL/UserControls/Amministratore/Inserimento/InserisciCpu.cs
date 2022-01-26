@@ -7,7 +7,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciCpu : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciCpu(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();

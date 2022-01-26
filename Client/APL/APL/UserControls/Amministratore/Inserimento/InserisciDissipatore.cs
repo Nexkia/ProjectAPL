@@ -9,7 +9,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciDissipatore : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciDissipatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();

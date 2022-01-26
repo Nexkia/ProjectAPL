@@ -10,9 +10,9 @@ namespace APL.Forms
 {
     public partial class FormCarrello : Form
     {
-        bool disableCloseEvent;
-        Protocol pt;
-        FormCheckOut checkoutForm;
+        private bool disableCloseEvent;
+        private Protocol pt;
+        private FormCheckOut checkoutForm;
         public FormCarrello(FormCheckOut checkoutForm)
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace APL.Forms
         private bool CpuSchedaMadre = false;
         private bool CpuDissipatore = false;
 
+        #region setCpuSchedaMadreRamDissipatore------------------------------------------------
         public void setCpuDetail(string value)
         {
             cpuSocket = value;
@@ -48,6 +49,8 @@ namespace APL.Forms
         {
             cpuSocketDissipatore = value;
         }
+        #endregion
+
 
         public ListView getListViewC() { return listViewCarrello; }
         public ListView getListViewD() { return listViewCarrelloDetail; }

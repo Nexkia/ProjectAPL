@@ -11,9 +11,9 @@ namespace APL.Forms
 {
     public partial class FormCheckOut : Form
     {
-        Protocol pt;
-        bool disableCloseEvent;
-        FormHome vecchiaHome;
+        private Protocol pt;
+        private bool disableCloseEvent;
+        private FormHome vecchiaHome;
         public FormCheckOut(FormHome vecchiaHome)
         {
             InitializeComponent();

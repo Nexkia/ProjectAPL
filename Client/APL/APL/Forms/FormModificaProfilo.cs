@@ -9,8 +9,8 @@ namespace APL.Forms
 {
     public partial class FormModificaProfilo : Form
     {
-        Protocol pt;
-        CheckFields controllo = new CheckFields();
+        private Protocol pt;
+        private CheckFields controllo = new CheckFields();
         public FormModificaProfilo(Protocol pt)
         {
             InitializeComponent();

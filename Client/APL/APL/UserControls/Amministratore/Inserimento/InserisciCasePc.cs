@@ -7,7 +7,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciCasePc : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciCasePc(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();

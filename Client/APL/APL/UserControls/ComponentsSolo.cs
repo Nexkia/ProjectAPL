@@ -12,8 +12,8 @@ namespace APL.UserControls
     
     public partial class ComponentsSolo : UserControl
     {
-        FormCarrello vecchioCarrello;
-        Protocol pt;
+        private FormCarrello vecchioCarrello;
+        private Protocol pt;
         public ComponentsSolo(FormCarrello formCarrello)
         {
             InitializeComponent();

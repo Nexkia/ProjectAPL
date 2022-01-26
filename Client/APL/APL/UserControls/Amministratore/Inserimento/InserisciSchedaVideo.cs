@@ -7,7 +7,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciSchedaVideo : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciSchedaVideo(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();

@@ -8,13 +8,12 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciAlimentatore : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         
         public InserisciAlimentatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
             this.inserisciComponente = inserisciComponente;
-           
         }
 
         
@@ -37,17 +36,14 @@ namespace APL.UserControls.Amministratore.Inserimento
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            
             if (this.getInputDetail() != null  && inserisciComponente.areFullAllTextBox()!=null)
             {
-                
                 InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox());
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                
                 MessageBox.Show("Riempire i campi detail",
                     "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
