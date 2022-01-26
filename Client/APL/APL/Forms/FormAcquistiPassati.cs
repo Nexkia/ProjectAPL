@@ -13,7 +13,7 @@ namespace APL.Forms
 {
     public partial class FormAcquistiPassati : Form
     {
-        Protocol pt;
+        private Protocol pt;
         public FormAcquistiPassati()
         {
             InitializeComponent();
@@ -46,6 +46,8 @@ namespace APL.Forms
                 PrezzoTot = response;
                 response = SocketTCP.Receive();
                 DateTime data = DateTime.Parse(response);
+                response = SocketTCP.Receive();
+                PrezziPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
                 // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
@@ -55,7 +57,8 @@ namespace APL.Forms
                     PrezzoTot = PrezzoTot, 
                     Data = data, 
                     PcAssemblati = PcAssemblati,
-                    PcPreAssemblati = PcPreAssemblati
+                    PcPreAssemblati = PcPreAssemblati,
+                    PrezziPreAssemblati= PrezziPreAssemblati
                 });
             }
             SocketTCP.Release();

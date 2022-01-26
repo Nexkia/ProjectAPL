@@ -7,7 +7,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 {
     public partial class InserisciMemoria : UserControl
     {
-        FormInserisciComponente inserisciComponente;
+        private FormInserisciComponente inserisciComponente;
         public InserisciMemoria(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();

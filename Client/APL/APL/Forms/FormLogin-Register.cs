@@ -10,9 +10,9 @@ namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
     {
-        Protocol pt;
-        CheckFields controllo;
-        FormAmministratore amministratoreForm;
+        private Protocol pt;
+        private CheckFields controllo;
+        private FormAmministratore amministratoreForm;
         public FormLogin_Register()
         {
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace APL.Forms
             string result = controllo.CheckLogin(TextBoxLoginEmail.Text, TextBoxLoginPassword.Text);
             switch (result)
             {
-                case "Login fallito, Email o Password errate":
+                case "Login effettuato correttamente":
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string UserJson = JsonSerializer.Serialize(new
                     {

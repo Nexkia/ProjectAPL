@@ -10,8 +10,8 @@ namespace APL.UserControls.Amministratore
 {
     public partial class ComponentsPreassemblato : UserControl
     {
-        Protocol pt=new Protocol();
-        FormInserisciPreassemblato vecchioInserisciPreassemblato;
+        private Protocol pt=new Protocol();
+        private FormInserisciPreassemblato vecchioInserisciPreassemblato;
         public ComponentsPreassemblato(FormInserisciPreassemblato pre)
         {
             InitializeComponent();
@@ -82,12 +82,12 @@ namespace APL.UserControls.Amministratore
             }
         }
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private  void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
             Details MyDetails;
             pt.Data = modello; pt.SetProtocolID("compatibilita");
 
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
                 SocketTCP.Send(categoria + "\n");
                 ConstructorDetail factory = new ConstructorDetail();
@@ -96,7 +96,7 @@ namespace APL.UserControls.Amministratore
                 Details componenteF = factory.GetDetails(categoria);
                 Type categ = componenteF.GetType();
                 MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
 
             string[] vet;
             ListViewItem lvitem = new ListViewItem("" + categoria + "");

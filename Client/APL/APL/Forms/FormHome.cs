@@ -17,13 +17,13 @@ namespace APL.Forms
     public partial class FormHome : Form
     {
 
-        Protocol pt;
-        FormLogin_Register parent;
+        private Protocol pt;
+        private FormLogin_Register parent;
         
-        FormCarrello carrelloForm;
-        FormPleaseWait pleaseWait;
-        FormCatalogo catalogoForm;
-        FormCheckOut checkoutForm;
+        private FormCarrello carrelloForm;
+        private FormPleaseWait pleaseWait;
+        private FormCatalogo catalogoForm;
+        private FormCheckOut checkoutForm;
         public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
@@ -35,23 +35,6 @@ namespace APL.Forms
             catalogoForm = new FormCatalogo();
             pleaseWait = new FormPleaseWait();  
         }
-
-        private  void FormHome_Load(object sender, EventArgs e)
-        {
-            // Richiede due messaggi 
-            pt.SetProtocolID("home"); pt.Data = String.Empty;
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            string responseData = SocketTCP.Receive();
-            SocketTCP.Release();
-            int dim = 3;
-            PcPreassemblato[] pre = new PcPreassemblato[dim];
-            pre = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
-            populateItems(pre, dim);
-            ricevuto = pre;
-            dimRicevuto = dim;
-        }
-
 
         protected override void OnClosed(EventArgs e)
         {
@@ -101,11 +84,11 @@ namespace APL.Forms
         {
             pt.SetProtocolID("home"); pt.Data = String.Empty;
 
-            SocketTCP.GetMutex().WaitOne();
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             string responseData = String.Empty;
             responseData = SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
 
             int dim = 3;
             PcPreassemblato[] ricevuto = new PcPreassemblato[dim];

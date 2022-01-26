@@ -8,8 +8,8 @@ namespace APL.UserControls
 {
     public partial class ComponentsGuidata : UserControl
     {
-        ListView vecchialistView;
-        ListView vecchioCarrello;
+        private ListView vecchialistView;
+        private ListView vecchioCarrello;
         private Componente[] _componente;
         public ComponentsGuidata(ListView vlw,ListView carrello)
         {
