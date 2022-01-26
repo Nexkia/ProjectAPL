@@ -32,6 +32,7 @@ func SendInfoPayment(token string, conn net.Conn, mongodb *mongo.Database) {
 }
 
 func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mongo.Database) {
+	// Ricezione informazioni pagamento
 	infoPByte := utils.Receive(conn)
 	// Ricerca email utente
 	filter := bson.D{{Key: "password", Value: token}}
@@ -108,7 +109,7 @@ func Check(dat map[string]interface{}, mongodb *mongo.Database) bool {
 					return CheckExistence
 				}
 			} else {
-				filter := bson.D{{Key: "name", Value: comp}}
+				filter := bson.D{{Key: "nome", Value: comp}}
 				log.Println(filter)
 				pre := data.PcpreAssemblato{}
 				err := utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pre)
