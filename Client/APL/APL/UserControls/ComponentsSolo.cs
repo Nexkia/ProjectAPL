@@ -100,7 +100,6 @@ namespace APL.UserControls
             Details MyDetails = factoryDetail.GetDetails(categoria);
             Type categ = MyDetails.GetType();
             pt.Data = modello; pt.SetProtocolID("compatibilita");
-
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             SocketTCP.Send(categoria+"\n");

@@ -88,20 +88,20 @@ namespace APL.Forms.Amministratore
             */
             pt.SetProtocolID("buildSolo");
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                List<List<Componente>> myList = new List<List<Componente>>();
+            SocketTCP.Send(pt.ToString());
+            List<List<Componente>> myList = new List<List<Componente>>();
             
-                for (int i = 0; i < 8; i++)
-                {
-                    string nElements =  SocketTCP.Receive();
-                    int n = int.Parse(nElements);
-                    string response = SocketTCP.Receive();
-                    Componente[] elem = new Componente[n];
-                    elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                    List<Componente> singleComponent = elem.ToList();
-                    pleaseWait.Show();
-                    myList.Add(singleComponent);
-                }
+            for (int i = 0; i < 8; i++)
+            {
+                string nElements =  SocketTCP.Receive();
+                int n = int.Parse(nElements);
+                string response = SocketTCP.Receive();
+                Componente[] elem = new Componente[n];
+                elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                List<Componente> singleComponent = elem.ToList();
+                pleaseWait.Show();
+                myList.Add(singleComponent);
+            }
             SocketTCP.Release();
             Debug.WriteLine(myList.Count());
 
@@ -164,7 +164,7 @@ namespace APL.Forms.Amministratore
                 string jsonPreassemblato = JsonConvert.SerializeObject(pre);
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 SocketTCP.Wait();
-                    SocketTCP.Send(pt.ToString());
+                SocketTCP.Send(pt.ToString());
                 SocketTCP.Release();
                 MessageBox.Show("Inserimento completato correttamente",
                   "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);

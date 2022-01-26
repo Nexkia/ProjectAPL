@@ -150,30 +150,29 @@ namespace APL.Forms
             List<Componente> listaC = new List<Componente>();
 
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                // n elem
-                string nelem = SocketTCP.Receive();
-                Componente[] cp = new Componente[int.Parse(nelem)];
-                string response = SocketTCP.Receive();
+            SocketTCP.Send(pt.ToString());
+            string nelem = SocketTCP.Receive();
+            Componente[] componenti = new Componente[int.Parse(nelem)];
+            string response = SocketTCP.Receive();
             SocketTCP.Release();
 
-            cp = JsonConvert.DeserializeObject<Componente[]>(response);
+            componenti = JsonConvert.DeserializeObject<Componente[]>(response);
             Debug.WriteLine(response);
 
             listView_record.Items.Clear();
             listViewCatalogo.Items.Clear();
 
-            for (int i = 0; i < cp.Length; i++)
+            for (int i = 0; i < componenti.Length; i++)
             {
-                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Marca + "");
-                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+                ListViewItem lvitem = new ListViewItem("" + componenti[i].Modello + "");
+                lvitem.SubItems.Add("" + componenti[i].Marca + "");
+                lvitem.SubItems.Add("" + componenti[i].Prezzo + "");
 
-                if (cp[i].Categoria != "ram" && cp[i].Categoria != "memoria")
+                if (componenti[i].Categoria != "ram" && componenti[i].Categoria != "memoria")
                 { lvitem.SubItems.Add(""); }
-                else { lvitem.SubItems.Add("" + cp[i].Capienza + ""); }
+                else { lvitem.SubItems.Add("" + componenti[i].Capienza + ""); }
 
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
+                lvitem.SubItems.Add("" + componenti[i].Categoria + "");
                 listView_record.Items.Add(lvitem);
 
 
@@ -181,11 +180,11 @@ namespace APL.Forms
                 //salvo tutti i componenti appena ricevuti in una lista
                 listaC.Add(new Componente()
                 {
-                    Modello = cp[i].Modello,
-                    Marca = cp[i].Marca,
-                    Prezzo = cp[i].Prezzo,
-                    Capienza = cp[i].Capienza,
-                    Categoria = cp[i].Categoria
+                    Modello = componenti[i].Modello,
+                    Marca = componenti[i].Marca,
+                    Prezzo = componenti[i].Prezzo,
+                    Capienza = componenti[i].Capienza,
+                    Categoria = componenti[i].Categoria
                 });
 
             }

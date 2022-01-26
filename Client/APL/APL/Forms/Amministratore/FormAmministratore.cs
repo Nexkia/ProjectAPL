@@ -71,8 +71,11 @@ namespace APL.Forms
                 pt.SetProtocolID("cancellazione"); pt.Data = TextBoxModello.Text;
 
                 SocketTCP.Wait();
-                    SocketTCP.Send(pt.ToString());
-                    string response = SocketTCP.Receive();
+                /*  Invio modello del componente da cancellare
+                    Ne verrà cancellato anche il rispettivo detail 
+                */
+                SocketTCP.Send(pt.ToString());
+                string response = SocketTCP.Receive();
                 SocketTCP.Release();
 
                 if (response == "Done")
@@ -94,8 +97,8 @@ namespace APL.Forms
             {
                 pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
                 SocketTCP.Wait();
-                    SocketTCP.Send(pt.ToString());
-                    string receve = SocketTCP.Receive();
+                SocketTCP.Send(pt.ToString());
+                string receve = SocketTCP.Receive();
                 SocketTCP.Release();
   
                 if (receve == "NotFound")
@@ -117,12 +120,12 @@ namespace APL.Forms
 
             pt.SetProtocolID("recupera_statistiche");
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                for (int i = 0; i < 3; i++)
-                {
-                    string Img =  SocketTCP.Receive();
-                    statistiche.setVenditeComponenti(Img, i);
-                }
+            SocketTCP.Send(pt.ToString());
+            for (int i = 0; i < 3; i++)
+            {
+                string Img =  SocketTCP.Receive();
+                statistiche.setVenditeComponenti(Img, i);
+            }
             SocketTCP.Release();
             statistiche.Show();
         }

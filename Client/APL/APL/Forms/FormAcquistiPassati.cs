@@ -48,9 +48,7 @@ namespace APL.Forms
                 DateTime data = DateTime.Parse(response);
                 response = SocketTCP.Receive();
                 PrezziPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcAssemblati.Length);
-                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
                 Debug.WriteLine(PcPreAssemblati.Length);
                 // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
                 Acquisti.Add(new Acquisto() {

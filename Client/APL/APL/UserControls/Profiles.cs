@@ -73,29 +73,29 @@ namespace APL.UserControls
                 }
             }
             SocketTCP.Release();
-                //ci sono 8 iterazionei, una per ogni componente
-                for (int i = 0; i < componentsTab.Length; i++){
-                    componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
+            //ci sono 8 iterazionei, una per ogni componente
+            for (int i = 0; i < componentsTab.Length; i++){
+                componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
 
-                componentsTab[i].MostraModello1 = showElements[i, 0].Modello;
-                componentsTab[i].Componente1= showElements[i, 0];
+            componentsTab[i].MostraModello1 = showElements[i, 0].Modello;
+            componentsTab[i].Componente1= showElements[i, 0];
 
-                componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
-                componentsTab[i].Componente2 = showElements[i, 1];
+            componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
+            componentsTab[i].Componente2 = showElements[i, 1];
 
-                componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
-                componentsTab[i].Componente3 = showElements[i, 2];
+            componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
+            componentsTab[i].Componente3 = showElements[i, 2];
 
-                addImg(componentsTab[i]);
+            addImg(componentsTab[i]);
 
-                //aggiunge al flow label
-                if (vecchioFlowLayoutPanel1.Controls.Count < 0)
-                    {
-                        vecchioFlowLayoutPanel1.Controls.Clear();
-                    }
-                    else
-                        vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
+            //aggiunge al flow label
+            if (vecchioFlowLayoutPanel1.Controls.Count < 0)
+                {
+                    vecchioFlowLayoutPanel1.Controls.Clear();
                 }
+                else
+                    vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
+            }
         }
 
         private void addImg(ComponentsGuidata componentsTab)

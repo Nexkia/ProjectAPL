@@ -84,18 +84,16 @@ namespace APL.UserControls.Amministratore
 
         private  void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
-            Details MyDetails;
             pt.Data = modello; pt.SetProtocolID("compatibilita");
-
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                SocketTCP.Send(categoria + "\n");
-                ConstructorDetail factory = new ConstructorDetail();
+            SocketTCP.Send(pt.ToString());
+            SocketTCP.Send(categoria + "\n");
+            ConstructorDetail factory = new ConstructorDetail();
 
-                string detailMsg = SocketTCP.Receive();
-                Details componenteF = factory.GetDetails(categoria);
-                Type categ = componenteF.GetType();
-                MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
+            string detailMsg = SocketTCP.Receive();
+            Details MyDetails = factory.GetDetails(categoria);
+            Type categ = MyDetails.GetType();
+            MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
             SocketTCP.Release();
 
             string[] vet;

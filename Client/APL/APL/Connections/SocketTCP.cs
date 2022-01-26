@@ -13,6 +13,7 @@ namespace APL.Connections
         private static readonly Mutex mut;
         const string host = "localhost";
         const Int32 port = 13000;
+        const Int32 timeout = 5000;
         private static readonly TcpClient client;
         private static readonly  NetworkStream stream;
 
@@ -23,6 +24,7 @@ namespace APL.Connections
             {
                 client.Connect(host, port);
                 stream = client.GetStream();
+                stream.ReadTimeout = timeout;
              }
             catch (SocketException se) { 
                 MessageBox.Show(se.Message + "Assicurarsi che il server remoto sia in ascolto");
@@ -54,6 +56,7 @@ namespace APL.Connections
             byte[] outJson = Encoding.ASCII.GetBytes(message);
             var lenbytes = new byte[16];
             string lenmsg = Convert.ToString(outJson.Length);
+            // effettuo il padding 
             byte[] len_ = Encoding.ASCII.GetBytes(lenmsg);
             var difference = lenbytes.Length - len_.Length;
 
@@ -62,15 +65,16 @@ namespace APL.Connections
                 lenbytes[difference + i -1] = len_[i];
             }
             lenbytes[lenbytes.Length - 1] = 10;
-            if (client.Connected)
+
+            if (client.Connected && stream.CanWrite)
             {
                 try
                 {
                     stream.Write(lenbytes, 0, lenbytes.Length);
                     stream.Flush();
-                    Debug.WriteLine(outJson.Length);
                     stream.Write(outJson, 0, outJson.Length);
                     stream.Flush();
+                    Debug.WriteLine(outJson.Length);
                 }
                 catch (IOException io){
                     MessageBox.Show(io.Message + "Connessione col Server interrotta");
@@ -88,14 +92,14 @@ namespace APL.Connections
              */
             var data = new Byte[16];
             String responseData = String.Empty;
-            if (client.Connected)
+            if (client.Connected && stream.CanRead)
             {
                 try
                 {
                     Int32 bytes = stream.Read(data, 0, data.Length);
                     int inizio = 0;
                     for (int i = 0; i < 16; i++)
-                    {
+                    {   // Conversione da ASCII in decimal
                         if (data[i] > 47 && data[i] < 58)
                         {
                             inizio = i;
@@ -103,13 +107,14 @@ namespace APL.Connections
                         }
                     }
                     int fine = data.Length - 1;
+                    // effettuo uno slice in quanto l'ultimo elemento è un ritorno a capo
                     data = data[inizio..fine];
                     string lenData = System.Text.Encoding.ASCII.GetString(data, 0, data.Length);
-                    Debug.WriteLine(data.Length);
                     int lenmsg = int.Parse(lenData);
                     var msg = new Byte[lenmsg];
                     Int32 bytesMsg = stream.Read(msg, 0, msg.Length);
                     responseData = System.Text.Encoding.ASCII.GetString(msg, 0, bytesMsg);
+                    Debug.WriteLine(data.Length);
                     Debug.WriteLine("Received: {0}", responseData);
                 }
                 catch (IOException io)
@@ -120,8 +125,5 @@ namespace APL.Connections
             }
             return responseData;
         }
-
-
-        
     }
 }

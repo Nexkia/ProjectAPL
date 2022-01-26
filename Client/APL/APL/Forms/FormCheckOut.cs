@@ -156,17 +156,15 @@ namespace APL.Forms
                     Email = String.Empty
                 };
                 string JsonInfop = JsonConvert.SerializeObject(info);
-                string Json = System.Text.Json.JsonSerializer.Serialize(
-                    new
-                    {
+                string Json = System.Text.Json.JsonSerializer.Serialize(new
+                {
                         acquisto = new
                         {
                             Lista = CheckOut,
                             Prezzo = totale,
                             Data=DateTime.Now
                         }
-                    }
-                    );
+                });
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
                 SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());

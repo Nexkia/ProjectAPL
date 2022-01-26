@@ -9,7 +9,7 @@ namespace APL.Connections
         public string Data {get;set;}
         public string Limit;
         public string End;
-        private Dictionary<string, string> FuncDict;
+        private readonly Dictionary<string, string> FuncDict;
         public Protocol() {
             FuncDict = new Dictionary<string, string>
         {
