@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using APL.Forms.Amministratore;
 
 namespace APL.Forms
 {
@@ -155,6 +156,20 @@ namespace APL.Forms
                 TextBoxLoginPassword.PasswordChar = '*';
             else
                 TextBoxLoginPassword.PasswordChar = default;
+        }
+
+        private void FormLogin_Register_VisibleChanged(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "FormStatistiche")
+                {
+                    frm.Close();
+                }
+            }
         }
 
     }
