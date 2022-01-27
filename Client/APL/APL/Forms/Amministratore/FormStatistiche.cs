@@ -1,4 +1,4 @@
-﻿using APL.UserControls.Amministratore;
+using APL.UserControls.Amministratore;
 using System;
 using System.Drawing;
 using System.IO;
@@ -23,7 +23,6 @@ namespace APL.Forms.Amministratore
         private string venditeComponenti;
         private string venditePreassemblati;
 
-
         #region Chiusura-------------------------------------------------------------------------
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
         private void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
@@ -42,9 +41,10 @@ namespace APL.Forms.Amministratore
         #endregion
 
 
-        public void setVenditeComponenti(string value,int i){ 
+        public void setVenditeComponenti(string value, int i)
+        {
             //salviamo le 3 immagini delle statistiche
-            if(i==0)         
+            if (i == 0)
                 venditePreassemblati = value;
             if (i == 1)
                 venditePerData = value;
@@ -87,11 +87,7 @@ namespace APL.Forms.Amministratore
             MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
             //Convert MemoryStream to Image
             Image image = Image.FromStream(ms, true);
-                return image;
+            return image;
         }
-
-       
-
-       
     }
 }

@@ -13,7 +13,8 @@ namespace APL.Forms
         private FormInserisciPreassemblato formInserisciPreassemblato;
         private FormInserisciComponente formInserisciComponente;
         private FormStatistiche formStatistiche;
-        
+
+
         public FormAmministratore(FormLogin_Register f_start)
         {
             InitializeComponent();
@@ -93,9 +94,9 @@ namespace APL.Forms
                 }
             }
         }
-        private  void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
+        private void buttonEliminaPreassemblato_Click(object sender, EventArgs e)
         {
-            if (textBoxNome.Text != string.Empty) 
+            if (textBoxNome.Text != string.Empty)
             {
                 pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
                 /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
@@ -118,7 +119,7 @@ namespace APL.Forms
                 }
             }
         }
-        private  void buttonStatistiche_Click(object sender, EventArgs e)
+        private void buttonStatistiche_Click(object sender, EventArgs e)
         {
             pt.SetProtocolID("recupera_statistiche");
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER    
@@ -126,8 +127,8 @@ namespace APL.Forms
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 3; i++)
             {
-                string Img =  SocketTCP.Receive();
-                formStatistiche.setVenditeComponenti(Img, i);
+                string Img = SocketTCP.Receive();
+                statistiche.setVenditeComponenti(Img, i);
             }
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER

@@ -5,8 +5,8 @@ namespace APL.Data
 {
     public class ConstructorDetail
     {
-       
-        public IDetails GetDetails(string detail) 
+
+        public IDetails GetDetails(string detail)
         {
             switch (detail)
             {

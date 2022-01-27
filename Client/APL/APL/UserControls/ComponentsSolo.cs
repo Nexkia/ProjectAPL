@@ -10,7 +10,7 @@ using ListViewItem = System.Windows.Forms.ListViewItem;
 
 namespace APL.UserControls
 {
-    
+
     public partial class ComponentsSolo : UserControl
     {
         private FormCarrello vecchioCarrello;
@@ -27,11 +27,11 @@ namespace APL.UserControls
 
         public void impostaCategoria(string value) { labelCategoria.Text = value; }
 
-        public void addListView(ListViewItem value){ listViewSolo.Items.Add(value); }
+        public void addListView(ListViewItem value) { listViewSolo.Items.Add(value); }
 
         private void buttonCarrello_Click(object sender, EventArgs e)
         {
-            if (listViewSolo.SelectedItems.Count > 0 )
+            if (listViewSolo.SelectedItems.Count > 0)
             {
                 ListViewItem item = listViewSolo.SelectedItems[0];
 
@@ -39,7 +39,7 @@ namespace APL.UserControls
                 string marca = item.SubItems[1].Text.ToString();
                 string prezzo = item.SubItems[2].Text.ToString();
                 string capienza = item.SubItems[3].Text.ToString();
-                categoria= item.SubItems[4].Text.ToString();
+                categoria = item.SubItems[4].Text.ToString();
 
                 ListViewItem lvitem = new ListViewItem("" + modello + "");
                 lvitem.SubItems.Add("" + marca + "");
@@ -50,26 +50,26 @@ namespace APL.UserControls
                 lvitem.SubItems.Add("Build Solo");
 
                 bool componentePresente = false;
-                int i ;
+                int i;
 
                 foreach (ListViewItem elem in vecchioCarrello.getListViewC().Items)
                 {
                     i = 0;
 
                     if (elem.Text == modello)
-                        componentePresente = true; 
+                        componentePresente = true;
 
                     foreach (ListViewItem.ListViewSubItem subItem in elem.SubItems)
                     {
                         //evitiamo di mettere due componenti con la stessa categoria (associati a build solo)
-                        if (subItem.Text == categoria) 
-                            i++; 
+                        if (subItem.Text == categoria)
+                            i++;
 
-                        if(subItem.Text =="Build Solo") 
-                            i++; 
+                        if (subItem.Text == "Build Solo")
+                            i++;
 
                     }
-                    
+
                     if (i == 2)
                         componentePresente = true;
 
@@ -79,12 +79,12 @@ namespace APL.UserControls
                 {
                     vecchioCarrello.getListViewC().Items.Add(lvitem);
 
-                    if ((categoria == "cpu") || (categoria == "schedaMadre")|| (categoria=="dissipatore")|| (categoria=="ram"))
+                    if ((categoria == "cpu") || (categoria == "schedaMadre") || (categoria == "dissipatore") || (categoria == "ram"))
                         recuperaDetailCpuSchedaMadreRamDissipatore();
                 }
                 else
                 {
-                    MessageBox.Show("Modello o Categoria componente già presente","Errore",
+                    MessageBox.Show("Modello o Categoria componente già presente", "Errore",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }

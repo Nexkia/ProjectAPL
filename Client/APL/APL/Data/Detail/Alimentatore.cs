@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
@@ -18,8 +14,8 @@ namespace APL.Data.Detail
         public int Watt { get; init; }
         public string[] GetDetail()
         {
-            string[] detail = new string[] { 
-                Convert.ToString(Watt) 
+            string[] detail = new string[] {
+                Convert.ToString(Watt)
             };
             return detail;
         }

@@ -13,6 +13,6 @@ namespace APL.Data
 
         [JsonProperty("creditCard")]
         public CreditCard CreditCard { get; init; }
-   
+
     }
 }

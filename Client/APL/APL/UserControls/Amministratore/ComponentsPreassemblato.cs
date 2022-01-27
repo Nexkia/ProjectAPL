@@ -11,12 +11,12 @@ namespace APL.UserControls.Amministratore
 {
     public partial class ComponentsPreassemblato : UserControl
     {
-        private Protocol pt=new Protocol();
+        private Protocol pt = new Protocol();
         private FormInserisciPreassemblato vecchioInserisciPreassemblato;
         public ComponentsPreassemblato(FormInserisciPreassemblato pre)
         {
             InitializeComponent();
-            vecchioInserisciPreassemblato= pre;
+            vecchioInserisciPreassemblato = pre;
         }
 
         private string categoria;
@@ -66,7 +66,7 @@ namespace APL.UserControls.Amministratore
                 if (componentePresente == false)
                 {
                     vecchioInserisciPreassemblato.getListViewP().Items.Add(lvitem);
-                    if ((categoria == "cpu") || (categoria == "schedaMadre")|| (categoria == "dissipatore") || (categoria == "ram"))
+                    if ((categoria == "cpu") || (categoria == "schedaMadre") || (categoria == "dissipatore") || (categoria == "ram"))
                         recuperaDetailCpuSchedaMadreRamDissipatore();
                 }
                 else
@@ -83,7 +83,7 @@ namespace APL.UserControls.Amministratore
             }
         }
 
-        private  void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
             pt.Data = modello; pt.SetProtocolID("compatibilita");
             ConstructorDetail factoryDetail = new();
@@ -99,14 +99,16 @@ namespace APL.UserControls.Amministratore
             {
                 componenteDetail = JsonConvert.DeserializeObject(detailMsg, categ) as IDetails;
             }
-            catch (JsonException ex) {
+            catch (JsonException ex)
+            {
                 Debug.WriteLine(ex.Message);
             }
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             string[] vet;
             ListViewItem lvitem = new("" + categoria + "");
-            if (componenteDetail != null) { 
+            if (componenteDetail != null)
+            {
                 switch (categoria)
                 {
                     case "cpu":

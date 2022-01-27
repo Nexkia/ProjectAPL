@@ -5,7 +5,6 @@ import (
 	"Server/utils"
 	"encoding/json"
 	"net"
-	"strconv"
 	"strings"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -15,8 +14,6 @@ import (
 func SendCatalogo(categoria string, conn net.Conn, mongodb *mongo.Database) {
 	categ := strings.Trim(categoria, "\n")
 	comp := getByCategoria(categ, conn, mongodb)
-	n_comp := strconv.Itoa(len(comp))
-	utils.Send([]byte(n_comp), conn)
 	json_comp, _ := json.Marshal(comp)
 	utils.Send(json_comp, conn)
 }

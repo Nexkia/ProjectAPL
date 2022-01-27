@@ -1,6 +1,6 @@
+using APL.Forms;
 using System;
 using System.Windows.Forms;
-using APL.Forms;
 namespace APL
 {
     internal static class Program
@@ -11,7 +11,7 @@ namespace APL
         [STAThread]
         static void Main()
         {
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin_Register());

@@ -1,16 +1,16 @@
-﻿using APL.Connections;
+﻿using APL.Cache;
+using APL.Connections;
 using APL.Data;
 using APL.Properties;
 using APL.UserControls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Diagnostics;
 using ListViewItem = System.Windows.Forms.ListViewItem;
-using APL.Cache;
 
 namespace APL.Forms
 {
@@ -19,7 +19,7 @@ namespace APL.Forms
 
         private Protocol pt;
         private FormLogin_Register parent;
-        
+
         private FormCarrello carrelloForm;
         private FormPleaseWait pleaseWait;
         private FormCatalogo catalogoForm;
@@ -33,7 +33,7 @@ namespace APL.Forms
             checkoutForm = new FormCheckOut(this);
             carrelloForm = new FormCarrello(checkoutForm);
             catalogoForm = new FormCatalogo();
-            pleaseWait = new FormPleaseWait();  
+            pleaseWait = new FormPleaseWait();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -67,15 +67,15 @@ namespace APL.Forms
         }
         #endregion
 
-        
+
         #region PcPreassemblati-------------------------------------------------------
-        private void FormHome_Load(object sender, EventArgs e){recuperaPreassemblati();}
+        private void FormHome_Load(object sender, EventArgs e) { recuperaPreassemblati(); }
         private void Home(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel2.Controls.Clear();
             listView.Items.Clear();
-            listView.Visible=false ;
+            listView.Visible = false;
             this.restringiForm2();
 
             recuperaPreassemblati();
@@ -93,10 +93,11 @@ namespace APL.Forms
             try
             {
                 preAssembalti = JsonConvert.DeserializeObject<PcPreassemblato[]>(response);
-                if (preAssembalti!=null)
+                if (preAssembalti != null)
                     populateItemsPcPreassemblato(preAssembalti, 3);
             }
-            catch (JsonException ex) {
+            catch (JsonException ex)
+            {
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -125,8 +126,8 @@ namespace APL.Forms
                         message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello;
 
                         if (pre[i].Componenti[j].Capienza > 0)
-                         message += " " + pre[i].Componenti[j].Capienza + " GB";
-                        
+                            message += " " + pre[i].Componenti[j].Capienza + " GB";
+
                         message += "\n";
                     }
                 }
@@ -134,9 +135,9 @@ namespace APL.Forms
 
                 //aggiunge al flow label
                 if (flowLayoutPanel1.Controls.Count < 0)
-                    flowLayoutPanel1.Controls.Clear(); 
+                    flowLayoutPanel1.Controls.Clear();
                 else
-                    flowLayoutPanel1.Controls.Add(listItems[i]); 
+                    flowLayoutPanel1.Controls.Add(listItems[i]);
             }
         }
         #endregion
@@ -158,18 +159,18 @@ namespace APL.Forms
             }
             else
             {
-                
+
                 populateItemsBuilSolo();
             }
         }
-        
+
         private void populateItemsBuildGuidata()
         {
             Profiles[] profiles = new Profiles[5];
 
             for (int i = 0; i < profiles.Length; i++)
             {
-                profiles[i] = new Profiles(flowLayoutPanel1,listView,carrelloForm.getListViewC());
+                profiles[i] = new Profiles(flowLayoutPanel1, listView, carrelloForm.getListViewC());
 
                 switch (i)
                 {
@@ -258,13 +259,15 @@ namespace APL.Forms
                 try
                 {
                     Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                    if (elem != null) {
+                    if (elem != null)
+                    {
                         List<Componente> singleComponent = elem.ToList();
                         myList.Add(singleComponent);
                         aggiungiListaInCache(singleComponent);
                     }
                 }
-                catch (JsonException ex) {
+                catch (JsonException ex)
+                {
                     Debug.WriteLine(ex.Message);
                 }
             }
@@ -345,17 +348,19 @@ namespace APL.Forms
 
         #region Altro----------------------------------------------------------------
         private void buttonCarrello_Click(object sender, EventArgs e) { carrelloForm.Show(); }
-        private void Catalogo_Click(object sender, EventArgs e){catalogoForm.Show();}
+        private void Catalogo_Click(object sender, EventArgs e) { catalogoForm.Show(); }
 
         public void allargaForm2()
-        { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
+        {
+            if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
             {
                 this.ClientSize = new System.Drawing.Size(1238, 972);
                 flowLayoutPanel2.Visible = true;
             }
         }
         public void restringiForm2()
-        { if (this.ClientSize.Width != 821 && this.ClientSize.Height != 778)
+        {
+            if (this.ClientSize.Width != 821 && this.ClientSize.Height != 778)
             {
                 this.ClientSize = new System.Drawing.Size(700, 972);
                 flowLayoutPanel2.Visible = false;
@@ -377,7 +382,7 @@ namespace APL.Forms
                 flowLayoutPanel1.Controls.Clear();
                 populateItemsBuilSolo();
             }
-                
+
         }
         public void svuotaCarrello()
         {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database

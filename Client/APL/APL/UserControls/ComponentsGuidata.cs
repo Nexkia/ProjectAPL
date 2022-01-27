@@ -1,9 +1,9 @@
 ﻿using APL.Data;
 using APL.Forms;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics;
 namespace APL.UserControls
 {
     public partial class ComponentsGuidata : UserControl
@@ -11,43 +11,45 @@ namespace APL.UserControls
         private ListView vecchialistView;
         private ListView vecchioCarrello;
         private Componente[] _componente;
-        public ComponentsGuidata(ListView vlw,ListView carrello)
+        public ComponentsGuidata(ListView vlw, ListView carrello)
         {
             InitializeComponent();
-           vecchialistView = vlw;
+            vecchialistView = vlw;
             vecchioCarrello = carrello;
             _componente = new Componente[3];
 
         }
 
         private string _title;
-        
+
         public string Title
-        { get { return _title; } 
-         set {_title=value; label1ComponentsTab.Text = value; }}
-       
+        {
+            get { return _title; }
+            set { _title = value; label1ComponentsTab.Text = value; }
+        }
+
         public string MostraModello1
-        { set {  label2ComponentsTab.Text = value; }}
+        { set { label2ComponentsTab.Text = value; } }
 
         public string MostraModello2
-        { set {  label3ComponentsTab.Text = value; }}
+        { set { label3ComponentsTab.Text = value; } }
 
         public string MostraModello3
-        {set {  label4ComponentsTab.Text = value; }}
+        { set { label4ComponentsTab.Text = value; } }
 
         public Image Icon1
-        {set { pictureBox1ComponentsTab.Image = value; }}
+        { set { pictureBox1ComponentsTab.Image = value; } }
 
         public Image Icon2
-        {set {  pictureBox2ComponentsTab.Image = value; }}
+        { set { pictureBox2ComponentsTab.Image = value; } }
 
         public Image Icon3
-        {set {  pictureBox3ComponentsTab.Image = value; }}
+        { set { pictureBox3ComponentsTab.Image = value; } }
 
         public Componente Componente1
         {
             get { return _componente[0]; }
-            set { _componente[0] = value;  }
+            set { _componente[0] = value; }
         }
 
         public Componente Componente2
@@ -64,13 +66,14 @@ namespace APL.UserControls
 
 
 
-      
+
         private void RiempiListView()
         {
             vecchialistView.Items.Clear();
             vecchialistView.Visible = true;
 
-            if (checkBox1ComponentsTab.Checked==true ) {
+            if (checkBox1ComponentsTab.Checked == true)
+            {
                 Debug.WriteLine("checkbox1 spuntata");
                 ListViewItem lvitem1 = new ListViewItem("" + _componente[0].Modello + "");
                 lvitem1.SubItems.Add("" + _componente[0].Categoria + "");
@@ -115,7 +118,7 @@ namespace APL.UserControls
             string[] prezzi = new string[vecchialistView.Items.Count];
             string[] capienze = new string[vecchialistView.Items.Count];
 
-            string categoria="default";
+            string categoria = "default";
 
             for (int i = 0; i < vecchialistView.Items.Count; i++)
             {
@@ -125,11 +128,11 @@ namespace APL.UserControls
                 categoria = item.SubItems[1].Text.ToString();
                 prezzi[i] = item.SubItems[3].Text.ToString();
                 capienze[i] = item.SubItems[4].Text.ToString();
-                Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+" capienza:"+capienze[i]);
+                Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria + " capienza:" + capienze[i]);
             }
             if (modelli.Length > 0)
             {
-                FormConfronto cf = new FormConfronto(modelli, prezzi,capienze, categoria);
+                FormConfronto cf = new FormConfronto(modelli, prezzi, capienze, categoria);
                 cf.Show();
             }
             else
@@ -141,21 +144,21 @@ namespace APL.UserControls
 
         private void buttonCarrello_Click(object sender, EventArgs e)
         {
-         if((checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true) ||
-            (checkBox1ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
-            (checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
-            (checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true )||
-            (checkBox1ComponentsTab.Checked == false && checkBox2ComponentsTab.Checked == false && checkBox3ComponentsTab.Checked == false))
+            if ((checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true) ||
+               (checkBox1ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
+               (checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
+               (checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
+               (checkBox1ComponentsTab.Checked == false && checkBox2ComponentsTab.Checked == false && checkBox3ComponentsTab.Checked == false))
             {
                 MessageBox.Show("Spuntare una CheckBox, per aggiungere il componente al carrello",
                          "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else 
+            else
             {//quando si spunta una sola CheckBox
                 int i;
-                if (checkBox1ComponentsTab.Checked == true){i = 0; aggiungiAlCarrello(i);}
-                else if (checkBox2ComponentsTab.Checked == true){i = 1; aggiungiAlCarrello(i);}
-                else {i = 2; aggiungiAlCarrello(i);}
+                if (checkBox1ComponentsTab.Checked == true) { i = 0; aggiungiAlCarrello(i); }
+                else if (checkBox2ComponentsTab.Checked == true) { i = 1; aggiungiAlCarrello(i); }
+                else { i = 2; aggiungiAlCarrello(i); }
             }
         }
 
@@ -192,18 +195,19 @@ namespace APL.UserControls
                     if (subItem.Text == "Build Guidata") { j++; }
 
                 }
-                
-                
+
+
                 if (j == 2) { componentePresente = true; }
 
             }
 
-            if (componentePresente == false){ vecchioCarrello.Items.Add(lvitem);}
-            else{
+            if (componentePresente == false) { vecchioCarrello.Items.Add(lvitem); }
+            else
+            {
                 MessageBox.Show("Modello o Categoria già presente nel carrello, ", "Errore",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-           
+
 
 
 

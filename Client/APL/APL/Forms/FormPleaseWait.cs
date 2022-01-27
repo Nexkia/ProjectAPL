@@ -10,6 +10,6 @@ namespace APL.Forms
             this.ControlBox = false;
         }
 
-       
+
     }
 }

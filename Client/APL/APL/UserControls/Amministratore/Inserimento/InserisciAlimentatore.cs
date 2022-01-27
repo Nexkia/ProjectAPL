@@ -1,7 +1,6 @@
 ﻿using APL.Data.Detail;
 using APL.Forms.Amministratore;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace APL.UserControls.Amministratore.Inserimento
@@ -9,34 +8,35 @@ namespace APL.UserControls.Amministratore.Inserimento
     public partial class InserisciAlimentatore : UserControl
     {
         private FormInserisciComponente inserisciComponente;
-        
+
         public InserisciAlimentatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
             this.inserisciComponente = inserisciComponente;
         }
 
-        
+
         public Alimentatore getInputDetail()
         {
-            
-            if (inserisciComponente.getModello()!= string.Empty && textBoxValutazione.Text != string.Empty && textBoxWatt.Text != string.Empty)
+
+            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxWatt.Text != string.Empty)
             {
-                Alimentatore elem = new Alimentatore() { 
-                    Modello = inserisciComponente.getModello(), 
-                    Valutazione = int.Parse(textBoxValutazione.Text), 
-                    Watt = int.Parse(textBoxWatt.Text) 
+                Alimentatore elem = new Alimentatore()
+                {
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione = int.Parse(textBoxValutazione.Text),
+                    Watt = int.Parse(textBoxWatt.Text)
                 };
                 return elem;
             }
             else { return null; }
 
-            
+
         }
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null  && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox());
                 MessageBox.Show("Inserimento avvenuto",
@@ -66,7 +66,7 @@ namespace APL.UserControls.Amministratore.Inserimento
                 if (int.Parse(textBoxValutazione.Text) == 0)
                     textBoxValutazione.Text = "1";
             }
- 
+
         }
 
         private void textBoxWatt_TextChanged(object sender, EventArgs e)

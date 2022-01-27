@@ -11,7 +11,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         public InserisciCasePc(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
-            this.inserisciComponente=inserisciComponente;
+            this.inserisciComponente = inserisciComponente;
         }
 
         public CasePC getInputDetail()
@@ -19,10 +19,12 @@ namespace APL.UserControls.Amministratore.Inserimento
 
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && comboBoxTaglia.Text != string.Empty)
             {
-                CasePC elem = new CasePC() 
-                { 
-                    Modello = inserisciComponente.getModello(), Valutazione=
-                    int.Parse(textBoxValutazione.Text), Taglia  = comboBoxTaglia.Text 
+                CasePC elem = new CasePC()
+                {
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione =
+                    int.Parse(textBoxValutazione.Text),
+                    Taglia = comboBoxTaglia.Text
                 };
                 return elem;
             }
@@ -33,7 +35,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -21,9 +21,10 @@ namespace APL.UserControls.Amministratore.Inserimento
             {
                 Memoria elem = new Memoria()
                 {
-                    Modello =inserisciComponente.getModello(), 
-                    Valutazione=
-                    int.Parse(textBoxValutazione.Text), Tipo= comboBoxTipo.Text 
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione =
+                    int.Parse(textBoxValutazione.Text),
+                    Tipo = comboBoxTipo.Text
                 };
                 return elem;
             }
@@ -35,7 +36,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);

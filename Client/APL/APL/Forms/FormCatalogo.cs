@@ -1,13 +1,13 @@
-﻿using APL.Connections;
+﻿using APL.Cache;
+using APL.Connections;
 using APL.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using System.Diagnostics;
-using APL.Cache;
 
 namespace APL.Forms
 {
@@ -19,9 +19,9 @@ namespace APL.Forms
         {
             InitializeComponent();
             pt = new Protocol();
-            pt.SetProtocolID("catalogo"); 
+            pt.SetProtocolID("catalogo");
             comboBoxPrezzo.Text = "Ascendente";
-            
+
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
         }
@@ -56,10 +56,10 @@ namespace APL.Forms
             {
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
-            
-           
+
+
         }
-        private  void schedaMadre_Click(object sender, EventArgs e)
+        private void schedaMadre_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(schedaMadreButton.Text) == false)
             {
@@ -71,7 +71,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void ram_Click(object sender, EventArgs e)
+        private void ram_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(ramButton.Text) == false)
             {
@@ -83,7 +83,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void memoria_Click(object sender, EventArgs e)
+        private void memoria_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(memoriaButton.Text) == false)
             {
@@ -95,7 +95,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void alimentatore_Click(object sender, EventArgs e)
+        private void alimentatore_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(alimentatoreButton.Text) == false)
             {
@@ -107,7 +107,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void schedaVideo_Click(object sender, EventArgs e)
+        private void schedaVideo_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(schedaVideoButton.Text) == false)
             {
@@ -119,7 +119,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void casepc_Click(object sender, EventArgs e)
+        private void casepc_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(casepcButton.Text) == false)
             {
@@ -131,7 +131,7 @@ namespace APL.Forms
                 Debug.WriteLine("lista recuperata dalla cache///////////////////////");
             }
         }
-        private  void dissipatore_Click(object sender, EventArgs e)
+        private void dissipatore_Click(object sender, EventArgs e)
         {
             if (recuperaListaDallaCache(dissipatoreButton.Text) == false)
             {
@@ -163,7 +163,8 @@ namespace APL.Forms
 
                 listView_record.Items.Clear();
                 listViewCatalogo.Items.Clear();
-                if (componenti != null) {
+                if (componenti != null)
+                {
                     for (int i = 0; i < componenti.Length; i++)
                     {
                         ListViewItem lvitem = new ListViewItem("" + componenti[i].Modello + "");
@@ -191,7 +192,8 @@ namespace APL.Forms
                 //salvo la lista nella cache
                 aggiungiListaInCache(listaComponenti);
             }
-            catch (JsonException ex) {
+            catch (JsonException ex)
+            {
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -206,7 +208,7 @@ namespace APL.Forms
                 if (listView_record.SelectedItems.Count > 0)
                 {
                     ListViewItem item = listView_record.SelectedItems[0];
-                   
+
                     string modello = item.SubItems[0].Text.ToString();
                     string marca = item.SubItems[1].Text.ToString();
                     string prezzo = item.SubItems[2].Text.ToString();
@@ -233,7 +235,7 @@ namespace APL.Forms
                 MessageBox.Show("E' stato raggiunto il numero massimo di componenti",
                               "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-           
+
         }
         private void buttonRimuovi_Click(object sender, EventArgs e)
         {
@@ -263,23 +265,23 @@ namespace APL.Forms
         }
         private void buttonConfronta_Click(object sender, EventArgs e)
         {
-            if (listViewCatalogo.Items.Count >0  && listViewCatalogo.Items.Count <4 )
+            if (listViewCatalogo.Items.Count > 0 && listViewCatalogo.Items.Count < 4)
             {
                 string[] modelli = new string[listViewCatalogo.Items.Count];
-                string[] prezzi=new string[listViewCatalogo.Items.Count];
+                string[] prezzi = new string[listViewCatalogo.Items.Count];
                 string[] capienze = new string[listViewCatalogo.Items.Count];
-                string categoria="default";
-                
-                for(int i=0;i< listViewCatalogo.Items.Count; i++)
+                string categoria = "default";
+
+                for (int i = 0; i < listViewCatalogo.Items.Count; i++)
                 {
                     ListViewItem item = listViewCatalogo.Items[i];
                     modelli[i] = item.SubItems[0].Text.ToString();
                     prezzi[i] = item.SubItems[2].Text.ToString();
                     capienze[i] = item.SubItems[3].Text.ToString();
                     categoria = item.SubItems[4].Text.ToString();
-                    Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria+ " capienza:"+capienze[i]);
+                    Debug.WriteLine(modelli[i] + " " + prezzi[i] + " " + categoria + " capienza:" + capienze[i]);
                 }
-                FormConfronto cf = new FormConfronto(modelli,prezzi, capienze,categoria);
+                FormConfronto cf = new FormConfronto(modelli, prezzi, capienze, categoria);
                 cf.Show();
             }
             else
@@ -309,7 +311,7 @@ namespace APL.Forms
                 }
             }
 
-            
+
 
         }
         private void buttonOrdinaPerMarca_Click(object sender, EventArgs e)
@@ -329,14 +331,14 @@ namespace APL.Forms
                 }
             }
 
-            
+
         }
         private void buttonOrdinaPerCapienza_Click(object sender, EventArgs e)
         {
             List<Componente> listaComponenti = recuperaListaDallaListView();
-            if (listView_record.Items.Count>0)
+            if (listView_record.Items.Count > 0)
             {   //la lista viene ordinata solo se si ha ram o memoria come categoria
-                if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria=="ram" || listaComponenti[0].Categoria == "memoria"))
+                if (comboBoxPrezzo.Text == "Ascendente" && (listaComponenti[0].Categoria == "ram" || listaComponenti[0].Categoria == "memoria"))
                 {
                     IOrderedEnumerable<Componente> listaComponentiOrdinata = listaComponenti.OrderBy(x => x.Capienza);
                     cambiaOrdineListView(listaComponentiOrdinata);
@@ -348,7 +350,7 @@ namespace APL.Forms
                 }
             }
 
-          
+
         }
         private void buttonOrdinaPerModello_Click(object sender, EventArgs e)
         {
@@ -367,7 +369,7 @@ namespace APL.Forms
                 }
             }
 
-           
+
         }
         private List<Componente> recuperaListaDallaListView()
         {//recuperiamo i componenti dalla listView e li mettiamo dentro una lista
@@ -431,13 +433,13 @@ namespace APL.Forms
         private void aggiungiListaInCache(List<Componente> lista)
         {
             CachingProviderBase.Instance.AddItem(lista[0].Categoria, lista);
-            Debug.WriteLine("lista inserita in cache: "+DateTime.Now+" ///////////////");
+            Debug.WriteLine("lista inserita in cache: " + DateTime.Now + " ///////////////");
         }
         private bool recuperaListaDallaCache(string categoria)
         {
             List<Componente> message = CachingProviderBase.Instance.GetItem(categoria);
 
-            if (message == null){return false;}
+            if (message == null) { return false; }
 
             listView_record.Items.Clear();
             foreach (Componente item in message)
@@ -454,9 +456,9 @@ namespace APL.Forms
                 listView_record.Items.Add(lvitem);
 
             }
-                return true;
+            return true;
         }
         #endregion
-    }   
-    
+    }
+
 }

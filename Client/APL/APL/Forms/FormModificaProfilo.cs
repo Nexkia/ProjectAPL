@@ -3,8 +3,8 @@ using APL.Controlli;
 using APL.Data;
 using Newtonsoft.Json;
 using System;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 namespace APL.Forms
 {
     public partial class FormModificaProfilo : Form
@@ -14,13 +14,13 @@ namespace APL.Forms
         public FormModificaProfilo(Protocol pt)
         {
             InitializeComponent();
-            this.pt = pt;   
+            this.pt = pt;
         }
 
         private void FormModificaProfilo_Load(object sender, EventArgs e)
         {
             Utente? utente;
-            pt.SetProtocolID("getUtente");pt.Data = String.Empty;
+            pt.SetProtocolID("getUtente"); pt.Data = String.Empty;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
@@ -30,16 +30,18 @@ namespace APL.Forms
             try
             {
                 utente = JsonConvert.DeserializeObject<Utente>(jsonUser);
-                if (utente != null) {
+                if (utente != null)
+                {
                     TextBoxNomeUtente.Text = utente.Nome;
                     TextBoxEmail.Text = utente.Email;
                     TextBoxEmail.ReadOnly = true;
                     TextBoxIndirizzo.Text = utente.Indirizzo;
                 }
             }
-            catch (JsonException ex) {
+            catch (JsonException ex)
+            {
                 Debug.WriteLine(ex.Message);
-            } 
+            }
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -59,7 +61,8 @@ namespace APL.Forms
                     Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
-                        Utente mod = new() { 
+                        Utente mod = new()
+                        {
                             Nome = TextBoxNomeUtente.Text,
                             Email = TextBoxEmail.Text,
                             Indirizzo = TextBoxIndirizzo.Text,
@@ -79,7 +82,7 @@ namespace APL.Forms
                     /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     break;
                 default:
-                    MessageBox.Show("Le nuove password non sono uguali", "Errore", 
+                    MessageBox.Show("Le nuove password non sono uguali", "Errore",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }

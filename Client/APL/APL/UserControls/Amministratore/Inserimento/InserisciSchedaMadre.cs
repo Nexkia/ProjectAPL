@@ -11,22 +11,22 @@ namespace APL.UserControls.Amministratore.Inserimento
         public InserisciSchedaMadre(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
-            this.inserisciComponente= inserisciComponente; 
+            this.inserisciComponente = inserisciComponente;
         }
 
         public SchedaMadre getInputDetail()
         {
 
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxCpuSocket.Text != string.Empty
-                 && textBoxRam.Text != string.Empty && textBoxChipset.Text != string.Empty )
+                 && textBoxRam.Text != string.Empty && textBoxChipset.Text != string.Empty)
             {
                 SchedaMadre elem = new SchedaMadre()
                 {
-                    Modello = inserisciComponente.getModello(), 
+                    Modello = inserisciComponente.getModello(),
                     Valutazione = int.Parse(textBoxValutazione.Text),
                     CpuSocket = textBoxCpuSocket.Text,
-                    Ram =textBoxRam.Text, 
-                    Chipset =textBoxChipset.Text 
+                    Ram = textBoxRam.Text,
+                    Chipset = textBoxChipset.Text
                 };
                 return elem;
             }
@@ -36,7 +36,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         }
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);

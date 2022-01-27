@@ -1,4 +1,5 @@
 ﻿using APL.Connections;
+using APL.Data;
 using APL.UserControls;
 using Newtonsoft.Json;
 using System;
@@ -7,9 +8,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using APL.Data;
 
-namespace APL.Forms         
+namespace APL.Forms
 {
     public partial class FormAcquistiPassati : Form
     {
@@ -26,7 +26,7 @@ namespace APL.Forms
             PcAssemblato[]? PcAssemblati;
             string PrezzoTot;
             string[]? PcPreAssemblati, PrezziPreAssemblati;
-            List<Acquisto> Acquisti=new();
+            List<Acquisto> Acquisti = new();
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
@@ -37,7 +37,8 @@ namespace APL.Forms
                 return;
             }
             int numeroDiAcquisti = int.Parse(response);
-            for (int i = 0; i < numeroDiAcquisti; i++) {
+            for (int i = 0; i < numeroDiAcquisti; i++)
+            {
                 try
                 {
                     response = SocketTCP.Receive();
@@ -65,7 +66,8 @@ namespace APL.Forms
                         });
                     }
                 }
-                catch (JsonException ex) {
+                catch (JsonException ex)
+                {
                     Debug.WriteLine(ex.Message);
                 }
             }
@@ -73,18 +75,18 @@ namespace APL.Forms
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
-            foreach(Acquisto acq in AcquistiOrdinati)
+            foreach (Acquisto acq in AcquistiOrdinati)
             {
-             aggiungiPcAllaListView(acq.PrezzoTot, acq.Data, acq.PcAssemblati, acq.PcPreAssemblati, acq.PrezziPreAssemblati);
+                aggiungiPcAllaListView(acq.PrezzoTot, acq.Data, acq.PcAssemblati, acq.PcPreAssemblati, acq.PrezziPreAssemblati);
             }
-           
+
         }
 
-       
-        private void aggiungiPcAllaListView( string PrezzoTot, DateTime data, PcAssemblato[] PcAssemblati, string[] PcPreAssemblati,string[] PrezziPreAssemblati)
+
+        private void aggiungiPcAllaListView(string PrezzoTot, DateTime data, PcAssemblato[] PcAssemblati, string[] PcPreAssemblati, string[] PrezziPreAssemblati)
         {
             ElementoCronologia elem = new ElementoCronologia();
-            elem.setPrezzoData(PrezzoTot,data);
+            elem.setPrezzoData(PrezzoTot, data);
 
             if (PcAssemblati.Length > 0)
             {
