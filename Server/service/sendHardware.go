@@ -40,8 +40,6 @@ func SendBuildSolo(conn net.Conn, mongodb *mongo.Database) {
 	categoria := [8]string{"cpu", "schedaMadre", "casepc", "schedaVideo", "dissipatore", "alimentatore", "ram", "memoria"}
 	for _, categ := range categoria {
 		comp := getByCategoria(categ, conn, mongodb)
-		n_comp := strconv.Itoa(len(comp))
-		utils.Send([]byte(n_comp), conn)
 		json_comp, _ := json.Marshal(comp)
 		utils.Send(json_comp, conn)
 	}

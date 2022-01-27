@@ -1,7 +1,7 @@
-from connection import Connetion
+from Connection import Connetion
 import pandas as pd
 from DataFrameStd import DataFrame
-from DataFrameFiltering import DataFrameFilter
+from DataFrameFilter import DataFrameFilter
 from collections import Counter
 
 
@@ -21,13 +21,11 @@ def ConvertiInUnaLista(lista):
     return listaFinale
 
 
-connect = Connetion()
-
-
 def checkList(listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLast, listaDetLast, listaCompLast):
+    connect = Connetion()
+    # Ottenimento lista Venduti
     listaAcquisti = []
     coll = connect.getCollection("Venduti")
-
     dim = 0
     for x in coll.find():
         dim = dim + 1
@@ -38,20 +36,25 @@ def checkList(listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLas
         listaAcquisti.append(coll.find().__getitem__(num))
         numeroAcquistiUtente.append(len(coll.find().__getitem__(num)))
         print("lunghezza: ", len(coll.find().__getitem__(num)), " utente n°: ", num)
+
+    # Ottenimento lista Pressamblati componenti e detail
     coll = connect.getCollection("preAssemblati")
     listaPreAssemblati = []
     for x in coll.find():
         listaPreAssemblati.append([list(elm) for elm in x.items()])
+
     coll = connect.getCollection("detail")
     listaDet = []
     for x in coll.find():
         listaDet.append([list(elm) for elm in x.items()])
     listaDet = getFixedList(listaDet)
+
     coll = connect.getCollection("componenti")
     listaComp = []
     for x in coll.find():
         listaComp.append([list(elm) for elm in x.items()])
     listaComp = getFixedList(listaComp)
+    # Controllo con le liste precedenti
     check = False
     if listaAcquisti != listaAcquistiLast or numeroAcquistiUtente != numeroAcquistiUtenteLast:
         check = True
@@ -61,7 +64,7 @@ def checkList(listaAcquistiLast, numeroAcquistiUtenteLast, listaPreAssemblatiLas
 
 
 def getFixedList(lista):
-    # remove id
+    # Il primo campo è l'id di mongo db da togliere
     lista = [elem[1:] for elem in lista]
     external = []
     for elem in lista:
@@ -117,8 +120,8 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
     print("dizionario disordinato Componenti: ", venditeComponenti)
 
     '''  
-        Inizio Raccomandazione
     
+    Ottenimento nomi preAssemblati
     
     '''
 
@@ -128,7 +131,7 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
     for i in range(len(listElementiPre)):
         if listElementiPre[i] in "nome":
             # copio una posizione in avanti perché composto da
-            # nome : valore
+            # nome: valore
             listaNomiPre.append(listElementiPre[i + 1])
 
     print(listaNomiPre)
@@ -140,11 +143,11 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
                  "schedaMadre", "alimentatore", "ram", "memoria", "dissipatore"]
     exclude = ["modello_ram", "modello_memoria"]
 
-    listaDettagli = []
+    listaDetail = []
     for modello in modelli:
         # il primo elemento è il modello
         list_modello = [elem for elem in listaDet if elem[0] in modello]
-        listaDettagli.append(list_modello)
+        listaDetail.append(list_modello)
 
     listaComponenti = []
     for categoria in categorie:
@@ -152,8 +155,8 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
         list_categoria = [elem for elem in listaComp if elem[-1] in categoria]
         listaComponenti.append(list_categoria)
 
-    listaChiaveValori = []
-    for dettaglio, componente in zip(listaDettagli, listaComponenti):
+    listaUnione = []
+    for dettaglio, componente in zip(listaDetail, listaComponenti):
         for x, y in zip(dettaglio, componente):
             '''
             Unisco i dettagli ai componenti
@@ -164,11 +167,13 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
                 tmp = x + y[:-4]
             else:
                 tmp = x + y[:-6]
-            listaChiaveValori.append(tmp)
+            listaUnione.append(tmp)
 
+    # La lista organizzata è una lista di liste in cui ogni indice rappresenta
+    # un componente diverso
     listaOrganizzata = []
     for modello in modelli:
-        list_modello = [elem for elem in listaChiaveValori if elem[0] in modello]
+        list_modello = [elem for elem in listaUnione if elem[0] in modello]
         listaOrganizzata.append(list_modello)
 
     rows_tot = []
@@ -186,27 +191,29 @@ def calcolaModelli(listaAcquisti, numeroAcquistiUtente, listaPreAssemblati, list
         rows_tot.append(rows)
 
     pt = DataFrame(rows_tot, columns_tot, venditeComponenti)
-    listdf = pt.standardize()
+    listdf = pt.listDF
 
-    pd.set_option('max_column', None)
-    pd.set_option('max_row', None)
-
-    filterDT = DataFrameFilter(listdf)
+    filterDT = DataFrameFilter()
 
     raccomandazione = []
 
     ListOfValues = [[70, "AM4", "DDR3", 80, 6, 600, 1000, "hdd", "Midi-Tower", 8],
-                   [150, "AM4", "DDR4", 120, 8, 750, 1000, "ssd", "Midi-Tower", 16],
-                   [200, "1200", "DDR4", 160, 8, 750, 1250, "ssd", "Midi-Tower", 16],
-                   [400, "TR4", "DDR4", 300, 12, 1000, 2000, "ssd", "Big-Tower", 32],
-                   [600, "2066", "DDR4", 300, 16, 1250, 2000, "ssd", "Big-Tower", 64]]
+                    [150, "AM4", "DDR4", 120, 8, 750, 1000, "ssd", "Midi-Tower", 16],
+                    [200, "1200", "DDR4", 160, 8, 750, 1250, "ssd", "Midi-Tower", 16],
+                    [400, "TR4", "DDR4", 300, 12, 1000, 2000, "ssd", "Big-Tower", 32],
+                    [600, "2066", "DDR4", 300, 16, 1250, 2000, "ssd", "Big-Tower", 64]]
     for value in ListOfValues:
-        result = filterDT.Filter(listdf, prezzo=value[0], socket=value[1], tipo_ram=value[2], tdp_gpu=value[3],
-                                 vram=value[4], watt=value[5], mem_capienza=value[6], tipo_mem=value[7],
-                                 size_case=value[8], ram_capienza=value[9])
+        result = filterDT(listdf, prezzo=value[0], socket=value[1], tipo_ram=value[2], tdp_gpu=value[3],
+                          vram=value[4], watt=value[5], mem_capienza=value[6], tipo_mem=value[7],
+                          size_case=value[8], ram_capienza=value[9])
         for j in range(len(result)):
+            # Prendo solamente i primi tre consigliati
             raccomandazione.append(list(result[j][modelli[j]][:3].values))
 
+    # I pre assemblati vengono ordinati solamente per vendite
+    # per fare in modo che comunque si abbia la possibilità di acquistare
+    # anche quelli poco venduti, il terzo consigliato è sempre uno casuale
+    # scelto tra i restanti
     DFpre = pd.DataFrame(data=listaNomiPre, columns=["nome"])
     DFpre["venduti"] = 0
     for key, value in venditePreassemblati.items():

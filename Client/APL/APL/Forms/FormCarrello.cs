@@ -1,9 +1,9 @@
-﻿using APL.Connections;
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
+﻿using System;
 using ListView = System.Windows.Forms.ListView;
+using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
+using System.Diagnostics;
+using APL.Connections;
 
 
 namespace APL.Forms
@@ -20,7 +20,7 @@ namespace APL.Forms
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             pt = new Protocol();
-            this.checkoutForm = checkoutForm;
+            this.checkoutForm=checkoutForm;
         }
 
 
@@ -28,7 +28,7 @@ namespace APL.Forms
         private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
-        private bool RamSchedaMadre = false;
+        private bool RamSchedaMadre = false; 
         private bool CpuSchedaMadre = false;
         private bool CpuDissipatore = false;
 
@@ -54,78 +54,26 @@ namespace APL.Forms
 
         public ListView getListViewC() { return listViewCarrello; }
         public ListView getListViewD() { return listViewCarrelloDetail; }
+
+
+        #region Chiusura---------------------------------------------------------
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
         void FormHome_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (disableCloseEvent == true)
             {
-
                 //impedisce alla finestra di chiudersi
                 e.Cancel = true;
 
                 //rende la finestra invisibile
                 this.Visible = false;
-
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
         }
+        #endregion
 
 
-        private void buttonRimuovi_Click(object sender, EventArgs e)
-        {
-            if (listViewCarrello.SelectedItems.Count > 0)
-            {
-                ListViewItem item = listViewCarrello.SelectedItems[0];
-
-                //rimuoviamo l'elemento selezionato dalla listViewNuovoCarrello
-                listViewCarrello.Items.Remove(item);
-
-
-                //in base alla categoria del componente rimosso, togliamo le corrispettive informazioni nella listViewDetail
-                foreach (ListViewItem.ListViewSubItem SubItems in item.SubItems)
-                {
-                    switch (SubItems.Text)
-                    {
-                        case "cpu":
-                            cpuSocket = "";
-                            eliminaElementoListViewDetail("cpu");
-                            break;
-
-                        case "schedaMadre":
-                            cpuSocketSchedaMadre = ""; ramSchedaMadre = "";
-                            eliminaElementoListViewDetail("schedaMadre");
-                            break;
-
-                        case "dissipatore":
-                            cpuSocketDissipatore = null;
-                            eliminaElementoListViewDetail("dissipatore");
-                            break;
-
-                        case "ram":
-                            standardRam = "";
-                            eliminaElementoListViewDetail("ram");
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nessun componente è stato selezionato",
-                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void eliminaElementoListViewDetail(string categoria)
-        {
-            foreach (ListViewItem item in listViewCarrelloDetail.Items)
-            {
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text == categoria) { item.Remove(); }
-                }
-            }
-        }
-
+        #region Creazione CheckOut con Componenti Compatibili--------------------------------------
         private void buttonConferma_Click(object sender, EventArgs e)
         {
 
@@ -195,9 +143,6 @@ namespace APL.Forms
 
 
             }
-
-
-
             else
             {
                 MessageBox.Show("il carrello è vuoto ",
@@ -206,10 +151,8 @@ namespace APL.Forms
 
 
         }
-
         private int contaComponentiBuild(string tipo)
         {
-
             int i = 0;
             foreach (ListViewItem item in listViewCarrello.Items)
             {
@@ -218,7 +161,6 @@ namespace APL.Forms
                 {
                     if (subItem.Text == tipo) { i++; }
                 }
-
             }
 
             Debug.WriteLine("i " + tipo + " : " + i);
@@ -229,35 +171,9 @@ namespace APL.Forms
             }
             else
             {
-
                 return i;
             }
         }
-
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e) { svuotaCarrello(); }
-
-        public void svuotaCarrello()
-        {
-            listViewCarrello.Items.Clear();
-            listViewCarrelloDetail.Items.Clear();
-            cpuSocketDissipatore = null;
-            cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
-        }
-        private void creaCheckOut()
-        {
-
-            checkoutForm.Show();
-
-            foreach (ListViewItem item in listViewCarrello.Items)
-            {
-                checkoutForm.getListView().Items.Add((ListViewItem)item.Clone());
-            }
-
-            checkoutForm.calcolaTotale();
-
-
-        }
-
         private void ControllaCompatibilita()
         {
             RamSchedaMadre = false; CpuSchedaMadre = false;
@@ -283,5 +199,80 @@ namespace APL.Forms
                 }
             }
         }
+        private void creaCheckOut()
+        {
+            foreach (ListViewItem item in listViewCarrello.Items)
+            {
+                checkoutForm.getListView().Items.Add((ListViewItem)item.Clone());
+            }
+            checkoutForm.calcolaTotale();
+            checkoutForm.Show();
+        }
+        #endregion
+
+
+        #region Rimuovi elementi dal carrello--------------------------------------------------------
+        private void buttonRimuovi_Click(object sender, EventArgs e)
+        {
+            if (listViewCarrello.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewCarrello.SelectedItems[0];
+                //rimuoviamo l'elemento selezionato dalla listViewNuovoCarrello
+                listViewCarrello.Items.Remove(item);
+
+                //in base alla categoria del componente rimosso, togliamo le corrispettive informazioni nella listViewDetail
+                foreach (ListViewItem.ListViewSubItem SubItems in item.SubItems)
+                {
+                    switch (SubItems.Text)
+                    {
+                        case "cpu":
+                            cpuSocket = "";
+                            eliminaElementoListViewDetail("cpu");
+                            break;
+
+                        case "schedaMadre":
+                            cpuSocketSchedaMadre = ""; ramSchedaMadre = "";
+                            eliminaElementoListViewDetail("schedaMadre");
+                            break;
+
+                        case "dissipatore":
+                            cpuSocketDissipatore = null;
+                            eliminaElementoListViewDetail("dissipatore");
+                            break;
+
+                        case "ram":
+                            standardRam = "";
+                            eliminaElementoListViewDetail("ram");
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nessun componente è stato selezionato",
+                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void eliminaElementoListViewDetail(string categoria)
+        {
+            foreach (ListViewItem item in listViewCarrelloDetail.Items)
+            {
+                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                {
+                    if (subItem.Text == categoria) { item.Remove(); }
+                }
+            }
+        }
+
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+        public void svuotaCarrello()
+        {
+            listViewCarrello.Items.Clear();
+            listViewCarrelloDetail.Items.Clear();
+            cpuSocketDissipatore = null;
+            cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
+        }
+        #endregion
+
     }
 }
