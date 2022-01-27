@@ -229,16 +229,6 @@ namespace APL.Forms
                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        //Fa si che all'interno delle textBox si possano inserire solo numeri
-        private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void resetCache()
         {
             List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
@@ -271,15 +261,25 @@ namespace APL.Forms
         #endregion
 
 
+        #region Controlli TextBox--------------------------------------------------------
         private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
-        {  
-            //Fa si che all'interno delle textBox si possano inserire solo numeri
+        {//Fa si che all'interno delle textBox si possano inserire solo numeri
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-
-        
+        private void textBoxMese_TextChanged(object sender, EventArgs e)
+        {
+            //impediamo di inserire un mese non valido
+            if (textBoxMese.Text != string.Empty)
+            {
+                if (int.Parse(textBoxMese.Text) > 12)
+                    textBoxMese.Text = "12";
+                if (int.Parse(textBoxMese.Text) == 0)
+                    textBoxMese.Text = "1";
+            }
+        }
+        #endregion
     } 
 }

@@ -8,14 +8,39 @@ namespace APL.Forms.Amministratore
 {
     public partial class FormStatistiche : Form
     {
-        public FormStatistiche()
+        private FormAmministratore parent;
+        private bool disableCloseEvent;
+        public FormStatistiche(FormAmministratore parent)
         {
             InitializeComponent();
-        }
+            disableCloseEvent = true;
+            this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
+            this.parent = parent;
+            
+    }
 
         private string venditePerData;
         private string venditeComponenti;
         private string venditePreassemblati;
+
+
+        #region Chiusura-------------------------------------------------------------------------
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
+        private void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (disableCloseEvent == true)
+            {
+                //impedisce alla finestra di chiudersi
+                e.Cancel = true;
+
+                //rende la finestra invisibile
+                this.Visible = false;
+                parent.Visible = true;
+            }
+            else { e.Cancel = false; } //permette alla finestra di chiudersi
+        }
+        #endregion
+
 
         public void setVenditeComponenti(string value,int i){ 
             //salviamo le 3 immagini delle statistiche
@@ -27,17 +52,28 @@ namespace APL.Forms.Amministratore
                 venditeComponenti = value;
         }
         private void FormStatistiche_Load(object sender, EventArgs e)
-        {//mostriamo le immagini
+        {
+            mostraStatistiche();
+        }
+        private void FormStatistiche_VisibleChanged(object sender, EventArgs e)
+        {
+            mostraStatistiche();
+        }
+        private void mostraStatistiche()
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            //mostriamo le immagini
             ImgStatistiche img1 = new ImgStatistiche(Base64ToImage(venditePreassemblati));
             ImgStatistiche img2 = new ImgStatistiche(Base64ToImage(venditePerData));
             ImgStatistiche img3 = new ImgStatistiche(Base64ToImage(venditeComponenti));
-           
+
             if (flowLayoutPanel1.Controls.Count < 0)
             {
                 flowLayoutPanel1.Controls.Clear();
             }
-            else 
-            { 
+            else
+            {
                 flowLayoutPanel1.Controls.Add(img1);
                 flowLayoutPanel1.Controls.Add(img2);
                 flowLayoutPanel1.Controls.Add(img3);
@@ -54,5 +90,8 @@ namespace APL.Forms.Amministratore
                 return image;
         }
 
+       
+
+       
     }
 }

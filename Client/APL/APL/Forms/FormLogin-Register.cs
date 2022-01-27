@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
-using APL.Forms.Amministratore;
+
 
 namespace APL.Forms
 {

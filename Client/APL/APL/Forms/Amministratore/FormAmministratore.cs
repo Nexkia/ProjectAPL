@@ -1,7 +1,6 @@
 ﻿using APL.Connections;
 using APL.Forms.Amministratore;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace APL.Forms
@@ -13,6 +12,7 @@ namespace APL.Forms
         private FormLogin_Register parent;
         private FormInserisciPreassemblato formInserisciPreassemblato;
         private FormInserisciComponente formInserisciComponente;
+        private FormStatistiche formStatistiche;
         
         public FormAmministratore(FormLogin_Register f_start)
         {
@@ -22,6 +22,7 @@ namespace APL.Forms
             parent = f_start;
             formInserisciPreassemblato = new FormInserisciPreassemblato(this);
             formInserisciComponente = new FormInserisciComponente(this);
+            formStatistiche = new FormStatistiche(this);
             pt = new Protocol();
         }
 
@@ -119,8 +120,6 @@ namespace APL.Forms
         }
         private  void buttonStatistiche_Click(object sender, EventArgs e)
         {
-            FormStatistiche statistiche = new FormStatistiche();
-
             pt.SetProtocolID("recupera_statistiche");
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER    
             SocketTCP.Wait();
@@ -128,11 +127,11 @@ namespace APL.Forms
             for (int i = 0; i < 3; i++)
             {
                 string Img =  SocketTCP.Receive();
-                statistiche.setVenditeComponenti(Img, i);
+                formStatistiche.setVenditeComponenti(Img, i);
             }
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
-            statistiche.Show();
+            formStatistiche.Show();
         }
         #endregion
 
