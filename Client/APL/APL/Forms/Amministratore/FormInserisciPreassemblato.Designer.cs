@@ -52,51 +52,56 @@ namespace APL.Forms.Amministratore
             // labelNome
             // 
             this.labelNome.AutoSize = true;
-            this.labelNome.Location = new System.Drawing.Point(14, 104);
+            this.labelNome.Location = new System.Drawing.Point(12, 78);
             this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(50, 20);
+            this.labelNome.Size = new System.Drawing.Size(40, 15);
             this.labelNome.TabIndex = 0;
             this.labelNome.Text = "Nome";
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(70, 104);
+            this.textBoxNome.Location = new System.Drawing.Point(61, 78);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(171, 27);
+            this.textBoxNome.Size = new System.Drawing.Size(150, 23);
             this.textBoxNome.TabIndex = 1;
             // 
             // labelPrezzo
             // 
             this.labelPrezzo.AutoSize = true;
-            this.labelPrezzo.Location = new System.Drawing.Point(247, 104);
+            this.labelPrezzo.Location = new System.Drawing.Point(216, 78);
             this.labelPrezzo.Name = "labelPrezzo";
-            this.labelPrezzo.Size = new System.Drawing.Size(53, 20);
+            this.labelPrezzo.Size = new System.Drawing.Size(41, 15);
             this.labelPrezzo.TabIndex = 2;
             this.labelPrezzo.Text = "Prezzo";
             // 
             // textBoxPrezzo
             // 
-            this.textBoxPrezzo.Location = new System.Drawing.Point(306, 104);
+            this.textBoxPrezzo.Location = new System.Drawing.Point(268, 78);
+            this.textBoxPrezzo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPrezzo.Name = "textBoxPrezzo";
-            this.textBoxPrezzo.Size = new System.Drawing.Size(172, 27);
+            this.textBoxPrezzo.Size = new System.Drawing.Size(151, 23);
             this.textBoxPrezzo.TabIndex = 3;
+            this.textBoxPrezzo.TextChanged += new System.EventHandler(this.textBoxPrezzo_TextChanged);
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.CadetBlue;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(510, 6);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(446, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(794, 856);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(695, 642);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowLayoutPanel1_ControlAdded);
             // 
             // Conferma
             // 
             this.Conferma.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Conferma.Location = new System.Drawing.Point(14, 6);
+            this.Conferma.Location = new System.Drawing.Point(12, 4);
+            this.Conferma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Conferma.Name = "Conferma";
-            this.Conferma.Size = new System.Drawing.Size(214, 88);
+            this.Conferma.Size = new System.Drawing.Size(187, 66);
             this.Conferma.TabIndex = 5;
             this.Conferma.Text = "Conferma";
             this.Conferma.UseVisualStyleBackColor = true;
@@ -111,9 +116,10 @@ namespace APL.Forms.Amministratore
             this.columnHeader4,
             this.columnHeader5});
             this.listViewPreassemblato.HideSelection = false;
-            this.listViewPreassemblato.Location = new System.Drawing.Point(12, 148);
+            this.listViewPreassemblato.Location = new System.Drawing.Point(10, 111);
+            this.listViewPreassemblato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewPreassemblato.Name = "listViewPreassemblato";
-            this.listViewPreassemblato.Size = new System.Drawing.Size(462, 400);
+            this.listViewPreassemblato.Size = new System.Drawing.Size(405, 301);
             this.listViewPreassemblato.TabIndex = 6;
             this.listViewPreassemblato.UseCompatibleStateImageBehavior = false;
             this.listViewPreassemblato.View = System.Windows.Forms.View.Details;
@@ -145,9 +151,10 @@ namespace APL.Forms.Amministratore
             // 
             // buttonSvuotaLista
             // 
-            this.buttonSvuotaLista.Location = new System.Drawing.Point(306, 6);
+            this.buttonSvuotaLista.Location = new System.Drawing.Point(268, 4);
+            this.buttonSvuotaLista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSvuotaLista.Name = "buttonSvuotaLista";
-            this.buttonSvuotaLista.Size = new System.Drawing.Size(172, 43);
+            this.buttonSvuotaLista.Size = new System.Drawing.Size(150, 32);
             this.buttonSvuotaLista.TabIndex = 11;
             this.buttonSvuotaLista.Text = "Svuota lista";
             this.buttonSvuotaLista.UseVisualStyleBackColor = true;
@@ -155,9 +162,10 @@ namespace APL.Forms.Amministratore
             // 
             // buttonRimuoviElemento
             // 
-            this.buttonRimuoviElemento.Location = new System.Drawing.Point(306, 55);
+            this.buttonRimuoviElemento.Location = new System.Drawing.Point(268, 41);
+            this.buttonRimuoviElemento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRimuoviElemento.Name = "buttonRimuoviElemento";
-            this.buttonRimuoviElemento.Size = new System.Drawing.Size(172, 43);
+            this.buttonRimuoviElemento.Size = new System.Drawing.Size(150, 32);
             this.buttonRimuoviElemento.TabIndex = 12;
             this.buttonRimuoviElemento.Text = "Rimuovi Elemento";
             this.buttonRimuoviElemento.UseVisualStyleBackColor = true;
@@ -170,9 +178,10 @@ namespace APL.Forms.Amministratore
             this.columnHeader7,
             this.columnHeader8});
             this.listViewPreassemblatoDetail.HideSelection = false;
-            this.listViewPreassemblatoDetail.Location = new System.Drawing.Point(14, 573);
+            this.listViewPreassemblatoDetail.Location = new System.Drawing.Point(12, 430);
+            this.listViewPreassemblatoDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewPreassemblatoDetail.Name = "listViewPreassemblatoDetail";
-            this.listViewPreassemblatoDetail.Size = new System.Drawing.Size(460, 289);
+            this.listViewPreassemblatoDetail.Size = new System.Drawing.Size(403, 218);
             this.listViewPreassemblatoDetail.TabIndex = 13;
             this.listViewPreassemblatoDetail.UseCompatibleStateImageBehavior = false;
             this.listViewPreassemblatoDetail.View = System.Windows.Forms.View.Details;
@@ -194,9 +203,9 @@ namespace APL.Forms.Amministratore
             // 
             // FormInserisciPreassemblato
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 874);
+            this.ClientSize = new System.Drawing.Size(1152, 656);
             this.Controls.Add(this.listViewPreassemblatoDetail);
             this.Controls.Add(this.buttonRimuoviElemento);
             this.Controls.Add(this.buttonSvuotaLista);
@@ -207,6 +216,7 @@ namespace APL.Forms.Amministratore
             this.Controls.Add(this.labelPrezzo);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.labelNome);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormInserisciPreassemblato";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormInserisciPreassemblato_Load);

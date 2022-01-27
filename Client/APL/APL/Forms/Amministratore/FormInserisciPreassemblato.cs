@@ -352,5 +352,17 @@ namespace APL.Forms.Amministratore
         }
         #endregion
 
+
+        private void textBoxPrezzo_TextChanged(object sender, EventArgs e)
+        {
+            bool isInvalidPrezzo = textBoxPrezzo.Text.Contains(".");
+            //permette di inserire solo dei Float nel prezzo
+            if (!float.TryParse(textBoxPrezzo.Text, out float value))
+                textBoxPrezzo.Text = "";
+            if (isInvalidPrezzo)
+                textBoxPrezzo.Text = "";
+            if (textBoxPrezzo.Text == "0")
+                textBoxPrezzo.Text = "1";
+        }
     }
 }
