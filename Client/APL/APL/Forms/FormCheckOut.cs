@@ -64,22 +64,34 @@ namespace APL.Forms
         private void FormCheckOut_Load(object sender, EventArgs e)
         {
             calcolaTotale();
-
-            InfoPayment infoPayment;
+            InfoPayment? infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                string infop = SocketTCP.Receive();
+            SocketTCP.Send(pt.ToString());
+            string infop =  SocketTCP.Receive();
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+
 
             if (!infop.Contains("notFound"))
             {
-                infoPayment = JsonConvert.DeserializeObject<InfoPayment>(infop);
-                textBoxIndirizzoFatturazione.Text = infoPayment.IndirizzoFatturazione;
-                textBoxMese.Text = Convert.ToString(infoPayment.CreditCard.Month);
-                textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
-                textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
-                textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
+                try
+                {
+                    infoPayment = JsonConvert.DeserializeObject<InfoPayment>(infop);
+                    if (infoPayment != null)
+                    {
+                        textBoxIndirizzoFatturazione.Text = infoPayment.IndirizzoFatturazione;
+                        textBoxMese.Text = Convert.ToString(infoPayment.CreditCard.Month);
+                        textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
+                        textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
+                        textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
+                    } 
+                }
+                catch(JsonException ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
         }
         public void calcolaTotale()
@@ -159,9 +171,8 @@ namespace APL.Forms
             if (indirizzoFatturazione != string.Empty && meseScadenza != string.Empty && annoScadenza != string.Empty
                 && cvv != string.Empty && numeroCarta != string.Empty )
             {
-
                 //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-                InfoPayment info = new InfoPayment()
+                InfoPayment info = new()
                 {
                     CreditCard = new CreditCard()
                     {
@@ -174,24 +185,24 @@ namespace APL.Forms
                     Email = String.Empty
                 };
                 string JsonInfop = JsonConvert.SerializeObject(info);
-                string Json = System.Text.Json.JsonSerializer.Serialize(
-                    new
-                    {
+                string Json = System.Text.Json.JsonSerializer.Serialize(new
+                {
                         acquisto = new
                         {
                             Lista = CheckOut,
                             Prezzo = totale,
                             Data=DateTime.Now
                         }
-                    }
-                    );
+                });
                 pt.SetProtocolID("CheckOut");pt.Data = Json;
+                /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                 SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
                 SocketTCP.Send(JsonInfop+"\n");
                 string response = SocketTCP.Receive();
                 SocketTCP.Release();
-                if(response.Contains("Un elemento non presente")) 
+                /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+                if (response.Contains("Un elemento non presente")) 
                 {
                     MessageBox.Show("Checkout non confermato",
                       "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -218,6 +229,16 @@ namespace APL.Forms
                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        //Fa si che all'interno delle textBox si possano inserire solo numeri
+        private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void resetCache()
         {
             List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class CasePC : Details
+    public class CasePC : IDetails
     {
 
         [JsonProperty("modello_casepc")]
@@ -17,11 +17,9 @@ namespace APL.Data.Detail
         [JsonProperty("taglia")]
         public string Taglia { get; init; }
 
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (Taglia == null)
-                return Array.Empty<string>();
-            string[] detail = new string[1] { 
+            string[] detail = new string[] { 
                 Taglia
             };
             return detail;

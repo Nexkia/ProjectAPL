@@ -84,25 +84,33 @@ namespace APL.Forms.Amministratore
         {
             /*
              Creo una lista di liste componenti, per sapere quanti elementi
-            sono presenti invio prima il numero di elementi
+            sono presenti 
             */
             pt.SetProtocolID("buildSolo");
+            List<List<Componente>> myList = new();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                List<List<Componente>> myList = new List<List<Componente>>();
+            SocketTCP.Send(pt.ToString());
             
-                for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
+            {
+                string response =  SocketTCP.Receive();
+                try
                 {
-                    string nElements =  SocketTCP.Receive();
-                    int n = int.Parse(nElements);
-                    string response = SocketTCP.Receive();
-                    Componente[] elem = new Componente[n];
-                    elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                    List<Componente> singleComponent = elem.ToList();
-                    pleaseWait.Show();
-                    myList.Add(singleComponent);
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null)
+                    {
+                        List<Componente> singleComponent = elem.ToList();
+                        pleaseWait.Show();
+                        myList.Add(singleComponent);
+                    }
                 }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             Debug.WriteLine(myList.Count());
 
             stampaComponentsPreassemblato(myList);
@@ -155,7 +163,7 @@ namespace APL.Forms.Amministratore
         {
             if (contaComponentiPreassemblati() && textBoxNome.Text != string.Empty && textBoxPrezzo.Text != string.Empty)
             {
-                PcPreassemblato pre = new PcPreassemblato()
+                PcPreassemblato pre = new()
                 {
                     Nome = textBoxNome.Text,
                     Prezzo = float.Parse(textBoxPrezzo.Text),
@@ -163,9 +171,11 @@ namespace APL.Forms.Amministratore
                 };
                 string jsonPreassemblato = JsonConvert.SerializeObject(pre);
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
+                /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                 SocketTCP.Wait();
-                    SocketTCP.Send(pt.ToString());
+                SocketTCP.Send(pt.ToString());
                 SocketTCP.Release();
+                /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                 MessageBox.Show("Inserimento completato correttamente",
                   "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

@@ -145,54 +145,55 @@ namespace APL.Forms
         }
 
         private void GetElements(Protocol pt)
-        {/*Esegue la richiesta al Server per recuperare la lista di componenti
-          */
-            List<Componente> listaC = new List<Componente>();
-
+        {
+            /*Esegue la richiesta al Server per recuperare la lista di componenti
+            */
+            List<Componente> listaComponenti = new();
+            Componente[]? componenti;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
-                SocketTCP.Send(pt.ToString());
-                // n elem
-                string nelem = SocketTCP.Receive();
-                Componente[] cp = new Componente[int.Parse(nelem)];
-                string response = SocketTCP.Receive();
+            SocketTCP.Send(pt.ToString());
+            string response = SocketTCP.Receive();
             SocketTCP.Release();
-
-            cp = JsonConvert.DeserializeObject<Componente[]>(response);
-            Debug.WriteLine(response);
-
-            listView_record.Items.Clear();
-            listViewCatalogo.Items.Clear();
-
-            for (int i = 0; i < cp.Length; i++)
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            try
             {
-                ListViewItem lvitem = new ListViewItem("" + cp[i].Modello + "");
-                lvitem.SubItems.Add("" + cp[i].Marca + "");
-                lvitem.SubItems.Add("" + cp[i].Prezzo + "");
+                componenti = JsonConvert.DeserializeObject<Componente[]>(response);
+                Debug.WriteLine(response);
 
-                if (cp[i].Categoria != "ram" && cp[i].Categoria != "memoria")
-                { lvitem.SubItems.Add(""); }
-                else { lvitem.SubItems.Add("" + cp[i].Capienza + ""); }
+                listView_record.Items.Clear();
+                listViewCatalogo.Items.Clear();
+                if (componenti != null) {
+                    for (int i = 0; i < componenti.Length; i++)
+                    {
+                        ListViewItem lvitem = new ListViewItem("" + componenti[i].Modello + "");
+                        lvitem.SubItems.Add("" + componenti[i].Marca + "");
+                        lvitem.SubItems.Add("" + componenti[i].Prezzo + "");
 
-                lvitem.SubItems.Add("" + cp[i].Categoria + "");
-                listView_record.Items.Add(lvitem);
+                        if (componenti[i].Categoria != "ram" && componenti[i].Categoria != "memoria")
+                        { lvitem.SubItems.Add(""); }
+                        else { lvitem.SubItems.Add("" + componenti[i].Capienza + ""); }
 
+                        lvitem.SubItems.Add("" + componenti[i].Categoria + "");
+                        listView_record.Items.Add(lvitem);
 
-
-                //salvo tutti i componenti appena ricevuti in una lista
-                listaC.Add(new Componente()
-                {
-                    Modello = cp[i].Modello,
-                    Marca = cp[i].Marca,
-                    Prezzo = cp[i].Prezzo,
-                    Capienza = cp[i].Capienza,
-                    Categoria = cp[i].Categoria
-                });
-
+                        //salvo tutti i componenti appena ricevuti in una lista
+                        listaComponenti.Add(new Componente()
+                        {
+                            Modello = componenti[i].Modello,
+                            Marca = componenti[i].Marca,
+                            Prezzo = componenti[i].Prezzo,
+                            Capienza = componenti[i].Capienza,
+                            Categoria = componenti[i].Categoria
+                        });
+                    }
+                }
+                //salvo la lista nella cache
+                aggiungiListaInCache(listaComponenti);
             }
-            //salvo la lista nella cache
-            aggiungiListaInCache(listaC);
-
-
+            catch (JsonException ex) {
+                Debug.WriteLine(ex.Message);
+            }
         }
         #endregion
 

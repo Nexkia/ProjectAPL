@@ -23,10 +23,11 @@ namespace APL.Forms
         private void FormAcquistiPassati_Load(object sender, EventArgs e)
         {
             pt.SetProtocolID("storico"); pt.Data = String.Empty;
-            PcAssemblato[] PcAssemblati;
+            PcAssemblato[]? PcAssemblati;
             string PrezzoTot;
-            string[] PcPreAssemblati, PrezziPreAssemblati;
-            List<Acquisto> Acquisti=new List<Acquisto>();
+            string[]? PcPreAssemblati, PrezziPreAssemblati;
+            List<Acquisto> Acquisti=new();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             string response = SocketTCP.Receive();
@@ -37,31 +38,39 @@ namespace APL.Forms
             }
             int numeroDiAcquisti = int.Parse(response);
             for (int i = 0; i < numeroDiAcquisti; i++) {
-
-                response = SocketTCP.Receive();
-                PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
-                response = SocketTCP.Receive();
-                PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                response = SocketTCP.Receive();
-                PrezzoTot = response;
-                response = SocketTCP.Receive();
-                DateTime data = DateTime.Parse(response);
-                response = SocketTCP.Receive();
-                PrezziPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
-                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
-                Debug.WriteLine(PcAssemblati.Length);
-                // se pc assemblati ha lunghezza 0 vuol dire che è vuoto
-                Debug.WriteLine(PcPreAssemblati.Length);
-                // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
-                Acquisti.Add(new Acquisto() {
-                    PrezzoTot = PrezzoTot, 
-                    Data = data, 
-                    PcAssemblati = PcAssemblati,
-                    PcPreAssemblati = PcPreAssemblati,
-                    PrezziPreAssemblati= PrezziPreAssemblati
-                });
+                try
+                {
+                    response = SocketTCP.Receive();
+                    PcAssemblati = JsonConvert.DeserializeObject<PcAssemblato[]>(response);
+                    response = SocketTCP.Receive();
+                    PcPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
+                    response = SocketTCP.Receive();
+                    PrezzoTot = response;
+                    response = SocketTCP.Receive();
+                    DateTime data = DateTime.Parse(response);
+                    response = SocketTCP.Receive();
+                    PrezziPreAssemblati = JsonConvert.DeserializeObject<string[]>(response);
+                    if (PcAssemblati != null && PcPreAssemblati != null && PrezziPreAssemblati != null)
+                    {
+                        Debug.WriteLine(PcAssemblati.Length);
+                        Debug.WriteLine(PcPreAssemblati.Length);
+                        // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
+                        Acquisti.Add(new Acquisto()
+                        {
+                            PrezzoTot = PrezzoTot,
+                            Data = data,
+                            PcAssemblati = PcAssemblati,
+                            PcPreAssemblati = PcPreAssemblati,
+                            PrezziPreAssemblati = PrezziPreAssemblati
+                        });
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);
             foreach(Acquisto acq in AcquistiOrdinati)
