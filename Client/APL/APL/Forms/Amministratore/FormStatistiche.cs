@@ -1,19 +1,7 @@
-﻿using APL;
-using APL.Cache;
-using APL.UserControls.Amministratore;
-using Org.BouncyCastle.Utilities.Zlib;
+﻿using APL.UserControls.Amministratore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APL.Forms.Amministratore
@@ -25,59 +13,46 @@ namespace APL.Forms.Amministratore
             InitializeComponent();
         }
 
-        private byte[] venditePerData;
-        private byte[] venditeComponenti;
-        private byte[] venditePreassemblati;
+        private string venditePerData;
+        private string venditeComponenti;
+        private string venditePreassemblati;
 
-        public void setVenditeComponenti(byte[] value,int i){ 
-            
+        public void setVenditeComponenti(string value,int i){ 
+            //salviamo le 3 immagini delle statistiche
             if(i==0)         
                 venditePreassemblati = value;
-
             if (i == 1)
                 venditePerData = value;
-
             if (i == 2)
                 venditeComponenti = value;
         }
         private void FormStatistiche_Load(object sender, EventArgs e)
-        {
-            ImgStatistiche img1 = new ImgStatistiche(byteArrayToImage(venditePreassemblati));
-            //ImgStatistiche img2 = new ImgStatistiche(byteArrayToImage(venditePerData));
-            //ImgStatistiche img3 = new ImgStatistiche(byteArrayToImage(venditeComponenti));
+        {//mostriamo le immagini
+            ImgStatistiche img1 = new ImgStatistiche(Base64ToImage(venditePreassemblati));
+            ImgStatistiche img2 = new ImgStatistiche(Base64ToImage(venditePerData));
+            ImgStatistiche img3 = new ImgStatistiche(Base64ToImage(venditeComponenti));
            
             if (flowLayoutPanel1.Controls.Count < 0)
             {
-
                 flowLayoutPanel1.Controls.Clear();
             }
             else 
             { 
                 flowLayoutPanel1.Controls.Add(img1);
-               // flowLayoutPanel1.Controls.Add(img2);
-              //  flowLayoutPanel1.Controls.Add(img3);
+                flowLayoutPanel1.Controls.Add(img2);
+                flowLayoutPanel1.Controls.Add(img3);
             }
         }
-
-
-       
-        public Image byteArrayToImage(byte[] byteArrayIn)
+        public Image Base64ToImage(string base64String)
         {
-
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-
-            //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-            //Image Image = (Image)converter.ConvertFrom(byteArrayIn);
-
-            return returnImage;
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            // Convert byte[] to MmemoryStream
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            //Convert MemoryStream to Image
+            Image image = Image.FromStream(ms, true);
+                return image;
         }
-
-
-
-       
-
-
 
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class Cpu : Details
+    public class Cpu : IDetails
     {
        
 
@@ -15,7 +15,6 @@ namespace APL.Data.Detail
         public string Modello { get; init; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; init; }
-
         [JsonProperty("frequenza")]
         public float Frequenza { get; init; }
         [JsonProperty("socket")]
@@ -25,13 +24,9 @@ namespace APL.Data.Detail
         [JsonProperty("thread")]
         public int Thread { get; init; }
 
-
-
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (Socket == null)
-                return Array.Empty<string>();
-            string[] detail = new string[4] {
+            string[] detail = new string[] {
                 Convert.ToString(Frequenza),
                 Socket,
                 Convert.ToString(Core),

@@ -1,53 +1,50 @@
 ﻿using APL.Connections;
 using APL.Controlli;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
-using System.IO;
 
 namespace APL.Forms
 {
     public partial class FormLogin_Register : Form
     {
-        Protocol pt;
-        CheckFields controllo;
-        FormAmministratore amministratoreForm;
+        private Protocol pt;
+        private CheckFields controllo;
+        private FormAmministratore amministratoreForm;
         public FormLogin_Register()
         {
             InitializeComponent();
             pt = new Protocol();
             controllo = new CheckFields();
             amministratoreForm = new FormAmministratore(this);
-            
-            
         }
+
         protected override void OnClosed(EventArgs e)
         {
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
         }
+
+
         private void Register_Click(object sender, EventArgs e)
         {
-            string result = controllo.CheckRegister(TextBoxNomeUtente.Text,
-                TextBoxEmail.Text, TextBoxIndirizzo.Text,
-                TextBoxInserisciPassword.Text, TextBoxConfermaPassword.Text);
+            string result = controllo.CheckRegister(TextBoxNomeUtente.Text,TextBoxEmail.Text, 
+                TextBoxIndirizzo.Text,TextBoxInserisciPassword.Text, TextBoxConfermaPassword.Text);
+
             switch (result) {
                 case "Email o Codice Fiscale già usati in altri account":
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-                    string Json = JsonSerializer.Serialize(
+                    string UserJson = JsonSerializer.Serialize(
                         new
                         {
                             Email = TextBoxEmail.Text,
@@ -57,12 +54,13 @@ namespace APL.Forms
                         }
                         );
                     //conversione da Json a Byte
-                    pt.SetProtocolID("register"); pt.Data = Json;
-                    SocketTCP.GetMutex().WaitOne();
+                    pt.SetProtocolID("register"); pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+                    SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string response = SocketTCP.Receive();
-                    SocketTCP.GetMutex().ReleaseMutex();
-                    
+                    SocketTCP.Release();
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
@@ -71,12 +69,11 @@ namespace APL.Forms
                         TextBoxInserisciPassword.Text = string.Empty;
                         TextBoxConfermaPassword.Text = string.Empty;
 
-                        MessageBox.Show("Registrazione avvenuta correttamente",
-                           "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(result,"Conferma",MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show(result,
+                        MessageBox.Show("Email o Codice Fiscale già usati in altri account",
                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
@@ -86,89 +83,82 @@ namespace APL.Forms
             }
         }
 
+
         private  void Login_Click(object sender, EventArgs e)
         {
             string result = controllo.CheckLogin(TextBoxLoginEmail.Text, TextBoxLoginPassword.Text);
             switch (result)
             {
-                case "Login fallito, Email o Password errate":
-                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
-                    string Json = JsonSerializer.Serialize(new
+                case "Login effettuato correttamente":
+                    string UserJson = JsonSerializer.Serialize(new
                     {
                         Email = TextBoxLoginEmail.Text,
                         Password = TextBoxLoginPassword.Text
-                    }
-                    );
-                    pt.SetProtocolID("login");  pt.Data = Json;
-                    SocketTCP.GetMutex().WaitOne();
+                    });
+                    pt.SetProtocolID("login");  pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+                    SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string responseData = SocketTCP.Receive();
-                    SocketTCP.GetMutex().ReleaseMutex();
+                    SocketTCP.Release();
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
-                        MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }else if (responseData.Contains("true"))
-                    {
+                        MessageBox.Show("Login fallito, Email o Password errate", "Errore", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (responseData.Contains("true"))
+                    {   
+                        //apriamo il pannello dell'amministratore
                         amministratoreForm.Show();
                         this.Visible = false; //invisible form1
+                        TextBoxLoginEmail.Text = string.Empty;
+                        TextBoxLoginPassword.Text = string.Empty;
                     }
                     else
                     {
+                        //apriamo il formHome
                         Debug.WriteLine("Login effettuato");
-                        FormHome home = new FormHome(this); // Instantiate a Form2 object.
-                        home.Show(); // Show Form2 and
+                        FormHome home = new FormHome(this); 
+                        home.Show(); 
                         this.Visible = false; //invisible form1
+                        TextBoxLoginEmail.Text = string.Empty;
+                        TextBoxLoginPassword.Text = string.Empty;
                     }
-                    //------------------------------------------------------------
-                    TextBoxLoginEmail.Text = string.Empty;
-                    TextBoxLoginPassword.Text = string.Empty;
+                    
+                    
                     break;
+
                 default:
                     MessageBox.Show(result, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }
         }
 
+        
         private void ButtonMostraIP_Click(object sender, EventArgs e)
-        {
+        {//register
             if (TextBoxInserisciPassword.PasswordChar == default)
-            {
                 TextBoxInserisciPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxInserisciPassword.PasswordChar = default;
-            }
         }
-
         private void ButtonMostraCP_Click(object sender, EventArgs e)
-        {
+        {//register
             if (TextBoxConfermaPassword.PasswordChar == default)
-            {
                 TextBoxConfermaPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxConfermaPassword.PasswordChar = default;
-            }
         }
 
         private void ButtonMostraLP_Click(object sender, EventArgs e)
-        {
+        {//login
             if (TextBoxLoginPassword.PasswordChar == default)
-            {
                 TextBoxLoginPassword.PasswordChar = '*';
-            }
             else
-            {
                 TextBoxLoginPassword.PasswordChar = default;
-            }
         }
-
-
-
-
 
     }
 

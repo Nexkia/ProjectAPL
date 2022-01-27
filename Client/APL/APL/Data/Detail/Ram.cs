@@ -7,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class Ram : Details
+    public class Ram : IDetails
     {
 
         [JsonProperty("modello_ram")]
-        public string? Modello { get; init; }
+        public string Modello { get; init; }
         [JsonProperty("Valutazione")]
         public int Valutazione { get; init; }
         [JsonProperty("frequenza")]
         public float Frequenza { get; init; }
 
         [JsonProperty("standard")]
-        public string? Standard { get; init; }
+        public string Standard { get; init; }
 
-
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (Standard == null)
-                return Array.Empty<string>();
-            string[] detail = new string[2] {
+            string[] detail = new string[] {
                 Convert.ToString(Frequenza),
                 Standard,
             };

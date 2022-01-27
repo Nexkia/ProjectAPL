@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class Memoria : Details
+    public class Memoria : IDetails
     {
 
         [JsonProperty("modello_memoria")]
@@ -17,11 +17,11 @@ namespace APL.Data.Detail
         [JsonProperty("tipo")]
         public string Tipo { get; init; }
 
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (Tipo == null)
-                return Array.Empty<string>();
-            string[] detail = new string[1] { Tipo };
+            string[] detail = new string[] { 
+                Tipo 
+            };
             return detail;
         }
     }

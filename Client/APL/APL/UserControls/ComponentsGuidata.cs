@@ -1,22 +1,15 @@
-﻿using APL.Connections;
-using APL.Data;
+﻿using APL.Data;
 using APL.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 namespace APL.UserControls
 {
     public partial class ComponentsGuidata : UserControl
     {
-        ListView vecchialistView;
-        ListView vecchioCarrello;
+        private ListView vecchialistView;
+        private ListView vecchioCarrello;
         private Componente[] _componente;
         public ComponentsGuidata(ListView vlw,ListView carrello)
         {
@@ -24,58 +17,45 @@ namespace APL.UserControls
            vecchialistView = vlw;
             vecchioCarrello = carrello;
             _componente = new Componente[3];
+
         }
 
-        #region Properties
-
         private string _title;
-
-
-        [Category("Custom Props")]
+        
         public string Title
         { get { return _title; } 
          set {_title=value; label1ComponentsTab.Text = value; }}
        
-
-        [Category("Custom Props")]
         public string MostraModello1
         { set {  label2ComponentsTab.Text = value; }}
 
-        [Category("Custom Props")]
         public string MostraModello2
         { set {  label3ComponentsTab.Text = value; }}
 
-        [Category("Custom Props")]
         public string MostraModello3
         {set {  label4ComponentsTab.Text = value; }}
 
-        [Category("Custom Props")]
         public Image Icon1
         {set { pictureBox1ComponentsTab.Image = value; }}
 
-        [Category("Custom Props")]
         public Image Icon2
         {set {  pictureBox2ComponentsTab.Image = value; }}
 
-        [Category("Custom Props")]
         public Image Icon3
         {set {  pictureBox3ComponentsTab.Image = value; }}
 
-        [Category("Custom Props")]
         public Componente Componente1
         {
             get { return _componente[0]; }
             set { _componente[0] = value;  }
         }
 
-        [Category("Custom Props")]
         public Componente Componente2
         {
             get { return _componente[1]; }
             set { _componente[1] = value; }
         }
 
-        [Category("Custom Props")]
         public Componente Componente3
         {
             get { return _componente[2]; }
@@ -83,8 +63,6 @@ namespace APL.UserControls
         }
 
 
-
-        #endregion
 
       
         private void RiempiListView()
@@ -127,8 +105,6 @@ namespace APL.UserControls
                 vecchialistView.Items.Add(lvitem3);
             }
 
-
-            
         }
 
         private void buttonConfronta_Click(object sender, EventArgs e)
@@ -161,10 +137,6 @@ namespace APL.UserControls
                 MessageBox.Show("Prima di premere confronta, spuntare almeno un componente",
                             "Errore ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        
-               
-            
-
         }
 
         private void buttonCarrello_Click(object sender, EventArgs e)
@@ -172,49 +144,28 @@ namespace APL.UserControls
          if((checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true) ||
             (checkBox1ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
             (checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true) ||
-            (checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true ))
+            (checkBox1ComponentsTab.Checked == true && checkBox2ComponentsTab.Checked == true && checkBox3ComponentsTab.Checked == true )||
+            (checkBox1ComponentsTab.Checked == false && checkBox2ComponentsTab.Checked == false && checkBox3ComponentsTab.Checked == false))
             {
-                MessageBox.Show("Spuntare una sola CheckBox, per aggiungere il componente al carrello",
+                MessageBox.Show("Spuntare una CheckBox, per aggiungere il componente al carrello",
                          "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
-            {
+            else 
+            {//quando si spunta una sola CheckBox
                 int i;
-                if (checkBox1ComponentsTab.Checked == true)
-                {
-                    i = 0;
-                    aggiungiAlCarrello(i);
-
-                }else if (checkBox2ComponentsTab.Checked == true)
-                {
-                    i = 1;
-                    aggiungiAlCarrello(i);
-
-                }
-                else {
-                    i = 2;
-                    aggiungiAlCarrello(i);
-
-                }
-
-
-              
-
+                if (checkBox1ComponentsTab.Checked == true){i = 0; aggiungiAlCarrello(i);}
+                else if (checkBox2ComponentsTab.Checked == true){i = 1; aggiungiAlCarrello(i);}
+                else {i = 2; aggiungiAlCarrello(i);}
             }
-
-
-
         }
 
         private void aggiungiAlCarrello(int i)
         {
-            
             string modello = _componente[i].Modello;
             string marca = _componente[i].Marca;
             string prezzo = Convert.ToString(_componente[i].Prezzo);
             string capienza = Convert.ToString(_componente[i].Capienza);
             string categoria = _componente[i].Categoria;
-
 
             ListViewItem lvitem = new ListViewItem("" + modello + "");
             lvitem.SubItems.Add("" + marca + "");

@@ -18,11 +18,9 @@ func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 	modello1 := modelli[0]
 	comp := data.Componente{}
 	filter := bson.D{{Key: "modello", Value: modello1}}
-
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
 	if err != nil {
 		utils.Send([]byte("NotFound"), conn)
-
 		return
 	}
 	log.Println("comp: ", comp)
@@ -34,7 +32,6 @@ func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 			err := utils.FindOne(filter, "detail", mongodb).Decode(detail)
 			if err != nil {
 				utils.Send([]byte("NotFound"), conn)
-
 				return
 			}
 			log.Println(detail)

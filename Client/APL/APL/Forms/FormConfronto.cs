@@ -6,26 +6,20 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 namespace APL.Forms
 {
     public partial class FormConfronto : Form
     {
-        Protocol pt = new Protocol();
-        string categoriaOriginale;
-        string[] modelli;
-        string[] prezzi;
-        string[] capienze;
+        private Protocol pt;
+        private string categoriaOriginale;
+        private string[] modelli,prezzi,capienze;
         public FormConfronto( string[] modelli, string[] prezzi,string[] capienze,string categoria)
         {
             InitializeComponent();
+            pt = new Protocol();
             pt.SetProtocolID("confronto");
             this.modelli = modelli;
             this.prezzi = prezzi;
@@ -33,32 +27,44 @@ namespace APL.Forms
             this.categoriaOriginale = categoria;
         }
 
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private  void Confronto_Load(object sender, EventArgs e1)
         {
+            /*
+             Gli oggetti da cofrontare hanno tutti la stessa categoria
+             Creo una lista a partire dal tipo di componente da confrontare
+             */
+            ConstructorDetail factoryDetail = new();
+            IDetails? componenteDetail = factoryDetail.GetDetails(categoriaOriginale);
+            Type categoria = componenteDetail.GetType();
+            Type categoriaTypeList = typeof(List<>).MakeGenericType(categoria);
+            IList? MyList = Activator.CreateInstance(categoriaTypeList) as IList;
+            // Invio un messaggi composto dai modelli da confrontare semparati da un carattere di separazione
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"#";
             }
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            ConstructorDetail factory = new ConstructorDetail();
-            Details componenteF = factory.GetDetails(categoriaOriginale);
-            Type categoria = componenteF.GetType();
-            Type genericListType = typeof(List<>).MakeGenericType(categoria);
-            IList MyList = (IList)Activator.CreateInstance(genericListType);
 
             for (int i = 0; i < modelli.Length; i++)
             {
                 string response = SocketTCP.Receive();
-                Details a = (Details)JsonConvert.DeserializeObject(response, categoria);
-                MyList.Add(a);
-                Debug.WriteLine("getmodello: " + a.Modello);
-    
+                try
+                {
+                    componenteDetail = JsonConvert.DeserializeObject(response, categoria) as IDetails;
+                    if (componenteDetail != null && MyList != null) {
+                        MyList.Add(componenteDetail);
+                        Debug.WriteLine("getmodello: " + componenteDetail.Modello);
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
-            ConfrontaParametri(MyList, categoriaOriginale, capienze);
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            if (MyList!=null)
+                ConfrontaParametri(MyList, categoriaOriginale, capienze);
         }
 
         private void ConfrontaParametri(IList componenti,string categoria,string[] capienze)
@@ -72,6 +78,7 @@ namespace APL.Forms
                     MostraCpu(componenti, sc);
                     
                     break;
+
                 case "schedaVideo":
                     sc.labelCategoriaName(categoria);
 
@@ -84,6 +91,7 @@ namespace APL.Forms
 
                     MostraSchedaVideo(componenti, sc);
                     break;
+
                 case "schedaMadre":
                     sc.labelCategoriaName(categoria);
 
@@ -95,6 +103,7 @@ namespace APL.Forms
 
                     MostraSchedaMadre(componenti, sc);
                     break;
+
                 case "ram":
 
                     sc.labelCategoriaName(categoria);
@@ -107,7 +116,7 @@ namespace APL.Forms
 
                     MostraRam(componenti, sc);
                     break;
-                //Alimentatore,dissipatore,memoria,casePc
+               
                 case "alimentatore":
                     
                     sc.labelCategoriaName(categoria);
@@ -120,8 +129,8 @@ namespace APL.Forms
                     sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraAlimentatore(componenti, sc);
-
                     break;
+
                 case "dissipatore":
                     sc.labelCategoriaName(categoria);
 
@@ -133,9 +142,8 @@ namespace APL.Forms
                     sc.labelMod3Det3Invisible(); sc.labelMod3Det4Invisible(); sc.labelMod3Det5Invisible(); 
 
                     MostraDissipatore(componenti, sc);
-
-                   
                     break;
+
                 case "memoria":
                     sc.labelCategoriaName(categoria);
 
@@ -148,6 +156,7 @@ namespace APL.Forms
 
                     MostraMemoria(componenti, sc);
                     break;
+
                 case "casepc":
                     sc.labelCategoriaName(categoria);
 
@@ -165,16 +174,13 @@ namespace APL.Forms
 
             flowLayoutPanelConfronto.Controls.Add(sc);
         }
+
+        #region Mostra Componenti-----------------------------------------------------------------------
         public void MostraCpu(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -182,9 +188,7 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
-
-
+                string[] a = componente1.GetDetail();
                 sc.label4Name("frequenza");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
@@ -197,28 +201,23 @@ namespace APL.Forms
                 sc.label7Name("Thread");
                 sc.labelMod1Det5Name(Convert.ToString(a[3]));
 
-                
-
 
                 if (componenti.Count > 1)
                 {
-                    //rendo visibile la seconda 
+                    //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //frequenza
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //socket
@@ -230,8 +229,6 @@ namespace APL.Forms
                     //Thread
                     sc.labelMod2Det5Name(Convert.ToString(b[3]));
 
-                   
-
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
@@ -241,17 +238,16 @@ namespace APL.Forms
                     ColoraLabelDet5(sc, a[3], b[3]);//Thread
                     
 
-
-
                     if (componenti.Count > 2)
                     {
                         //rendo visibile la seconda e la terza tabella
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -259,7 +255,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //frequenza
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //socket
@@ -271,8 +267,6 @@ namespace APL.Forms
                         //Thread
                         sc.labelMod3Det5Name(Convert.ToString(c[3]));
 
-                        
-
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
@@ -280,25 +274,15 @@ namespace APL.Forms
                                                               //socket
                         ColoraLabelDet4(sc, a[2], b[2], c[2]);//core
                         ColoraLabelDet5(sc, a[3], b[3], c[3]);//Thread
-                        
-
-
-
-
                     }
                 }
             }
         }
         public void MostraSchedaVideo(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -306,46 +290,34 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
-
-
+                string[] a = componente1.GetDetail();
                 sc.label4Name("Tdp");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
                 sc.label5Name("Vram");
                 sc.labelMod1Det3Name(Convert.ToString(a[1]));
 
-                
-
-                
-
 
                 if (componenti.Count > 1)
                 {
-                    //rendo visibile la seconda 
+                    //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tdp
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //Vram
                     sc.labelMod2Det3Name(Convert.ToString(b[1]));
-
-                   
-                   
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
@@ -353,9 +325,6 @@ namespace APL.Forms
                     ColoraLabelDet2(sc, a[0], b[0]);//Tdp
                     ColoraLabelDet3(sc, a[1], b[1]);//Vram
                     
-                   
-
-
 
                     if (componenti.Count > 2)
                     {
@@ -363,8 +332,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
@@ -373,37 +341,26 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //tdp
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //Vram
                         sc.labelMod3Det3Name(Convert.ToString(c[1]));
 
-                        
-
- 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//Tdp
                         ColoraLabelDet3(sc, a[1], b[1], c[1]);//Vram
-                        
-
-
                     }
                 }
             }
         }
         public void MostraSchedaMadre(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -411,12 +368,10 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-
                 sc.label4Name("Cpu Socket");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
- 
                 sc.label5Name("Ram");
                 sc.labelMod1Det3Name(a[1]);
 
@@ -426,22 +381,20 @@ namespace APL.Forms
 
                 if (componenti.Count > 1)
                 {
-                    //rendo visibile la seconda 
+                    //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Cpu socket
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(b[0]);
 
                     //RAM
@@ -449,7 +402,6 @@ namespace APL.Forms
 
                     //ChipSet
                     sc.labelMod2Det4Name(b[2]);
-
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
@@ -465,9 +417,9 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -475,7 +427,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Cpu socket
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(c[0]);
 
                         //RAM
@@ -497,14 +449,9 @@ namespace APL.Forms
         }
         public void MostraRam(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -512,9 +459,7 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
-
-
+                string[] a = componente1.GetDetail();
                 sc.label4Name("frequenza");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
@@ -525,27 +470,22 @@ namespace APL.Forms
                 sc.labelMod1Det4Name(capienze[0]);
 
 
-
-
                 if (componenti.Count > 1)
                 {
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //frequenza
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //standard
@@ -554,17 +494,12 @@ namespace APL.Forms
                     //Capienza
                     sc.labelMod2Det4Name(capienze[1]);
 
-
-
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
-                                                    
                     ColoraLabelDet2(sc, a[0], b[0]);//frequenza
                                                     //standard
                     ColoraLabelDet4(sc, capienze[0], capienze[1]);//Capienza
-
-
 
 
                     if (componenti.Count > 2)
@@ -573,9 +508,9 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -583,7 +518,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //frequenza
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //standard
@@ -592,29 +527,21 @@ namespace APL.Forms
                         //Capienza
                         sc.labelMod3Det4Name(capienze[2]);
 
-
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//frequenza
                                                               //Standard
                         ColoraLabelDet4(sc, capienze[0], capienze[1], capienze[2]);//Capienza
-
-
                     }
                 }
             }
         }
         public void MostraAlimentatore(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -623,7 +550,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Watt");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
 
@@ -632,29 +559,23 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //watt
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
-
-
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, a[0], b[0]);//watt
-
 
 
                     if (componenti.Count > 2)
@@ -663,8 +584,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
@@ -673,18 +593,13 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //watt
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
-
 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, a[0], b[0], c[0]);//watt
-
-
-
-
                     }
                 }
             }
@@ -695,11 +610,7 @@ namespace APL.Forms
 
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -708,12 +619,8 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Cpu Socket");
-                string[] a= componente1.getDetail();
-
-                //if da togliere
-                if (a == null) { a=new string[] { "prov1prov1prov1prov1", "prov2prov1prov1", "prov3prov1", "prov4prov1", "prova5","prova6","s7","s8" ,"s9","s0"}; }
-
-                sc.labelMod1Det2Name(OttieniUnaStringa(a));
+                string[] a= componente1.GetDetail();
+                sc.labelMod1Det2Name(ConvertInUnaSolaStringa(a));
 
 
                 if (componenti.Count > 1)
@@ -721,32 +628,23 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Cpu Socket
-                    string[] b = componente2.getDetail();
-
-                    //if da togliere
-                    if (b == null) { b = new string[] { "prov1", "prov2", "prov3", "prov4", "prova5", "prova6", "prova7", "porva8", "prova9", "prova10" }; }
-                    sc.labelMod2Det2Name(OttieniUnaStringa(b));
-
-
+                    string[] b = componente2.GetDetail();
+                    sc.labelMod2Det2Name(ConvertInUnaSolaStringa(b));
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                                                             //cpu socket
-
 
 
                     if (componenti.Count > 2)
@@ -755,9 +653,9 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -765,35 +663,22 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //cpu socket
-                        string[] c = componente3.getDetail();
-
-                        //if da togliere
-                        if (c == null) { c = new string[] { "prov1", "prov2", "prov3", "prov4", "prova5", "prova6", "prova7", "porva8", "prova9", "prova10" }; }
-                        sc.labelMod3Det2Name(OttieniUnaStringa(c));
-
+                        string[] c = componente3.GetDetail();
+                        sc.labelMod3Det2Name(ConvertInUnaSolaStringa(c));
 
                         //colora i campi che hanno il valore migliore
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                                                                             //cpu socket
-
-
-
-
                     }
                 }
             }
         }
         public void MostraMemoria(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -802,7 +687,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Tipo");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
                 sc.label5Name("Capienza");
@@ -813,20 +698,17 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tipo
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     string[] tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0]);
@@ -841,16 +723,15 @@ namespace APL.Forms
                     ColoraLabelDet3(sc, capienze[0], capienze[1]);//capienza
 
 
-
                     if (componenti.Count > 2)
                     {
                         //rendo visibile la seconda e la terza tabella
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -858,7 +739,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Tipo
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0], c[0]);
@@ -871,24 +752,15 @@ namespace APL.Forms
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, tipo[0], tipo[1], tipo[2]);//Tipo
                         ColoraLabelDet3(sc, capienze[0], capienze[1],capienze[2]);//capienza
-
-
-
-
                     }
                 }
             }
         }
         public void MostraCasePc(IList componenti, schedaConfronto sc)
         {
-
             if (componenti.Count > 0)
             {
-
-
-                Details componente1 = (Details)componenti[0];
-
-
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -897,7 +769,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Tipo");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
 
@@ -906,31 +778,25 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-
-
-                    Details componente2 = (Details)componenti[1];
-
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
+
                     sc.labelModello2Name(componente2.Modello);
                     sc.labelValutazione2Name(Convert.ToString(componente2.Valutazione));
-
 
                     //prezzo
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tipo
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     string[] tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0]);
-
-
 
                     //colora i campi con i valori migliori
                     ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione));
                     ColoraLabelDet1Min(sc, prezzi[0], prezzi[1]);
                     ColoraLabelDet2(sc, tipo[0], tipo[1]);//Tipo
-
 
 
                     if (componenti.Count > 2)
@@ -940,8 +806,9 @@ namespace APL.Forms
                         sc.panelNascosto3VisibileOFF();
 
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
+
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
 
@@ -949,7 +816,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Tipo
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                          tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0],c[0]);
@@ -958,22 +825,17 @@ namespace APL.Forms
                         ColoraValutazione(sc, Convert.ToString(componente1.Valutazione), Convert.ToString(componente2.Valutazione), Convert.ToString(componente3.Valutazione));
                         ColoraLabelDet1Min(sc, prezzi[0], prezzi[1], prezzi[2]);
                         ColoraLabelDet2(sc, tipo[0], tipo[1], tipo[2]);//Tipo
-
-
-
-
                     }
                 }
             }
         }
+        #endregion
 
 
-
+        #region Funzioni Utili-------------------------------------------------------------------------------
         public string MaxNumber(params string[] num)
         {
             float a, b, c;
-
-
 
             //-----------------------MAX3----------------------------------
             if (num.Length == 3)
@@ -981,76 +843,43 @@ namespace APL.Forms
                 a = float.Parse(num[0]);
                 b = float.Parse(num[1]);
                 c = float.Parse(num[2]);
-                if (c > a && c > b)
-                {
-                    // Console.WriteLine("il terzo numero è il più grande");
-                    return "c";
 
-                }
-                else if (a > b && a > c)
-                {
-                    // Console.WriteLine("il primo numero è il più grande");
+                if (c > a && c > b)    
+                    return "c";
+                else if (a > b && a > c)    
                     return "a";
-                }
-                else if (b > a && b > c)
-                {
-                    // Console.WriteLine("il secondo numero è il più grande");
+                else if (b > a && b > c)    
                     return "b";
-                }
                 else
                 {
                     if(a==b && b == c)
-                    {
                         return "default";
-                    }
-
                     if (a == b)
-                    {
                         return "ab";
-                    }
-
                     if (b == c)
-                    {
                         return "bc";
-                    }
-
                     if (a == c)
-                    {
-                        
                         return "ac";
 
-                    }
+
                     return "default";
                 }
             }
             //----------------------MAX2-----------------------------------
             else
             {
-                a = float.Parse(num[0]);
-                b = float.Parse(num[1]);
+                a = float.Parse(num[0]);b = float.Parse(num[1]);
+
                 if (b > a)
-                {
-                    // Console.WriteLine("il secondo numero è il più grande");
                     return "b";
-
-                }
                 else if (a > b)
-                {
-                    //Console.WriteLine("il primo numero è il più grande");
                     return "a";
-                }
-
                 else
-                {
-
                     return "default";
-                }
-
             }
 
 
         }
-
         public string MinNumber(params string[] num)
         {
             float a, b, c;
@@ -1062,98 +891,53 @@ namespace APL.Forms
                 b = float.Parse(num[1]);
                 c = float.Parse(num[2]);
                 if (c < a && c < b)
-                {
-                    // Console.WriteLine("il terzo numero è il più piccolo");
                     return "c";
-
-                }
                 else if (a < b && a < c)
-                {
-                    // Console.WriteLine("il primo numero è il più piccolo");
                     return "a";
-                }
                 else if (b < a && b < c)
-                {
-                    // Console.WriteLine("il secondo numero è il più piccolo");
                     return "b";
-                }
                 else
                 {
                     if (a == b && b == c)
-                    {
                         return "default";
-                    }
-
                     if (a == b)
-                    {
                         return "ab";
-                    }
-
                     if (b == c)
-                    {
                         return "bc";
-                    }
-
                     if (a == c)
-                    {
-
                         return "ac";
 
-                    }
                     return "default";
                 }
             }
             //----------------------MIN2-----------------------------------
             else
             {
-                a = float.Parse(num[0]);
-                b = float.Parse(num[1]);
+                a = float.Parse(num[0]);b = float.Parse(num[1]);
                 if (b < a)
-                {
-                    //  Console.WriteLine("il secondo numero è il più piccolo");
                     return "b";
-
-                }
                 else if (a < b)
-                {
-                    // Console.WriteLine("il primo numero è il più piccolo");
                     return "a";
-                }
-
                 else
-                {
-
                     return "default";
-                }
-
             }
-
-
         }
-
         public string[] ConvertiInNumeri(string val1, string val2, string val3, params string[] elem)
         {
             string[] vet = new string[elem.Length];
             for (int i = 0; i < elem.Length; i++)
             {
                 if (elem[i] == val1)
-                {
                     vet[i] = "3";
-                }
                 else if (elem[i] == val2)
-                {
                     vet[i] = "2";
-                }
                 else if (elem[i] == val3)
-                {
                     vet[i] = "1";
-                }
             }
 
             return vet;
         }
-
-        public string OttieniUnaStringa(string[] vet)
+        public string ConvertInUnaSolaStringa(string[] vet)
         {
             int j = 0;
             string message="";
@@ -1162,28 +946,22 @@ namespace APL.Forms
                 j ++;
                 message += vet[i] + ", ";
                 if ((j % 2) == 0)
-                {
                     message += "\n";
-                }
-                
             }
+
             return message;
         }
+        #endregion
 
 
+        #region Funzioni per Colorare le righe della Tabella----------------------------------------------
         public void ColoraValutazione(schedaConfronto sc,params string[] abc)
         {
             if (abc.Length == 2) {
                 if (MaxNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelValutazione1Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelValutazione2Color(Color.Red);
-                }
-
             }
 
             if (abc.Length == 3)
@@ -1192,19 +970,11 @@ namespace APL.Forms
                 sc.labelValutazione2Color(Color.Black);
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelValutazione1Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelValutazione2Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelValutazione3Color(Color.Red);
-                }
 
                 if (MaxNumber(abc[0], abc[1],abc[2]) == "ab")
                 {
@@ -1232,14 +1002,9 @@ namespace APL.Forms
             if (abc.Length == 2)
             {
                 if (MinNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelMod1Det1Color(Color.Red);
-                }
-
                 if (MinNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelMod2Det1Color(Color.Red);
-                }
             }
 
             if (abc.Length == 3)
@@ -1248,19 +1013,11 @@ namespace APL.Forms
                 sc.labelMod2Det1Color(Color.Black);
 
                 if (MinNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelMod1Det1Color(Color.Red);
-                }
-
                 if (MinNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelMod2Det1Color(Color.Red);
-                }
-
                 if (MinNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelMod3Det1Color(Color.Red);
-                }
 
                 if (MinNumber(abc[0], abc[1], abc[2]) == "ab")
                 {
@@ -1288,14 +1045,9 @@ namespace APL.Forms
             if (abc.Length == 2)
             {
                 if (MaxNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelMod1Det2Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelMod2Det2Color(Color.Red);
-                }
             }
 
             if (abc.Length == 3)
@@ -1304,19 +1056,11 @@ namespace APL.Forms
                 sc.labelMod2Det2Color(Color.Black);
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelMod1Det2Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelMod2Det2Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelMod3Det2Color(Color.Red);
-                }
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "ab")
                 {
@@ -1344,14 +1088,9 @@ namespace APL.Forms
             if (abc.Length == 2)
             {
                 if (MaxNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelMod1Det3Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelMod2Det3Color(Color.Red);
-                }
             }
 
             if (abc.Length == 3)
@@ -1360,19 +1099,11 @@ namespace APL.Forms
                 sc.labelMod2Det3Color(Color.Black);
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelMod1Det3Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelMod2Det3Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelMod3Det3Color(Color.Red);
-                }
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "ab")
                 {
@@ -1400,14 +1131,9 @@ namespace APL.Forms
             if (abc.Length == 2)
             {
                 if (MaxNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelMod1Det4Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelMod2Det4Color(Color.Red);
-                }
             }
 
             if (abc.Length == 3)
@@ -1416,19 +1142,11 @@ namespace APL.Forms
                 sc.labelMod2Det4Color(Color.Black);
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelMod1Det4Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelMod2Det4Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelMod3Det4Color(Color.Red);
-                }
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "ab")
                 {
@@ -1456,14 +1174,9 @@ namespace APL.Forms
             if (abc.Length == 2)
             {
                 if (MaxNumber(abc[0], abc[1]) == "a")
-                {
                     sc.labelMod1Det5Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1]) == "b")
-                {
                     sc.labelMod2Det5Color(Color.Red);
-                }
             }
 
             if (abc.Length == 3)
@@ -1472,19 +1185,11 @@ namespace APL.Forms
                 sc.labelMod2Det5Color(Color.Black);
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "a")
-                {
                     sc.labelMod1Det5Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "b")
-                {
                     sc.labelMod2Det5Color(Color.Red);
-                }
-
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "c")
-                {
                     sc.labelMod3Det5Color(Color.Red);
-                }
 
                 if (MaxNumber(abc[0], abc[1], abc[2]) == "ab")
                 {
@@ -1507,6 +1212,7 @@ namespace APL.Forms
 
 
         }
-       
+        #endregion
+
     }
 }

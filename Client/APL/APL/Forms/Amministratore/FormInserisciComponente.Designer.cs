@@ -103,6 +103,7 @@ namespace APL.Forms.Amministratore
             this.textBoxPrezzo.ReadOnly = true;
             this.textBoxPrezzo.Size = new System.Drawing.Size(316, 27);
             this.textBoxPrezzo.TabIndex = 9;
+            this.textBoxPrezzo.TextChanged += new System.EventHandler(this.textBoxPrezzo_TextChanged);
             // 
             // textBoxCapienza
             // 
@@ -111,6 +112,7 @@ namespace APL.Forms.Amministratore
             this.textBoxCapienza.ReadOnly = true;
             this.textBoxCapienza.Size = new System.Drawing.Size(316, 27);
             this.textBoxCapienza.TabIndex = 10;
+            this.textBoxCapienza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCapienza_KeyPress);
             // 
             // comboBox1
             // 

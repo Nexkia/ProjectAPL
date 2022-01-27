@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class SchedaMadre : Details
+    public class SchedaMadre : IDetails
     {
 
         [JsonProperty("modello_schedaMadre")]
@@ -21,16 +21,9 @@ namespace APL.Data.Detail
         [JsonProperty("chipset")]
         public string Chipset { get; init; }
 
-
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (CpuSocket == null)
-                return Array.Empty<string>();
-            if (Ram == null)
-                return Array.Empty<string>();
-            if (Chipset == null)
-                return Array.Empty<string>();
-            string[] detail = new string[3] {
+            string[] detail = new string[] {
                 CpuSocket,
                 Ram,
                 Chipset,

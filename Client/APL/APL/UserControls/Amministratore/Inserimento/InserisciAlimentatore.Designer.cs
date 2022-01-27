@@ -68,13 +68,18 @@ namespace APL.UserControls.Amministratore.Inserimento
             this.textBoxWatt.Name = "textBoxWatt";
             this.textBoxWatt.Size = new System.Drawing.Size(348, 27);
             this.textBoxWatt.TabIndex = 8;
+            this.textBoxWatt.TextChanged += new System.EventHandler(this.textBoxWatt_TextChanged);
+            this.textBoxWatt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWatt_KeyPress);
             // 
             // textBoxValutazione
             // 
             this.textBoxValutazione.Location = new System.Drawing.Point(107, 77);
+            this.textBoxValutazione.MaxLength = 2;
             this.textBoxValutazione.Name = "textBoxValutazione";
             this.textBoxValutazione.Size = new System.Drawing.Size(348, 27);
             this.textBoxValutazione.TabIndex = 7;
+            this.textBoxValutazione.TextChanged += new System.EventHandler(this.textBoxValutazione_TextChanged);
+            this.textBoxValutazione.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWatt_KeyPress);
             // 
             // labelWatt
             // 

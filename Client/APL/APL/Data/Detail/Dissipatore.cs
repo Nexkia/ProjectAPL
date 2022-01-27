@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class Dissipatore:Details
+    public class Dissipatore:IDetails
     {
 
         [JsonProperty("modello_dissipatore")]
@@ -17,11 +17,8 @@ namespace APL.Data.Detail
         [JsonProperty("cpusocket")]
         public string[] CpuSocket { get; init; }
 
-
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            if (CpuSocket == null)
-                return Array.Empty<string>();
             return CpuSocket;
         }
     }

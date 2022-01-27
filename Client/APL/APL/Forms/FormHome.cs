@@ -3,25 +3,13 @@ using APL.Data;
 using APL.Properties;
 using APL.UserControls;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using System.Diagnostics;
 using ListViewItem = System.Windows.Forms.ListViewItem;
-
-using MessageBox = System.Windows.Forms.MessageBox;
 using APL.Cache;
 
 namespace APL.Forms
@@ -29,80 +17,97 @@ namespace APL.Forms
     public partial class FormHome : Form
     {
 
-        Protocol pt = new Protocol();
-        FormLogin_Register parent;
-        PcPreassemblato[] ricevuto;
-        int dimRicevuto;
-        FormCarrello carrelloForm;
-        FormPleaseWait pleaseWait;
+        private Protocol pt;
+        private FormLogin_Register parent;
+        
+        private FormCarrello carrelloForm;
+        private FormPleaseWait pleaseWait;
+        private FormCatalogo catalogoForm;
+        private FormCheckOut checkoutForm;
         public FormHome(FormLogin_Register f_start)
         {
             InitializeComponent();
             parent = f_start;
             comboBox1.Text = "Build Guidata";
-            carrelloForm = new FormCarrello();
-
-            pleaseWait = new FormPleaseWait();
-            
+            pt = new Protocol();
+            checkoutForm = new FormCheckOut(this);
+            carrelloForm = new FormCarrello(checkoutForm);
+            catalogoForm = new FormCatalogo();
+            pleaseWait = new FormPleaseWait();  
         }
-
-        private  void FormHome_Load(object sender, EventArgs e)
-        {
-            // Richiede due messaggi 
-            pt.SetProtocolID("home"); pt.Data = String.Empty;
-            SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
-            string responseData = String.Empty;
-            responseData = SocketTCP.Receive();
-            SocketTCP.GetMutex().ReleaseMutex();
-            int dim = 3;
-            PcPreassemblato[] a = new PcPreassemblato[dim];
-            a = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
-            populateItems(a, dim);
-            ricevuto = a;
-            dimRicevuto = dim;
-        }
-
 
         protected override void OnClosed(EventArgs e)
         {
             parent.Visible = true;
             carrelloForm.EnableCloseEvent();
+            catalogoForm.EnableCloseEvent();
+            checkoutForm.EnableCloseEvent();
             carrelloForm.Close();
+            catalogoForm.Close();
+            checkoutForm.Close();
             base.OnClosed(e);
         }
 
 
+        #region toolStripMenu---------------------------------------------------------
+        private void modificaProfiloToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormModificaProfilo mdp = new FormModificaProfilo(pt);
+            mdp.Show();
+        }
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            parent.Visible = true;
+            this.Close();
+        }
+        private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
+            acquistiPassati.Show();
+        }
+        #endregion
 
-
-
+        
+        #region PcPreassemblati-------------------------------------------------------
+        private void FormHome_Load(object sender, EventArgs e){recuperaPreassemblati();}
         private void Home(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel2.Controls.Clear();
-
             listView.Items.Clear();
             listView.Visible=false ;
-
             this.restringiForm2();
-            populateItems(ricevuto, dimRicevuto);
 
+            recuperaPreassemblati();
         }
-
-       
-
-        private void populateItems(PcPreassemblato[] pre, int index)
+        private void recuperaPreassemblati()
         {
-            //  Console.WriteLine(pre.Stampa());
+            pt.SetProtocolID("home"); pt.Data = String.Empty;
+            PcPreassemblato[]? preAssembalti;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            string response = SocketTCP.Receive();
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            try
+            {
+                preAssembalti = JsonConvert.DeserializeObject<PcPreassemblato[]>(response);
+                if (preAssembalti!=null)
+                    populateItemsPcPreassemblato(preAssembalti, 3);
+            }
+            catch (JsonException ex) {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        private void populateItemsPcPreassemblato(PcPreassemblato[] pre, int index)
+        {
             ListItem[] listItems = new ListItem[index];
-
             string[] vet = { "cpu", "schedaVideo", "memoria", "ram" };
 
-
-
-            for (int i = 0; i < listItems.Length; i++) {
-
-               Debug.Write("pre:" +pre[i]);
+            for (int i = 0; i < listItems.Length; i++)
+            {
+                Debug.Write("pre:" + pre[i]);
                 listItems[i] = new ListItem(flowLayoutPanel2, this, flowLayoutPanel1, carrelloForm.getListViewC());
                 listItems[i].pre = pre[i];
                 listItems[i].Icon = Resources.preassemblato;
@@ -119,70 +124,56 @@ namespace APL.Forms
                     {
                         message += pre[i].Componenti[j].Categoria + ": " + pre[i].Componenti[j].Marca + " " + pre[i].Componenti[j].Modello;
 
-                        if (pre[i].Componenti[j].Capienza > 0) {
-                            message += " " + pre[i].Componenti[j].Capienza + " GB";
-                        }
-
+                        if (pre[i].Componenti[j].Capienza > 0)
+                         message += " " + pre[i].Componenti[j].Capienza + " GB";
+                        
                         message += "\n";
                     }
-
                 }
                 listItems[i].Message = message;
 
                 //aggiunge al flow label
-                if (flowLayoutPanel1.Controls.Count < 0) {
-
-                    flowLayoutPanel1.Controls.Clear();
-                }
+                if (flowLayoutPanel1.Controls.Count < 0)
+                    flowLayoutPanel1.Controls.Clear(); 
                 else
-
-                    flowLayoutPanel1.Controls.Add(listItems[i]);
-
-
+                    flowLayoutPanel1.Controls.Add(listItems[i]); 
             }
-
-            
         }
-
-      
-
-        private void buttonCarrello_Click(object sender, EventArgs e){carrelloForm.Show();}
+        #endregion
 
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        #region MyBuild--------------------------------------------------------------
+        private void buttonMyBuild_Click(object sender, EventArgs e)
         {
-            FormModificaProfilo mdp = new FormModificaProfilo(pt);
-            mdp.Show();
+            //pulisco le tendine
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
+            listView.Items.Clear();
+            listView.Visible = false;
+            this.restringiForm2();
+
+            if (comboBox1.Text == "Build Guidata")
+            {
+                populateItemsBuildGuidata();
+            }
+            else
+            {
+                
+                populateItemsBuilSolo();
+            }
         }
-
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void populateItemsBuildGuidata()
         {
-            parent.Visible = true;
-            this.Close();
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-
-        private void populateItemsBuildG()
-        {
-            //  Console.WriteLine(pre.Stampa());
             Profiles[] profiles = new Profiles[5];
 
             for (int i = 0; i < profiles.Length; i++)
-
-            {//passo il flowLayoutPanel1 per poter chiamare la Clear() all'interno del Profiles
-                profiles[i] = new Profiles(flowLayoutPanel1,listView, carrelloForm.getListViewC());
+            {
+                profiles[i] = new Profiles(flowLayoutPanel1,listView,carrelloForm.getListViewC());
 
                 switch (i)
                 {
                     case 0:
-
-
                         profiles[i].Title = "Basic";
                         profiles[i].Price = "entro i 560€";
                         profiles[i].Message = "\n" + "► Socket AM4 " + "\n" +
@@ -194,7 +185,6 @@ namespace APL.Forms
                         break;
 
                     case 1:
-
                         profiles[i].Title = "Advanced";
                         profiles[i].Price = "entro i 1200€";
                         profiles[i].Message = "\n" + "► Socket AM4" + "\n" +
@@ -206,7 +196,6 @@ namespace APL.Forms
                         break;
 
                     case 2:
-
                         profiles[i].Title = "Gamer";
                         profiles[i].Price = "entro i 1600€";
                         profiles[i].Message = "\n" + "► Processore Intel" + "\n" +
@@ -238,118 +227,61 @@ namespace APL.Forms
                                              "► Consumi Alti,massimo 1250W " + "\n" +
                                              "► Consigliato per lavori di modellazione 3d";
                         break;
-
                 }
-
-
-
 
                 //aggiunge al flow label
                 if (flowLayoutPanel1.Controls.Count < 0)
-                {
-
                     flowLayoutPanel1.Controls.Clear();
-                }
                 else
                     flowLayoutPanel1.Controls.Add(profiles[i]);
-
-
             }
         }
 
-        #region Cache
-        private void aggiungiListaInCache(List<Componente> lista)
-        {
-            CachingProviderBase.Instance.AddItem(lista[0].Categoria+"BuildSolo", lista);
-            Debug.WriteLine("lista "+lista[0].Categoria+" inserita in cache: " + DateTime.Now + " ///////////////");
-        }
-
-        private bool recuperaListaDallaCache()
-        {
-            List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
-            List<Componente> cpuMessage = CachingProviderBase.Instance.GetItem("cpuBuildSolo");
-            List<Componente> ramMessage = CachingProviderBase.Instance.GetItem("ramBuildSolo");
-            List<Componente> schedaVideoMessage = CachingProviderBase.Instance.GetItem("schedaVideoBuildSolo");
-            List<Componente> alimentatoreMessage = CachingProviderBase.Instance.GetItem("alimentatoreBuildSolo");
-            List<Componente> casepcMessage = CachingProviderBase.Instance.GetItem("casepcBuildSolo");
-            List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
-            List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
-
-            if (schedaMadreMessage == null || cpuMessage==null || ramMessage==null ||
-                schedaVideoMessage==null || alimentatoreMessage==null || casepcMessage==null ||
-                memoriaMessage==null || dissipatoreMessage==null) 
-            { return false; }
-
-
-            List<List<Componente>> lista = new List<List<Componente>>();
-            lista.Add(schedaMadreMessage); lista.Add(cpuMessage); lista.Add(ramMessage);
-            lista.Add(schedaVideoMessage); lista.Add(alimentatoreMessage); lista.Add(casepcMessage);
-            lista.Add(memoriaMessage); lista.Add(dissipatoreMessage);
-
-            stampaComponentsSolo(lista);
-            return true;
-        }
-        #endregion
         private void populateItemsBuilSolo()
         {
-            
-            
+            pleaseWait.Visible = true;
             if (recuperaListaDallaCache() == false)
-            {
-                
-                getItemsBuildSolo();
-                
-            }
+                recuperaItemsBuildSoloDalServer();
             else
-            {
-                
                 Debug.WriteLine("lista di liste componenti recuperate dalla cache///////////////////////");
-            }
-            
         }
-
-        private void getItemsBuildSolo()
+        private void recuperaItemsBuildSoloDalServer()
         {
             pt.SetProtocolID("buildSolo");
-
-            Dictionary<string, int> order = new Dictionary<string, int>{
-                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
-                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
-            };
-            SocketTCP.GetMutex().WaitOne();
+            List<List<Componente>> myList = new();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            List<List<Componente>> myList = new List<List<Componente>>();
             for (int i = 0; i < 8; i++)
             {
-                string nElements = SocketTCP.Receive();
-                int n = int.Parse(nElements);
-                string response = String.Empty;
-                response = SocketTCP.Receive();
-                Componente[] pezzo = new Componente[n];
-                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                List<Componente> singleComponent = pezzo.ToList();
-                myList.Add(singleComponent);
-
-                aggiungiListaInCache(singleComponent);
+                string response = SocketTCP.Receive();
+                try
+                {
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null) {
+                        List<Componente> singleComponent = elem.ToList();
+                        myList.Add(singleComponent);
+                        aggiungiListaInCache(singleComponent);
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
-            SocketTCP.GetMutex().ReleaseMutex();
-            Debug.WriteLine(myList.Count());
-
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            Debug.WriteLine(myList.Count);
             stampaComponentsSolo(myList);
         }
-
         private void stampaComponentsSolo(List<List<Componente>> myList)
         {
             ComponentsSolo[] componentsSolo;
-            //---------------------------------------------------------------
             int index = 0;
-            
             componentsSolo = new ComponentsSolo[myList.Count];
 
             foreach (List<Componente> subList in myList)
             {
                 componentsSolo[index] = new ComponentsSolo(carrelloForm);
-
                 int i = 0;
 
                 componentsSolo[index].impostaCategoria(subList[0].Categoria);
@@ -369,92 +301,91 @@ namespace APL.Forms
 
                 //aggiunge al flow label
                 if (flowLayoutPanel1.Controls.Count < 0)
-                {
-
                     flowLayoutPanel1.Controls.Clear();
-                }
                 else
-                {
                     flowLayoutPanel1.Controls.Add(componentsSolo[index - 1]);
-                    
-                }
-                    
 
             }
         }
-        private void buttonMyBuild_Click(object sender, EventArgs e)
+        #endregion
+
+
+        #region Cache---------------------------------------------------------------
+        private void aggiungiListaInCache(List<Componente> lista)
         {
-            //pulisco le tendine
-
-            flowLayoutPanel1.Controls.Clear();
-            flowLayoutPanel2.Controls.Clear();
-
-            listView.Items.Clear();
-            listView.Visible = false;
-
-            this.restringiForm2();
-
-            if (comboBox1.Text == "Build Guidata") {
-                Debug.WriteLine("valore combobox: " + comboBox1.Text);
-                populateItemsBuildG();
-
-            }
-            else
-            {
-                pleaseWait.Visible = true;
-                populateItemsBuilSolo();
-                Debug.WriteLine("valore combobox: " + comboBox1.Text);
-            }
+            CachingProviderBase.Instance.AddItem(lista[0].Categoria + "BuildSolo", lista);
+            Debug.WriteLine("lista " + lista[0].Categoria + " inserita in cache: " + DateTime.Now + " ///////////////");
         }
-
-       
-
-
-        private void button3_Click(object sender, EventArgs e)
+        private bool recuperaListaDallaCache()
         {
-            FormCatalogo fcg = new FormCatalogo();
-            fcg.Show();
+            List<Componente> schedaMadreMessage = CachingProviderBase.Instance.GetItem("schedaMadreBuildSolo");
+            List<Componente> cpuMessage = CachingProviderBase.Instance.GetItem("cpuBuildSolo");
+            List<Componente> ramMessage = CachingProviderBase.Instance.GetItem("ramBuildSolo");
+            List<Componente> schedaVideoMessage = CachingProviderBase.Instance.GetItem("schedaVideoBuildSolo");
+            List<Componente> alimentatoreMessage = CachingProviderBase.Instance.GetItem("alimentatoreBuildSolo");
+            List<Componente> casepcMessage = CachingProviderBase.Instance.GetItem("casepcBuildSolo");
+            List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
+            List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
+
+            if (schedaMadreMessage == null || cpuMessage == null || ramMessage == null ||
+                schedaVideoMessage == null || alimentatoreMessage == null || casepcMessage == null ||
+                memoriaMessage == null || dissipatoreMessage == null)
+            { return false; }
+
+            List<List<Componente>> lista = new List<List<Componente>>();
+            lista.Add(schedaMadreMessage); lista.Add(cpuMessage); lista.Add(ramMessage);
+            lista.Add(schedaVideoMessage); lista.Add(alimentatoreMessage); lista.Add(casepcMessage);
+            lista.Add(memoriaMessage); lista.Add(dissipatoreMessage);
+
+            stampaComponentsSolo(lista);
+            return true;
         }
+        #endregion
+
+
+        #region Altro----------------------------------------------------------------
+        private void buttonCarrello_Click(object sender, EventArgs e) { carrelloForm.Show(); }
+        private void Catalogo_Click(object sender, EventArgs e){catalogoForm.Show();}
 
         public void allargaForm2()
         { if (this.ClientSize.Width != 1293 && this.ClientSize.Height != 778)
             {
-                //this.ClientSize = new System.Drawing.Size(933, 632);
                 this.ClientSize = new System.Drawing.Size(1238, 972);
                 flowLayoutPanel2.Visible = true;
             }
         }
-
         public void restringiForm2()
         { if (this.ClientSize.Width != 821 && this.ClientSize.Height != 778)
             {
-                //this.ClientSize = new System.Drawing.Size(616, 632);
-                this.ClientSize = new System.Drawing.Size(819, 972);
+                this.ClientSize = new System.Drawing.Size(700, 972);
                 flowLayoutPanel2.Visible = false;
-                
             }
         }
-
-
-
-
-        private void cronologiaOrdiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        
-            FormAcquistiPassati acquistiPassati = new FormAcquistiPassati();
-
-            acquistiPassati.Show();
-        }
-        
-
         private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
-        {
-            if (flowLayoutPanel1.Controls.Count>=8)
+        {   //quando BuildSolo finisce di caricare i componenti
+            //pleaseWait diventa invisibile
+            if (flowLayoutPanel1.Controls.Count >= 8)
             {
                 pleaseWait.Visible = false;
             }
         }
 
-       
+        public void ricaricaBuildSolo()
+        {
+            if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
+            {
+                flowLayoutPanel1.Controls.Clear();
+                populateItemsBuilSolo();
+            }
+                
+        }
+        public void svuotaCarrello()
+        {//usato quando all'interno del carrelo sono presenti componenti eliminati dal database
+            carrelloForm.svuotaCarrello();
+            carrelloForm.Visible = false;
+        }
+        #endregion
+
+
     }
 }

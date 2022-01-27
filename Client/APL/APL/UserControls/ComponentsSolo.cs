@@ -4,14 +4,7 @@ using APL.Data.Detail;
 using APL.Forms;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 
@@ -20,18 +13,15 @@ namespace APL.UserControls
     
     public partial class ComponentsSolo : UserControl
     {
-        FormCarrello vecchioCarrello;
-        Protocol pt = new Protocol();
+        private FormCarrello vecchioCarrello;
+        private Protocol pt;
         public ComponentsSolo(FormCarrello formCarrello)
         {
             InitializeComponent();
             vecchioCarrello = formCarrello;
-            
-
-            
-
-
+            pt = new Protocol();
         }
+
         private string categoria;
         private string modello;
 
@@ -43,21 +33,13 @@ namespace APL.UserControls
         {
             if (listViewSolo.SelectedItems.Count > 0 )
             {
-
-
                 ListViewItem item = listViewSolo.SelectedItems[0];
-
 
                 modello = item.SubItems[0].Text.ToString();
                 string marca = item.SubItems[1].Text.ToString();
-
                 string prezzo = item.SubItems[2].Text.ToString();
-
                 string capienza = item.SubItems[3].Text.ToString();
-                 categoria= item.SubItems[4].Text.ToString();
-
-                
-
+                categoria= item.SubItems[4].Text.ToString();
 
                 ListViewItem lvitem = new ListViewItem("" + modello + "");
                 lvitem.SubItems.Add("" + marca + "");
@@ -67,56 +49,44 @@ namespace APL.UserControls
                 lvitem.SubItems.Add("" + categoria + "");
                 lvitem.SubItems.Add("Build Solo");
 
-
                 bool componentePresente = false;
                 int i ;
 
                 foreach (ListViewItem elem in vecchioCarrello.getListViewC().Items)
                 {
                     i = 0;
-                    if (elem.Text == modello) { componentePresente = true; }
+
+                    if (elem.Text == modello)
+                        componentePresente = true; 
 
                     foreach (ListViewItem.ListViewSubItem subItem in elem.SubItems)
                     {
-
                         //evitiamo di mettere due componenti con la stessa categoria (associati a build solo)
-                        if (subItem.Text == categoria) { i++; }
+                        if (subItem.Text == categoria) 
+                            i++; 
 
-                        if(subItem.Text =="Build Solo") { i++; }
+                        if(subItem.Text =="Build Solo") 
+                            i++; 
 
                     }
                     
-                    if (i == 2) { componentePresente = true; }
+                    if (i == 2)
+                        componentePresente = true;
 
                 }
 
-                
-                
-
-                
                 if (componentePresente == false)
                 {
                     vecchioCarrello.getListViewC().Items.Add(lvitem);
-                    if ((categoria == "cpu") || (categoria == "schedaMadre") 
-                        || (categoria=="dissipatore")|| (categoria=="ram"))
-                    {
+
+                    if ((categoria == "cpu") || (categoria == "schedaMadre")|| (categoria=="dissipatore")|| (categoria=="ram"))
                         recuperaDetailCpuSchedaMadreRamDissipatore();
-                        
-                    }
-                    
                 }
                 else
                 {
                     MessageBox.Show("Modello o Categoria componente già presente","Errore",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-               
-                
-                
-                
-                
-
-
             }
             else
             {
@@ -125,75 +95,72 @@ namespace APL.UserControls
             }
         }
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
+        private void recuperaDetailCpuSchedaMadreRamDissipatore()
         {
-            Details MyDetails;
             pt.Data = modello; pt.SetProtocolID("compatibilita");
- 
-            SocketTCP.GetMutex().WaitOne();
-                SocketTCP.send(pt);
-                string okmsg =  SocketTCP.receive();
-                SocketTCP.sendSingleMsg(categoria+"\n");
+            ConstructorDetail factoryDetail = new();
+            IDetails? componenteDetail = factoryDetail.GetDetails(categoria);
+            Type categ = componenteDetail.GetType();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            SocketTCP.Send(categoria + "\n");
+            string detailMsg = SocketTCP.Receive();
 
-                ConstructorDetail factory = new ConstructorDetail();
-
-                SocketTCP.sendSingleMsg("ok");
-                string detailMsg = SocketTCP.receive();
-                Details componenteF = factory.GetDetails(categoria);
-                Type categ = componenteF.GetType();
-                MyDetails = (Details)JsonConvert.DeserializeObject(detailMsg, categ);
-            SocketTCP.GetMutex().ReleaseMutex();
-
-            string[] vet;
-            ListViewItem lvitem = new ListViewItem("" + categoria + "");
-
-            switch (categoria)
+            try
             {
-                case "cpu":
-                     vet = MyDetails.getDetail();
-                    string cpuSocket = vet[1];
-                    lvitem.SubItems.Add("");
-                    lvitem.SubItems.Add("" + cpuSocket + "");
-                    vecchioCarrello.setCpuDetail(cpuSocket);
-                    
-                    break;
-                case "schedaMadre":
-                    vet = MyDetails.getDetail();
-                    string cpuSocketSchedaMadre = vet[0];
-                    string ramSchedaMadre = vet[1];
-                    lvitem.SubItems.Add(""+ ramSchedaMadre + "");
-                    lvitem.SubItems.Add("" + cpuSocketSchedaMadre + "");
-                    vecchioCarrello.setSchedaMadreDetail(cpuSocketSchedaMadre, ramSchedaMadre);
-
-                    break;
-                case "dissipatore":
-                    string[] cpuSocketDissipatore = MyDetails.getDetail();
-                    string msg_dissipatore = "";
-                    foreach (string tipoSocket in cpuSocketDissipatore)
-                    {
-                        msg_dissipatore += tipoSocket + " ";
-                    }
-                    
-                    lvitem.SubItems.Add("");
-                    lvitem.SubItems.Add("" + msg_dissipatore+"");
-                    vecchioCarrello.setDissipatoreDetail(cpuSocketDissipatore);
-
-                        break;
-                case "ram":
-                    vet = MyDetails.getDetail();
-                    string standardRam = vet[1];
-                    lvitem.SubItems.Add(""+ standardRam + "");
-                    lvitem.SubItems.Add("");
-                    vecchioCarrello.setRamDetail(standardRam);
-
-                    break;
+                componenteDetail = JsonConvert.DeserializeObject(detailMsg, categ) as IDetails;
             }
-
+            catch (JsonException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            string[] vet;
+            ListViewItem lvitem = new("" + categoria + "");
+            if (componenteDetail != null)
+            {
+                switch (categoria)
+                {
+                    case "cpu":
+                        vet = componenteDetail.GetDetail();
+                        string cpuSocket = vet[1];
+                        lvitem.SubItems.Add("");
+                        lvitem.SubItems.Add("" + cpuSocket + "");
+                        vecchioCarrello.setCpuDetail(cpuSocket);
+                        break;
+                    case "schedaMadre":
+                        vet = componenteDetail.GetDetail();
+                        string cpuSocketSchedaMadre = vet[0];
+                        string ramSchedaMadre = vet[1];
+                        lvitem.SubItems.Add("" + ramSchedaMadre + "");
+                        lvitem.SubItems.Add("" + cpuSocketSchedaMadre + "");
+                        vecchioCarrello.setSchedaMadreDetail(cpuSocketSchedaMadre, ramSchedaMadre);
+                        break;
+                    case "dissipatore":
+                        string[] cpuSocketDissipatore = componenteDetail.GetDetail();
+                        string msg_dissipatore = "";
+                        foreach (string tipoSocket in cpuSocketDissipatore)
+                        {
+                            msg_dissipatore += tipoSocket + " ";
+                        }
+                        lvitem.SubItems.Add("");
+                        lvitem.SubItems.Add("" + msg_dissipatore + "");
+                        vecchioCarrello.setDissipatoreDetail(cpuSocketDissipatore);
+                        break;
+                    case "ram":
+                        vet = componenteDetail.GetDetail();
+                        string standardRam = vet[1];
+                        lvitem.SubItems.Add("" + standardRam + "");
+                        lvitem.SubItems.Add("");
+                        vecchioCarrello.setRamDetail(standardRam);
+                        break;
+                }
+            }
             vecchioCarrello.getListViewD().Items.Add(lvitem);
             //ridimensiona la 3° colonna in base agli elementi al suo interno
             vecchioCarrello.getListViewD().Columns[2].Width = -2;
-
-
         }
     }
 }

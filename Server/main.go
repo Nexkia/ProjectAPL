@@ -20,7 +20,6 @@ func main() {
 	}
 
 	//--------------CONNESSIONE DATABASE-----------------------------
-	// Create a new client and connect to the server
 	ctx := context.Background()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
@@ -35,7 +34,6 @@ func main() {
 	go invio(mongodb)
 	//------------------------------------------------------------------
 	for {
-		// accept connection on port
 		conn, err := ln.Accept()
 		if err != nil {
 			log.Println("Error accepting request:", err)

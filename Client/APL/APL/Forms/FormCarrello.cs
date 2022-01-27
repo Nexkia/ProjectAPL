@@ -1,33 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ListView = System.Windows.Forms.ListView;
 using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 using System.Diagnostics;
 using APL.Connections;
-using APL.Data.Detail;
-using Newtonsoft.Json;
-using APL.Data;
+
 
 namespace APL.Forms
 {
     public partial class FormCarrello : Form
     {
-        bool disableCloseEvent;
-        Protocol pt;
-        public FormCarrello()
+        private bool disableCloseEvent;
+        private Protocol pt;
+        private FormCheckOut checkoutForm;
+        public FormCarrello(FormCheckOut checkoutForm)
         {
             InitializeComponent();
 
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             pt = new Protocol();
+            this.checkoutForm=checkoutForm;
         }
 
 
@@ -35,23 +28,29 @@ namespace APL.Forms
         private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
+        private bool RamSchedaMadre = false; 
+        private bool CpuSchedaMadre = false;
+        private bool CpuDissipatore = false;
 
+        #region setCpuSchedaMadreRamDissipatore------------------------------------------------
         public void setCpuDetail(string value)
         {
-            cpuSocket = value; ControllaCompatibilita();
+            cpuSocket = value;
         }
         public void setSchedaMadreDetail(string cpu, string ram)
         {
-            cpuSocketSchedaMadre = cpu; ramSchedaMadre = ram; ControllaCompatibilita();
+            cpuSocketSchedaMadre = cpu; ramSchedaMadre = ram;
         }
         public void setRamDetail(string value)
         {
-            standardRam = value; ControllaCompatibilita();
+            standardRam = value;
         }
         public void setDissipatoreDetail(string[] value)
         {
-            cpuSocketDissipatore = value; ControllaCompatibilita();
+            cpuSocketDissipatore = value;
         }
+        #endregion
+
 
         public ListView getListViewC() { return listViewCarrello; }
         public ListView getListViewD() { return listViewCarrelloDetail; }
@@ -90,27 +89,21 @@ namespace APL.Forms
                         case "cpu":
                             cpuSocket = "";
                             eliminaElementoListViewDetail("cpu");
-                            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
-                            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
                             break;
 
                         case "schedaMadre":
                             cpuSocketSchedaMadre = ""; ramSchedaMadre = "";
                             eliminaElementoListViewDetail("schedaMadre");
-                            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
-                            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
                             break;
 
                         case "dissipatore":
                             cpuSocketDissipatore = null;
                             eliminaElementoListViewDetail("dissipatore");
-                            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
                             break;
 
                         case "ram":
                             standardRam = "";
                             eliminaElementoListViewDetail("ram");
-                            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
                             break;
                     }
                 }
@@ -143,9 +136,14 @@ namespace APL.Forms
                 //caso in cui l'utente vuole prendere una Build Solo e una Build Guidata
                 if (contaComponentiBuild("Build Guidata") > 0 && contaComponentiBuild("Build Guidata") == 8 &&
                    contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
-                {
+                {   
+                    //verifichiamo che i componenti della buildsolo siano compatibili
+                    ControllaCompatibilita();
+                    if(RamSchedaMadre == true && CpuSchedaMadre ==true && CpuDissipatore==true)
+                        creaCheckOut();
+                    else
+                        MessageBox.Show("Componenti Build Solo non compatibili,","Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    creaCheckOut();
 
                     //caso in cui l'utente vuole prendere solo una Build Guidata
                 }
@@ -164,7 +162,16 @@ namespace APL.Forms
                 else if (contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
                 {
                     //la listView piene passata al CheckOut solo se non ci sono componenti di BuildGuidata
-                    if (contaComponentiBuild("Build Guidata") == 0) { creaCheckOut(); }
+                    if (contaComponentiBuild("Build Guidata") == 0) 
+                    {
+
+                        //verifichiamo che i componenti della buildsolo siano compatibili
+                        ControllaCompatibilita();
+                        if (RamSchedaMadre == true && CpuSchedaMadre == true && CpuDissipatore == true)
+                            creaCheckOut();
+                        else
+                            MessageBox.Show("Componenti Build Solo non compatibili,", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     else
                     {
                         MessageBox.Show("Bisogna finire di scegliere gli 8 componenti di Build Guidata," +
@@ -227,65 +234,54 @@ namespace APL.Forms
             }
         }
 
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e)
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+
+        public void svuotaCarrello()
         {
             listViewCarrello.Items.Clear();
             listViewCarrelloDetail.Items.Clear();
             cpuSocketDissipatore = null;
             cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
-            labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo):";
-            labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo):";
-            labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo):";
         }
-
         private void creaCheckOut()
         {
-            FormCheckOut checkout = new FormCheckOut();
-            checkout.Show();
+            
+            checkoutForm.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)
             {
-                checkout.getListView().Items.Add((ListViewItem)item.Clone());
+                checkoutForm.getListView().Items.Add((ListViewItem)item.Clone());
             }
 
-            checkout.calcolaTotale();
+            checkoutForm.calcolaTotale();
 
 
         }
 
         private void ControllaCompatibilita()
         {
+            RamSchedaMadre = false; CpuSchedaMadre = false;
+            CpuDissipatore = false;
             if (ramSchedaMadre != "" && standardRam != "")
             {
                 if (ramSchedaMadre == standardRam)
-                    labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Presente";
-                else
-                    labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre (Build Solo): Assente";
+                    RamSchedaMadre = true;
             }
 
             if (cpuSocketSchedaMadre != "" && cpuSocket != "")
             {
                 if (cpuSocketSchedaMadre == cpuSocket)
-                    labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Presente";
-                else
-                    labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre (Build Solo): Assente";
+                    CpuSchedaMadre = true;
             }
 
             if (cpuSocketDissipatore != null && cpuSocket != "")
             {
-                bool SocketCpuTrovata = false;
                 foreach (string tipoSocket in cpuSocketDissipatore)
                 {
                     if (tipoSocket == cpuSocket)
-                        SocketCpuTrovata = true;
+                        CpuDissipatore = true;
                 }
-
-                if (SocketCpuTrovata == true)
-                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Presente";
-                else
-                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore (Build Solo): Assente";
             }
-
         }
     }
 }

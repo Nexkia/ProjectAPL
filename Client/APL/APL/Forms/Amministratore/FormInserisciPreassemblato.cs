@@ -1,109 +1,136 @@
 ﻿using APL.Connections;
 using APL.Data;
-using APL.Data.Detail;
 using APL.UserControls.Amministratore;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APL.Forms.Amministratore
 {
     public partial class FormInserisciPreassemblato : Form
     {
-        Protocol pt = new Protocol();
-        bool disableCloseEvent;
-        FormAmministratore parent;
-        FormPleaseWait pleaseWait;
+        private Protocol pt;
+        private bool disableCloseEvent;
+        private FormAmministratore parent;
+        private FormPleaseWait pleaseWait;
         public FormInserisciPreassemblato(FormAmministratore parent)
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
             disableCloseEvent = true;
             this.parent = parent;
-
+            pt = new Protocol();
             pleaseWait = new FormPleaseWait();
             
         }
 
-        private Componente[] comp;
-        private string modelloCpu, modelloSchedaMadre, modelloRam, modelloDissipatore;
+        private string cpuSocket = "";
+        private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
+        private string standardRam = "";
+        private string[] cpuSocketDissipatore;
 
+        private bool RamSchedaMadre=false;
+        private bool CpuSchedaMadre=false;
+        private bool CpuDissipatore=false;
+
+        private Componente[] comp;
+
+        #region setCpuSchedaMadreRamDissiptore----------------------------------------------
+        public void setCpuDetail(string value)
+        {
+            cpuSocket = value; ControllaCompatibilita();
+        }
+        public void setSchedaMadreDetail(string cpu, string ram)
+        {
+            cpuSocketSchedaMadre = cpu; ramSchedaMadre = ram; ControllaCompatibilita();
+        }
+        public void setRamDetail(string value)
+        {
+            standardRam = value; ControllaCompatibilita();
+        }
+        public void setDissipatoreDetail(string[] value)
+        {
+            cpuSocketDissipatore = value; ControllaCompatibilita();
+        }
+        #endregion
+
+
+        public ListView getListViewP() { return listViewPreassemblato; }
+        public ListView getListViewD() { return listViewPreassemblatoDetail; }
+
+        #region Chiusura-------------------------------------------------------------------------
         public void EnableCloseEvent() { this.disableCloseEvent = false;  }
-        void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (disableCloseEvent == true)
             {
-
                 //impedisce alla finestra di chiudersi
                 e.Cancel = true;
 
                 //rende la finestra invisibile
                 this.Visible = false;
                 parent.Visible = true;
-
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
         }
+        #endregion
+
+
+        #region Caricamento dei Preassemblati------------------------------------------------------
         private void FormInserisciPreassemblato_Load(object sender, EventArgs e)
         {
-            
-
+            /*
+             Creo una lista di liste componenti, per sapere quanti elementi
+            sono presenti 
+            */
             pt.SetProtocolID("buildSolo");
-
-            Dictionary<string, int> order = new Dictionary<string, int>{
-                { "schedaMadre",0 },{ "cpu",1 },{"ram",2},{"schedaVideo",3},
-                {"alimentatore",4},{"casepc",5},{"memoria",6},{"dissipatore",7},
-            };
-            SocketTCP.GetMutex().WaitOne();
+            List<List<Componente>> myList = new();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            List<List<Componente>> myList = new List<List<Componente>>();
             
             for (int i = 0; i < 8; i++)
             {
-                string nElements =  SocketTCP.Receive();
-                int n = int.Parse(nElements);
-                string response = String.Empty;
-                response = SocketTCP.Receive();
-                Componente[] pezzo = new Componente[n];
-                pezzo = JsonConvert.DeserializeObject<Componente[]>(response);
-                List<Componente> singleComponent = pezzo.ToList();
-                pleaseWait.Show();
-                myList.Add(singleComponent);
-                
+                string response =  SocketTCP.Receive();
+                try
+                {
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null)
+                    {
+                        List<Componente> singleComponent = elem.ToList();
+                        pleaseWait.Show();
+                        myList.Add(singleComponent);
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
-            SocketTCP.GetMutex().ReleaseMutex();
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             Debug.WriteLine(myList.Count());
 
-            
             stampaComponentsPreassemblato(myList);
         }
-
         private void stampaComponentsPreassemblato(List<List<Componente>> myList)
         {
             ComponentsPreassemblato[] componentsPreassemblato;
-            //---------------------------------------------------------------
             int index = 0;
-
             componentsPreassemblato = new ComponentsPreassemblato[myList.Count];
 
+            //creo un componentsPreassemblato per ogni Lista (le liste sono in tutto 8 una per ogni categoria)
             foreach (List<Componente> subList in myList)
             {
-                componentsPreassemblato[index] = new ComponentsPreassemblato(listViewPreassemblato);
-
+                componentsPreassemblato[index] = new ComponentsPreassemblato(this);
                 int i = 0;
-
+               
                 componentsPreassemblato[index].impostaCategoria(subList[0].Categoria);
                 foreach (Componente item in subList)
                 {
+                    //inserisco una Lista dentro la listView dell'UserControl componentsPreassemblato
                     ListViewItem lvitem = new ListViewItem("" + item.Modello + "");
                     lvitem.SubItems.Add("" + item.Marca + "");
                     lvitem.SubItems.Add("" + item.Prezzo + "");
@@ -116,51 +143,120 @@ namespace APL.Forms.Amministratore
                 Debug.WriteLine("" + subList[0].Categoria + " numero: " + i);
                 index++;
 
-                //aggiunge al flow label
+                //aggiunge al flowLayoutPnel l'UserControl componentsPreassemblato
                 if (flowLayoutPanel1.Controls.Count < 0)
-                {
-
                     flowLayoutPanel1.Controls.Clear();
-                }
                 else
                     flowLayoutPanel1.Controls.Add(componentsPreassemblato[index - 1]);
-
             }
         }
+        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
+        {//mostra il form con la scritta "Loading"
+            if (flowLayoutPanel1.Controls.Count >= 8)
+                pleaseWait.Close();
+        }
+        #endregion
 
+
+        #region Conferma Preassemblato------------------------------------------------------------
+        private void Conferma_Click(object sender, EventArgs e)
+        {
+            if (contaComponentiPreassemblati() && textBoxNome.Text != string.Empty && textBoxPrezzo.Text != string.Empty)
+            {
+                PcPreassemblato pre = new()
+                {
+                    Nome = textBoxNome.Text,
+                    Prezzo = float.Parse(textBoxPrezzo.Text),
+                    Componenti = comp
+                };
+                string jsonPreassemblato = JsonConvert.SerializeObject(pre);
+                pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
+                /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+                SocketTCP.Wait();
+                SocketTCP.Send(pt.ToString());
+                SocketTCP.Release();
+                /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+                MessageBox.Show("Inserimento completato correttamente",
+                  "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private bool contaComponentiPreassemblati()
         {
-
             int i = 0;
             foreach (ListViewItem item in listViewPreassemblato.Items)
             {
-                //verifichiamo che ci siano 8 elementi (che saranno di categorie diverse)
+                //verifichiamo che ci siano 8 elementi (che devono essere di categorie diverse)
                 foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
                 {
-                    if (subItem.Text == "ram" || subItem.Text =="memoria" || subItem.Text == "cpu"||
+                    if (subItem.Text == "ram" || subItem.Text == "memoria" || subItem.Text == "cpu" ||
                         subItem.Text == "schedaVideo" || subItem.Text == "schedaMadre" || subItem.Text == "dissipatore" ||
-                        subItem.Text == "alimentatore" || subItem.Text == "casepc" ) { i++; }
+                        subItem.Text == "alimentatore" || subItem.Text == "casepc") { i++; }
                 }
 
             }
 
-            Debug.WriteLine("categoria i: "+ i);
-            if (i == 8)
+            Debug.WriteLine("categoria i: " + i);
+            if (i == 8 && textBoxNome.Text != string.Empty && textBoxPrezzo.Text != string.Empty)
             {
-                creaVettoreOrdinato();
-                Debug.WriteLine("Conferma carrello ok");
-                return true;
+                if (RamSchedaMadre == true && CpuSchedaMadre == true && CpuDissipatore == true)
+                {
+                    creaVettoreOrdinato();
+                    Debug.WriteLine("Conferma carrello ok");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("i componenti inseriti non sono compatibili",
+                  "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
             }
             else
             {
-                MessageBox.Show("Selezionare 8 componenti prima di premere Conferma", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                if (textBoxNome.Text == string.Empty || textBoxPrezzo.Text == string.Empty)
+                {
+                    MessageBox.Show("Selezionare 8 componenti prima di premere Conferma e riempire i campi 'Nome' e 'Prezzo'",
+                        "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare 8 componenti prima di premere Conferma", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+
             }
         }
-        
+        private void ControllaCompatibilita()
+        {
+            RamSchedaMadre = false; CpuSchedaMadre = false;
+            CpuDissipatore = false;
+            if (ramSchedaMadre != "" && standardRam != "")
+            {
+                if (ramSchedaMadre == standardRam)
+                    RamSchedaMadre = true;
+            }
+
+            if (cpuSocketSchedaMadre != "" && cpuSocket != "")
+            {
+                if (cpuSocketSchedaMadre == cpuSocket)
+                    CpuSchedaMadre = true;
+            }
+
+            if (cpuSocketDissipatore != null && cpuSocket != "")
+            {
+                foreach (string tipoSocket in cpuSocketDissipatore)
+                {
+                    if (tipoSocket == cpuSocket)
+                        CpuDissipatore = true;
+                }
+            }
+        }
         private void creaVettoreOrdinato()
         {
-            string modello,marca,prezzo,capienza,categoria;
+            string modello, marca, prezzo, capienza, categoria;
             comp = new Componente[8];
 
             Dictionary<string, int> order = new Dictionary<string, int>{
@@ -168,7 +264,7 @@ namespace APL.Forms.Amministratore
                 {"dissipatore",4},{"alimentatore",5},{"memoria",6},{"ram",7},
             };
 
-            //scorriamo la lista
+            //scorriamo la lista per ordinarla
             foreach (ListViewItem item in listViewPreassemblato.Items)
             {
                 modello = item.SubItems[0].Text.ToString();
@@ -176,164 +272,84 @@ namespace APL.Forms.Amministratore
                 prezzo = item.SubItems[2].Text.ToString();
                 capienza = item.SubItems[3].Text.ToString();
                 categoria = item.SubItems[4].Text.ToString();
-                if (capienza == ""){capienza = "0";}
+                if (capienza == "") { capienza = "0"; }
 
-                comp[order[categoria]] = new Componente(modello,marca,float.Parse(prezzo),int.Parse(capienza),categoria);
-
+                comp[order[categoria]] = new Componente()
+                {
+                    Modello = modello,
+                    Marca = marca,
+                    Prezzo = float.Parse(prezzo),
+                    Capienza = int.Parse(capienza),
+                    Categoria = categoria
+                };
             }
         }
-        private void Conferma_Click(object sender, EventArgs e)
-        {
-            if(contaComponentiPreassemblati() && textBoxNome.Text!=string.Empty && textBoxPrezzo.Text != string.Empty )
-            {
-                PcPreassemblato pre = new PcPreassemblato(textBoxNome.Text,float.Parse( textBoxPrezzo.Text),comp);
-                string jsonPreassemblato = JsonConvert.SerializeObject(pre);
-                pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
-                SocketTCP.GetMutex().WaitOne();
-                SocketTCP.Send(pt.ToString());
-                SocketTCP.GetMutex().ReleaseMutex();
-            }
-        }
+        #endregion
 
-        private void flowLayoutPanel1_ControlAdded(object sender, ControlEventArgs e)
-        {
-            if (flowLayoutPanel1.Controls.Count >= 8)
-            {
-                pleaseWait.Close();
-            }
-        }
 
+        #region Buttons--------------------------------------------------------------------------
         private void buttonSvuotaLista_Click(object sender, EventArgs e)
         {
             listViewPreassemblato.Items.Clear();
+            listViewPreassemblato.Items.Clear();
+            cpuSocketDissipatore = null;
+            cpuSocket = ""; cpuSocketSchedaMadre = ""; ramSchedaMadre = ""; standardRam = "";
         }
-
         private void buttonRimuoviElemento_Click(object sender, EventArgs e)
         {
-                if (listViewPreassemblato.SelectedItems.Count > 0)
-                {
-                    ListViewItem item = listViewPreassemblato.SelectedItems[0];
-                   
-
-                    //rimuoviamo l'elemento selezionato dalla listViewPreassemblato
-                    listViewPreassemblato.Items.Remove(item);
-
-                }
-                else
-                {
-                    MessageBox.Show("Nessun componente è stato selezionato",
-                              "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            
-        }
-
-        private void buttonControllaCompatibilita_Click(object sender, EventArgs e)
-        {
-            
-            if (listViewPreassemblato.Items.Count == 8)
+            if (listViewPreassemblato.SelectedItems.Count > 0)
             {
-                recuperaDetailCpuSchedaMadreRamDissipatore();
-                labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Assente";
-                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Assente";
-                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Assente";
+                ListViewItem item = listViewPreassemblato.SelectedItems[0];
+                //rimuoviamo l'elemento selezionato dalla listViewPreassemblato
+                listViewPreassemblato.Items.Remove(item);
+
+                //in base alla categoria del componente rimosso, togliamo le corrispettive informazioni nella listViewDetail
+                foreach (ListViewItem.ListViewSubItem SubItems in item.SubItems)
+                {
+                    switch (SubItems.Text)
+                    {
+                        case "cpu":
+                            cpuSocket = "";
+                            eliminaElementoListViewDetail("cpu");
+                            break;
+
+                        case "schedaMadre":
+                            cpuSocketSchedaMadre = ""; ramSchedaMadre = "";
+                            eliminaElementoListViewDetail("schedaMadre");
+                            break;
+
+                        case "dissipatore":
+                            cpuSocketDissipatore = null;
+                            eliminaElementoListViewDetail("dissipatore");
+                            break;
+
+                        case "ram":
+                            standardRam = "";
+                            eliminaElementoListViewDetail("ram");
+                            break;
+                    }
+                }
+
             }
             else
             {
-                MessageBox.Show("Selezionare 8 componenti prima di controllare la compatibilità", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nessun componente è stato selezionato",
+                          "Errore Rimuovi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
 
-        private string[] recuperaModelloCpuSchedaMadreRamDissipatore()
+        }
+        private void eliminaElementoListViewDetail(string categoria)
         {
-            string[] modelli=new string[4];
-            foreach (ListViewItem item in listViewPreassemblato.Items)
+            foreach (ListViewItem item in listViewPreassemblatoDetail.Items)
             {
-                switch (item.SubItems[4].Text.ToString())
+                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
                 {
-                    case "cpu":
-                        modelli[0] = item.SubItems[0].Text.ToString();
-                        break;
-                    case "schedaMadre":
-                        modelli[1] = item.SubItems[0].Text.ToString();
-                        break;
-                    case "ram":
-                        modelli[2] = item.SubItems[0].Text.ToString();
-                        break;
-                    case "dissipatore":
-                        modelli[3] = item.SubItems[0].Text.ToString();
-                        break;
+                    if (subItem.Text == categoria) 
+                        item.Remove(); 
                 }
             }
-
-            return modelli;
         }
+        #endregion
 
-        private async void recuperaDetailCpuSchedaMadreRamDissipatore()
-        {
-            string[] modelli=recuperaModelloCpuSchedaMadreRamDissipatore();
-            string[] categorie = { "cpu", "schedaMadre", "ram", "dissipatore" };
-
-            Details[] MyDetails = new Details[4];
-            pt.Data = "";pt.SetProtocolID("compatibilita");
-            for (int i = 0; i < modelli.Length; i++)
-            {
-                pt.Data += modelli[i] + "#";
-            }
-
-            string cat="";
-            for (int i = 0; i < categorie.Length; i++)
-            {
-                cat += categorie[i] + "#";
-            }
-
-            cat += "\n";
-            SocketTCP.GetMutex().WaitOne();
-            SocketTCP.Send(pt.ToString());
-            SocketTCP.Send(cat);
-
-            ConstructorDetail factory = new ConstructorDetail();
-           
-            for (int i = 0; i < 4; i++)
-            {
-                string detailMsg=SocketTCP.Receive();
-                Details componenteF = factory.GetDetails(categorie[i]);
-                Type categoria = componenteF.GetType();
-                MyDetails[i] = (Details)JsonConvert.DeserializeObject(detailMsg, categoria);
-                Debug.WriteLine(MyDetails[i].Modello);
-            }
-            SocketTCP.GetMutex().ReleaseMutex();
-
-            string[] vet = MyDetails[0].getDetail();
-            string cpuSocket = vet[1];
-
-            vet = MyDetails[1].getDetail();
-            string cpuSocketSchedaMadre = vet[0];
-            string ramSchedaMadre = vet[1];
-
-            vet = MyDetails[2].getDetail();
-            string standardRam = vet[1];
-
-            string[] cpuSocketDissipatore = MyDetails[3].getDetail();
-
-            foreach (string tipoSocket in cpuSocketDissipatore)
-            {
-                if(tipoSocket== cpuSocket)
-                {
-                    labelCpuDissipatore.Text = "Compatibilità Cpu-Dissipatore: Presente";
-                }
-            }
-
-            if(cpuSocketSchedaMadre== cpuSocket)
-            {
-                labelCpuSchedaMadre.Text = "Compatibilità Cpu-Scheda Madre: Presente";
-            }
-
-            if(standardRam== ramSchedaMadre)
-            {
-                labelRamSchedaMadre.Text = "Compatibilità Ram-Scheda Madre: Presente";
-            }
-            
-
-        }
     }
 }
