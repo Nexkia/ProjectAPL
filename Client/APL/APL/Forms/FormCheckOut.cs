@@ -37,6 +37,7 @@ namespace APL.Forms
 
         public ListView getListView() { return listViewCheckOut; }
 
+        #region Chiusura--------------------------------------------------------
         public void EnableCloseEvent() { this.disableCloseEvent = false; }
         void FormHome_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -56,6 +57,43 @@ namespace APL.Forms
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
         }
+        #endregion
+
+
+        #region riempi Checkout-------------------------------------------------------
+        private void FormCheckOut_Load(object sender, EventArgs e)
+        {
+            calcolaTotale();
+            InfoPayment? infoPayment;
+            pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
+            SocketTCP.Wait();
+            SocketTCP.Send(pt.ToString());
+            string infop =  SocketTCP.Receive();
+            SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+
+
+            if (!infop.Contains("notFound"))
+            {
+                try
+                {
+                    infoPayment = JsonConvert.DeserializeObject<InfoPayment>(infop);
+                    if (infoPayment != null)
+                    {
+                        textBoxIndirizzoFatturazione.Text = infoPayment.IndirizzoFatturazione;
+                        textBoxMese.Text = Convert.ToString(infoPayment.CreditCard.Month);
+                        textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
+                        textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
+                        textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
+                    } 
+                }
+                catch(JsonException ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+        }
         public void calcolaTotale()
         {
             string modello;
@@ -70,7 +108,7 @@ namespace APL.Forms
 
             listaPreassemblati=new List<string>();
             listaBuildGuidata=new List<string>();
-           listaBuildSolo=new List<string>();
+            listaBuildSolo=new List<string>();
 
             foreach (ListViewItem item in listViewCheckOut.Items)
             {
@@ -112,25 +150,17 @@ namespace APL.Forms
 
             //aggiungo le 3 liste ad una lista di liste
             if (listaPreassemblati.Count > 0)
-            {
                 CheckOut.Add(listaPreassemblati);
-            }
-            
-
             if (listaBuildGuidata.Count > 0)
-            {
                 CheckOut.Add(listaBuildGuidata);
-            }
-
             if (listaBuildSolo.Count > 0)
-            {
                 CheckOut.Add(listaBuildSolo);
-            }
-
         }
+        #endregion
 
 
-        private  void buttonConfermaCheckout_Click(object sender, EventArgs e)
+        #region Conferma CheckOut--------------------------------------------------------
+        private void buttonConfermaCheckout_Click(object sender, EventArgs e)
         {
             meseScadenza = textBoxMese.Text;
             annoScadenza = textBoxAnno.Text;
@@ -200,39 +230,6 @@ namespace APL.Forms
             }
         }
 
-        private  void FormCheckOut_Load(object sender, EventArgs e)
-        {
-            calcolaTotale();
-            InfoPayment? infoPayment;
-            pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
-            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
-            SocketTCP.Send(pt.ToString());
-            string infop =  SocketTCP.Receive();
-            SocketTCP.Release();
-            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
-
-            if (!infop.Contains("notFound"))
-            {
-                try
-                {
-                    infoPayment = JsonConvert.DeserializeObject<InfoPayment>(infop);
-                    if (infoPayment != null)
-                    {
-                        textBoxIndirizzoFatturazione.Text = infoPayment.IndirizzoFatturazione;
-                        textBoxMese.Text = Convert.ToString(infoPayment.CreditCard.Month);
-                        textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
-                        textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
-                        textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
-                    } 
-                }
-                catch(JsonException ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            }
-        }
-
         //Fa si che all'interno delle textBox si possano inserire solo numeri
         private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -253,23 +250,36 @@ namespace APL.Forms
             List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
             List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
 
-            if(schedaMadreMessage != null)
+            if (schedaMadreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("schedaMadreBuildSolo");
             if (cpuMessage != null)
                 CachingProviderBase.Instance.RemoveItems("cpuBuildSolo");
-            if(ramMessage!=null)
+            if (ramMessage != null)
                 CachingProviderBase.Instance.RemoveItems("ramBuildSolo");
             if (schedaVideoMessage != null)
                 CachingProviderBase.Instance.RemoveItems("schedaVideoBuildSolo");
-            if(alimentatoreMessage != null)
+            if (alimentatoreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("alimentatoreBuildSolo");
-            if(casepcMessage != null)
+            if (casepcMessage != null)
                 CachingProviderBase.Instance.RemoveItems("casepcBuildSolo");
             if (memoriaMessage != null)
                 CachingProviderBase.Instance.RemoveItems("memoriaBuildSolo");
-            if(dissipatoreMessage != null)
+            if (dissipatoreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("dissipatoreBuildSolo");
-           
+
         }
+        #endregion
+
+
+        private void textBoxNumeroCarta_KeyPress(object sender, KeyPressEventArgs e)
+        {  
+            //Fa si che all'interno delle textBox si possano inserire solo numeri
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        
     } 
 }
