@@ -25,9 +25,11 @@ namespace APL.Forms
         {
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
@@ -53,11 +55,12 @@ namespace APL.Forms
                         );
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string response = SocketTCP.Receive();
                     SocketTCP.Release();
-                    
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
@@ -87,18 +90,18 @@ namespace APL.Forms
             switch (result)
             {
                 case "Login effettuato correttamente":
-                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string UserJson = JsonSerializer.Serialize(new
                     {
                         Email = TextBoxLoginEmail.Text,
                         Password = TextBoxLoginPassword.Text
-                    }
-                    );
+                    });
                     pt.SetProtocolID("login");  pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string responseData = SocketTCP.Receive();
                     SocketTCP.Release();
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);

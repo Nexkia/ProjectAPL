@@ -56,23 +56,32 @@ namespace APL.UserControls
             Componente[,] showElements = new Componente[8, 3];
 
             pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
-
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < componentsTab.Length; i++) {
                 componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
                 string response = SocketTCP.Receive();
-                Componente[] elem = new Componente[3];
-                elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                // Sono 3 elementi suggeriti con la stessa categoria per cui ottengo l'ordine 
-                // con il primo elemento. L'ordine è dato dall'indice ottenuto dal dizionario
-                int idx = order[elem[0].Categoria]; 
-                for (int j = 0; j < 3; j++){
-                    showElements[idx,j] = new Componente();
-                    showElements[idx,j] = elem[j];
+                try
+                {
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null) {
+                        // Sono 3 elementi suggeriti con la stessa categoria per cui ottengo l'ordine 
+                        // con il primo elemento. L'ordine è dato dall'indice ottenuto dal dizionario
+                        int idx = order[elem[0].Categoria];
+                        for (int j = 0; j < 3; j++)
+                        {
+                            showElements[idx, j] = new Componente();
+                            showElements[idx, j] = elem[j];
+                        }
+                    }
+                }
+                catch(JsonException ex) {
+                    Debug.WriteLine(ex.Message);
                 }
             }
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             //ci sono 8 iterazionei, una per ogni componente
             for (int i = 0; i < componentsTab.Length; i++){
                 componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";

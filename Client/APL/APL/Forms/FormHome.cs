@@ -83,17 +83,22 @@ namespace APL.Forms
         private void recuperaPreassemblati()
         {
             pt.SetProtocolID("home"); pt.Data = String.Empty;
-
+            PcPreassemblato[]? preAssembalti;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            string responseData = String.Empty;
-            responseData = SocketTCP.Receive();
+            string response = SocketTCP.Receive();
             SocketTCP.Release();
-
-            int dim = 3;
-            PcPreassemblato[] ricevuto = new PcPreassemblato[dim];
-            ricevuto = JsonConvert.DeserializeObject<PcPreassemblato[]>(responseData);
-            populateItemsPcPreassemblato(ricevuto, dim);
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            try
+            {
+                preAssembalti = JsonConvert.DeserializeObject<PcPreassemblato[]>(response);
+                if (preAssembalti!=null)
+                    populateItemsPcPreassemblato(preAssembalti, 3);
+            }
+            catch (JsonException ex) {
+                Debug.WriteLine(ex.Message);
+            }
         }
         private void populateItemsPcPreassemblato(PcPreassemblato[] pre, int index)
         {
@@ -243,25 +248,29 @@ namespace APL.Forms
         private void recuperaItemsBuildSoloDalServer()
         {
             pt.SetProtocolID("buildSolo");
-
-            List<List<Componente>> myList = new List<List<Componente>>();
-
+            List<List<Componente>> myList = new();
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 8; i++)
             {
-                string nElements = SocketTCP.Receive();
-                int n = int.Parse(nElements);
                 string response = SocketTCP.Receive();
-                Componente[] elem = new Componente[n];
-                elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                List<Componente> singleComponent = elem.ToList();
-                myList.Add(singleComponent);
-
-                aggiungiListaInCache(singleComponent);
+                try
+                {
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null) {
+                        List<Componente> singleComponent = elem.ToList();
+                        myList.Add(singleComponent);
+                        aggiungiListaInCache(singleComponent);
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             SocketTCP.Release();
-            Debug.WriteLine(myList.Count());
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            Debug.WriteLine(myList.Count);
             stampaComponentsSolo(myList);
         }
         private void stampaComponentsSolo(List<List<Componente>> myList)

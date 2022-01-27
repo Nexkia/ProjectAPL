@@ -69,7 +69,7 @@ namespace APL.Forms
             if (TextBoxModello.Text != string.Empty)
             {
                 pt.SetProtocolID("cancellazione"); pt.Data = TextBoxModello.Text;
-
+                /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                 SocketTCP.Wait();
                 /*  Invio modello del componente da cancellare
                     Ne verrà cancellato anche il rispettivo detail 
@@ -77,6 +77,7 @@ namespace APL.Forms
                 SocketTCP.Send(pt.ToString());
                 string response = SocketTCP.Receive();
                 SocketTCP.Release();
+                /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
                 if (response == "Done")
                 {
@@ -96,17 +97,19 @@ namespace APL.Forms
             if (textBoxNome.Text != string.Empty) 
             {
                 pt.SetProtocolID("cancellazione_pre"); pt.Data = textBoxNome.Text;
+                /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                 SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
-                string receve = SocketTCP.Receive();
+                string response = SocketTCP.Receive();
                 SocketTCP.Release();
-  
-                if (receve == "NotFound")
+                /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+
+                if (response == "NotFound")
                 {
                     MessageBox.Show("Eliminazione fallita",
                    "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                if (receve == "Done")
+                if (response == "Done")
                 {
                     MessageBox.Show("Eliminazione avvenuta correttamente",
                         "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -119,6 +122,7 @@ namespace APL.Forms
             FormStatistiche statistiche = new FormStatistiche();
 
             pt.SetProtocolID("recupera_statistiche");
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER    
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 3; i++)
@@ -127,6 +131,7 @@ namespace APL.Forms
                 statistiche.setVenditeComponenti(Img, i);
             }
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             statistiche.Show();
         }
         #endregion
