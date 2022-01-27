@@ -171,12 +171,12 @@ namespace APL.Forms.Amministratore
                 textBoxPrezzo.Text = "";
             if (isInvalidPrezzo)
                 textBoxPrezzo.Text = "";
-            if(textBoxPrezzo.Text=="0")
+            if (textBoxPrezzo.Text == "0")
                 textBoxPrezzo.Text = "1";
         }
         #endregion
 
-        
-        
-}
+
+
+    }
 }

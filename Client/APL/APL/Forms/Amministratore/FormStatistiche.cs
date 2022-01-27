@@ -16,8 +16,8 @@ namespace APL.Forms.Amministratore
             disableCloseEvent = true;
             this.FormClosing += new FormClosingEventHandler(FormAmministratore_FormClosing);
             this.parent = parent;
-            
-    }
+
+        }
 
         private string venditePerData;
         private string venditeComponenti;

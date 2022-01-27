@@ -128,7 +128,7 @@ namespace APL.Forms
             for (int i = 0; i < 3; i++)
             {
                 string Img = SocketTCP.Receive();
-                statistiche.setVenditeComponenti(Img, i);
+                formStatistiche.setVenditeComponenti(Img, i);
             }
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
