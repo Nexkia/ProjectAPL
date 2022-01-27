@@ -1,9 +1,9 @@
-﻿using System;
-using ListView = System.Windows.Forms.ListView;
-using System.Windows.Forms;
-using ListViewItem = System.Windows.Forms.ListViewItem;
+﻿using APL.Connections;
+using System;
 using System.Diagnostics;
-using APL.Connections;
+using System.Windows.Forms;
+using ListView = System.Windows.Forms.ListView;
+using ListViewItem = System.Windows.Forms.ListViewItem;
 
 
 namespace APL.Forms
@@ -20,7 +20,7 @@ namespace APL.Forms
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             pt = new Protocol();
-            this.checkoutForm=checkoutForm;
+            this.checkoutForm = checkoutForm;
         }
 
 
@@ -28,7 +28,7 @@ namespace APL.Forms
         private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
-        private bool RamSchedaMadre = false; 
+        private bool RamSchedaMadre = false;
         private bool CpuSchedaMadre = false;
         private bool CpuDissipatore = false;
 
@@ -264,7 +264,7 @@ namespace APL.Forms
             }
         }
 
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e) { svuotaCarrello(); }
         public void svuotaCarrello()
         {
             listViewCarrello.Items.Clear();
