@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public interface Details
+    public interface IDetails
     {
         int Valutazione { get; init; }
         string Modello { get; init; }
-        string[] getDetail();
+        string[] GetDetail();
     }
 }

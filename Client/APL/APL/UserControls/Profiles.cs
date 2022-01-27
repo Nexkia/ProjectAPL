@@ -56,46 +56,55 @@ namespace APL.UserControls
             Componente[,] showElements = new Componente[8, 3];
 
             pt.SetProtocolID("profilo");pt.Data = nomeProfili[nameProfile];
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
-
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < componentsTab.Length; i++) {
                 componentsTab[i] = new ComponentsGuidata(vecchialistView,vecchioCarrello);
                 string response = SocketTCP.Receive();
-                Componente[] elem = new Componente[3];
-                elem = JsonConvert.DeserializeObject<Componente[]>(response);
-                // Sono 3 elementi suggeriti con la stessa categoria per cui ottengo l'ordine 
-                // con il primo elemento. L'ordine è dato dall'indice ottenuto dal dizionario
-                int idx = order[elem[0].Categoria]; 
-                for (int j = 0; j < 3; j++){
-                    showElements[idx,j] = new Componente();
-                    showElements[idx,j] = elem[j];
+                try
+                {
+                    Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
+                    if (elem != null) {
+                        // Sono 3 elementi suggeriti con la stessa categoria per cui ottengo l'ordine 
+                        // con il primo elemento. L'ordine è dato dall'indice ottenuto dal dizionario
+                        int idx = order[elem[0].Categoria];
+                        for (int j = 0; j < 3; j++)
+                        {
+                            showElements[idx, j] = new Componente();
+                            showElements[idx, j] = elem[j];
+                        }
+                    }
+                }
+                catch(JsonException ex) {
+                    Debug.WriteLine(ex.Message);
                 }
             }
             SocketTCP.Release();
-                //ci sono 8 iterazionei, una per ogni componente
-                for (int i = 0; i < componentsTab.Length; i++){
-                    componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            //ci sono 8 iterazionei, una per ogni componente
+            for (int i = 0; i < componentsTab.Length; i++){
+                componentsTab[i].Title = showElements[i,0].Categoria;//"qui si mette il titolo";
 
-                componentsTab[i].MostraModello1 = showElements[i, 0].Modello;
-                componentsTab[i].Componente1= showElements[i, 0];
+            componentsTab[i].MostraModello1 = showElements[i, 0].Modello;
+            componentsTab[i].Componente1= showElements[i, 0];
 
-                componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
-                componentsTab[i].Componente2 = showElements[i, 1];
+            componentsTab[i].MostraModello2 = showElements[i, 1].Modello;
+            componentsTab[i].Componente2 = showElements[i, 1];
 
-                componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
-                componentsTab[i].Componente3 = showElements[i, 2];
+            componentsTab[i].MostraModello3 = showElements[i, 2].Modello;
+            componentsTab[i].Componente3 = showElements[i, 2];
 
-                addImg(componentsTab[i]);
+            addImg(componentsTab[i]);
 
-                //aggiunge al flow label
-                if (vecchioFlowLayoutPanel1.Controls.Count < 0)
-                    {
-                        vecchioFlowLayoutPanel1.Controls.Clear();
-                    }
-                    else
-                        vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
+            //aggiunge al flow label
+            if (vecchioFlowLayoutPanel1.Controls.Count < 0)
+                {
+                    vecchioFlowLayoutPanel1.Controls.Clear();
                 }
+                else
+                    vecchioFlowLayoutPanel1.Controls.Add(componentsTab[i]);
+            }
         }
 
         private void addImg(ComponentsGuidata componentsTab)

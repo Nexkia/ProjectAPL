@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class Alimentatore : Details
+    public class Alimentatore : IDetails
     {
 
         [JsonProperty("modello_alimentatore")]
@@ -16,9 +16,9 @@ namespace APL.Data.Detail
         public int Valutazione { get; init; }
         [JsonProperty("watt")]
         public int Watt { get; init; }
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            string[] detail = new string[1] { 
+            string[] detail = new string[] { 
                 Convert.ToString(Watt) 
             };
             return detail;

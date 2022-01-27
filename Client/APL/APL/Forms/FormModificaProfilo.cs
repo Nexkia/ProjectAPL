@@ -19,17 +19,27 @@ namespace APL.Forms
 
         private void FormModificaProfilo_Load(object sender, EventArgs e)
         {
-            Utente utente;
+            Utente? utente;
             pt.SetProtocolID("getUtente");pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            string user = SocketTCP.Receive();
+            string jsonUser = SocketTCP.Receive();
             SocketTCP.Release();
-            utente = JsonConvert.DeserializeObject<Utente>(user);
-            TextBoxNomeUtente.Text = utente.Nome;
-            TextBoxEmail.Text = utente.Email;
-            TextBoxEmail.ReadOnly = true;
-            TextBoxIndirizzo.Text = utente.Indirizzo;
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            try
+            {
+                utente = JsonConvert.DeserializeObject<Utente>(jsonUser);
+                if (utente != null) {
+                    TextBoxNomeUtente.Text = utente.Nome;
+                    TextBoxEmail.Text = utente.Email;
+                    TextBoxEmail.ReadOnly = true;
+                    TextBoxIndirizzo.Text = utente.Indirizzo;
+                }
+            }
+            catch (JsonException ex) {
+                Debug.WriteLine(ex.Message);
+            } 
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -42,13 +52,14 @@ namespace APL.Forms
                 case "Registrazione avvenuta correttamente":
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string check = SocketTCP.Receive();
                     Debug.WriteLine(check);
                     if (!check.Contains("err"))
                     {
-                        Utente mod = new Utente() { 
+                        Utente mod = new() { 
                             Nome = TextBoxNomeUtente.Text,
                             Email = TextBoxEmail.Text,
                             Indirizzo = TextBoxIndirizzo.Text,
@@ -65,6 +76,7 @@ namespace APL.Forms
                                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     SocketTCP.Release();
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     break;
                 default:
                     MessageBox.Show("Le nuove password non sono uguali", "Errore", 

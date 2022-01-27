@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using APL.Forms.Amministratore;
 
 namespace APL.Forms
 {
@@ -25,9 +26,11 @@ namespace APL.Forms
         {
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
             SocketTCP.Release();
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.CloseConnection();
            
             base.OnClosed(e);
@@ -53,11 +56,12 @@ namespace APL.Forms
                         );
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string response = SocketTCP.Receive();
                     SocketTCP.Release();
-                    
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (response.Contains("Registrazione"))
                     {
                         TextBoxNomeUtente.Text = string.Empty;
@@ -87,18 +91,18 @@ namespace APL.Forms
             switch (result)
             {
                 case "Login effettuato correttamente":
-                    //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string UserJson = JsonSerializer.Serialize(new
                     {
                         Email = TextBoxLoginEmail.Text,
                         Password = TextBoxLoginPassword.Text
-                    }
-                    );
+                    });
                     pt.SetProtocolID("login");  pt.Data = UserJson;
+                    /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
                     string responseData = SocketTCP.Receive();
                     SocketTCP.Release();
+                    /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
@@ -155,6 +159,20 @@ namespace APL.Forms
                 TextBoxLoginPassword.PasswordChar = '*';
             else
                 TextBoxLoginPassword.PasswordChar = default;
+        }
+
+        private void FormLogin_Register_VisibleChanged(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "FormStatistiche")
+                {
+                    frm.Close();
+                }
+            }
         }
 
     }

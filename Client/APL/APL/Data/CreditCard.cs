@@ -15,8 +15,5 @@ namespace APL.Data
         [JsonProperty("cvv")]
         public int CVV { get; init; }
 
-
     }
-
- 
 }

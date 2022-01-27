@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
-    public class SchedaVideo :Details
+    public class SchedaVideo :IDetails
     {
 
         [JsonProperty("modello_schedaVideo")]
@@ -20,9 +20,9 @@ namespace APL.Data.Detail
         [JsonProperty("vram")]
         public int Vram { get; init; }
 
-        public string[] getDetail()
+        public string[] GetDetail()
         {
-            string[] detail = new string[2] {
+            string[] detail = new string[] {
                 Convert.ToString(Tdp),
                 Convert.ToString(Vram),
             };

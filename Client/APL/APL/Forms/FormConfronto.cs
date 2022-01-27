@@ -33,27 +33,38 @@ namespace APL.Forms
              Gli oggetti da cofrontare hanno tutti la stessa categoria
              Creo una lista a partire dal tipo di componente da confrontare
              */
-            ConstructorDetail factoryDetail = new ConstructorDetail();
-            Details componenteF = factoryDetail.GetDetails(categoriaOriginale);
-            Type categoria = componenteF.GetType();
+            ConstructorDetail factoryDetail = new();
+            IDetails? componenteDetail = factoryDetail.GetDetails(categoriaOriginale);
+            Type categoria = componenteDetail.GetType();
             Type categoriaTypeList = typeof(List<>).MakeGenericType(categoria);
-            IList MyList = (IList)Activator.CreateInstance(categoriaTypeList);
+            IList? MyList = Activator.CreateInstance(categoriaTypeList) as IList;
             // Invio un messaggi composto dai modelli da confrontare semparati da un carattere di separazione
             for (int i = 0; i < modelli.Length; i++) {
                 pt.Data += modelli[i]+"#";
             }
+            /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
 
             for (int i = 0; i < modelli.Length; i++)
             {
                 string response = SocketTCP.Receive();
-                componenteF = (Details)JsonConvert.DeserializeObject(response, categoria);
-                MyList.Add(componenteF);
-                Debug.WriteLine("getmodello: " + componenteF.Modello);
+                try
+                {
+                    componenteDetail = JsonConvert.DeserializeObject(response, categoria) as IDetails;
+                    if (componenteDetail != null && MyList != null) {
+                        MyList.Add(componenteDetail);
+                        Debug.WriteLine("getmodello: " + componenteDetail.Modello);
+                    }
+                }
+                catch (JsonException ex) {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             SocketTCP.Release();
-            ConfrontaParametri(MyList, categoriaOriginale, capienze);
+            /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
+            if (MyList!=null)
+                ConfrontaParametri(MyList, categoriaOriginale, capienze);
         }
 
         private void ConfrontaParametri(IList componenti,string categoria,string[] capienze)
@@ -169,7 +180,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -177,7 +188,7 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.label4Name("frequenza");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
@@ -196,7 +207,7 @@ namespace APL.Forms
                     //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -206,7 +217,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //frequenza
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //socket
@@ -234,7 +245,7 @@ namespace APL.Forms
                         sc.panelNascosto3VisibileOFF();
 
                         
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -244,7 +255,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //frequenza
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //socket
@@ -271,7 +282,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -279,7 +290,7 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.label4Name("Tdp");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
@@ -292,7 +303,7 @@ namespace APL.Forms
                     //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -302,7 +313,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tdp
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //Vram
@@ -321,7 +332,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
@@ -330,7 +341,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //tdp
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //Vram
@@ -349,7 +360,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -358,7 +369,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Cpu Socket");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
                 sc.label5Name("Ram");
@@ -373,7 +384,7 @@ namespace APL.Forms
                     //rendo visibile la seconda colonna
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -383,7 +394,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Cpu socket
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(b[0]);
 
                     //RAM
@@ -406,7 +417,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -416,7 +427,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Cpu socket
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(c[0]);
 
                         //RAM
@@ -440,7 +451,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -448,7 +459,7 @@ namespace APL.Forms
                 sc.label3Name("Prezzo");
                 sc.labelMod1Det1Name(prezzi[0]);
 
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.label4Name("frequenza");
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
@@ -464,7 +475,7 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -474,7 +485,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //frequenza
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //standard
@@ -497,7 +508,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -507,7 +518,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //frequenza
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //standard
@@ -530,7 +541,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -539,7 +550,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Watt");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
 
@@ -548,7 +559,7 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -558,7 +569,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //watt
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     //colora i campi con i valori migliori
@@ -573,7 +584,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
                         sc.labelModello3Name(componente3.Modello);
                         sc.labelValutazione3Name(Convert.ToString(componente3.Valutazione));
@@ -582,7 +593,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //watt
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         //colora i campi che hanno il valore migliore
@@ -599,7 +610,7 @@ namespace APL.Forms
 
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -608,7 +619,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Cpu Socket");
-                string[] a= componente1.getDetail();
+                string[] a= componente1.GetDetail();
                 sc.labelMod1Det2Name(ConvertInUnaSolaStringa(a));
 
 
@@ -617,7 +628,7 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -627,7 +638,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Cpu Socket
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(ConvertInUnaSolaStringa(b));
 
                     //colora i campi con i valori migliori
@@ -642,7 +653,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -652,7 +663,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //cpu socket
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(ConvertInUnaSolaStringa(c));
 
                         //colora i campi che hanno il valore migliore
@@ -667,7 +678,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -676,7 +687,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Tipo");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
                 sc.label5Name("Capienza");
@@ -687,7 +698,7 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -697,7 +708,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tipo
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     string[] tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0]);
@@ -718,7 +729,7 @@ namespace APL.Forms
                         sc.panelNascosto2VisibileOFF();
                         sc.panelNascosto3VisibileOFF();
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -728,7 +739,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Tipo
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                         tipo = ConvertiInNumeri("ssd", "hdd", "default", a[0], b[0], c[0]);
@@ -749,7 +760,7 @@ namespace APL.Forms
         {
             if (componenti.Count > 0)
             {
-                Details componente1 = (Details)componenti[0];
+                IDetails componente1 = (IDetails)componenti[0];
 
                 sc.labelModello1Name(componente1.Modello);
                 sc.labelValutazione1Name(Convert.ToString(componente1.Valutazione));
@@ -758,7 +769,7 @@ namespace APL.Forms
                 sc.labelMod1Det1Name(prezzi[0]);
 
                 sc.label4Name("Tipo");
-                string[] a = componente1.getDetail();
+                string[] a = componente1.GetDetail();
                 sc.labelMod1Det2Name(Convert.ToString(a[0]));
 
 
@@ -767,7 +778,7 @@ namespace APL.Forms
                     //rendo visibile la seconda 
                     sc.panelNascosto2VisibileOFF();
 
-                    Details componente2 = (Details)componenti[1];
+                    IDetails componente2 = (IDetails)componenti[1];
                     Debug.WriteLine(componente2.Modello);
 
                     sc.labelModello2Name(componente2.Modello);
@@ -777,7 +788,7 @@ namespace APL.Forms
                     sc.labelMod2Det1Name(prezzi[1]);
 
                     //Tipo
-                    string[] b = componente2.getDetail();
+                    string[] b = componente2.GetDetail();
                     sc.labelMod2Det2Name(Convert.ToString(b[0]));
 
                     string[] tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0]);
@@ -795,7 +806,7 @@ namespace APL.Forms
                         sc.panelNascosto3VisibileOFF();
 
 
-                        Details componente3 = (Details)componenti[2];
+                        IDetails componente3 = (IDetails)componenti[2];
                         Debug.WriteLine(componente3.Modello);
 
                         sc.labelModello3Name(componente3.Modello);
@@ -805,7 +816,7 @@ namespace APL.Forms
                         sc.labelMod3Det1Name(prezzi[2]);
 
                         //Tipo
-                        string[] c = componente3.getDetail();
+                        string[] c = componente3.GetDetail();
                         sc.labelMod3Det2Name(Convert.ToString(c[0]));
 
                          tipo = ConvertiInNumeri("Big-Tower", "Midi-Tower", "Micro-ATX", a[0], b[0],c[0]);
