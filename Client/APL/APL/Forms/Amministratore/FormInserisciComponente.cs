@@ -79,7 +79,7 @@ namespace APL.Forms.Amministratore
                     setReadOnly(false);
                     InserisciAlimentatore detAli = new InserisciAlimentatore(this);
                     setFlowLayoutPanel(detAli);
-                        break;
+                    break;
                 case "casepc":
                     categoria = "casepc";
                     setReadOnly(false);
@@ -112,7 +112,7 @@ namespace APL.Forms.Amministratore
             textBoxMarca.ReadOnly =
             textBoxPrezzo.ReadOnly = value;
 
-            if(categoria!="ram" && categoria != "memoria")
+            if (categoria != "ram" && categoria != "memoria")
             {
                 textBoxCapienza.ReadOnly = !value;
                 textBoxCapienza.Text = "0";
@@ -137,21 +137,22 @@ namespace APL.Forms.Amministratore
         public Componente areFullAllTextBox()
         {
             /* Se i campi vengono riempiti correttamente ritorna il componente */
-            if(textBoxModello.Text!=string.Empty && textBoxMarca.Text!=string.Empty
-                && textBoxPrezzo.Text!=string.Empty && textBoxCapienza.Text != string.Empty && categoria !=string.Empty)
+            if (textBoxModello.Text != string.Empty && textBoxMarca.Text != string.Empty
+                && textBoxPrezzo.Text != string.Empty && textBoxCapienza.Text != string.Empty && categoria != string.Empty)
             {
-                Componente comp = new Componente(){
-                    Modello = textBoxModello.Text, 
+                Componente comp = new Componente()
+                {
+                    Modello = textBoxModello.Text,
                     Marca = textBoxMarca.Text,
-                    Prezzo = float.Parse(textBoxPrezzo.Text), 
-                    Capienza =int.Parse(textBoxCapienza.Text), 
+                    Prezzo = float.Parse(textBoxPrezzo.Text),
+                    Capienza = int.Parse(textBoxCapienza.Text),
                     Categoria = categoria
                 };
-               
+
                 return comp;
             }
-            else 
-                return null; 
+            else
+                return null;
         }
 
 
@@ -168,7 +169,7 @@ namespace APL.Forms.Amministratore
             //permette di inserire solo dei Float nel prezzo
             if (!float.TryParse(textBoxPrezzo.Text, out float value))
                 textBoxPrezzo.Text = "";
-            if(isInvalidPrezzo)
+            if (isInvalidPrezzo)
                 textBoxPrezzo.Text = "";
         }
         #endregion

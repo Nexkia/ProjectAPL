@@ -17,9 +17,10 @@ namespace APL.Forms.Amministratore
         private string venditeComponenti;
         private string venditePreassemblati;
 
-        public void setVenditeComponenti(string value,int i){ 
+        public void setVenditeComponenti(string value, int i)
+        {
             //salviamo le 3 immagini delle statistiche
-            if(i==0)         
+            if (i == 0)
                 venditePreassemblati = value;
             if (i == 1)
                 venditePerData = value;
@@ -31,13 +32,13 @@ namespace APL.Forms.Amministratore
             ImgStatistiche img1 = new ImgStatistiche(Base64ToImage(venditePreassemblati));
             ImgStatistiche img2 = new ImgStatistiche(Base64ToImage(venditePerData));
             ImgStatistiche img3 = new ImgStatistiche(Base64ToImage(venditeComponenti));
-           
+
             if (flowLayoutPanel1.Controls.Count < 0)
             {
                 flowLayoutPanel1.Controls.Clear();
             }
-            else 
-            { 
+            else
+            {
                 flowLayoutPanel1.Controls.Add(img1);
                 flowLayoutPanel1.Controls.Add(img2);
                 flowLayoutPanel1.Controls.Add(img3);
@@ -51,7 +52,7 @@ namespace APL.Forms.Amministratore
             MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
             //Convert MemoryStream to Image
             Image image = Image.FromStream(ms, true);
-                return image;
+            return image;
         }
 
     }

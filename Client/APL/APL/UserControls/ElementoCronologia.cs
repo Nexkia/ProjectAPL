@@ -11,9 +11,9 @@ namespace APL.UserControls
             InitializeComponent();
         }
 
-        public void setPrezzoData(string val1,DateTime val2) { labelPrezzo.Text ="Prezzo totale: "+ val1+"     Data: "+val2; }
+        public void setPrezzoData(string val1, DateTime val2) { labelPrezzo.Text = "Prezzo totale: " + val1 + "     Data: " + val2; }
 
-      
+
         public void addComponenteListView(Componente comp)
         {
             string modello = comp.Modello.ToString();
@@ -23,7 +23,7 @@ namespace APL.UserControls
             string categoria = comp.Categoria.ToString();
 
             ListViewItem lvitem = new ListViewItem("" + modello + "");
-            if (marca == "") 
+            if (marca == "")
             {
                 lvitem.BackColor = System.Drawing.Color.Red;
                 lvitem.ForeColor = System.Drawing.Color.White;
@@ -32,7 +32,7 @@ namespace APL.UserControls
                 lvitem.SubItems.Add("DAL DATABASE");
                 lvitem.SubItems.Add("");
             }
-            else 
+            else
             {
                 lvitem.SubItems.Add("" + marca + "");
                 lvitem.SubItems.Add("" + prezzo + "");
@@ -45,9 +45,9 @@ namespace APL.UserControls
 
         }
 
-        public void addPreassemblatoListView(string nome,string prezzo)
+        public void addPreassemblatoListView(string nome, string prezzo)
         {
-            ListViewItem lvitem = new ListViewItem(nome );
+            ListViewItem lvitem = new ListViewItem(nome);
             if (prezzo != "0")
             {
                 lvitem.SubItems.Add("");
@@ -62,7 +62,7 @@ namespace APL.UserControls
                 lvitem.SubItems.Add("DAL DATABASE");
                 lvitem.SubItems.Add("");
             }
-            
+
             listViewElementoC.Items.Add(lvitem);
         }
 

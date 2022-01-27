@@ -17,15 +17,15 @@ namespace APL.UserControls.Amministratore.Inserimento
         public SchedaVideo getInputDetail()
         {
 
-            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty 
-                && textBoxTdp.Text != string.Empty && textBoxVram.Text != string.Empty )
+            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty
+                && textBoxTdp.Text != string.Empty && textBoxVram.Text != string.Empty)
             {
                 SchedaVideo elem = new SchedaVideo()
                 {
                     Modello = inserisciComponente.getModello(),
-                    Valutazione = int.Parse(textBoxValutazione.Text), 
+                    Valutazione = int.Parse(textBoxValutazione.Text),
                     Tdp = int.Parse(textBoxTdp.Text),
-                    Vram = int.Parse(textBoxVram.Text) 
+                    Vram = int.Parse(textBoxVram.Text)
                 };
                 return elem;
             }
@@ -36,7 +36,7 @@ namespace APL.UserControls.Amministratore.Inserimento
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);

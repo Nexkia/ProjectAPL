@@ -18,7 +18,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         {
 
             if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && textBoxFrequenza.Text != string.Empty
-                 && textBoxStandard.Text != string.Empty )
+                 && textBoxStandard.Text != string.Empty)
             {
                 Ram elem = new Ram()
                 {
@@ -35,7 +35,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         }
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -13,23 +13,23 @@ namespace APL.UserControls.Amministratore.Inserimento
         public InserisciDissipatore(FormInserisciComponente inserisciComponente)
         {
             InitializeComponent();
-            this.inserisciComponente=inserisciComponente;
+            this.inserisciComponente = inserisciComponente;
             CpuSocket = new List<string>();
         }
 
         private List<string> CpuSocket;
-        
+
         public Dissipatore getInputDetail()
         {
             string[] vet = creaArrayCpuSocket();
             Debug.WriteLine("getInputDetail");
-            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && vet.Length>0 )
+            if (inserisciComponente.getModello() != string.Empty && textBoxValutazione.Text != string.Empty && vet.Length > 0)
             {
-                Dissipatore elem = new Dissipatore() 
-                { 
-                    Modello = inserisciComponente.getModello(), 
-                    Valutazione = int.Parse(textBoxValutazione.Text), 
-                    CpuSocket=vet 
+                Dissipatore elem = new Dissipatore()
+                {
+                    Modello = inserisciComponente.getModello(),
+                    Valutazione = int.Parse(textBoxValutazione.Text),
+                    CpuSocket = vet
                 };
                 Debug.WriteLine("getInputDetail true");
                 return elem;
@@ -37,8 +37,8 @@ namespace APL.UserControls.Amministratore.Inserimento
             else { Debug.WriteLine("getInputDetail false"); return null; }
         }
 
-            
-        
+
+
 
         private string[] creaArrayCpuSocket()
         {
@@ -46,7 +46,7 @@ namespace APL.UserControls.Amministratore.Inserimento
             {
                 string[] vet = new string[CpuSocket.Count];
 
-                for(int i=0;i< CpuSocket.Count; i++)
+                for (int i = 0; i < CpuSocket.Count; i++)
                 {
                     vet[i] = CpuSocket[i];
                 }
@@ -59,7 +59,7 @@ namespace APL.UserControls.Amministratore.Inserimento
                 return null;
             }
 
-           
+
         }
 
         private bool cpuSocketGiaPresente(string value)
@@ -70,7 +70,7 @@ namespace APL.UserControls.Amministratore.Inserimento
                 {
                     return true;
                 }
-               
+
             }
 
             return false;
@@ -79,7 +79,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         private void buttonAggiungiCpuSocket_Click(object sender, EventArgs e)
         {
             //se l'elemento non è già presente
-            if (cpuSocketGiaPresente(textBoxAggiungiCpuSocket.Text) == false && textBoxAggiungiCpuSocket.Text!="")
+            if (cpuSocketGiaPresente(textBoxAggiungiCpuSocket.Text) == false && textBoxAggiungiCpuSocket.Text != "")
             {
                 //aggiungo l'elemento della textbox alla nostra lista
                 CpuSocket.Add(textBoxAggiungiCpuSocket.Text);
@@ -92,14 +92,14 @@ namespace APL.UserControls.Amministratore.Inserimento
                 }
 
                 //aggiorno la texbox che fa vedere tutti i CpuSocket inseriti fino ad adesso
-                textBoxCpuSocket.Text = message.Replace("\n", Environment.NewLine); 
-                
+                textBoxCpuSocket.Text = message.Replace("\n", Environment.NewLine);
+
             }
         }
 
         private void buttonConferma_Click(object sender, EventArgs e)
         {
-            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox()!=null)
+            if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,22 +114,22 @@ namespace APL.UserControls.Amministratore.Inserimento
 
         private void buttonRimuoviCpuSocket_Click(object sender, EventArgs e)
         {
-            
-                //controlliamo che l'elemento da rimuovere sia effettivamente presente
-                if (cpuSocketGiaPresente(textBoxAggiungiCpuSocket.Text) == true && textBoxAggiungiCpuSocket.Text != "")
+
+            //controlliamo che l'elemento da rimuovere sia effettivamente presente
+            if (cpuSocketGiaPresente(textBoxAggiungiCpuSocket.Text) == true && textBoxAggiungiCpuSocket.Text != "")
+            {
+                //rimuovo l'elemento della textbox dalla nostra lista
+                CpuSocket.Remove(textBoxAggiungiCpuSocket.Text);
+
+                string message = "";
+                foreach (string item in CpuSocket)
                 {
-                    //rimuovo l'elemento della textbox dalla nostra lista
-                    CpuSocket.Remove(textBoxAggiungiCpuSocket.Text);
 
-                    string message = "";
-                    foreach (string item in CpuSocket)
-                    {
+                    message += item.ToString() + ",\n";
+                }
 
-                        message += item.ToString() + ",\n";
-                    }
-
-                    //aggiorno la textbox di CpuSocket 
-                    textBoxCpuSocket.Text = message.Replace("\n", Environment.NewLine);
+                //aggiorno la textbox di CpuSocket 
+                textBoxCpuSocket.Text = message.Replace("\n", Environment.NewLine);
 
             }
         }

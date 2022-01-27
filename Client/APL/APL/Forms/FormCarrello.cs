@@ -1,9 +1,9 @@
-﻿using System;
-using ListView = System.Windows.Forms.ListView;
-using System.Windows.Forms;
-using ListViewItem = System.Windows.Forms.ListViewItem;
+﻿using APL.Connections;
+using System;
 using System.Diagnostics;
-using APL.Connections;
+using System.Windows.Forms;
+using ListView = System.Windows.Forms.ListView;
+using ListViewItem = System.Windows.Forms.ListViewItem;
 
 
 namespace APL.Forms
@@ -20,7 +20,7 @@ namespace APL.Forms
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
             pt = new Protocol();
-            this.checkoutForm=checkoutForm;
+            this.checkoutForm = checkoutForm;
         }
 
 
@@ -28,7 +28,7 @@ namespace APL.Forms
         private string cpuSocketSchedaMadre = "", ramSchedaMadre = "";
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
-        private bool RamSchedaMadre = false; 
+        private bool RamSchedaMadre = false;
         private bool CpuSchedaMadre = false;
         private bool CpuDissipatore = false;
 
@@ -136,13 +136,13 @@ namespace APL.Forms
                 //caso in cui l'utente vuole prendere una Build Solo e una Build Guidata
                 if (contaComponentiBuild("Build Guidata") > 0 && contaComponentiBuild("Build Guidata") == 8 &&
                    contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
-                {   
+                {
                     //verifichiamo che i componenti della buildsolo siano compatibili
                     ControllaCompatibilita();
-                    if(RamSchedaMadre == true && CpuSchedaMadre ==true && CpuDissipatore==true)
+                    if (RamSchedaMadre == true && CpuSchedaMadre == true && CpuDissipatore == true)
                         creaCheckOut();
                     else
-                        MessageBox.Show("Componenti Build Solo non compatibili,","Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Componenti Build Solo non compatibili,", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
 
                     //caso in cui l'utente vuole prendere solo una Build Guidata
@@ -162,7 +162,7 @@ namespace APL.Forms
                 else if (contaComponentiBuild("Build Solo") > 0 && contaComponentiBuild("Build Solo") == 8)
                 {
                     //la listView piene passata al CheckOut solo se non ci sono componenti di BuildGuidata
-                    if (contaComponentiBuild("Build Guidata") == 0) 
+                    if (contaComponentiBuild("Build Guidata") == 0)
                     {
 
                         //verifichiamo che i componenti della buildsolo siano compatibili
@@ -234,7 +234,7 @@ namespace APL.Forms
             }
         }
 
-        private void buttonSvuotaCarrello_Click(object sender, EventArgs e){svuotaCarrello();}
+        private void buttonSvuotaCarrello_Click(object sender, EventArgs e) { svuotaCarrello(); }
 
         public void svuotaCarrello()
         {
@@ -245,7 +245,7 @@ namespace APL.Forms
         }
         private void creaCheckOut()
         {
-            
+
             checkoutForm.Show();
 
             foreach (ListViewItem item in listViewCarrello.Items)

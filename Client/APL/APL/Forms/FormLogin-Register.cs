@@ -1,10 +1,10 @@
 ﻿using APL.Connections;
 using APL.Controlli;
 using System;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
-using System.Diagnostics;
 
 namespace APL.Forms
 {
@@ -31,17 +31,18 @@ namespace APL.Forms
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.CloseConnection();
-           
+
             base.OnClosed(e);
         }
 
 
         private void Register_Click(object sender, EventArgs e)
         {
-            string result = controllo.CheckRegister(TextBoxNomeUtente.Text,TextBoxEmail.Text, 
-                TextBoxIndirizzo.Text,TextBoxInserisciPassword.Text, TextBoxConfermaPassword.Text);
+            string result = controllo.CheckRegister(TextBoxNomeUtente.Text, TextBoxEmail.Text,
+                TextBoxIndirizzo.Text, TextBoxInserisciPassword.Text, TextBoxConfermaPassword.Text);
 
-            switch (result) {
+            switch (result)
+            {
                 case "Email o Codice Fiscale già usati in altri account":
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string UserJson = JsonSerializer.Serialize(
@@ -69,7 +70,7 @@ namespace APL.Forms
                         TextBoxInserisciPassword.Text = string.Empty;
                         TextBoxConfermaPassword.Text = string.Empty;
 
-                        MessageBox.Show(result,"Conferma",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(result, "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -84,7 +85,7 @@ namespace APL.Forms
         }
 
 
-        private  void Login_Click(object sender, EventArgs e)
+        private void Login_Click(object sender, EventArgs e)
         {
             string result = controllo.CheckLogin(TextBoxLoginEmail.Text, TextBoxLoginPassword.Text);
             switch (result)
@@ -95,7 +96,7 @@ namespace APL.Forms
                         Email = TextBoxLoginEmail.Text,
                         Password = TextBoxLoginPassword.Text
                     });
-                    pt.SetProtocolID("login");  pt.Data = UserJson;
+                    pt.SetProtocolID("login"); pt.Data = UserJson;
                     /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                     SocketTCP.Wait();
                     SocketTCP.Send(pt.ToString());
@@ -105,11 +106,11 @@ namespace APL.Forms
                     if (responseData.Contains("Errore"))
                     {
                         Debug.WriteLine("Login fallito," + responseData);
-                        MessageBox.Show("Login fallito, Email o Password errate", "Errore", 
+                        MessageBox.Show("Login fallito, Email o Password errate", "Errore",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else if (responseData.Contains("true"))
-                    {   
+                    {
                         //apriamo il pannello dell'amministratore
                         amministratoreForm.Show();
                         this.Visible = false; //invisible form1
@@ -120,14 +121,14 @@ namespace APL.Forms
                     {
                         //apriamo il formHome
                         Debug.WriteLine("Login effettuato");
-                        FormHome home = new FormHome(this); 
-                        home.Show(); 
+                        FormHome home = new FormHome(this);
+                        home.Show();
                         this.Visible = false; //invisible form1
                         TextBoxLoginEmail.Text = string.Empty;
                         TextBoxLoginPassword.Text = string.Empty;
                     }
-                    
-                    
+
+
                     break;
 
                 default:
@@ -136,7 +137,7 @@ namespace APL.Forms
             }
         }
 
-        
+
         private void ButtonMostraIP_Click(object sender, EventArgs e)
         {//register
             if (TextBoxInserisciPassword.PasswordChar == default)

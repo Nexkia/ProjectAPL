@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APL.Data.Detail
 {
@@ -19,7 +14,7 @@ namespace APL.Data.Detail
 
         public string[] GetDetail()
         {
-            string[] detail = new string[] { 
+            string[] detail = new string[] {
                 Taglia
             };
             return detail;

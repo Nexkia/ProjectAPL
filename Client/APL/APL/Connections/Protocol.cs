@@ -5,12 +5,13 @@ namespace APL.Connections
 {
     public class Protocol
     {
-        private string ProtocolID {get;set;}
-        public string Data {get;set;}
+        private string ProtocolID { get; set; }
+        public string Data { get; set; }
         public string Limit;
         public string End;
         private readonly Dictionary<string, string> FuncDict;
-        public Protocol() {
+        public Protocol()
+        {
             FuncDict = new Dictionary<string, string>
         {
             { "register","0" },{ "login","1" },{"home","2"},{"getUtente","3"},
@@ -31,7 +32,7 @@ namespace APL.Connections
         }
         public override string ToString()
         {
-            return ProtocolID+Limit+Data+End;
+            return ProtocolID + Limit + Data + End;
         }
     }
 }

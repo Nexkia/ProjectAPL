@@ -4,7 +4,7 @@
 namespace APL.Data
 {
     public class PcPreassemblato
-    {        
+    {
         [JsonProperty("nome")]
         public string Nome { get; init; }
         [JsonProperty("prezzoTot")]

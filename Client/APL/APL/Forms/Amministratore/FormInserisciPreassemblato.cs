@@ -24,7 +24,7 @@ namespace APL.Forms.Amministratore
             this.parent = parent;
             pt = new Protocol();
             pleaseWait = new FormPleaseWait();
-            
+
         }
 
         private string cpuSocket = "";
@@ -32,9 +32,9 @@ namespace APL.Forms.Amministratore
         private string standardRam = "";
         private string[] cpuSocketDissipatore;
 
-        private bool RamSchedaMadre=false;
-        private bool CpuSchedaMadre=false;
-        private bool CpuDissipatore=false;
+        private bool RamSchedaMadre = false;
+        private bool CpuSchedaMadre = false;
+        private bool CpuDissipatore = false;
 
         private Componente[] comp;
 
@@ -62,7 +62,7 @@ namespace APL.Forms.Amministratore
         public ListView getListViewD() { return listViewPreassemblatoDetail; }
 
         #region Chiusura-------------------------------------------------------------------------
-        public void EnableCloseEvent() { this.disableCloseEvent = false;  }
+        public void EnableCloseEvent() { this.disableCloseEvent = false; }
         private void FormAmministratore_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (disableCloseEvent == true)
@@ -91,10 +91,10 @@ namespace APL.Forms.Amministratore
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            
+
             for (int i = 0; i < 8; i++)
             {
-                string response =  SocketTCP.Receive();
+                string response = SocketTCP.Receive();
                 try
                 {
                     Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
@@ -105,7 +105,8 @@ namespace APL.Forms.Amministratore
                         myList.Add(singleComponent);
                     }
                 }
-                catch (JsonException ex) {
+                catch (JsonException ex)
+                {
                     Debug.WriteLine(ex.Message);
                 }
             }
@@ -126,7 +127,7 @@ namespace APL.Forms.Amministratore
             {
                 componentsPreassemblato[index] = new ComponentsPreassemblato(this);
                 int i = 0;
-               
+
                 componentsPreassemblato[index].impostaCategoria(subList[0].Categoria);
                 foreach (Componente item in subList)
                 {
@@ -344,8 +345,8 @@ namespace APL.Forms.Amministratore
             {
                 foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
                 {
-                    if (subItem.Text == categoria) 
-                        item.Remove(); 
+                    if (subItem.Text == categoria)
+                        item.Remove();
                 }
             }
         }

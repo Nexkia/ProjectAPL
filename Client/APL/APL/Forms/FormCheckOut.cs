@@ -19,7 +19,7 @@ namespace APL.Forms
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(FormHome_FormClosing);
             disableCloseEvent = true;
-            this.vecchiaHome= vecchiaHome;
+            this.vecchiaHome = vecchiaHome;
             pt = new Protocol();
         }
 
@@ -51,7 +51,7 @@ namespace APL.Forms
 
                 //resetto i parametri dentro il checkout
                 listViewCheckOut.Items.Clear();
-                
+
 
             }
             else { e.Cancel = false; } //permette alla finestra di chiudersi
@@ -62,21 +62,21 @@ namespace APL.Forms
             string prezzo;
             string tipo;
 
-            float totPreassemblato=0;
-            float totBuildSolo=0;
-            float totBuildGuidata=0;
+            float totPreassemblato = 0;
+            float totBuildSolo = 0;
+            float totBuildGuidata = 0;
 
             CheckOut = new List<List<string>>();
 
-            listaPreassemblati=new List<string>();
-            listaBuildGuidata=new List<string>();
-           listaBuildSolo=new List<string>();
+            listaPreassemblati = new List<string>();
+            listaBuildGuidata = new List<string>();
+            listaBuildSolo = new List<string>();
 
             foreach (ListViewItem item in listViewCheckOut.Items)
             {
-                 modello = item.SubItems[0].Text.ToString();
-                 prezzo = item.SubItems[2].Text.ToString();
-                 tipo = item.SubItems[5].Text.ToString();
+                modello = item.SubItems[0].Text.ToString();
+                prezzo = item.SubItems[2].Text.ToString();
+                tipo = item.SubItems[5].Text.ToString();
 
                 if (tipo == "preassemblato")
                 {
@@ -85,7 +85,7 @@ namespace APL.Forms
                     listaPreassemblati.Add(modello);
                 }
 
-                if(tipo == "Build Guidata")
+                if (tipo == "Build Guidata")
                 {
                     totBuildGuidata += float.Parse(prezzo);
                     totBuildGuidata = (float)(Math.Truncate((double)totBuildGuidata * 100.0) / 100.0);
@@ -95,27 +95,27 @@ namespace APL.Forms
                 if (tipo == "Build Solo")
                 {
                     totBuildSolo += float.Parse(prezzo);
-                    totBuildSolo= (float)(Math.Truncate((double)totBuildSolo * 100.0) / 100.0);
+                    totBuildSolo = (float)(Math.Truncate((double)totBuildSolo * 100.0) / 100.0);
                     listaBuildSolo.Add(modello);
                 }
             }
 
-            float tot =  (totPreassemblato + totBuildGuidata + totBuildSolo);
+            float tot = (totPreassemblato + totBuildGuidata + totBuildSolo);
             // oltre le due cifre decimali, tronca il valore del totale
-            totale = (float)(Math.Truncate((double)tot * 100.0) / 100.0); 
-            
+            totale = (float)(Math.Truncate((double)tot * 100.0) / 100.0);
+
             //passo all'interfaccia grafica il totale
             labelTotale.Text = "Costi dei Preassemblati: " + totPreassemblato + "\n" +
                         "Costi Build Solo: " + totBuildSolo + "\n" +
                         "Costi Build Guidata: " + totBuildGuidata + "\n" +
-                        "Totale: "+totale;
+                        "Totale: " + totale;
 
             //aggiungo le 3 liste ad una lista di liste
             if (listaPreassemblati.Count > 0)
             {
                 CheckOut.Add(listaPreassemblati);
             }
-            
+
 
             if (listaBuildGuidata.Count > 0)
             {
@@ -130,7 +130,7 @@ namespace APL.Forms
         }
 
 
-        private  void buttonConfermaCheckout_Click(object sender, EventArgs e)
+        private void buttonConfermaCheckout_Click(object sender, EventArgs e)
         {
             meseScadenza = textBoxMese.Text;
             annoScadenza = textBoxAnno.Text;
@@ -139,7 +139,7 @@ namespace APL.Forms
             numeroCarta = textBoxNumeroCarta.Text;
 
             if (indirizzoFatturazione != string.Empty && meseScadenza != string.Empty && annoScadenza != string.Empty
-                && cvv != string.Empty && numeroCarta != string.Empty )
+                && cvv != string.Empty && numeroCarta != string.Empty)
             {
                 //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                 InfoPayment info = new()
@@ -157,22 +157,22 @@ namespace APL.Forms
                 string JsonInfop = JsonConvert.SerializeObject(info);
                 string Json = System.Text.Json.JsonSerializer.Serialize(new
                 {
-                        acquisto = new
-                        {
-                            Lista = CheckOut,
-                            Prezzo = totale,
-                            Data=DateTime.Now
-                        }
+                    acquisto = new
+                    {
+                        Lista = CheckOut,
+                        Prezzo = totale,
+                        Data = DateTime.Now
+                    }
                 });
-                pt.SetProtocolID("CheckOut");pt.Data = Json;
+                pt.SetProtocolID("CheckOut"); pt.Data = Json;
                 /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
                 SocketTCP.Wait();
                 SocketTCP.Send(pt.ToString());
-                SocketTCP.Send(JsonInfop+"\n");
+                SocketTCP.Send(JsonInfop + "\n");
                 string response = SocketTCP.Receive();
                 SocketTCP.Release();
                 /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
-                if (response.Contains("Un elemento non presente")) 
+                if (response.Contains("Un elemento non presente"))
                 {
                     MessageBox.Show("Checkout non confermato",
                       "Conferma", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -200,7 +200,7 @@ namespace APL.Forms
             }
         }
 
-        private  void FormCheckOut_Load(object sender, EventArgs e)
+        private void FormCheckOut_Load(object sender, EventArgs e)
         {
             calcolaTotale();
             InfoPayment? infoPayment;
@@ -208,7 +208,7 @@ namespace APL.Forms
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.Wait();
             SocketTCP.Send(pt.ToString());
-            string infop =  SocketTCP.Receive();
+            string infop = SocketTCP.Receive();
             SocketTCP.Release();
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
@@ -224,9 +224,9 @@ namespace APL.Forms
                         textBoxAnno.Text = Convert.ToString(infoPayment.CreditCard.Year);
                         textBoxCVV.Text = Convert.ToString(infoPayment.CreditCard.CVV);
                         textBoxNumeroCarta.Text = Convert.ToString(infoPayment.CreditCard.Number);
-                    } 
+                    }
                 }
-                catch(JsonException ex)
+                catch (JsonException ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
@@ -253,23 +253,23 @@ namespace APL.Forms
             List<Componente> memoriaMessage = CachingProviderBase.Instance.GetItem("memoriaBuildSolo");
             List<Componente> dissipatoreMessage = CachingProviderBase.Instance.GetItem("dissipatoreBuildSolo");
 
-            if(schedaMadreMessage != null)
+            if (schedaMadreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("schedaMadreBuildSolo");
             if (cpuMessage != null)
                 CachingProviderBase.Instance.RemoveItems("cpuBuildSolo");
-            if(ramMessage!=null)
+            if (ramMessage != null)
                 CachingProviderBase.Instance.RemoveItems("ramBuildSolo");
             if (schedaVideoMessage != null)
                 CachingProviderBase.Instance.RemoveItems("schedaVideoBuildSolo");
-            if(alimentatoreMessage != null)
+            if (alimentatoreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("alimentatoreBuildSolo");
-            if(casepcMessage != null)
+            if (casepcMessage != null)
                 CachingProviderBase.Instance.RemoveItems("casepcBuildSolo");
             if (memoriaMessage != null)
                 CachingProviderBase.Instance.RemoveItems("memoriaBuildSolo");
-            if(dissipatoreMessage != null)
+            if (dissipatoreMessage != null)
                 CachingProviderBase.Instance.RemoveItems("dissipatoreBuildSolo");
-           
+
         }
-    } 
+    }
 }

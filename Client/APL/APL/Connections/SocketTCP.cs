@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Diagnostics;
 using System.Windows.Forms;
-using System.IO;
 
 namespace APL.Connections
 {
@@ -15,9 +15,10 @@ namespace APL.Connections
         const Int32 port = 13000;
         const Int32 timeout = 5000;
         private static readonly TcpClient client;
-        private static readonly  NetworkStream stream;
+        private static readonly NetworkStream stream;
 
-        static SocketTCP() {
+        static SocketTCP()
+        {
             mut = new Mutex();
             client = new TcpClient();
             try
@@ -25,24 +26,28 @@ namespace APL.Connections
                 client.Connect(host, port);
                 stream = client.GetStream();
                 stream.ReadTimeout = timeout;
-             }
-            catch (SocketException se) { 
+            }
+            catch (SocketException se)
+            {
                 MessageBox.Show(se.Message + "Assicurarsi che il server remoto sia in ascolto");
                 System.Environment.Exit(50);
             }
         }
         // Close everything.
-        static public void CloseConnection() {
+        static public void CloseConnection()
+        {
             stream.Close();
             client.Close();
             mut.Close();
         }
 
-        static public void Wait() {
+        static public void Wait()
+        {
             mut.WaitOne();
         }
 
-        static public void Release() {
+        static public void Release()
+        {
             mut.ReleaseMutex();
         }
         static public void Send(string message)
@@ -62,7 +67,7 @@ namespace APL.Connections
 
             for (int i = 0; i < len_.Length; i++)
             {
-                lenbytes[difference + i -1] = len_[i];
+                lenbytes[difference + i - 1] = len_[i];
             }
             lenbytes[lenbytes.Length - 1] = 10;
 
@@ -76,20 +81,21 @@ namespace APL.Connections
                     stream.Flush();
                     Debug.WriteLine(outJson.Length);
                 }
-                catch (IOException io){
+                catch (IOException io)
+                {
                     MessageBox.Show(io.Message + "Connessione col Server interrotta");
                     System.Environment.Exit(51);
                 }
             }
         }
-       
+
 
         static public string Receive()
         {
-             /*
-             I primi 16 byte ricevuti sono la lunghezza del messaggio
-            con l'ultimo byte contente il ritorno a capo
-             */
+            /*
+            I primi 16 byte ricevuti sono la lunghezza del messaggio
+           con l'ultimo byte contente il ritorno a capo
+            */
             var data = new Byte[16];
             String responseData = String.Empty;
             if (client.Connected && stream.CanRead)
