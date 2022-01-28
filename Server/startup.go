@@ -28,6 +28,11 @@ const (
 
 var flag_check bool
 
+/*
+Questa funzione serve solamente ad inizializzare il database, utilizza dei file di testo
+da cui estrapola le informazioni da inserire. Le informazioni mancanti vengono generate in maniera random,
+per avere dei risultati ripetibili abbiamo impostato manualmente il seed.
+*/
 func invio(mongodb *mongo.Database) {
 	//rand.Seed(time.Now().UnixNano())
 	rand.Seed(800)
@@ -310,7 +315,7 @@ func invio(mongodb *mongo.Database) {
 		}
 	}
 	/*
-		Generazione dei pc Preassemblati, 4 categorie richiedono la compatibilità mentre altre 4
+		Generazione dei pc Preassemblati, 4 categorie richiedono la compatibilità mentre altre 4 no
 
 	*/
 	categorie := []string{"schedaVideo", "casepc", "alimentatore", "memoria"}

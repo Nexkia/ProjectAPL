@@ -12,6 +12,9 @@ import (
 )
 
 func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
+	/*
+		Inserisce contemporaneamente sia un componente che il rispettivo detail
+	*/
 	comp := data.Componente{}
 	json.Unmarshal([]byte(jsonComp), &comp)
 	detail := data.GetDetailType(comp.Categoria)
@@ -43,6 +46,9 @@ func Inserimento(jsonComp string, conn net.Conn, mongodb *mongo.Database) {
 }
 
 func Cancellazione(modello string, conn net.Conn, mongodb *mongo.Database) {
+	/*
+		Cancella contemporaneamente sia il componente che il rispettivo detail
+	*/
 	comp := data.Componente{}
 	filter := bson.D{{Key: "modello", Value: modello}}
 	err := utils.FindOne(filter, "componenti", mongodb).Decode(&comp)
