@@ -16,11 +16,12 @@ import (
 func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 	filter := bson.D{{Key: "password", Value: token}}
 	u := data.Utente{}
-
+	/*	Si cerca prima l'utente per poi successivamente
+		cercare gli acquisti grazie al suo indirizzo email
+	*/
 	err := utils.FindOne(filter, "utenti", mongodb).Decode(&u)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-
 		return
 	}
 
@@ -29,7 +30,6 @@ func SendCronologia(token string, conn net.Conn, mongodb *mongo.Database) {
 	err = utils.FindOne(filter, "Venduti", mongodb).Decode(&result)
 	if err != nil {
 		utils.Send([]byte("notFound"), conn)
-
 		return
 	}
 	Pc := data.PcAssemblato{}

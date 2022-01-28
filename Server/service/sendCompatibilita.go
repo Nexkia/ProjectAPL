@@ -12,6 +12,10 @@ import (
 )
 
 func SendCompatibilita(msg string, conn net.Conn, mongodb *mongo.Database) {
+	/*
+		Questa funzione si occupa di reperire i detail dei componenti
+		la verifica effettiva della compatibilità viene effettuata lato client
+	*/
 	msg_rcv := strings.Trim(msg, "\n")
 	byte_categoria := utils.Receive(conn)
 	categ_ := strings.Trim(string(byte_categoria), "\n")

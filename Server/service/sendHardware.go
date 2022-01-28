@@ -19,7 +19,6 @@ func SendPreassemblati(conn net.Conn, mongodb *mongo.Database, name *[3]string) 
 		filter := bson.D{{Key: "nome", Value: name[i]}}
 		utils.FindOne(filter, "preAssemblati", mongodb).Decode(&pc[i])
 	}
-	//trasformiamo l'oggetto in json e in byte
 	prejson, _ := json.Marshal(pc)
 	utils.Send(prejson, conn)
 
@@ -27,6 +26,8 @@ func SendPreassemblati(conn net.Conn, mongodb *mongo.Database, name *[3]string) 
 
 func SendBuildConsigliate(profile string, conn net.Conn, profiles *[5][8][3]data.Componente, lock *sync.RWMutex) {
 	log.Println(profile)
+	// I profili vengono indicizzate con un numero
+	// in base al numero del profilo ritorna i componenti consigliati
 	index, _ := strconv.Atoi(profile)
 	lock.RLock()
 	for _, categ := range profiles[index] {

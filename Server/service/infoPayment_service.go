@@ -45,10 +45,11 @@ func DoPayment(elementiVenduti string, token string, conn net.Conn, mongodb *mon
 	filter = bson.D{{Key: "email", Value: u.Email}}
 	var result map[string]interface{}
 	err = utils.FindOne(filter, "Venduti", mongodb).Decode(&result)
-	// La insert richiede un interface
 	vend := data.Vendita{}
 	var dat map[string]interface{}
 	json.Unmarshal([]byte(elementiVenduti), &dat)
+	// L'acquisto può essere fatto solamente se i componenti o il preassemblato è
+	// presente in quel momento ne database
 	if !Check(dat, mongodb) {
 		utils.Send([]byte("Un elemento non presente"), conn)
 		return

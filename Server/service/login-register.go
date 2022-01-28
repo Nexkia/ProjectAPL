@@ -48,7 +48,6 @@ func Register(u_json string, conn net.Conn, mongodb *mongo.Database) {
 func Login(out chan string, u_json string, conn net.Conn, mongodb *mongo.Database) {
 	var result bson.D
 	u := data.Utente{}
-	// Conversione da json a Utente
 	/*
 		Cerchiamo prima se è presente l'utente nel nostro database
 	*/

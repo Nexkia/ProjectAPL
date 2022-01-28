@@ -13,6 +13,11 @@ import (
 )
 
 func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
+	// Il messaggio che riceve è composto dai modelli da confrontare
+	// separati da un carattere #
+	// Per prima cosa utilizzo il primo componente, in quanto necessario
+	// almeno un elemento per fare il confronto, in modo da ottenere
+	// la categoria uguale anche per gli altri componenti
 	msg_rcv := strings.Trim(msg, "\n")
 	modelli := strings.Split(msg_rcv, "#")
 	modello1 := modelli[0]
@@ -39,5 +44,4 @@ func DoConfronto(msg string, conn net.Conn, mongodb *mongo.Database) {
 			utils.Send(json_result, conn)
 		}
 	}
-
 }

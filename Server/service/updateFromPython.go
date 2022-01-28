@@ -17,6 +17,7 @@ func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5
 	var categorie int = 8
 	var n_elem int = 3
 	lock.Lock()
+	// Ricezione dei componenti consigliati
 	for i := 0; i < profili; i++ {
 		for j := 0; j < categorie; j++ {
 			for k := 0; k < n_elem; k++ {
@@ -27,6 +28,7 @@ func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5
 			}
 		}
 	}
+	// Ricezione dei preAssemblati consigliati
 	for i := 0; i < 3; i++ {
 		name_pc_bytes := utils.Receive(conn)
 		name_pc := strings.Trim(string(name_pc_bytes), "\n")
@@ -38,6 +40,7 @@ func UpdateBuildConsigliate(conn net.Conn, mongodb *mongo.Database, profiles *[5
 func UpdateStatistics(conn net.Conn, mongodb *mongo.Database, img *[3][]byte, lock *sync.RWMutex) {
 	lock.Lock()
 	for i := 0; i < 3; i++ {
+		// Ricezione immagini
 		byte_img := utils.Receive(conn)
 		img[i] = byte_img
 		log.Println(len(byte_img))
