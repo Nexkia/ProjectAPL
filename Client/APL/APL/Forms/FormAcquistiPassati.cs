@@ -28,12 +28,12 @@ namespace APL.Forms
             string[]? PcPreAssemblati, PrezziPreAssemblati;
             List<Acquisto> Acquisti = new();
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             string response = SocketTCP.Receive();
             if (response.Contains("notFound"))
             {
-                SocketTCP.Release();
+                
                 return;
             }
             int numeroDiAcquisti = int.Parse(response);
@@ -55,7 +55,7 @@ namespace APL.Forms
                     {
                         Debug.WriteLine(PcAssemblati.Length);
                         Debug.WriteLine(PcPreAssemblati.Length);
-                        // aggiungiPcAllaListView( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
+                        // aggiunge i Pc Alla ListView ( PrezzoTot,data, PcAssemblati, PcPreAssemblati);
                         Acquisti.Add(new Acquisto()
                         {
                             PrezzoTot = PrezzoTot,
@@ -71,7 +71,7 @@ namespace APL.Forms
                     Debug.WriteLine(ex.Message);
                 }
             }
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
             IOrderedEnumerable<Acquisto> AcquistiOrdinati = Acquisti.OrderByDescending(x => x.Data);

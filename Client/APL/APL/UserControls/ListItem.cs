@@ -81,6 +81,7 @@ namespace APL.UserControls
             lvitem.SubItems.Add("");
             lvitem.SubItems.Add("preassemblato");
 
+            //cerchiamo di capire se il componente è già presente nel carrello
             ListViewItem risultato = vecchioCarrello.FindItemWithText(modello);
 
             //impediamo che si possa mettere lo stesso modello 2 volte dentro la listView

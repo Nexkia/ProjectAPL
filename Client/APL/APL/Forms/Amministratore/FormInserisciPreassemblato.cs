@@ -89,7 +89,7 @@ namespace APL.Forms.Amministratore
             pt.SetProtocolID("buildSolo");
             List<List<Componente>> myList = new();
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
 
             for (int i = 0; i < 8; i++)
@@ -110,7 +110,7 @@ namespace APL.Forms.Amministratore
                     Debug.WriteLine(ex.Message);
                 }
             }
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             Debug.WriteLine(myList.Count());
 
@@ -173,9 +173,9 @@ namespace APL.Forms.Amministratore
                 string jsonPreassemblato = JsonConvert.SerializeObject(pre);
                 pt.SetProtocolID("inserimento_pre"); pt.Data = jsonPreassemblato;
                 /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-                SocketTCP.Wait();
+                
                 SocketTCP.Send(pt.ToString());
-                SocketTCP.Release();
+                
                 /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                 MessageBox.Show("Inserimento completato correttamente",
                   "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);

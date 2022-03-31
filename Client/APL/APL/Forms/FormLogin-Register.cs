@@ -26,9 +26,9 @@ namespace APL.Forms
             pt.SetProtocolID("close");
             pt.Data = String.Empty;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             SocketTCP.CloseConnection();
 
@@ -43,7 +43,7 @@ namespace APL.Forms
 
             switch (result)
             {
-                case "Email o Codice Fiscale già usati in altri account":
+                case "Registrazione avvenuta correttamente":
                     //-----comunicazione con il server, che a sua volta comunica con il database--------------------------------------
                     string UserJson = JsonSerializer.Serialize(
                         new
@@ -57,10 +57,10 @@ namespace APL.Forms
                     //conversione da Json a Byte
                     pt.SetProtocolID("register"); pt.Data = UserJson;
                     /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-                    SocketTCP.Wait();
+                    
                     SocketTCP.Send(pt.ToString());
                     string response = SocketTCP.Receive();
-                    SocketTCP.Release();
+                    
                     /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (response.Contains("Registrazione"))
                     {
@@ -98,10 +98,10 @@ namespace APL.Forms
                     });
                     pt.SetProtocolID("login"); pt.Data = UserJson;
                     /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-                    SocketTCP.Wait();
+                    
                     SocketTCP.Send(pt.ToString());
                     string responseData = SocketTCP.Receive();
-                    SocketTCP.Release();
+                    
                     /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     if (responseData.Contains("Errore"))
                     {
@@ -161,19 +161,7 @@ namespace APL.Forms
                 TextBoxLoginPassword.PasswordChar = default;
         }
 
-        private void FormLogin_Register_VisibleChanged(object sender, EventArgs e)
-        {
-            FormCollection fc = Application.OpenForms;
-
-            foreach (Form frm in fc)
-            {
-                //iterate through
-                if (frm.Name == "FormStatistiche")
-                {
-                    frm.Close();
-                }
-            }
-        }
+       
 
     }
 

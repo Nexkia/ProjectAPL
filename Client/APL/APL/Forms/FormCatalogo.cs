@@ -151,10 +151,10 @@ namespace APL.Forms
             List<Componente> listaComponenti = new();
             Componente[]? componenti;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             string response = SocketTCP.Receive();
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             try
             {
@@ -432,12 +432,12 @@ namespace APL.Forms
         #region Cache----------------------------------------------------------------
         private void aggiungiListaInCache(List<Componente> lista)
         {
-            CachingProviderBase.Instance.AddItem(lista[0].Categoria, lista);
+            CachingProviderBase.Instance.AddItem(lista[0].Categoria+ "BuildSolo", lista);
             Debug.WriteLine("lista inserita in cache: " + DateTime.Now + " ///////////////");
         }
         private bool recuperaListaDallaCache(string categoria)
         {
-            List<Componente> message = CachingProviderBase.Instance.GetItem(categoria);
+            List<Componente> message = CachingProviderBase.Instance.GetItem(categoria+ "BuildSolo");
 
             if (message == null) { return false; }
 

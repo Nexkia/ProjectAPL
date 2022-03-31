@@ -22,10 +22,10 @@ namespace APL.Forms
             Utente? utente;
             pt.SetProtocolID("getUtente"); pt.Data = String.Empty;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             string jsonUser = SocketTCP.Receive();
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             try
             {
@@ -55,7 +55,7 @@ namespace APL.Forms
                     pt.SetProtocolID("modificaUtente");
                     pt.Data = TextBoxEmail.Text + "###" + TextBoxVecchiaPassword.Text;
                     /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-                    SocketTCP.Wait();
+                    
                     SocketTCP.Send(pt.ToString());
                     string check = SocketTCP.Receive();
                     Debug.WriteLine(check);
@@ -78,7 +78,7 @@ namespace APL.Forms
                         MessageBox.Show("la Vecchia Password è errata",
                                 "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    SocketTCP.Release();
+
                     /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                     break;
                 default:

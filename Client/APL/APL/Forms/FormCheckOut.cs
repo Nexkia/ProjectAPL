@@ -67,10 +67,10 @@ namespace APL.Forms
             InfoPayment? infoPayment;
             pt.SetProtocolID("getInfoPayment"); pt.Data = String.Empty;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             string infop = SocketTCP.Receive();
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
 
 
@@ -196,11 +196,11 @@ namespace APL.Forms
                 });
                 pt.SetProtocolID("CheckOut"); pt.Data = Json;
                 /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-                SocketTCP.Wait();
+                
                 SocketTCP.Send(pt.ToString());
                 SocketTCP.Send(JsonInfop + "\n");
                 string response = SocketTCP.Receive();
-                SocketTCP.Release();
+                
                 /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
                 if (response.Contains("Un elemento non presente"))
                 {

@@ -2,7 +2,7 @@
 
 namespace APL.Controlli
 {
-    internal class CheckFields
+     class CheckFields
     {
         public string CheckRegister(string nomeUtente1, string email1, string indirizzo1, string inserisciPassword1, string confermaPassword1)
         {
@@ -15,14 +15,11 @@ namespace APL.Controlli
             if (nomeUtente != string.Empty && emailR != string.Empty && indirizzo != string.Empty &&
                 inserisciPasswordR != string.Empty && confermaPasswordR != string.Empty)
             {
-                //controllo sul nome utente, che non deve avere spazi
-                bool isValidNomeUtente = nomeUtente.Contains(" ");
+                //controllo sull'email e la password, che non devono avere spazi
                 bool isValidEmailR = emailR.Contains(" ");
-                bool isValidIndirizzo = indirizzo.Contains(" ");
                 bool isValidinserisciPasswordR = inserisciPasswordR.Contains(" ");
                 bool isValidconfermaPasswordR = confermaPasswordR.Contains(" ");
-                if (isValidNomeUtente || isValidEmailR
-                    || isValidinserisciPasswordR || isValidconfermaPasswordR || isValidIndirizzo)
+                if ( isValidEmailR || isValidinserisciPasswordR || isValidconfermaPasswordR )
                 {
                     return "Togliere gli spazi all'interno dei campi";
                 }

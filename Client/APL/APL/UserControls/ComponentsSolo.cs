@@ -100,9 +100,9 @@ namespace APL.UserControls
             pt.Data = modello; pt.SetProtocolID("compatibilita");
             ConstructorDetail factoryDetail = new();
             IDetails? componenteDetail = factoryDetail.GetDetails(categoria);
-            Type categ = componenteDetail.GetType();
+            var categ = componenteDetail.GetType();
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             SocketTCP.Send(categoria + "\n");
             string detailMsg = SocketTCP.Receive();
@@ -115,7 +115,7 @@ namespace APL.UserControls
             {
                 Debug.WriteLine(ex.Message);
             }
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             string[] vet;
             ListViewItem lvitem = new("" + categoria + "");

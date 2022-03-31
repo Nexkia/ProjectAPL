@@ -5,26 +5,22 @@ using System.Runtime.Caching;
 
 namespace APL.Cache
 {
-    public class CachingProviderBase
+    public sealed class CachingProviderBase
     {
-        public CachingProviderBase()
-        {
 
-        }
 
         #region Singleton-------------------------------------------------------------
+        static readonly CachingProviderBase instance = new CachingProviderBase();
+        private CachingProviderBase() { }
         public static CachingProviderBase Instance
         {
             get
             {
-                return Nested.instance;
+                return instance;
             }
         }
 
-        class Nested
-        {
-            internal static readonly CachingProviderBase instance = new CachingProviderBase();
-        }
+      
         #endregion
 
 

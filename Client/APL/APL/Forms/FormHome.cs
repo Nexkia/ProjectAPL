@@ -83,18 +83,18 @@ namespace APL.Forms
         private void recuperaPreassemblati()
         {
             pt.SetProtocolID("home"); pt.Data = String.Empty;
-            PcPreassemblato[]? preAssembalti;
+            PcPreassemblato[]? preAssemblati;
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+           
             SocketTCP.Send(pt.ToString());
             string response = SocketTCP.Receive();
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             try
             {
-                preAssembalti = JsonConvert.DeserializeObject<PcPreassemblato[]>(response);
-                if (preAssembalti != null)
-                    populateItemsPcPreassemblato(preAssembalti, 3);
+                preAssemblati = JsonConvert.DeserializeObject<PcPreassemblato[]>(response);
+                if (preAssemblati != null)
+                    populateItemsPcPreassemblato(preAssemblati, 3);
             }
             catch (JsonException ex)
             {
@@ -160,7 +160,7 @@ namespace APL.Forms
             else
             {
 
-                populateItemsBuilSolo();
+                populateItemsBuildSolo();
             }
         }
 
@@ -238,7 +238,7 @@ namespace APL.Forms
             }
         }
 
-        private void populateItemsBuilSolo()
+        private void populateItemsBuildSolo()
         {
             pleaseWait.Visible = true;
             if (recuperaListaDallaCache() == false)
@@ -251,7 +251,7 @@ namespace APL.Forms
             pt.SetProtocolID("buildSolo");
             List<List<Componente>> myList = new();
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < 8; i++)
             {
@@ -261,6 +261,7 @@ namespace APL.Forms
                     Componente[]? elem = JsonConvert.DeserializeObject<Componente[]>(response);
                     if (elem != null)
                     {
+                        //converto l'array di componenti in una lista
                         List<Componente> singleComponent = elem.ToList();
                         myList.Add(singleComponent);
                         aggiungiListaInCache(singleComponent);
@@ -271,7 +272,7 @@ namespace APL.Forms
                     Debug.WriteLine(ex.Message);
                 }
             }
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
             Debug.WriteLine(myList.Count);
             stampaComponentsSolo(myList);
@@ -380,7 +381,7 @@ namespace APL.Forms
             if (flowLayoutPanel1.Controls.ContainsKey("ComponentsSolo"))
             {
                 flowLayoutPanel1.Controls.Clear();
-                populateItemsBuilSolo();
+                populateItemsBuildSolo();
             }
 
         }

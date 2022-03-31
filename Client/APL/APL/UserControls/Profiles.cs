@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace APL.UserControls
 {
-    public partial class Profiles : UserControl
+    public  partial class Profiles : UserControl
     {
         private FlowLayoutPanel vecchioFlowLayoutPanel1;
         private Protocol pt;
@@ -59,7 +59,7 @@ namespace APL.UserControls
 
             pt.SetProtocolID("profilo"); pt.Data = nomeProfili[nameProfile];
             /// INIZIO SCAMBIO DI MESSAGGI CON IL SERVER
-            SocketTCP.Wait();
+            
             SocketTCP.Send(pt.ToString());
             for (int i = 0; i < componentsTab.Length; i++)
             {
@@ -85,9 +85,9 @@ namespace APL.UserControls
                     Debug.WriteLine(ex.Message);
                 }
             }
-            SocketTCP.Release();
+            
             /// FINE SCAMBIO DI MESSAGGI CON IL SERVER
-            //ci sono 8 iterazionei, una per ogni componente
+            //ci sono 8 iterazioni, una per ogni componente
             for (int i = 0; i < componentsTab.Length; i++)
             {
                 componentsTab[i].Title = showElements[i, 0].Categoria;//"qui si mette il titolo";

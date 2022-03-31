@@ -37,6 +37,7 @@ namespace APL.UserControls.Amministratore.Inserimento
         {
             if (this.getInputDetail() != null && inserisciComponente.areFullAllTextBox() != null)
             {
+                InserimentoElemento.InserisciElemento(getInputDetail(), inserisciComponente.areFullAllTextBox());
                 MessageBox.Show("Inserimento avvenuto",
                     "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

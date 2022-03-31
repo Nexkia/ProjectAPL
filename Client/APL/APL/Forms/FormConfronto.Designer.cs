@@ -59,5 +59,8 @@ namespace APL.Forms
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelConfronto;
+
+
+
     }
 }
