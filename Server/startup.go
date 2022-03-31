@@ -3,7 +3,6 @@ package main
 import (
 	"Server/data"
 	"Server/utils"
-	"fmt"
 	"io/ioutil"
 	"math/rand"
 	"regexp"
@@ -39,7 +38,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE CASEPC
 	content, err := ioutil.ReadFile("database/case.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg := regexp.MustCompile(`(?m:(^\w*).(.*)\s(Midi-Tower|Micro-ATX|Big-Tower).-.*X.(0USD)?\s?(\d*.\d*)?)`)
 	result := reg.FindAllStringSubmatch(string(content), -1)
@@ -55,7 +54,7 @@ func invio(mongodb *mongo.Database) {
 			if elem[5] != "0 " {
 				cspc.Prezzo, _ = strconv.ParseFloat(elem[5], 64)
 			} else {
-				cspc.Prezzo = float64(rand.Intn((max_price-min_price)+1) + min_price)
+				cspc.Prezzo = float64(rand.Intn((max_price-min_price)+1)+min_price) + rand.Float64()
 			}
 			cspc_detail.Modello = modello
 			cspc_detail.Taglia = elem[3]
@@ -67,7 +66,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE CPU
 	content, err = ioutil.ReadFile("database/cpu.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*).(.*).Socket.(\w*\+?).Clock.(\w?.\w?).\w{1,3}.(Turbo\s\w\.\w.\w*.)?(\d*).Cores.(\d*).Threads.USD.(\d*.\d{1,2}))`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -99,7 +98,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE GPU
 	content, err = ioutil.ReadFile("database/gpu.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*).(.*)\s(GeForce |Radeon).*\s(\d*)(\sGB).(\d*)W.(USD.(\d*.\d*))?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -128,7 +127,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE PSU
 	content, err = ioutil.ReadFile("database/psu.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*)\s(\w*\-?.*)\sATX.(\d*)W(.USD.)?(\d*.\d*)?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -156,7 +155,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE RAM
 	content, err = ioutil.ReadFile("database/ram.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*).(.*)\s(\d{1,2})\sGB.(DDR\d)-(\d*).*Kit.of.(1|2|4)(USD.)?(\d*.\d*)?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -187,7 +186,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE HDD
 	content, err = ioutil.ReadFile("database/hdd.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*).(.*).(\d).TB.\d{1,4}.*RPM(.*USD.)?(USD.)?(\d*.\d*)?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -217,7 +216,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE SSD
 	content, err = ioutil.ReadFile("database/ssd.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*).(.*)\s(\d{3,4})\sGB(\d{3,4}\sGB\s|\s)(NVM|SATA).Protocol.(M.2|SATA).(FormatUSD.)?(\d*.\d*.)?(Format)?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -249,7 +248,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE COOLER
 	content, err = ioutil.ReadFile("database/cpucooler.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*)\s(.*)For\ssocket\s(.*),\s(\w*\+?\-?(V3)?)\s(USD\s(\d*.\d*))?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
@@ -286,7 +285,7 @@ func invio(mongodb *mongo.Database) {
 	// GENERAZIONE MOTHERBOARD
 	content, err = ioutil.ReadFile("database/motherboard.txt")
 	if err != nil {
-		fmt.Println("err")
+		panic(err)
 	}
 	reg = regexp.MustCompile(`(?m:(^\w*)\s(.*ATX).Socket.(\w*(\+)?(\-\w*)?).Chipset.(\w*).\d.Ramslots.(USD.)?(\d*.\d{1,2})?)`)
 	result = reg.FindAllStringSubmatch(string(content), -1)
